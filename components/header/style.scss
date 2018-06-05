@@ -1,0 +1,56 @@
+@import '../../static/base/fonts.scss';
+
+.rockstatHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: rem(31px 50px);
+  background-color: #000;
+  .logo {
+    width: rem(111px);
+    svg {
+      width: 100%;
+    }
+  }
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    .menuItem, .menuItemLgItem {
+      margin-left: rem(10px);
+      a {
+        position: relative;
+        display: block;
+        text-transform: uppercase;
+        overflow: hidden;
+        color: #fff;
+        text-decoration: none;
+        transition: color .1s linear;
+        @include font-Raleway(16px, 500);
+
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: rem(1px);
+          background-color: #fff;
+          transform: translateX(-105%);
+          transition: transform .2s ease, background-color .1s linear;
+        }
+        &:hover, &.active-language {
+          color: #00F0FF;
+          &:after {
+            transform: translateX(0);
+            background-color: #00F0FF;
+          }
+        }
+      }
+    }
+    .menuItemLg {
+      margin-left: rem(20px);
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import '../../static/base/fonts.scss';
+
+.everythingContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #000;
+  .textContainer {
+    width: 50%;
+    height: 20%;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    padding-top: 25%;
+    .title {
+      @include font-Raleway(42px, 100);
+    }
+    .text {
+      @include font-Raleway(18px, 100);
+    }
+  }
+
+  .bgContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
