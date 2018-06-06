@@ -3,6 +3,8 @@
   "scripts": {
     "dev": "next -p 8000",
     "build": "next build && next export",
+    "build:content": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json",
+    "build:content:watch": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json --watch",
     "start": "next start"
   },
   "dependencies": {
@@ -21,6 +23,7 @@
     "@zeit/next-sass": "^0.2.0",
     "autoprefixer": "^8.6.0",
     "css-loader": "^0.28.11",
+    "processmd": "^4.2.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
