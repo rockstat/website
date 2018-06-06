@@ -5,7 +5,7 @@ command = "yarn build"
 [context.production.environment]
 REPOSITORY_URL = "https://github.com/madiedinro/rockstat.ru-nextjs"
 CONTEXT = "production"
-NODE_VERSION=9.11.1
+NODE_VERSION= "9.11"
 # HUGO_VERSION = "0.41"
 # HUGO_ENV = "production"
 # HUGO_ENABLEGITINFO = "true"
