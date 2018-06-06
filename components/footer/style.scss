@@ -13,7 +13,7 @@
       }
 
       span {
-        @include font-Raleway(12px, 500);
+        @include raleway-medium(12px);
         color: #828282;
       }
     }
@@ -26,12 +26,12 @@
         margin-left: rem(50px);
         overflow: hidden;
         .itemMain {
-          @include font-Raleway(14px, 800);
+          @include raleway-bold(14px);
         }
         a {
           color: #fff;
           text-decoration: none;
-          @include font-Raleway(14px, 500);
+          @include raleway-medium(14px);
           position: relative;
           transition: color .1s linear;
   
@@ -76,7 +76,7 @@
         a {
           color: #fff;
           text-decoration: none;
-          @include font-Raleway(14px, 800);
+          @include raleway-bold(14px);
           position: relative;
           transition: color .1s linear;
   
@@ -106,7 +106,7 @@
     display: flex;
     justify-content: space-between;
     span {
-      @include font-Raleway(11px, 300);
+      @include raleway-regular(11px);
       color: #BDBDBD;
     }
   }

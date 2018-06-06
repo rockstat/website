@@ -4,12 +4,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extarctCSS = ExtractTextPlugin.extract({
   fallback: 'style-loader',
-  use: 'css-loader'
+  use: 'css-loader!resolve-url-loader'
 });
 
 const extarctSCSS = ExtractTextPlugin.extract({
   fallback: 'style-loader',
-  use: 'css-loader?module&importLoaders=1&localIdentName=[local]__[hash:base64:5]!sass-loader'
+  use: 'css-loader?module&importLoaders=1&localIdentName=[local]__[hash:base64:5]!resolve-url-loader!sass-loader'
 });
 
 module.exports = {
@@ -35,6 +35,24 @@ module.exports = {
         test: /\.(css)$/,
         use: extarctCSS,
         exclude: /node_modules/,
+      },
+      {
+        test: /\.md$/,
+        use: [
+            {
+                loader: "html-loader"
+            },
+            {
+                loader: "markdown-loader",
+                options: {
+                  pedantic: true
+                }
+            }
+        ]
+      },
+      {
+        test: /\.(woff2|woff?|otf|ttf|eot|svg)$/,
+        loader: 'file-loader?name=static/fonts/[name].[ext]?[hash:base64:5]'
       }
     );
 

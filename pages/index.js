@@ -1,4 +1,4 @@
-import { Wrapper, Everything } from '../containers';
+import { Wrapper, Everything, Analytic } from '../containers';
 import { Head } from '../components';
 
 export default () => (
@@ -6,6 +6,7 @@ export default () => (
     <Head />
     <Wrapper headerBgActive={false}>
       <Everything />
+      <Analytic />
     </Wrapper>
   </span>
 )
