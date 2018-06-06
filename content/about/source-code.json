@@ -1,0 +1,9 @@
+{
+  "bodyContent": "",
+  "bodyHtml": "",
+  "dir": "content/about",
+  "base": "source-code.json",
+  "ext": ".json",
+  "sourceBase": "source-code.md",
+  "sourceExt": ".md"
+}
