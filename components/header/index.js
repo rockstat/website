@@ -1,43 +1,55 @@
 import * as React from 'react';
 import Link from 'next/link'
-import styles from './style.scss';
+import cl from 'classnames';
+import PropTypes from 'prop-types';
+
+import style from './style.scss';
 
 import { LogoIcon } from '../../static/icons';
 
+import { headerMenu, langsMenu } from '../../constants';
+
 export class Header extends React.Component {
+   static propTypes = {
+    headerBgActive: PropTypes.bool
+  }
+
   render() {
+    const { headerBgActive } = this.props;
+
     return (
-      <header className={styles.rockstatHeader}>
-        <div className={styles.logo}>
+      <header className={cl(style.rockstatHeader, {[style.activeBg]: headerBgActive})}>
+        <div className={style.logo}>
           <Link href="/">
             <a><LogoIcon /></a>
           </Link>
         </div>
 
-        <div className={styles.menu}>
-              <div className={styles.menuItem} >
-                  <Link href="">
-                    <a> Обучение </a>
+        <div className={style.menu}>
+          {
+            headerMenu.map((item , index) => {
+              return (
+                <div key={index} className={style.menuItem} >
+                  <Link href={item.path}>
+                    <a> {item.name} </a>
                   </Link>
-              </div>
-              <div className={styles.menuItem} >
-                  <Link href="">
-                  <a> документация </a>
-                  </Link>
-              </div>
-        
-              <div className={styles.menuItemLg}>
-                  <div className={styles.menuItemLgItem}>
-                    <Link href="">
-                      <a>ru</a>
+                </div>
+              )
+            })
+          }
+          <div className={style.menuItemLg}>
+            {
+              langsMenu.map((item , index) => {
+                return (
+                  <div key={index} className={style.menuItemLgItem} >
+                    <Link href={item.path}>
+                      <a> {item.name} </a>
                     </Link>
                   </div>
-                  <div className={styles.menuItemLgItem}>
-                    <Link href="">
-                      <a>en</a>
-                    </Link>
-                  </div>
-              </div>
+                )
+              })
+            }
+          </div>
         </div>
       </header>
     )

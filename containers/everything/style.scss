@@ -6,17 +6,25 @@
   position: relative;
   background-color: #000;
   .textContainer {
-    width: 50%;
-    height: 20%;
-    position: relative;
+    width: 25vw;
+    height: 12vw;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
     margin: auto;
     text-align: center;
-    padding-top: 25%;
     .title {
       @include font-Raleway(42px, 100);
+      // filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+      text-shadow: 0px 0px 3px white;
+      text-transform: uppercase;
     }
     .text {
       @include font-Raleway(18px, 100);
+      margin-top: rem(15px);
+      opacity: 0.8;
     }
   }
 
@@ -26,5 +34,112 @@
     height: 100%;
     top: 0;
     left: 0;
+    .centerBg, .circleTransparentBg, .circleBlurBg, .circleGreenBg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      svg {
+        width: 100%;
+      }
+    }
+
+    .centerBg {
+      width: 45%;
+      height: 45vw;
+    }
+    .circleTransparentBg {
+      width: 60%;
+      height: 60vw;
+    }
+    .circleBlurBg {
+      width: 90%;
+      height: 90vw;
+    }
+    .circleGreenBg {
+      width: 61%;
+      height: 61vw;
+    }
+  }
+  .bottomMenuContainer {
+    position: absolute;
+    width: 100%;
+    bottom: 10%;
+    left: 0;
+    padding: rem(31px 50px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .socialMenu {
+      display: flex;
+      @include font-Raleway(14px, 600);
+      text-transform: uppercase;
+      .item {
+        position: relative;
+        margin-right: rem(20px);
+        a {
+          color: #fff;
+          text-decoration: none;
+          position: relative;
+          overflow: hidden;
+          display: block;
+
+          &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: rem(1px);
+            background-color: #fff;
+            transform: translateX(-105%);
+            transition: transform .2s ease, background-color .1s linear;
+          }
+          &:hover, &.active-menu {
+            color: #00F0FF;
+            &:after {
+              transform: translateX(0);
+              background-color: #00F0FF;
+            }
+          }
+        }
+        &:after {
+          position: absolute;
+          right: rem(-10px);
+          top: 0;
+          content: '|';
+          color: #00F0FF;
+          @include font-Raleway(14px, 600);
+          width: rem(2px);
+          height: rem(14px);
+        }
+        &.lastItem {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+    .demoContainer {
+      .btn {
+        padding: rem(10px, 25px);
+        border: 1px solid #00F0FF;
+        border-radius: 10px;
+        @include font-Raleway(14px, 600);
+        text-transform: uppercase;
+        text-align: center;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+      .description {
+        @include font-Raleway(12px, 600);
+        text-align: right;
+        margin-top: rem(17px);
+      }
+    }
   }
 }

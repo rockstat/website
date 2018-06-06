@@ -1,11 +1,19 @@
 @import '../../static/base/fonts.scss';
 
 .rockstatHeader {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   padding: rem(31px 50px);
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0);
+  &.activeBg {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
   .logo {
     width: rem(111px);
     svg {

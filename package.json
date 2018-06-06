@@ -2,13 +2,18 @@
   "name": "create-next-example-app",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "sass-rem": "^2.0.1"
+    "react-mt-svg-lines": "^0.8.4",
+    "react-svg-morph": "^0.2.1",
+    "react-vivus": "^0.0.2",
+    "sass-rem": "^2.0.1",
+    "vivus": "^0.4.3"
   },
   "devDependencies": {
     "@zeit/next-sass": "^0.2.0",
@@ -19,6 +24,7 @@
     "next": "^6.0.3",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",
+    "prop-types": "^15.6.1",
     "sass-loader": "^7.0.2",
     "style-loader": "^0.21.0",
     "webpack": "3.10.0"
