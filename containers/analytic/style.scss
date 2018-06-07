@@ -12,7 +12,7 @@
   .textContainer {
     text-align: center;
     .title {
-      @include raleway-regular(36px);
+      @include raleway-light(36px);
       text-transform: uppercase;
       line-height: rem(42px);
       padding-top: rem(80px);
@@ -35,11 +35,11 @@
       .leftTextTop {
         text-align: center;
         .title {
-          @include raleway-medium(28px);
+          @include raleway-regular(28px);
           line-height: rem(25px);
         }
         .description {
-          @include raleway-medium(16px);
+          @include raleway-regular(16px);
           line-height: rem(25px);
           margin-top: rem(30px);
         }
@@ -48,11 +48,11 @@
         margin-top: rem(51px);
         text-align: center;
         .title {
-          @include raleway-medium(28px);
+          @include raleway-regular(28px);
           line-height: rem(25px);
         }
         .description {
-          @include raleway-medium(16px);
+          @include raleway-regular(16px);
           line-height: rem(25px);
           margin-top: rem(30px);
         }
@@ -77,11 +77,11 @@
       .rightTextTop {
         text-align: center;
         .title {
-          @include raleway-medium(28px);
+          @include raleway-regular(28px);
           line-height: rem(25px);
         }
         .description {
-          @include raleway-medium(16px);
+          @include raleway-regular(16px);
           line-height: rem(25px);
           margin-top: rem(30px);
         }
@@ -90,11 +90,11 @@
         margin-top: rem(51px);
         text-align: center;
         .title {
-          @include raleway-medium(28px);
+          @include raleway-regular(28px);
           line-height: rem(25px);
         }
         .description {
-          @include raleway-medium(16px);
+          @include raleway-regular(16px);
           line-height: rem(25px);
           margin-top: rem(30px);
         }

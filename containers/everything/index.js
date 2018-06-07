@@ -1,20 +1,53 @@
 import React from 'react';
 import cl from 'classnames';
+import PropTypes from 'prop-types';
 
 import style from './style.scss';
+
+import Vivus from 'vivus';
+
+import VisibleDetect from "react-visibility-sensor";
 
 import { EverythingRhimbusIcon, CircleTransparent, CircleBlur, CircleGreenIcon } from '../../static/icons';
 import { linksMenu } from '../../constants';
 
-const Test = () =>
-  <svg id={'CircleBlurIconTEST'} viewBox="0 0 1193 785" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="60" cy="60" r="50" stroke='#fff'/>
-  </svg>
-;
+export class Everything extends React.PureComponent {
+  state = {
+    mainAnimationStatus: true,
+    mountingDetect: false
+  }
 
-export class Everything extends React.Component {
+  static propTypes = {
+    setStateLinkMenu: PropTypes.func,
+    linksMenuPosition: PropTypes.string
+  }
+
+  componentDidMount() {
+    this.setState({
+      mountingDetect: true
+    });
+
+    this.vivus = new Vivus('EverythingRhimbusIcon',
+      {
+        type: 'delayed',
+        duration: 80,
+        animTimingFunction: Vivus.LINEAR
+      },
+      () => {
+        this.setState({
+          mainAnimationStatus: false
+        })
+      }
+    )
+  }
+
+  _linkMenuPositionDetect = (e) => this.props.setStateLinkMenu(e ? 'bottom' : 'top');
+
 
   render() {
+    const { mainAnimationStatus, mountingDetect } = this.state;
+    const { linksMenuPosition } = this.props;
+
     return (
       <div className={style.everythingContainer}>
         <div className={style.textContainer}>
@@ -28,7 +61,7 @@ export class Everything extends React.Component {
           </div>
         </div>
         <div className={style.bgContainer}>
-          <div className={style.centerBg}>
+          <div className={cl(style.centerBg, {[style.fillNone]: mainAnimationStatus}, {[style.mounted]: mountingDetect})}>
             <EverythingRhimbusIcon />
           </div>
           <div className={style.circleTransparentBg}>
@@ -42,18 +75,19 @@ export class Everything extends React.Component {
           </div>
         </div>
         <div className={style.bottomMenuContainer}>
-          <div className={style.socialMenu}>
-            {
-              linksMenu.map((item, index) => {
-                return(
-                  <div key={index} className={cl(style.item, {[style.lastItem]: index === linksMenu.length - 1})}>
-                    <a href={item.path} target={'__blank'}> { item.name } </a>
-                  </div>
-                )
-              })
-            }
-          </div>
-          <div className={style.demoContainer}>
+            <div className={cl(style.socialMenu, {[style.top]: linksMenuPosition === 'top'})}>
+              {
+                linksMenu.map((item, index) => {
+                  return(
+                    <div key={index} className={cl(style.item, {[style.lastItem]: index === linksMenu.length - 1})}>
+                      <a href={item.path} target={'__blank'}> { item.name } </a>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          <div className={cl(style.demoContainer, {[style.top]: linksMenuPosition === 'top'})}>
+            <VisibleDetect onChange={this._linkMenuPositionDetect} />
             <div className={style.btn}> <a href={'/'}> Demo </a> </div>
             <div className={style.description}>
               Open Source <br />

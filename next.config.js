@@ -14,9 +14,9 @@ const extarctSCSS = ExtractTextPlugin.extract({
 
 module.exports = {
   webpack: (config) => {
-    config.node = {
-      fs: false
-    }
+    // config.node = {
+    //   fs: false
+    // }
 
     config.plugins.push(
       new ExtractTextPlugin({

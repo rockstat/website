@@ -1,6 +1,19 @@
+@import '../../static/base/fonts.scss';
+
 .documentationContainer {
-  width: 80%;
-  margin: auto;
   padding-top: 100px;
   color: #000;
+  padding: rem(150px 50px 30px);
+  display: flex;
+
+  .sideBar {
+    width: 30%;
+    padding: rem(0px 50px 0px 0px);
+    .mainItem {
+    
+    }
+  }
+  .content {
+    width: 70%;
+  }
 }

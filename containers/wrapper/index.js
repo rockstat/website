@@ -21,15 +21,17 @@ import '../../static/base/index.scss';
 
 export class Wrapper extends React.Component {
   static propTypes = {
-    headerBgActive: PropTypes.bool
+    headerBgActive: PropTypes.bool,
+    linkMenuPosition: PropTypes.string,
+    locale: PropTypes.string
   }
 
   render() {
-    const { headerBgActive } = this.props;
+    const { headerBgActive, linkMenuPosition, locale } = this.props;
 
     return (
       <div className={'rockstat-container'}>
-        <Header headerBgActive={headerBgActive} />
+        <Header locale={locale} headerBgActive={headerBgActive} linkMenuPosition={linkMenuPosition} />
         <div className={'rockstat-container-content'}>
           { this.props.children }
         </div>

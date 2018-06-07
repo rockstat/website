@@ -31,14 +31,14 @@ export const headerMenu = [
   },
   {
     name: 'Документация',
-    path: '/dock'
+    path: '/documentation'
   }
 ]
 
 export const footerMenu = [
   {
     name: 'Документация',
-    path: '/dock',
+    path: '/documentation',
     children: [
       {
         name: 'ахитектура',
