@@ -1,21 +1,5 @@
 {
   "fileMap": {
-    "content/about/source-code.json": {
-      "dir": "content/about",
-      "base": "source-code.json",
-      "ext": ".json",
-      "sourceBase": "source-code.md",
-      "sourceExt": ".md"
-    },
-    "content/about/about.json": {
-      "preview": "О проекте\n\nЕсли кратко: Rockstat (ранее Alcolytics) - это ваша персональная система сессионной +",
-      "title": "О проекте",
-      "dir": "content/about",
-      "base": "about.json",
-      "ext": ".json",
-      "sourceBase": "about.md",
-      "sourceExt": ".md"
-    },
     "content/about/whatsnew.json": {
       "preview": "Что нового\n\n 2.2.0 \n\n[x] SSL rate A\n[ ] \n[ ] \n[ ] \n[ ] \n\n2.1.0 (2018-03-07)\n\n[x] 2 дополнительных транспорта:",
       "title": "Что нового",
@@ -25,13 +9,14 @@
       "sourceBase": "whatsnew.md",
       "sourceExt": ".md"
     },
-    "content/data/data-overview.json": {
-      "preview": "Обзор данных\n\n! Раздел в работе\n\n События на сайте\n\nRockstat задумывался и создавался как платформа, которая",
-      "title": "Обзор данных",
-      "dir": "content/data",
-      "base": "data-overview.json",
+    "content/about/about.json": {
+      "parent": "about",
+      "preview": "О проекте\n\nЕсли кратко: Rockstat (ранее Alcolytics) - это ваша персональная система сессионной +",
+      "title": "О проекте",
+      "dir": "content/about",
+      "base": "about.json",
       "ext": ".json",
-      "sourceBase": "data-overview.md",
+      "sourceBase": "about.md",
       "sourceExt": ".md"
     },
     "content/data/data-tools-grafana.json": {
@@ -43,24 +28,6 @@
       "sourceBase": "data-tools-grafana.md",
       "sourceExt": ".md"
     },
-    "content/data/data-tools.json": {
-      "preview": "Обзор инструментов для работы с данными\n\nПри установке платформы вы получаете из коробки набор инструментов,",
-      "title": "Обзор инструментов для работы с данными",
-      "dir": "content/data",
-      "base": "data-tools.json",
-      "ext": ".json",
-      "sourceBase": "data-tools.md",
-      "sourceExt": ".md"
-    },
-    "content/data/data-tools-jupyter.json": {
-      "preview": "Jupyter\n\nШикарный инструмент для анализа данных и машинного обучения, о нем можно рассказывать бесконечно.",
-      "title": "Jupyter",
-      "dir": "content/data",
-      "base": "data-tools-jupyter.json",
-      "ext": ".json",
-      "sourceBase": "data-tools-jupyter.md",
-      "sourceExt": ".md"
-    },
     "content/data/data-tools-clickhouse-scheme.json": {
       "preview": "Схема ClickHouse\n\n! Раздел в работе\n\n events_v2\n\n| Колонка                    | Тип CH         | Тип JS  |",
       "title": "Схема ClickHouse",
@@ -68,24 +35,6 @@
       "base": "data-tools-clickhouse-scheme.json",
       "ext": ".json",
       "sourceBase": "data-tools-clickhouse-scheme.md",
-      "sourceExt": ".md"
-    },
-    "content/front/tracker-enrichment.json": {
-      "preview": "Обогащение на сервере\n\nПри получении данных на вход, серверная часть трекера производит обогащение данных на",
-      "title": "Обогащение на сервере",
-      "dir": "content/front",
-      "base": "tracker-enrichment.json",
-      "ext": ".json",
-      "sourceBase": "tracker-enrichment.md",
-      "sourceExt": ".md"
-    },
-    "content/front/webhooks.json": {
-      "title": "Меню Webhooks",
-      "preview": "Webhooks\n\n Что такое Webhook / Postback?\n\nПо сути, это обычные HTTP запросы между серверами. В некоторых",
-      "dir": "content/front",
-      "base": "webhooks.json",
-      "ext": ".json",
-      "sourceBase": "webhooks.md",
       "sourceExt": ".md"
     },
     "content/front/tracker-features.json": {
@@ -99,13 +48,22 @@
       "sourceBase": "tracker-features.md",
       "sourceExt": ".md"
     },
-    "content/jslib/alcojs-features.json": {
-      "preview": "Особенности AlcoJS\n\n Хранение данных в LocalStorage\n\nAlcoJS хранит все данные в браузере, чтобы избежать их",
-      "title": "Особенности AlcoJS",
-      "dir": "content/jslib",
-      "base": "alcojs-features.json",
+    "content/data/data-tools-jupyter.json": {
+      "preview": "Jupyter\n\nШикарный инструмент для анализа данных и машинного обучения, о нем можно рассказывать бесконечно.",
+      "title": "Jupyter",
+      "dir": "content/data",
+      "base": "data-tools-jupyter.json",
       "ext": ".json",
-      "sourceBase": "alcojs-features.md",
+      "sourceBase": "data-tools-jupyter.md",
+      "sourceExt": ".md"
+    },
+    "content/front/tracker-enrichment.json": {
+      "preview": "Обогащение на сервере\n\nПри получении данных на вход, серверная часть трекера производит обогащение данных на",
+      "title": "Обогащение на сервере",
+      "dir": "content/front",
+      "base": "tracker-enrichment.json",
+      "ext": ".json",
+      "sourceBase": "tracker-enrichment.md",
       "sourceExt": ".md"
     },
     "content/jslib/alcojs-autotrack.json": {
@@ -115,6 +73,13 @@
       "base": "alcojs-autotrack.json",
       "ext": ".json",
       "sourceBase": "alcojs-autotrack.md",
+      "sourceExt": ".md"
+    },
+    "content/about/source-code.json": {
+      "dir": "content/about",
+      "base": "source-code.json",
+      "ext": ".json",
+      "sourceBase": "source-code.md",
       "sourceExt": ".md"
     },
     "content/jslib/alcojs-callbacks.json": {
@@ -135,13 +100,31 @@
       "sourceBase": "alcojs-enrichment.md",
       "sourceExt": ".md"
     },
-    "content/jslib/alcojs-methods-special.json": {
-      "preview": "Установка персональных параметров трекера\n\nalco.push('setCustomConfig', {\n  trackClicks: true, \n  trackForms:",
-      "title": "Установка персональных параметров трекера",
-      "dir": "content/jslib",
-      "base": "alcojs-methods-special.json",
+    "content/front/webhooks.json": {
+      "title": "Меню Webhooks",
+      "preview": "Webhooks\n\n Что такое Webhook / Postback?\n\nПо сути, это обычные HTTP запросы между серверами. В некоторых",
+      "dir": "content/front",
+      "base": "webhooks.json",
       "ext": ".json",
-      "sourceBase": "alcojs-methods-special.md",
+      "sourceBase": "webhooks.md",
+      "sourceExt": ".md"
+    },
+    "content/data/data-tools.json": {
+      "preview": "Обзор инструментов для работы с данными\n\nПри установке платформы вы получаете из коробки набор инструментов,",
+      "title": "Обзор инструментов для работы с данными",
+      "dir": "content/data",
+      "base": "data-tools.json",
+      "ext": ".json",
+      "sourceBase": "data-tools.md",
+      "sourceExt": ".md"
+    },
+    "content/jslib/alcojs-features.json": {
+      "preview": "Особенности AlcoJS\n\n Хранение данных в LocalStorage\n\nAlcoJS хранит все данные в браузере, чтобы избежать их",
+      "title": "Особенности AlcoJS",
+      "dir": "content/jslib",
+      "base": "alcojs-features.json",
+      "ext": ".json",
+      "sourceBase": "alcojs-features.md",
       "sourceExt": ".md"
     },
     "content/jslib/alcojs-semantic-events.json": {
@@ -153,6 +136,15 @@
       "sourceBase": "alcojs-semantic-events.md",
       "sourceExt": ".md"
     },
+    "content/jslib/alcojs-methods-special.json": {
+      "preview": "Установка персональных параметров трекера\n\nalco.push('setCustomConfig', {\n  trackClicks: true, \n  trackForms:",
+      "title": "Установка персональных параметров трекера",
+      "dir": "content/jslib",
+      "base": "alcojs-methods-special.json",
+      "ext": ".json",
+      "sourceBase": "alcojs-methods-special.md",
+      "sourceExt": ".md"
+    },
     "content/jslib/alcojs-methods.json": {
       "preview": "Отправка событий\n\nВы самостоятельно придумываете название и список данных, которые хотите передать. Сразу",
       "title": "Отправка событий",
@@ -162,22 +154,13 @@
       "sourceBase": "alcojs-methods.md",
       "sourceExt": ".md"
     },
-    "content/micro/band-overview.json": {
-      "preview": "Микросервисная архитектура с Band\n\n Протокол взаимодействия\n\nJSON-RPC2 over Redis PubSub\n\nСтруктура",
-      "title": "Микросервисная архитектура с Band",
-      "dir": "content/micro",
-      "base": "band-overview.json",
+    "content/data/data-overview.json": {
+      "preview": "Обзор данных\n\n! Раздел в работе\n\n События на сайте\n\nRockstat задумывался и создавался как платформа, которая",
+      "title": "Обзор данных",
+      "dir": "content/data",
+      "base": "data-overview.json",
       "ext": ".json",
-      "sourceBase": "band-overview.md",
-      "sourceExt": ".md"
-    },
-    "content/server/server-maintein.json": {
-      "preview": "Эксплуатация\n\n! Это важно! Rockstat работает на вашем собственном сервере и поддержка его работоспособности",
-      "title": "Эксплуатация",
-      "dir": "content/server",
-      "base": "server-maintein.json",
-      "ext": ".json",
-      "sourceBase": "server-maintein.md",
+      "sourceBase": "data-overview.md",
       "sourceExt": ".md"
     },
     "content/jslib/alcojs-sessions.json": {
@@ -198,15 +181,6 @@
       "sourceBase": "alcojs-setup.md",
       "sourceExt": ".md"
     },
-    "content/server/server-vpn.json": {
-      "preview": "Подключение к VPN\n\nОбратите внимание, что по одному ключу может подключиться только один пользователь в один",
-      "title": "Подключение к VPN",
-      "dir": "content/server",
-      "base": "server-vpn.json",
-      "ext": ".json",
-      "sourceBase": "server-vpn.md",
-      "sourceExt": ".md"
-    },
     "content/server/server-setup.json": {
       "preview": "Установка и обновление платформы\n\n Минимальная конфигурация\n\nБольшинству проектов хватит небольшого",
       "title": "Установка и обновление платформы",
@@ -216,6 +190,24 @@
       "sourceBase": "server-setup.md",
       "sourceExt": ".md"
     },
+    "content/micro/band-overview.json": {
+      "preview": "Микросервисная архитектура с Band\n\n Протокол взаимодействия\n\nJSON-RPC2 over Redis PubSub\n\nСтруктура",
+      "title": "Микросервисная архитектура с Band",
+      "dir": "content/micro",
+      "base": "band-overview.json",
+      "ext": ".json",
+      "sourceBase": "band-overview.md",
+      "sourceExt": ".md"
+    },
+    "content/server/server-maintein.json": {
+      "preview": "Эксплуатация\n\n! Это важно! Rockstat работает на вашем собственном сервере и поддержка его работоспособности",
+      "title": "Эксплуатация",
+      "dir": "content/server",
+      "base": "server-maintein.json",
+      "ext": ".json",
+      "sourceBase": "server-maintein.md",
+      "sourceExt": ".md"
+    },
     "content/server/server-update.json": {
       "preview": "Проект развивается очень быстро, обновления могут выходить часто, вплоть до нескольких раз в день. \nОбо всех",
       "title": "Процесс обновления повторяет установку и приводит в порядок все, что не так:",
@@ -223,6 +215,15 @@
       "base": "server-update.json",
       "ext": ".json",
       "sourceBase": "server-update.md",
+      "sourceExt": ".md"
+    },
+    "content/server/server-vpn.json": {
+      "preview": "Подключение к VPN\n\nОбратите внимание, что по одному ключу может подключиться только один пользователь в один",
+      "title": "Подключение к VPN",
+      "dir": "content/server",
+      "base": "server-vpn.json",
+      "ext": ".json",
+      "sourceBase": "server-vpn.md",
       "sourceExt": ".md"
     }
   },

@@ -3,47 +3,59 @@ import style from './style.scss';
 import cl from 'classnames';
 import { Router } from '../../routes';
 import Link from 'next/link';
+import dynamic from 'next/dynamic'
 
-import TEST from '../../data/test.md';
+// import TEST from '../../data/test.md';
 
-import CONFIG_CONTENT from '../../content/summary.json';
-import { getContent } from '../../utils/getContent';
+// import CONFIG_CONTENT from '../../content/summary.json';
+import { menu, rootNodes } from '../../utils/getContent';
 import { LogoIcon } from '../../static/icons';
 
 export class Documentation extends React.Component {
   state = {
-    activeContent: TEST
+    activeContent: '',
+    activeMenu: undefined
   }
 
-  componentWillMount() {
-    let path = this.props.query.slug === undefined ? 'content/about/about.json' : this.props.query.slug;
-
+   componentWillMount() {
+    const {
+      slug
+    } = this.props.query;
+    let activeItem = !!slug && menu[slug] ? slug : rootNodes[0].items[0].items[0];
     this.setState({
-      activeContent: getContent[path].bodyHtml
+      activeContent: 'body',
+      activeMenu: activeItem
     })
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      activeContent: getContent[nextProps.query.slug].bodyHtml
+      activeContent: 'body'
     })
   }
 
 
   _getDoc = (e) => {
-    let path = `${CONFIG_CONTENT.fileMap[e].dir}/${CONFIG_CONTENT.fileMap[e].base}`;
-
-    Router.pushRoute('dockChildren', {
-          slug: path,
-          lang: 'ru'
-        });
+    // Router.pushRoute('dockChildren', {
+    //   slug: path,
+    //   lang: 'ru'
+    //     });
   }
 
   render() {
-    const arrContet = Object.keys(CONFIG_CONTENT.fileMap);
-    const { activeContent } = this.state;
+    // const arrContet = Object.keys(CONFIG_CONTENT.fileMap);
+    const { activeContent, activeMenu } = this.state;
     const { locale } = this.props;
+    console.log('active menu', activeMenu, activeMenu.fn)
+    let Contents = '404';
+    // Contents = [dynamic(import(activeMenu.fn))]
+    Contents = null;
 
+    
+    const path = `./../../${activeMenu.fn}`;
+    console.log(path);
+    dynamic(import(path));
+    
     return (
       <div className={style.documentationContainer}>
         <div className={style.logo}>
@@ -54,20 +66,20 @@ export class Documentation extends React.Component {
 
           <div className={style.sideBar}>
             {
-              arrContet.map((item, index) => {
+              rootNodes.map((item, index) => {
                 return (
                   <div
                     className={style.mainItem}
                     onClick={this._getDoc.bind(this, item)}
                     key={index}
                   >
-                    { CONFIG_CONTENT.fileMap[item].title }
+                    { item.title }
                   </div>
                 )
               })
             }
           </div>
-          <div className={cl(style.content, 'markdown-body')} dangerouslySetInnerHTML={{__html: activeContent}}></div>
+          <div className={cl(style.content, 'markdown-body')} dangerouslySetInnerHTML={{__html: Contents}}></div>
       </div>
     )
   }
