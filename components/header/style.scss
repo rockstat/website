@@ -46,7 +46,7 @@
           transform: translateX(-105%);
           transition: transform .2s ease, background-color .1s linear;
         }
-        &:hover, &.active-language {
+        &:hover, &.active {
           color: #00F0FF;
           &:after {
             transform: translateX(0);
@@ -60,5 +60,22 @@
       display: flex;
       justify-content: space-between;
     }
+  }
+  &.documentation {
+    background-color: #fff;
+    border-bottom: 1px solid #E0E0E0;
+     .menu {
+      .menuItemLgItem, .menuItem {
+        a {
+          color: #000;
+          &:hover, &.active {
+            color: #00F0FF;
+          }
+          &:after {
+            display: none;
+          }
+        }
+      }
+    } 
   }
 }

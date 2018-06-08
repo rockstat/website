@@ -16,14 +16,21 @@ export class Header extends React.Component {
    static propTypes = {
     headerBgActive: PropTypes.bool,
     linkMenuPosition: PropTypes.string,
-    locale: PropTypes.string
+    locale: PropTypes.string,
+    documentation: PropTypes.bool,
+    activePath: PropTypes.string
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, locale } = this.props;
+    const { headerBgActive, linkMenuPosition, locale, documentation, activePath } = this.props;
 
     return (
-      <header className={cl(style.rockstatHeader, {[style.activeBg]: headerBgActive || linkMenuPosition === 'top'})}>
+      <header 
+        className={cl(
+          style.rockstatHeader,
+          {[style.activeBg]: headerBgActive || linkMenuPosition === 'top'},
+          {[style.documentation]: documentation}
+        )}>
         <div className={style.logo}>
           <Link href={`/${locale}`}>
             <a><LogoIcon /></a>
@@ -36,7 +43,7 @@ export class Header extends React.Component {
               return (
                 <div key={index} className={style.menuItem} >
                   <Link href={`/${locale}${item.path}`}>
-                    <a> {item.name} </a>
+                    <a className={cl({[style.active]: activePath === item.path})}> {item.name} </a>
                   </Link>
                 </div>
               )
@@ -48,7 +55,7 @@ export class Header extends React.Component {
                 return (
                   <div key={index} className={style.menuItemLgItem} >
                     <Link href={item.path}>
-                      <a> {item.name} </a>
+                      <a className={cl({[style.active]: locale === item.name})}> {item.name} </a>
                     </Link>
                   </div>
                 )

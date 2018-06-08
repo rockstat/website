@@ -16,8 +16,8 @@ export default class extends React.Component {
     return (
       <span>
         <Head />
-        <Wrapper locale={query.lang} headerBgActive={true}>
-          <Documentation {...this.props} />
+        <Wrapper {...this.props} locale={query.lang} headerBgActive={true} documentation={true}>
+          <Documentation {...this.props} locale={query.lang} />
         </Wrapper>
     </span>
     )

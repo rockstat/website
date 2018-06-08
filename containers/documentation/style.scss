@@ -1,19 +1,40 @@
 @import '../../static/base/fonts.scss';
 
 .documentationContainer {
-  padding-top: 100px;
   color: #000;
-  padding: rem(150px 50px 30px);
   display: flex;
 
+  .logo {
+    position: absolute;
+    top: rem(31px);
+    left: rem(47px);
+    width: rem(111px);
+    z-index: 100;
+    svg {
+      width: 100%;
+    }
+  }
+
   .sideBar {
-    width: 30%;
-    padding: rem(0px 50px 0px 0px);
+    position: relative;
+    z-index: 99;
+    width: rem(362px);
+    padding: rem(200px 47px 50px);
+    color: #fff;
+    background-color: #000;
     .mainItem {
-    
+      @include raleway-medium(14px);
+      line-height: rem(16px);
+      cursor: pointer;
+      margin-bottom: rem(16px);
+      &:hover {
+        color: #00F0FF;
+      }
     }
   }
   .content {
-    width: 70%;
+    width: 75%;
+    padding: rem(200px 47px 50px);
+    
   }
 }

@@ -23,15 +23,22 @@ export class Wrapper extends React.Component {
   static propTypes = {
     headerBgActive: PropTypes.bool,
     linkMenuPosition: PropTypes.string,
-    locale: PropTypes.string
+    locale: PropTypes.string,
+    documentation: PropTypes.bool
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, locale } = this.props;
+    const { headerBgActive, linkMenuPosition, locale, documentation, url } = this.props;
 
     return (
       <div className={'rockstat-container'}>
-        <Header locale={locale} headerBgActive={headerBgActive} linkMenuPosition={linkMenuPosition} />
+        <Header 
+          locale={locale} 
+          headerBgActive={headerBgActive}
+          linkMenuPosition={linkMenuPosition}
+          documentation={documentation}
+          activePath={url.pathname}
+        />
         <div className={'rockstat-container-content'}>
           { this.props.children }
         </div>

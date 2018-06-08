@@ -24,7 +24,7 @@ export default class extends React.Component {
     return (
       <span>
         <Head />
-        <Wrapper locale={query.lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
+        <Wrapper {...this.props} locale={query.lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
           <Everything setStateLinkMenu={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition}/>
           <Analytic />
         </Wrapper>
