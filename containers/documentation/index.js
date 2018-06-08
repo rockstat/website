@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 // import CONFIG_CONTENT from '../../content/summary.json';
 import { menu, rootNodes } from '../../utils/getContent';
 import { LogoIcon } from '../../static/icons';
+import { PageWrapper } from './page';
 
 export class Documentation extends React.Component {
   state = {
@@ -35,11 +36,11 @@ export class Documentation extends React.Component {
   }
 
 
-  _getDoc = (e) => {
-    // Router.pushRoute('dockChildren', {
-    //   slug: path,
-    //   lang: 'ru'
-    //     });
+  _getDoc = (menuItem) => {
+    Router.pushRoute('dockChildren', {
+      slug: menuItem.id,
+      lang: 'ru'
+    });
   }
 
   render() {
@@ -51,10 +52,12 @@ export class Documentation extends React.Component {
     // Contents = [dynamic(import(activeMenu.fn))]
     Contents = null;
 
+
     
-    const path = `./../../${activeMenu.fn}`;
-    console.log(path);
-    dynamic(import(path));
+    const path = (`./../../${activeMenu.fn}`);
+    
+    // console.log(path);
+    // dynamic(import(path.replace('.json', '')));
     
     return (
       <div className={style.documentationContainer}>
@@ -66,7 +69,7 @@ export class Documentation extends React.Component {
 
           <div className={style.sideBar}>
             {
-              rootNodes.map((item, index) => {
+              rootNodes.map(({items, ...item}, index) => {
                 return (
                   <div
                     className={style.mainItem}
@@ -79,7 +82,7 @@ export class Documentation extends React.Component {
               })
             }
           </div>
-          <div className={cl(style.content, 'markdown-body')} dangerouslySetInnerHTML={{__html: Contents}}></div>
+          <PageWrapper item={activeMenu}/>
       </div>
     )
   }

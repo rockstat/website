@@ -1,5 +1,6 @@
 ---
 parent: about
+id: about-platform
 ---
 
 # О проекте

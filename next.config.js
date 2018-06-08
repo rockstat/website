@@ -36,20 +36,20 @@ module.exports = {
         use: extarctCSS,
         exclude: /node_modules/,
       },
-      {
-        test: /\.md$/,
-        use: [
-            {
-                loader: "html-loader"
-            },
-            {
-                loader: "markdown-loader",
-                options: {
-                  pedantic: true
-                }
-            }
-        ]
-      },
+      // {
+      //   test: /\.md$/,
+      //   use: [
+      //       {
+      //           loader: "html-loader"
+      //       },
+      //       {
+      //           loader: "markdown-loader",
+      //           options: {
+      //             pedantic: true
+      //           }
+      //       }
+      //   ]
+      // },
       {
         test: /\.(woff2|woff?|otf|ttf|eot|svg)$/,
         loader: 'file-loader?name=static/fonts/[name].[ext]?[hash:base64:5]'
