@@ -36,40 +36,40 @@
 <defs>
 
 <linearGradient id="paint0_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-42.1623 -11.9063 18.5825 -27.0146 84.9885 48.0807)">
-<stop stop-color="#FFF212"/>
-<stop offset="1" stop-color="#D4AB3B"/>
+<stop stopColor="#FFF212"/>
+<stop offset="1" stopColor="#D4AB3B"/>
 </linearGradient>
 <linearGradient id="paint1_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(43.5201 36.9589) scale(-27.1765 -31.3667)">
-<stop stop-color="#8CC64B"/>
-<stop offset="1" stop-color="#00A859"/>
+<stop stopColor="#8CC64B"/>
+<stop offset="1" stopColor="#00A859"/>
 </linearGradient>
 <linearGradient id="paint2_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-83.0975 -42.4625 52.4894 -67.2236 87.2441 63.3044)">
-<stop stop-color="#FFF688"/>
-<stop offset="0.3804" stop-color="#F8AD65"/>
-<stop offset="1" stop-color="#F16442"/>
+<stop stopColor="#FFF688"/>
+<stop offset="0.3804" stopColor="#F8AD65"/>
+<stop offset="1" stopColor="#F16442"/>
 </linearGradient>
 <linearGradient id="paint3_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-50.3538 16.2845 -19.6521 -41.7251 79.7007 36.6194)">
-<stop stop-color="#8CC64B"/>
-<stop offset="1" stop-color="#00A65D"/>
+<stop stopColor="#8CC64B"/>
+<stop offset="1" stopColor="#00A65D"/>
 </linearGradient>
 <linearGradient id="paint4_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-40.5035 -6.55018 4.9637 -53.4491 48.5029 42.9832)">
-<stop stop-color="#3566A3"/>
-<stop offset="0.3098" stop-color="#378E9D"/>
-<stop offset="1" stop-color="#39B697"/>
+<stop stopColor="#3566A3"/>
+<stop offset="0.3098" stopColor="#378E9D"/>
+<stop offset="1" stopColor="#39B697"/>
 </linearGradient>
 <linearGradient id="paint5_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-48.377 1.6944 -2.93583 -27.9206 83.6034 34.2627)">
-<stop stop-color="#3566A3"/>
-<stop offset="1" stop-color="#00AC8F"/>
+<stop stopColor="#3566A3"/>
+<stop offset="1" stopColor="#00AC8F"/>
 </linearGradient>
 <linearGradient id="paint6_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-61.1699 -25.8027 33.9343 -46.512 97.056 49.4566)">
-<stop stop-color="#9A4272"/>
-<stop offset="0.3804" stop-color="#517595"/>
-<stop offset="1" stop-color="#08A8B8"/>
+<stop stopColor="#9A4272"/>
+<stop offset="0.3804" stopColor="#517595"/>
+<stop offset="1" stopColor="#08A8B8"/>
 </linearGradient>
 <linearGradient id="paint7_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(51.1037 -35.4347 24.8609 72.8391 12.2735 71.4251)">
-<stop stop-color="#F37335"/>
-<stop offset="0.4118" stop-color="#F05336"/>
-<stop offset="1" stop-color="#ED3237"/>
+<stop stopColor="#F37335"/>
+<stop offset="0.4118" stopColor="#F05336"/>
+<stop offset="1" stopColor="#ED3237"/>
 </linearGradient>
 
 <clipPath id="clip0">

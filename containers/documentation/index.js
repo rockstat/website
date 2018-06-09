@@ -46,15 +46,19 @@ export class Documentation extends React.Component {
     // const arrContet = Object.keys(CONFIG_CONTENT.fileMap);
     const { activeContent, activeMenu } = this.state;
     const { locale } = this.props;
-    console.log('active menu', activeMenu, activeMenu.fn)
+    // console.log('active menu', activeMenu, activeMenu.fn)
     let Contents = '404';
     // Contents = [dynamic(import(activeMenu.fn))]
-    Contents = null;
+    // Contents = null;
 
     
-    const path = `./../../${activeMenu.fn}`;
-    console.log(path);
-    dynamic(import(path));
+    // const path = `../../${activeMenu.fn}`;
+    // let a = 'about.json';
+    // let res = import(`../../content/about/${a}`);
+
+    // res.then(r => {
+    //   console.log(r);
+    // })
     
     return (
       <div className={style.documentationContainer}>

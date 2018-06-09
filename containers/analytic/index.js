@@ -4,6 +4,8 @@ import cl from 'classnames';
 import style from './style.scss';
 import { AnalyticMain } from '../../static/icons/AnalyticMainIcon';
 
+import LinesAnalytic from '../../static/images/linesAnalytic.png';
+
 export class Analytic extends React.Component {
 
   render() {
@@ -12,6 +14,12 @@ export class Analytic extends React.Component {
         <div className={style.textContainer}>
           <div className={style.title}>Аналитическая система</div>
           <div className={style.description}>Сбор и анализ данных с web, мобильных приложений</div>
+        </div>
+        <div className={style.leftBg}>
+          <img src={LinesAnalytic} alt='' />
+        </div>
+        <div className={style.RightBg}>
+          <img src={LinesAnalytic} alt='' />
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>

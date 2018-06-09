@@ -7,8 +7,7 @@
   min-height: $minHeightScreen;
   max-height: $maxHeightSceen;
   position: relative;
-  // background: linear-gradient(#e66465, #9198e5);
-  background: linear-gradient(rgba(0, 0, 0, 1), #350061, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  background: linear-gradient(rgba(0, 0, 0, 1), #003c40, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
   .textContainer {
     text-align: center;
     .title {
@@ -26,37 +25,60 @@
 
   }
 
-  .leftBg {
+  .leftBgTop {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 10%;
     bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
+    width: 20%;
+    height: 20%;
     img {
       width: 100%;
     }
   }
 
-  .RightBg {
+  .leftBgBottom {
     position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
+    left: 0;
+    bottom: 0%;
+    width: 20%;
+    height: 20%;
     img {
       width: 100%;
+    }
+  }
+
+  .rightBgTop {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    width: 20%;
+    height: 20%;
+    img {
       transform: rotateY(180deg);
       transform-origin: center;
+      width: 100%;
+    }
+  }
+
+  .rightBgBottom {
+    position: absolute;
+    right: 0;
+    bottom: 0%;
+    margin: auto;
+    width: 20%;
+    height: 20%;
+    img {
+      transform: rotateY(180deg);
+      transform-origin: center;
+      width: 100%;
     }
   }
   .contentCenter {
     display: flex;
     justify-content: space-between;
     padding: rem(31px 50px);
+    height: 81%;
     .leftText {
       display: flex;
       flex-direction: column;
@@ -90,13 +112,31 @@
     }
     .centerBg {
       width: 42%;
-      height: 62%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 86%;
       margin: auto;
-      svg {
+      position: relative;
+      svg, img {
         width: 100%;
+      }
+      .repositoryCriclesMain {
+        position: absolute;
+        height: 90%;
+        width: 90%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .repositoryContur {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
       }
     }
     .rightText {

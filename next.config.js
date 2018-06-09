@@ -53,6 +53,18 @@ module.exports = {
       {
         test: /\.(woff2|woff?|otf|ttf|eot|svg)$/,
         loader: 'file-loader?name=static/fonts/[name].[ext]?[hash:base64:5]'
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name:'[path][name].[ext]'
+            }
+          }]
       }
     );
 

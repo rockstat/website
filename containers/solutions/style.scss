@@ -7,8 +7,7 @@
   min-height: $minHeightScreen;
   max-height: $maxHeightSceen;
   position: relative;
-  // background: linear-gradient(#e66465, #9198e5);
-  background: linear-gradient(rgba(0, 0, 0, 1), #350061, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  background: linear-gradient(#000, #1b361b, #000); 
   .textContainer {
     text-align: center;
     .title {
@@ -26,37 +25,23 @@
 
   }
 
-  .leftBg {
+  .backgroundIMG {
+    background-image: url('/_next/static/images/solutionBg.png');
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
     position: absolute;
-    left: 0;
+    width: 100%;
+    height: 100%;
     top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
-    img {
-      width: 100%;
-    }
+    left: 0;
   }
 
-  .RightBg {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
-    img {
-      width: 100%;
-      transform: rotateY(180deg);
-      transform-origin: center;
-    }
-  }
   .contentCenter {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: rem(31px 50px);
+    height: 81%;
     .leftText {
       display: flex;
       flex-direction: column;
@@ -90,13 +75,37 @@
     }
     .centerBg {
       width: 42%;
-      height: 62%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 86%;
       margin: auto;
-      svg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 9%;
+      svg, img {
         width: 100%;
+      }
+      .repositoryCriclesMain {
+        position: absolute;
+        height: 90%;
+        width: 90%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        @media(min-width: 1467px) {
+          height: 100%;
+        }
+      }
+      .repositoryContur {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
       }
     }
     .rightText {
