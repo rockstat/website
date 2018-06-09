@@ -7,8 +7,10 @@
   min-height: $minHeightScreen;
   max-height: $maxHeightSceen;
   position: relative;
-  // background: linear-gradient(#e66465, #9198e5);
-  background: linear-gradient(rgba(0, 0, 0, 1), #350061, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  background-color: #000;
+  background-image: url('/_next/static/images/microservicesBg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
   .textContainer {
     text-align: center;
     .title {
@@ -30,11 +32,9 @@
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
-    img {
+    width: 25%;
+    height: 30%;
+    svg {
       width: 100%;
     }
   }
@@ -43,11 +43,9 @@
     position: absolute;
     right: 0;
     top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
-    img {
+    width: 25%;
+    height: 30%;
+    svg {
       width: 100%;
       transform: rotateY(180deg);
       transform-origin: center;
@@ -55,7 +53,9 @@
   }
   .contentCenter {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: rem(31px 50px);
     .leftText {
       display: flex;
@@ -64,6 +64,7 @@
       width: 25%;
       .leftTextTop {
         text-align: center;
+        margin-top: rem(25px);
         .title {
           @include raleway-regular(28px);
           line-height: rem(25px);
@@ -71,12 +72,12 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(20px);
         }
       }
       .leftTextBottom {
-        margin-top: rem(51px);
         text-align: center;
+        margin-top: rem(25px);
         .title {
           @include raleway-regular(28px);
           line-height: rem(25px);
@@ -84,19 +85,8 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(20px);
         }
-      }
-    }
-    .centerBg {
-      width: 42%;
-      height: 62%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: auto;
-      svg {
-        width: 100%;
       }
     }
     .rightText {
@@ -106,6 +96,7 @@
       width: 25%;
       .rightTextTop {
         text-align: center;
+        margin-top: rem(25px);
         .title {
           @include raleway-regular(28px);
           line-height: rem(25px);
@@ -113,12 +104,12 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(20px);
         }
       }
       .rightTextBottom {
-        margin-top: rem(51px);
         text-align: center;
+        margin-top: rem(25px);
         .title {
           @include raleway-regular(28px);
           line-height: rem(25px);
@@ -126,7 +117,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(20px);
         }
       }
     }

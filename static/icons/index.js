@@ -4,3 +4,7 @@ export * from './CircleTransparentIcon';
 export * from './CircleBlurIcon';
 export * from './CircleGreenIcon';
 export * from './AnalyticMainIcon';
+export * from './RepositoryCircles';
+export * from './RepositoryCenterIcon';
+export * from './MicroservicesIcon';
+export * from './SolutionIcon';
