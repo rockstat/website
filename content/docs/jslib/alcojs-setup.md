@@ -58,7 +58,7 @@
 Создайте новый Пользовательский HTML тег, вставьте ваш код счетчика Rockstat.
 В расширенных настройках поставьте "Приоритет активации тегов" равным 100.
 
-![](_media/alcojs_setup/gtm_tag_creation.png)
+![](/static/media/alcojs_setup/gtm_tag_creation.png)
 
 В триггерах выберите All Pages / Все страницы
 Жмем сохранить, указываем имя, например Rockstat
@@ -86,9 +86,9 @@
 
 Вам необходимо найти все теги, созданные для отслеживания действий и передачи их в Google (Universal) Analytics, и для каждого их них в расширенных настройках включить активацию тега после. При выборе тега можно сразу создать пользовательский HTML тег, вызывающий событие Rockstat.
 
-![](_media/alcojs_setup/activate_gtm_tag.png)
+![](/static/media/alcojs_setup/activate_gtm_tag.png)
 
-![](_media/alcojs_setup/choose_gtmtag.png)
+![](/static/media/alcojs_setup/choose_gtmtag.png)
 
 Содержимое тега
 

@@ -4,22 +4,30 @@ import { Wrapper, Everything } from '../containers';
 import { Head } from '../components';
 import { Documentation } from '../containers';
 import { docsMenu, docsItems } from '../utils/menuData'
-import { Link } from '../routes'
+// import { Link } from '../routes'
 
-
-const defaultPage = 'about';
+const defaultPage = 'about-platform';
 
 
 export default class extends React.Component {
   static async getInitialProps({ query }) {
     const pageConfig = docsItems[defaultPage];
-    const fn = 'http://localhost:3000/' + pageConfig.fn.slice('content/'.length);
+    const fn = `http://localhost:3000/static/${query.path}.json`;
+    return Promise.resolve().then(() => { return require(`../content/${query.path}.json`) })
+      // return fetch(fn).then(resp => resp.json())
+      .then(content => {
+        return {
+          content, query
+        }
+      })
+      .catch(error => {
+        console.log('docs catched err', error);
+      })
+  }
 
-    return fetch(fn).then(resp => resp.json()).then(content => {
-      return {
-        content, query
-      }
-    })
+
+  componentWillReceiveProps(props) {
+    console.log(props);
   }
 
   render() {

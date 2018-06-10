@@ -1,6 +1,6 @@
 ---
-parent: exploit-data
-id: exploit-data-tools
+parent: exploitation-data
+slug: exploitation-data-tools
 ---
 # Обзор инструментов для работы с данными
 
@@ -10,7 +10,7 @@ id: exploit-data-tools
 
 Очень удобный инструмент для создания дашбордов любой сложности. Помимо дашбордов, позволяет настраивать алерты на критическое изменение показателей, которые могут отправляться во множество каналов, например, почту, slack или telegram
 
-![](_media/data_tools/grafana_screenshot.png)
+![](/static/media/data_tools/grafana_screenshot.png)
 
 Grafana работает напрямую с ClickHouse, использует сырые данные о каждом отдельном событии. Все работает real-time.
 
@@ -22,7 +22,7 @@ Grafana работает напрямую с ClickHouse, использует с
 
 В комплекте уже идет библиотека для подключения к ClickHouse, вам остается лишь работать с данными.
 
-![](_media/data_tools/jupyter_screenshot.png)
+![](/static/media/data_tools/jupyter_screenshot.png)
 
 [Подробнее про использование Jupyter](doc:jupyter)
 
@@ -30,7 +30,7 @@ Grafana работает напрямую с ClickHouse, использует с
 
 В ClickHouse довольно специфичный вид SQL, но в тоже время он дико быстрый и очень круто подходит для аналитических запросов. Поддерживает параметрические агрегатные функции, проверку последовательности действий и много, много, много другого.
 
-![](_media/data_tools/clickhouse_client.png)
+![](/static/media/data_tools/clickhouse_client.png)
 
 На самом деле, с SQL очень легко, немного разобравшись, можно научиться вытаскивать сложнейшие показатели. SQL запросы к ClickHouse можно выполнять и в Jupyter.
 
@@ -44,7 +44,7 @@ clickhouse-client
 
 Это крайне удобный сервис для работы с данными. Там очень недостает сессионных данных, но мы это исправили, и при подключении Mixpanel через Rockstat там будет подробная информация о сессиях. Более того, бесплатной версии (20м datapoints) может многим хватить. К сожалению, идентифицировать можно всего 1000, по этой причине они не передаются. Данные передаются через API, соответственно, никакой дополнительный код не устанавливается
 
-![](_media/data_tools/mixpanel_screenshot.png)
+![](/static/media/data_tools/mixpanel_screenshot.png)
 
 # Другие инструменты
 

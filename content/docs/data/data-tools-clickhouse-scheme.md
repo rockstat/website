@@ -1,6 +1,6 @@
 ---
-parent: exploit-data
-id: exploit-data-clickhouse
+parent: exploitation-data
+slug: exploitation-data-clickhouse
 ---
 # Схема ClickHouse
 

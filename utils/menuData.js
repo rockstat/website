@@ -1,35 +1,59 @@
-import { docsMenu as menuConfig } from '../constants';
-import * as summary from '../content/summary.json';
+const summary = require('../content/summary.json');
+
+const docsMenuConfig = [{
+  slug: 'getting-started',
+  title: 'С чего начать',
+  items: [{
+    title: 'Установка платформы',
+    slug: 'platform-setup',
+  }]
+}, {
+  title: 'Работа с платформой',
+  slug: 'exploitation',
+  items: [{
+    title: 'Работа с данными',
+    slug: 'exploitation-data'
+  }]
+}, {
+  title: 'Сбор данных',
+  slug: 'collecting',
+  items: [{
+    title: 'Сбор с сайта через JSLib',
+    slug: 'collecting-jslib',
+  }, {
+    title: 'Получение Webhooks',
+    slug: 'collecting-webhooks',
+  }]
+}]
 
 // Temp map for accessing menu
-export const docsItems = {};
-// заполнение второго уровня - розделы
-for (const l1 of menuConfig) {
-  docsItems[l1.id] = l1;
-  if (l1.items) {
-    for (const l2 of l1.items) {
-      docsItems[l2.id] = l2
-      if (!l2.items) {
-        l2.items = [];
-      }
-    }
-  } else {
-    l1.items = [];
+const docsItems = {};
+// Fill first level
+for (const l1 of docsMenuConfig) {
+  docsItems[l1.slug] = l1;
+  // fill second level
+  for (const l2 of l1.items || []) {
+    docsItems[l2.slug] = l2
   }
 }
 
-export const pages = {};
+const docs = [];
 
-// заполнение третьего уровня - докуметов
+// Fill third level
 for (const [fn, obj] of Object.entries(summary.fileMap)) {
-  const { id, title, bodyHtml, parent, base, dir } = obj;
-  if (parent  && docsItems[parent]) {
-    const item = { id, title, parent, fn }
-    docsItems[id] = item
-    docsItems[parent].items.push(item)    
+  const { title, bodyHtml, parent, slug } = obj;
+  if (docsItems[parent] && slug) {
+    path = fn.split('content/').join('').split('.json').join('');
+    const item = {slug, path, title, bodyHtml, parent}
+    docsItems[slug] = item;
+    docsItems[parent].items = docsItems[parent].items || []
+    docsItems[parent].items.push(item)
+    docs.push(item)
   }
 }
 
-console.log(docsItems)
-
-export const docsMenu = menuConfig;
+module.exports = {
+  docsMenu: docsMenuConfig,
+  docsItems: docsItems,
+  docs: docs,
+}

@@ -1,6 +1,6 @@
 ---
-parent: exploit-data
-id: exploit-data-overview
+parent: exploitation-data
+slug: exploit-data-overview
 ---
 # Обзор данных
 
@@ -50,4 +50,4 @@ uid=4756576000937020758 2018-01-24 21:09:21 Activity
 дальше они автоматически обогащаются как в браузере, так и на сервере.
 Внутри каждого события содержится море разнообразной информации.
 
-![](_media/data_overview/grafana_observe.png)
+![](/static/media/data_overview/grafana_observe.png)

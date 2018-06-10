@@ -1,6 +1,6 @@
 ---
-parent: exploit-data
-id: exploit-data-jupyter
+parent: exploitation-data
+slug: exploitation-data-jupyter
 ---
 # Jupyter
 
@@ -15,7 +15,7 @@ id: exploit-data-jupyter
 
 ## Подключение к БД
 
-![](_media/jupyter/main.png)
+![](/static/media/jupyter/main.png)
 
 
 Подключение к базе данных

@@ -127,7 +127,7 @@
 
 На основе подробной информации о каждой сессии можно с легкостью посчитать итоговую статистику по каналам и даже сделать из нее realtime дашборд при помощи [Grafana](grafana).
 
-![](_media/alcojs_sessions/sum_by_channel.png)
+![](/static/media/alcojs_sessions/sum_by_channel.png)
 
 ## Отличия от Google Analytics
 

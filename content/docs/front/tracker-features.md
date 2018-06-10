@@ -18,4 +18,4 @@ parent: root
 
 Шифрование передаваемых данных на высочайшем уровне
 
-![img500](_media/ssl-a.png)
+![img500](/static/media/ssl-a.png)

@@ -1,6 +1,6 @@
 ---
-parent: exploit-data
-id: exploit-data-grafana
+parent: exploitation-data
+slug: exploitation-data-grafana
 ---
 # Grafana
 
@@ -11,7 +11,7 @@ id: exploit-data-grafana
 
 Сводится к добавлению нового источника данных
 
-![](_media/data_tools_grafana/add_data_source.png)
+![](/static/media/data_tools_grafana/add_data_source.png)
 
 **Параметры подключения**
 
@@ -23,35 +23,35 @@ Basic Auth: да
 Login/Password: alco
 Add CORS flag to requests: да
 
-![](_media/data_tools_grafana/data_source_settings.png)
+![](/static/media/data_tools_grafana/data_source_settings.png)
 
 После нажатия "Save & Test" вы должны увидеть сообщение об успешной проверке и добавлении нового источника данных
 
-![](_media/data_tools_grafana/add_source_success.png)
+![](/static/media/data_tools_grafana/add_source_success.png)
 
 ## Создание Dashboard
 
 Переходим в раздел дашбордов
 
-![](_media/data_tools_grafana/dashboards.png)
+![](/static/media/data_tools_grafana/dashboards.png)
 
 Следуя предлагаемым действиям переходим к созданию своего первого дашборда
 
-![](_media/data_tools_grafana/create_dashboard.png)
+![](/static/media/data_tools_grafana/create_dashboard.png)
 
 ## Первый Graph виджет
 
 В качестве тренировки создадим виджет, который разложит сессии по типу девайса: десктом/мобильный/etc. В интерфейсе конфигурации дашборда выбираем виджет Graph
 
-![](_media/data_tools_grafana/create_graph_widget.png)
+![](/static/media/data_tools_grafana/create_graph_widget.png)
 
 Попадаем в превью виджета, из которого можем перейти в его настройки
 
-![](_media/data_tools_grafana/widget_setup.png)
+![](/static/media/data_tools_grafana/widget_setup.png)
 
 Установите базу данных **alco** и таблицу **events** , затем перейдите к созданию запроса
 
-![](_media/data_tools_grafana/create_request.png)
+![](/static/media/data_tools_grafana/create_request.png)
 
 Первым делом в разделе "Metrics" укажем шаг сглаживания данных 5m (5 минут), этого вполне достаточно. Но при наличии достаточного объема данных, можете поиграться, изменяя в большую или меньшую сторону. Указываем запрос:
 
@@ -61,25 +61,25 @@ $columns(device_type, count() amount) FROM $table WHERE name = 'session'
 
 Тут мы используем готовый макрос для построения запросов $columns и отбираем только события типа session
 
-![](_media/data_tools_grafana/filter_session.png)
+![](/static/media/data_tools_grafana/filter_session.png)
 
 Переходим на вкладку General. В Title пишем "Device types"
 
-![](_media/data_tools_grafana/device_types.png)
+![](/static/media/data_tools_grafana/device_types.png)
 
 Переходим на вкладку Display и устанавливаем Null value = null as zero, затем выходим из режима управления виджетом
 
-![](_media/data_tools_grafana/null_value.png)
+![](/static/media/data_tools_grafana/null_value.png)
 
 Теперь можно сохранить дашборд нажатием CMD (CTRL) + S или кликнув на соответствующую иконку
 
-![](_media/data_tools_grafana/save_dashboard.png)
+![](/static/media/data_tools_grafana/save_dashboard.png)
 
 ## Создание Pie Chart
 
 Наведите курсор в самую левую часть строки, откроется менюха, где выбираем Add Panel, затем Pie Chart.
 
-![](_media/data_tools_grafana/add_panel.png)
+![](/static/media/data_tools_grafana/add_panel.png)
 
 Как и в предыдущем примере, переходим в интерфейс настроек виджета, первым делом указываем источник данных: база alco, таблица events, переходим к запросу.
 
@@ -102,11 +102,11 @@ FROM (
 
 Ставим Step = 1h (один час). Вот, что должно получиться:
 
-![](_media/data_tools_grafana/set_step.png)
+![](/static/media/data_tools_grafana/set_step.png)
 
 Устанавливаем имя, выходим из режима редактирования. Вот что получаем в итоге:
 
-![](_media/data_tools_grafana/pie_chart_screenshot.png)
+![](/static/media/data_tools_grafana/pie_chart_screenshot.png)
 
 Не забываем сохраниться
 
@@ -116,7 +116,7 @@ FROM (
 Импорт находится в меню поиска дашборда, [файл конфигурации](/media/grafana_base_dash.json ':ignore').
 
 
-![](_media/data_tools_grafana/home_button.png)
+![](/static/media/data_tools_grafana/home_button.png)
 
 ## Полезные ссылки
 

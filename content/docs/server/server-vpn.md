@@ -8,17 +8,17 @@
 
 Первым делом вам необходимо установить специальный клиент OpenVPN, для MacOS - это Tunnelblick. Скачать последнюю версию (используйте Stable) можно с [официального сайта](https://tunnelblick.net/downloads.html)
 
-![](_media/connect_vpn/connect_vpn_man.png)
+![](/static/media/connect_vpn/connect_vpn_man.png)
 
 После установки клиента просто дважды кликните по ранее полученному ключу, произойдет его установка, после чего подключение появится в списке доступных.
 
-![](_media/connect_vpn/key_click.png)
+![](/static/media/connect_vpn/key_click.png)
 
 # Подключение в Windows
 
 OpenVPN клиент для Windows можно скачать [отсюда](https://openvpn.net/index.php/open-source/downloads.html)
 
-![](_media/connect_vpn/windows_man.png)
+![](/static/media/connect_vpn/windows_man.png)
 
 Как пользоваться этим клиентом придется спросить у [Google](http://google.com), мы не используем Windows
 

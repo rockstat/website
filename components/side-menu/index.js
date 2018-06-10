@@ -1,7 +1,8 @@
 import * as React from 'react';
 import style from './style.scss';
-import { Router, Link } from '../../routes';
+// import { Router, Link } from '../../routes';
 import cl from 'classnames';
+import Link from 'next/link'
 
 export class SideMenu extends React.Component {
   goTo = (menuItem) => {
@@ -36,10 +37,14 @@ export class SideMenu extends React.Component {
                         className={style.mainItem}
                         key={`${fi}-${si}-${ti}`}
                       >
-                      <span>
-                        <Link route='docs' params={{ slug: third.id, lang: 'ru' }}>
-                          <a>{`- - ${third.title}`}</a>
-                        </Link>
+                        <span>
+                          {/* <Link route='docs' params={{ slug: third.id, lang: 'ru' }}> */}
+                          {/* <Link href='/blog?id=first' as='/blog/first'><a>My first blog post</a></Link> */}
+                          <Link href={`/docs?slug=${third.slug}&lang=ru&path=${third.path}`} as={`/ru/docs/${third.slug}`}>
+                            <a>{`- - ${third.title}`}</a>
+                          </Link>
+
+                          {/* </Link> */}
                         </span>
                       </div>
                     ))}

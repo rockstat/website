@@ -1,8 +1,8 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build && next export",
+    "dev": "ln -s ../content/docs static/docs && node server.js",
+    "build": "ln -s ../content/docs static/docs && next build && next export",
     "build:docs": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json",
     "build:docs:watch": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json --watch",
     "start": "next start"
@@ -13,6 +13,7 @@
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
     "next-routes": "^1.4.2",
+    "path-match": "^1.2.4",
     "raleway-cyrillic": "^4.0.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

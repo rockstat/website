@@ -1,13 +1,20 @@
 import React from 'react';
+import Router from 'next/router'
 
 export default class extends React.Component {
-  static async getInitialProps ({query}) {
-    return { query: query }
+  static async getInitialProps({ query }) {
+    return {}
+  }
+
+  componentWillMount() {
+    Router.push('/ru')
   }
 
   render() {
-    this.props.url.push('/ru');
-
-    return <span />
+    return (
+      <div>
+        yo
+      </div>
+    )
   }
 }
