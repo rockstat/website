@@ -11,3 +11,9 @@ manual
 
 
 https://jaketrent.com/post/serve-markdown-nextjs-server/
+
+
+# docs symlink
+
+ln -s ../content/docs static/docs
+

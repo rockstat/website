@@ -1,8 +1,8 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "ln -s ../content/docs static/docs && node server.js",
-    "build": "ln -s ../content/docs static/docs && next build && next export",
+    "dev": "node server.js",
+    "build": "next build && next export",
     "build:docs": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json",
     "build:docs:watch": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json --watch",
     "start": "next start"
