@@ -22,7 +22,7 @@ export class Header extends React.Component {
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, locale, documentation, activePath } = this.props;
+    const { headerBgActive, linkMenuPosition, locale, documentation, activeSection } = this.props;
 
     return (
       <header 
@@ -43,7 +43,7 @@ export class Header extends React.Component {
               return (
                 <div key={index} className={style.menuItem} >
                   <Link href={`/${locale}${item.path}`}>
-                    <a className={cl({[style.active]: activePath === item.path})}> {item.name} </a>
+                    <a className={cl({[style.active]: activeSection === item.name})}> {item.title} </a>
                   </Link>
                 </div>
               )
@@ -55,7 +55,7 @@ export class Header extends React.Component {
                 return (
                   <div key={index} className={style.menuItemLgItem} >
                     <Link href={item.path}>
-                      <a className={cl({[style.active]: locale === item.name})}> {item.name} </a>
+                      <a className={cl({[style.active]: locale === item.name})}> {item.title} </a>
                     </Link>
                   </div>
                 )

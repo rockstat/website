@@ -28,7 +28,7 @@ export class Wrapper extends React.Component {
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, locale, documentation, url } = this.props;
+    const { headerBgActive, linkMenuPosition, locale, documentation, activeSection } = this.props;
 
     return (
       <div className={'rockstat-container'}>
@@ -37,7 +37,7 @@ export class Wrapper extends React.Component {
           headerBgActive={headerBgActive}
           linkMenuPosition={linkMenuPosition}
           documentation={documentation}
-          activePath={url.pathname}
+          activeSection={activeSection}
         />
         <div className={'rockstat-container-content'}>
           { this.props.children }

@@ -23,7 +23,7 @@ export class SolutionBgIcon extends React.Component {
     <path opacity="0.7" d="M293.318 98.6315L147.559 196.06L1.7995 98.6315L147.559 1.20282L293.318 98.6315Z" transform="translate(537 295.509) scale(-1 1)" fill="url(#paint12_linear_solution)" stroke="#80FF81" strokeWidth="2"/>
     <g opacity="0.7" transform="translate(537 235.437) scale(-1 1)">
     <path d="M0 98.6315L147.559 197.263L295.117 98.6315L147.559 0L0 98.6315Z" fill="url(#paint13_linear_solution)" fillOpacity="0.1"/>
-    <path d="M293.318 98.6315L147.559 196.06L1.7995 98.6315L147.559 1.20282L293.318 98.6315Z" stroke="#80FF81" stroke-opacity="0.3" strokeWidth="2"/>
+    <path d="M293.318 98.6315L147.559 196.06L1.7995 98.6315L147.559 1.20282L293.318 98.6315Z" stroke="#80FF81" strokeOpacity="0.3" strokeWidth="2"/>
     </g>
     <path opacity="0.4" d="M147.559 0V174.085L0 272.716V98.6315L147.559 0Z" transform="translate(389.5 442.896) scale(-1 1)" fill="url(#paint14_linear_solution)"/>
     <path opacity="0.4" d="M0 0V174.085L147.559 272.716V98.6315L0 0Z" transform="translate(537.059 442.896) scale(-1 1)" fill="url(#paint15_linear_solution)"/>
@@ -2609,17 +2609,17 @@ export class SolutionBgIcon extends React.Component {
     <g filter="url(#filter0_f_solution_solution)">
     <ellipse cx="104.063" cy="104.01" rx="104.063" ry="104.01" transform="translate(495.127 429) scale(-1 1)" fill="#80FF81" fillOpacity="0.82"/>
     </g>
-    <path d="M162.076 3.10407e-06L1.5515e-06 108.122V305.143L162.076 414.384L324.152 305.143V108.122L162.076 3.10407e-06Z" transform="translate(227.75 328.032)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.9091" d="M-1.5515e-06 113.005V319.078L169.499 433.303L338.997 319.078V113.005L169.499 3.10407e-06L-1.5515e-06 113.005Z" transform="translate(220.327 312.774)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.8182" d="M-3.10299e-06 118.09V333.114L177.023 452.425L353.944 333.114V118.09L177.023 -3.10407e-06L-3.10299e-06 118.09Z" transform="translate(212.803 297.416)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.7273" d="M1.5515e-06 122.973V347.049L184.445 471.344L368.789 347.049V122.973L184.445 -3.10407e-06L1.5515e-06 122.973Z" transform="translate(205.38 282.159)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.6364" d="M-1.5515e-06 127.855V361.086L191.766 490.263L383.634 361.086V127.855L191.766 -3.10407e-06L-1.5515e-06 127.855Z" transform="translate(197.958 266.902)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.5455" d="M-7.75748e-07 132.839V375.02L199.189 509.182L398.378 375.02V132.839L199.189 -3.10407e-06L-7.75748e-07 132.839Z" transform="translate(190.535 251.645)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.4545" d="M0 137.721V388.955L206.611 528.202L413.223 388.955V137.721L206.611 -3.10407e-06L0 137.721Z" transform="translate(183.113 236.387)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.3636" d="M7.75748e-07 142.705V402.89L214.034 547.121L428.068 402.89V142.705L214.034 7.76018e-07L7.75748e-07 142.705Z" transform="translate(175.69 221.131)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.2727" d="M-3.87874e-07 147.689V416.927L221.457 566.142L442.913 416.927V147.689L221.457 -1.55204e-06L-3.87874e-07 147.689Z" transform="translate(168.268 205.771)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.1818" d="M3.87874e-07 152.673V430.862L228.879 585.061L457.758 430.862V152.673L228.879 3.88009e-07L3.87874e-07 152.673Z" transform="translate(160.845 190.514)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
-    <path opacity="0.0909091" d="M1.93937e-07 157.555V444.797L236.302 604.081L472.603 444.797V157.555L236.302 3.88009e-07L1.93937e-07 157.555Z" transform="translate(153.423 175.257)" stroke="#80FF81" stroke-opacity="0.1" stroke-miterlimit="10"/>
+    <path d="M162.076 3.10407e-06L1.5515e-06 108.122V305.143L162.076 414.384L324.152 305.143V108.122L162.076 3.10407e-06Z" transform="translate(227.75 328.032)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.9091" d="M-1.5515e-06 113.005V319.078L169.499 433.303L338.997 319.078V113.005L169.499 3.10407e-06L-1.5515e-06 113.005Z" transform="translate(220.327 312.774)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.8182" d="M-3.10299e-06 118.09V333.114L177.023 452.425L353.944 333.114V118.09L177.023 -3.10407e-06L-3.10299e-06 118.09Z" transform="translate(212.803 297.416)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.7273" d="M1.5515e-06 122.973V347.049L184.445 471.344L368.789 347.049V122.973L184.445 -3.10407e-06L1.5515e-06 122.973Z" transform="translate(205.38 282.159)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.6364" d="M-1.5515e-06 127.855V361.086L191.766 490.263L383.634 361.086V127.855L191.766 -3.10407e-06L-1.5515e-06 127.855Z" transform="translate(197.958 266.902)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.5455" d="M-7.75748e-07 132.839V375.02L199.189 509.182L398.378 375.02V132.839L199.189 -3.10407e-06L-7.75748e-07 132.839Z" transform="translate(190.535 251.645)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.4545" d="M0 137.721V388.955L206.611 528.202L413.223 388.955V137.721L206.611 -3.10407e-06L0 137.721Z" transform="translate(183.113 236.387)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.3636" d="M7.75748e-07 142.705V402.89L214.034 547.121L428.068 402.89V142.705L214.034 7.76018e-07L7.75748e-07 142.705Z" transform="translate(175.69 221.131)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.2727" d="M-3.87874e-07 147.689V416.927L221.457 566.142L442.913 416.927V147.689L221.457 -1.55204e-06L-3.87874e-07 147.689Z" transform="translate(168.268 205.771)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.1818" d="M3.87874e-07 152.673V430.862L228.879 585.061L457.758 430.862V152.673L228.879 3.88009e-07L3.87874e-07 152.673Z" transform="translate(160.845 190.514)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
+    <path opacity="0.0909091" d="M1.93937e-07 157.555V444.797L236.302 604.081L472.603 444.797V157.555L236.302 3.88009e-07L1.93937e-07 157.555Z" transform="translate(153.423 175.257)" stroke="#80FF81" strokeOpacity="0.1" strokeMiterlimit="10"/>
     <path d="M244 392L0 0H384V488L244 392Z" fill="url(#paint16_linear_solution)"/>
     <path d="M254 392L0 0H394V488L254 392Z" transform="translate(778) scale(-1 1)" fill="url(#paint17_linear_solution)"/>
     <rect width="3.00311" height="63.7688" rx="1.50156" transform="translate(327.034 339.827)" fill="url(#paint18_linear_solution)" fillOpacity="0.5"/>
@@ -2649,8 +2649,8 @@ export class SolutionBgIcon extends React.Component {
     <rect width="2.8029" height="31.4082" rx="1.40145" transform="translate(487 419.538) scale(-1 1)" fill="url(#paint42_linear_solution)" fillOpacity="0.5"/>
     </g>
     <defs>
-    <filter id="filter0_f_solution" x="233" y="375" width="316.127" height="316.02" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <filter id="filter0_f_solution" x="233" y="375" width="316.127" height="316.02" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
     <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
     <feGaussianBlur stdDeviation="27" result="effect1_foregroundBlur"/>
     </filter>

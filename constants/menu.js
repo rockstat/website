@@ -26,19 +26,21 @@ export const linksMenu = [
 
 export const headerMenu = [
   {
-    name: 'Обучение',
-    path: '/training'
+    name: 'edu',
+    title: 'Обучение',
+    path: '/edu'
   },
   {
-    name: 'Документация',
-    path: '/documentation'
+    name: 'docs',
+    title: 'Документация',
+    path: '/docs'
   }
 ]
 
 export const footerMenu = [
   {
     name: 'Документация',
-    path: '/documentation',
+    path: '/docs',
     children: [
       {
         name: 'ахитектура',
@@ -64,11 +66,11 @@ export const footerMenu = [
   },
   {
     name: 'Обучение',
-    path: '/training',
+    path: '/edu',
     children: [
       {
         name: 'курс digital rockstar',
-        path: '/training/curs',
+        path: 'https://digitalgod.be',
         active: true
       },
       {

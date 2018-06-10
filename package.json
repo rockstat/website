@@ -3,12 +3,15 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build && next export",
-    "build:content": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json",
-    "build:content:watch": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json --watch",
+    "build:docs": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json",
+    "build:docs:watch": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json --watch",
     "start": "next start"
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "connect": "^3.6.6",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "next-routes": "^1.4.2",
     "raleway-cyrillic": "^4.0.2",
     "react": "^16.4.0",
@@ -19,6 +22,7 @@
     "react-visibility-sensor": "^3.11.0",
     "react-vivus": "^0.0.2",
     "sass-rem": "^2.0.1",
+    "serve-static": "^1.13.2",
     "transform-runtime": "^0.0.0",
     "vivus": "^0.4.3"
   },

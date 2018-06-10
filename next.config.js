@@ -1,6 +1,8 @@
 const withSass = require('@zeit/next-sass')
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SUMMARY_JSON = require('./content/summary.json')
+const routes = require('./routes')
 
 const extarctCSS = ExtractTextPlugin.extract({
   fallback: 'style-loader',
@@ -13,11 +15,41 @@ const extarctSCSS = ExtractTextPlugin.extract({
 });
 
 module.exports = {
+  exportPathMap: () => {
+    const posts = {}
+    const paths = {}
+    SUMMARY_JSON.fileMap && Object.keys(SUMMARY_JSON.fileMap)
+      .forEach((file) => {
+        const fileObj = SUMMARY_JSON.fileMap[file]
+        const obj = {}
+        if (fileObj.id && fileObj.parent) {
+          if (fileObj.paths) {
+            // Handle custom paths / aliases.
+            obj.page = fileObj.page
+            obj.query = { filePath: fileObj.filePath }
+            fileObj.paths.forEach((path) => {
+              paths[path] = obj
+            })
+          } else if (file.indexOf('content/docs') === 0) {
+            // Handle posts.
+            const page = '/ru' + file.split('content').join('').split('.json').join('')
+            posts[page] = {
+              page: '/ru/docs',
+              query: {
+                fullUrl: page
+              }
+            }
+          }
+        }
+      });
+    return Object.assign({}, {
+      '/': { page: '/' }
+    }, posts, paths) // aliases
+  },
   webpack: (config) => {
     // config.node = {
     //   fs: false
     // }
-
     config.plugins.push(
       new ExtractTextPlugin({
         filename: 'static/css/style.css',
@@ -62,7 +94,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name:'[path][name].[ext]'
+              name: '[path][name].[ext]'
             }
           }]
       }

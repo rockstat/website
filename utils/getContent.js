@@ -1,37 +1,5 @@
-import { menuDocs } from '../constants';
-import * as summary from '../content/summary.json';
 
 
-// We will copy in loop
-export const menu = {};
-export const rootNodes = [];
-
-for (const [k,sobj] of Object.entries(menuDocs)){
-  const obj = Object.assign({}, sobj);
-  obj.items = [];
-  obj.id = k;
-  menu[k] = obj;
-  if(obj.parent === 'docs'){
-    rootNodes.push(obj)
-  }
-}
-
-// вротой уроыень заполгили
-for (const [k,obj] of Object.entries(menu)){
-  if(obj.parent !== 'docs' && menu[obj.parent]){
-    menu[obj.parent].items.push(obj);
-  }
-}
-
-//  построили третий уровень
-for (const [fn,obj] of Object.entries(summary.fileMap)){
-  const { id, title, bodyHtml, parent, base, dir } = obj;
-  if(menu[parent]){
-    menu[parent].items.push({id, title, parent, fn});
-  }
-}
-
-// console.log(rootNodes);
 
 // import About from '../content/about/about.json';
 // import sourcecode from '../content/about/source-code.json';

@@ -1,7 +1,7 @@
 const routes = module.exports = require('next-routes')()
 
 routes
-.add('dockMain', '/:lang(en|ru)/documentation', 'documentation')
-.add('dockChildren', '/:lang(en|ru)/documentation/:slug', 'documentation')
-.add('index',  '/:lang(en|ru)', 'index')
-.add('main',  '/', 'main')
+    .add('docs', '/:lang(en|ru)/docs/:slug', 'docs')
+    .add('docsIndex', '/:lang(en|ru)/docs', 'docs')
+    .add('main', '/:lang(en|ru)', 'main')
+    .add('index', '/', 'index')
