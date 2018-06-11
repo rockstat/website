@@ -10,6 +10,7 @@ export class Microservices extends React.Component {
   render() {
     return (
       <div className={style.analyticContainer}>
+        <div className={style.bottomGradient} />
         <div className={style.textContainer}>
           <div className={style.title}>Микросервисы</div>
           <div className={style.description}>
@@ -17,10 +18,12 @@ export class Microservices extends React.Component {
           </div>
         </div>
         <div className={style.leftBg}>
-          <MicroservicesIcon />
+          {/* <MicroservicesIcon /> */}
+          <img src={'/_next/static/images/microservicesElement.png'} />
         </div>
         <div className={style.RightBg}>
-          <MicroservicesIcon />
+          {/* <MicroservicesIcon /> */}
+          <img src={'/_next/static/images/microservicesElement.png'} />
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>

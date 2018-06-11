@@ -26,7 +26,6 @@
   }
 
   .backgroundIMG {
-    background-image: url('/_next/static/images/solutionBg.png');
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -35,6 +34,13 @@
     height: 100%;
     top: 0;
     left: 0;
+    background-image: url('/_next/static/images/prodResh.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    img {
+      width: 100%;
+    }
   }
 
   .contentCenter {

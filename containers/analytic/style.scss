@@ -57,6 +57,7 @@
     display: flex;
     justify-content: space-between;
     padding: rem(31px 50px);
+    height: 75%;
     .leftText {
       display: flex;
       flex-direction: column;
@@ -90,12 +91,12 @@
     }
     .centerBg {
       width: 42%;
-      height: 62%;
+      height: 70%;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: auto;
-      svg {
+      svg, img {
         width: 100%;
       }
     }

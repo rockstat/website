@@ -1,4 +1,4 @@
-import { Wrapper, Everything, Analytic, Repository, Microservices, Solution } from '../containers';
+import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Platform, Center } from '../containers';
 import { Head } from '../components';
 import React from 'react';
 
@@ -8,6 +8,11 @@ import '../static/images/repositoryBottom.png';
 import '../static/images/repositoryTop.png';
 import '../static/images/microservicesBg.png';
 import '../static/images/solutionBg.png';
+
+import '../static/images/analyticBg.png';
+import '../static/images/microservicesElement.png';
+import '../static/images/prodResh.png';
+import '../static/images/repositoryBg.png';
 
 export default class extends React.Component {
   static async getInitialProps ({query}) {
@@ -37,6 +42,8 @@ export default class extends React.Component {
           <Repository />
           <Microservices />
           <Solution />
+          <Platform />
+          <Center />
         </Wrapper>
       </span>
     )

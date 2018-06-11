@@ -36,7 +36,7 @@ export class Solution extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            <div className={style.repositoryCriclesMain}> <SolutionBgIcon /> </div>
+            {/* <div className={style.repositoryCriclesMain}> <SolutionBgIcon /> </div> */}
             {/* <div className={style.repositoryContur}> <img src={RepositoryMain} alt=''/> </div> */}
           </div>
 

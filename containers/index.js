@@ -5,3 +5,5 @@ export * from './analytic';
 export * from './repository';
 export * from './microservices'
 export * from './solutions';
+export * from './platform';
+export * from './center';

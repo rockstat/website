@@ -16,10 +16,10 @@ export class Analytic extends React.Component {
           <div className={style.description}>Сбор и анализ данных с web, мобильных приложений</div>
         </div>
         <div className={style.leftBg}>
-          <img src={LinesAnalytic} alt='' />
+          <img src={LinesAnalytic} />
         </div>
         <div className={style.RightBg}>
-          <img src={LinesAnalytic} alt='' />
+          <img src={LinesAnalytic} />
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>
@@ -40,7 +40,8 @@ export class Analytic extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            <AnalyticMain />
+            {/* <AnalyticMain /> */}
+            <img src={'/_next/static/images/analyticBg.png'} />
           </div>
 
           <div className={style.rightText}>
