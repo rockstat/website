@@ -7,27 +7,16 @@ import { parthners } from '../../constants';
 
 export class Information extends React.Component {
   state = {
-    animationActive: false,
-    wrapperPosition: 0,
-    max: parthners.length - 1
+    wrapperPosition: 0
   };
 
   in = (e) => {
     let x = e.clientX;
     let width = this.wrapper.offsetWidth;
-    let windowWidth = window.innerWidth;
-    let padding = windowWidth - width;
-    let result = parseInt( 100 / width * (x - padding / 2 ));
+    let result = parseInt( 100 / width * x);
 
     this.setState({
-      animationActive: true,
-      wrapperPosition: result
-    })
-  };
-
-  out = (e) => {
-    this.setState({
-      animationActive: false
+      wrapperPosition: result > 0 ? result + 10 : 0
     })
   };
 

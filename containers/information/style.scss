@@ -4,7 +4,7 @@
 .analyticContainer {
   width: 100vw;
   position: relative;
-  padding: rem(31px 50px);
+  padding: rem(31px 0px);
   background: linear-gradient(rgba(0, 0, 0, 1), #003c40, rgba(0, 0, 0, 1));
 
   .partnersContainer {
@@ -14,13 +14,14 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: nowrap;
-      transition: transform .2s ease;
+      transition: transform .1s linear;
       will-change: transform;
       img {
         display: block;
         width: 8%;
         object-fit: contain;
-        margin-right: 5%;
+        margin-right: 2.5%;
+        margin-left: 2.5%;
       }
     }
     margin: rem(53px 0 65px);
@@ -30,11 +31,13 @@
     height: 1px;
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.1);
+    width: calc(100% - 72px);
   }
   .reviewsContainer {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    padding: rem(0px 50px);
     margin: rem(80px 0 92px);
     .item {
       .title {
