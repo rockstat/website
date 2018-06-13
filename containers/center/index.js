@@ -18,9 +18,22 @@ export class Center extends React.Component {
           </div>
         </div>
         <div className={style.contentCenter}>
+          <div className={style.textContainer}>
+            <div className={style.leftText}>
+              <span>Сводка по базовым <br /> характеристикам трафика</span>
+            </div>
+            <div className={style.centerText}>
+              <span>Динамика изменения метрик <br /> основных событий</span>
+            </div>
+            <div className={style.rightText}>
+              <span>Информация о загрузке <br /> системы и доступных ресурсах</span>
+            </div>
+          </div>
           <img src={CenterBg} className={style.mainBg} />
 
-          <div className={style.bottomText}>Микросервисы под контролем: запуск и управление, потребление ресурсов и SLA </div>
+          <div className={style.bottomText}>
+            <span> Микросервисы под контролем: запуск и управление, потребление ресурсов и SLA </span>
+          </div>
         </div>
       </div>
     )

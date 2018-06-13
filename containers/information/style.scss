@@ -1,0 +1,101 @@
+@import '../../static/base/fonts.scss';
+@import '../../static/base/variables.scss';
+
+.analyticContainer {
+  width: 100vw;
+  position: relative;
+  padding: rem(31px 50px);
+  background: linear-gradient(rgba(0, 0, 0, 1), #003c40, rgba(0, 0, 0, 1));
+
+  .partnersContainer {
+    overflow: hidden;
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      transition: transform .2s ease;
+      will-change: transform;
+      img {
+        display: block;
+        width: 8%;
+        object-fit: contain;
+        margin-right: 5%;
+      }
+    }
+    margin: rem(53px 0 65px);
+  }
+  hr {
+    color: rgba(255, 255, 255, 0.1);
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .reviewsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: rem(80px 0 92px);
+    .item {
+      .title {
+        color: #F2F2F2;
+        @include raleway-medium(18px);
+        line-height: rem(27px);
+      }
+      .text {
+        color: #BDBDBD;
+        @include raleway-regular(16px);
+        line-height: rem(24px);
+      }
+    }
+  }
+
+  .btn {
+    text-align: center;
+    margin-bottom: rem(29px);
+    a {
+      padding: rem(12px 42px);
+      text-transform: capitalize;
+      // border: 1px solid #fff;
+      border-radius: 80px;
+      color: #fff;
+      text-decoration: none;
+      position: relative;
+      svg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  // .textContainer {
+  //   text-align: center;
+  //   .title {
+  //     @include raleway-light(36px);
+  //     text-transform: uppercase;
+  //     line-height: rem(42px);
+  //     padding-top: rem(80px);
+  //   }
+  //   .description {
+  //     @include raleway-medium(18px);
+  //     line-height: rem(25px);
+  //     opacity: 0.8;
+  //     margin-top: rem(2px);
+  //   }
+
+  // }
+  // .contentCenter {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   padding: rem(31px 50px);
+  //   align-items: center;
+  //   width: 50%;
+  //   margin: auto;
+  //   margin-top: rem(45px);
+  //   img {
+  //     width: 8%;
+  //   }
+  // }  
+}

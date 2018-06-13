@@ -27,11 +27,12 @@ export default class extends React.Component {
 
 
   componentWillReceiveProps(props) {
-    console.log(props);
+    // console.log(props);
   }
 
   render() {
     const { query, content } = this.props;
+
     return (
       <span>
         <Head />

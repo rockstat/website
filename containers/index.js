@@ -7,3 +7,4 @@ export * from './microservices'
 export * from './solutions';
 export * from './platform';
 export * from './center';
+export * from './information';

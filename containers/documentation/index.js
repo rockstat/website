@@ -31,7 +31,7 @@ export class Documentation extends React.Component {
   render() {
     // const arrContet = Object.keys(CONFIG_CONTENT.fileMap);
     // const { activeContent, activeMenu } = this.state;
-    const { locale, docsMenu, content } = this.props;
+    const { locale, docsMenu, content, query } = this.props;
     // console.log('active menu', activeMenu, activeMenu.fn)
     let Contents = '404';
     // Contents = [dynamic(import(activeMenu.fn))]
@@ -57,7 +57,7 @@ export class Documentation extends React.Component {
           </Link>
         </div>
 
-        <SideMenu docsMenu={docsMenu}/>
+        <SideMenu docsMenu={docsMenu} query={query}/>
         <PageWrapper content={content} />
       </div>
     )

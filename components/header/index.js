@@ -55,7 +55,7 @@ export class Header extends React.Component {
                 return (
                   <div key={index} className={style.menuItemLgItem} >
                     <Link href={item.path}>
-                      <a className={cl({[style.active]: locale === item.name})}> {item.title} </a>
+                      <a className={cl({[style.active]: locale === item.name})}> {item.name} </a>
                     </Link>
                   </div>
                 )

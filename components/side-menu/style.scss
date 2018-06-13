@@ -8,12 +8,30 @@
     color: #fff;
     background-color: #000;
     .mainItem {
-      @include raleway-medium(14px);
-      line-height: rem(16px);
-      // cursor: pointer;
-      margin-bottom: rem(16px);
-      &:hover {
-        color: #00F0FF;
+      .title {
+        @include raleway-medium(16px);
+        line-height: rem(19px);
+        text-transform: uppercase;
+        color: #BDBDBD;
+        margin: rem(28px 0px);
+        display: block;
+      }
+      .childItem {
+        @include raleway-medium(14px);
+        line-height: rem(16px);
+        color: #fff;
+        margin: rem(14px 0);
+        .childItemTree {
+          margin: rem(14px 0 14px 15px);
+          a {
+            color: #fff;
+            text-decoration: none;
+            &:hover, &.active {
+              color: #00F0FF;
+            }
+          }
+        }
       }
     }
   }
+  

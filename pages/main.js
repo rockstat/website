@@ -1,4 +1,4 @@
-import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Platform, Center } from '../containers';
+import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Platform, Center, Information } from '../containers';
 import { Head } from '../components';
 import React from 'react';
 
@@ -44,6 +44,7 @@ export default class extends React.Component {
           <Solution />
           <Platform />
           <Center />
+          <Information />
         </Wrapper>
       </span>
     )
