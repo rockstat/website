@@ -22,16 +22,16 @@ export class Repository extends React.Component {
           </div>
         </div>
         <div className={style.leftBgTop}>
-          <img src={RepositoryTop} alt='' />
+          <img src={'/_next/static/images/repositoryTop.png'} alt='' />
         </div>
         <div className={style.leftBgBottom}>
-          <img src={RepositoryBottom} alt='' />
+          <img src={'/_next/static/images/repositoryBottom.png'} alt='' />
         </div>
         <div className={style.rightBgTop}>
-          <img src={RepositoryTop} alt='' />
+          <img src={'/_next/static/images/repositoryTop.png'} alt='' />
         </div>
         <div className={style.rightBgBottom}>
-          <img src={RepositoryBottom} alt='' />
+          <img src={'/_next/static/images/repositoryBottom.png'} alt='' />
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>

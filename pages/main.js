@@ -14,6 +14,13 @@ import '../static/images/microservicesElement.png';
 import '../static/images/prodResh.png';
 import '../static/images/repositoryBg.png';
 
+import '../static/images/repositoryTop.png';
+import '../static/images/repositoryBottom.png';
+
+import '../static/images/centerBg.png';
+
+import '../static/images/linesAnalytic.png';
+
 export default class extends React.Component {
   static async getInitialProps ({query}) {
     return { query: query }

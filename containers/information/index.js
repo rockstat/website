@@ -27,8 +27,8 @@ export class Information extends React.Component {
       <div className={style.analyticContainer}>
         <div 
           className={style.partnersContainer}
-          onMouseMove={this.in}
-          onMouseLeave={this.out}
+          // onMouseMove={this.in}
+          // onMouseLeave={this.out}
         >
           <div 
             className={style.wrapper}

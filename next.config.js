@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.(woff2|woff?|otf|ttf|eot|svg)$/,
-        loader: 'file-loader?name=static/fonts/[name].[ext]?[hash:base64:5]'
+        loader: 'file-loader?name=static/fonts/[name].[ext]'
       },
       {
         test: /\.(png|jpg|gif)$/,

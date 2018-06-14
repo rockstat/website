@@ -29,7 +29,7 @@ export class Center extends React.Component {
               <span>Информация о загрузке <br /> системы и доступных ресурсах</span>
             </div>
           </div>
-          <img src={CenterBg} className={style.mainBg} />
+          <img src={'/_next/static/images/centerBg.png'} className={style.mainBg} />
 
           <div className={style.bottomText}>
             <span> Микросервисы под контролем: запуск и управление, потребление ресурсов и SLA </span>

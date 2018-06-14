@@ -9,5 +9,4 @@ import f from '../static/images/partners/6.png';
 import g from '../static/images/partners/7.png';
 import h from '../static/images/partners/8.png';
 
-export const parthners = [a, b, c, d, e, f, g, h, a, b, c, d, e, f, g, h];
-
+export const parthners = [a, b, c, d, e, f, g, h];
