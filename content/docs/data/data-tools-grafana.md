@@ -4,7 +4,7 @@ slug: exploitation-data-grafana
 ---
 # Grafana
 
-?> **Доступ в Grafana** по адресу http://172.16.25.1:3000 после [подключения к VPN](connect-vpn). Данные для входа **admin**/**admin**
+> **Доступ в Grafana** по адресу http://172.16.25.1:3000 после [подключения к VPN](connect-vpn). Данные для входа **admin**/**admin**
 
 
 #№ Добавление ClickHouse data source в Grafana

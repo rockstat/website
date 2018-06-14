@@ -39,6 +39,9 @@
     height: 100%;
     top: 0;
     left: 0;
+    .logoMobile {
+      display: none;
+    }
     .centerBg, .circleTransparentBg, .circleBlurBg, .circleGreenBg {
       position: absolute;
       left: 0;
@@ -178,6 +181,64 @@
       }
       &.top {
         opacity: 0;
+      }
+    }
+  }
+  @media(max-width: 720px) {
+    max-height: 1000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    padding: 0 25px;
+    z-index: 9;
+    .bgContainer {
+      position: relative;
+      .logoMobile {
+        display: block;
+        position: absolute;
+        top: 48vw;
+        left: 0;
+        right: 0;
+        width: 40vw;
+        margin: auto;
+        svg {
+          width: 100%;
+        }
+      }
+      .centerBg {
+        width: 100%;
+        height: auto;
+        padding-top: 15%;
+        margin-bottom: 15%;
+        position: relative;
+      }
+    }
+    .textContainer {
+      bottom: 0;
+      top: 110vw;
+      width: 100%;
+      height: auto;
+      padding: 0 25px;
+    }
+    .bottomMenuContainer {
+      width: 100%;
+      height: auto;
+      position: relative;
+      margin-top: 25%;
+      .socialMenu {
+        display: none;
+      }
+      .demoContainer {
+        margin-top: 10vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        .description {
+          text-align: center;
+        }
+        .btn {
+          display: none;
+        }
       }
     }
   }

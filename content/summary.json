@@ -1,34 +1,14 @@
 {
   "fileMap": {
-    "content/docs/about/whatsnew.json": {
-      "preview": "Что нового\n\n 2.2.0 \n\n[x] SSL rate A\n[ ] \n[ ] \n[ ] \n[ ] \n\n2.1.0 (2018-03-07)\n\n[x] 2 дополнительных транспорта:",
-      "title": "Что нового",
-      "dir": "content/docs/about",
-      "base": "whatsnew.json",
-      "ext": ".json",
-      "sourceBase": "whatsnew.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/data/data-tools.json": {
+    "content/docs/data/data-overview.json": {
       "parent": "exploitation-data",
-      "slug": "exploitation-data-tools",
-      "preview": "Обзор инструментов для работы с данными\n\nПри установке платформы вы получаете из коробки набор инструментов,",
-      "title": "Обзор инструментов для работы с данными",
+      "slug": "exploit-data-overview",
+      "preview": "Обзор данных\n\n! Раздел в работе\n\n События на сайте\n\nRockstat задумывался и создавался как платформа, которая",
+      "title": "Обзор данных",
       "dir": "content/docs/data",
-      "base": "data-tools.json",
+      "base": "data-overview.json",
       "ext": ".json",
-      "sourceBase": "data-tools.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/data/data-tools-clickhouse-scheme.json": {
-      "parent": "exploitation-data",
-      "slug": "exploitation-data-clickhouse",
-      "preview": "Схема ClickHouse\n\n! Раздел в работе\n\n events_v2\n\n| Колонка                    | Тип CH         | Тип JS  |",
-      "title": "Схема ClickHouse",
-      "dir": "content/docs/data",
-      "base": "data-tools-clickhouse-scheme.json",
-      "ext": ".json",
-      "sourceBase": "data-tools-clickhouse-scheme.md",
+      "sourceBase": "data-overview.md",
       "sourceExt": ".md"
     },
     "content/docs/about/about.json": {
@@ -42,15 +22,24 @@
       "sourceBase": "about.md",
       "sourceExt": ".md"
     },
-    "content/docs/data/data-tools-grafana.json": {
-      "parent": "exploitation-data",
-      "slug": "exploitation-data-grafana",
-      "preview": "Grafana\n\n? Доступ в Grafana по адресу http://172.16.25.1:3000 после подключения к VPN. Данные для входа",
-      "title": "Grafana",
-      "dir": "content/docs/data",
-      "base": "data-tools-grafana.json",
+    "content/docs/about/whatsnew.json": {
+      "preview": "Что нового\n\n 2.2.0 \n\n[x] SSL rate A\n[ ] \n[ ] \n[ ] \n[ ] \n\n2.1.0 (2018-03-07)\n\n[x] 2 дополнительных транспорта:",
+      "title": "Что нового",
+      "dir": "content/docs/about",
+      "base": "whatsnew.json",
       "ext": ".json",
-      "sourceBase": "data-tools-grafana.md",
+      "sourceBase": "whatsnew.md",
+      "sourceExt": ".md"
+    },
+    "content/docs/front/tracker-features.json": {
+      "id": "front",
+      "parent": "root",
+      "preview": "Особенности серверного трекера\n\n! Раздел в работе\n\n HTTP 2\n\nПреимущества:\nHTTP 2 бинарный, а не текстовый,",
+      "title": "Особенности серверного трекера",
+      "dir": "content/docs/front",
+      "base": "tracker-features.json",
+      "ext": ".json",
+      "sourceBase": "tracker-features.md",
       "sourceExt": ".md"
     },
     "content/docs/data/data-tools-jupyter.json": {
@@ -73,6 +62,17 @@
       "sourceBase": "webhooks.md",
       "sourceExt": ".md"
     },
+    "content/docs/data/data-tools.json": {
+      "parent": "exploitation-data",
+      "slug": "exploitation-data-tools",
+      "preview": "Обзор инструментов для работы с данными\n\nПри установке платформы вы получаете из коробки набор инструментов,",
+      "title": "Обзор инструментов для работы с данными",
+      "dir": "content/docs/data",
+      "base": "data-tools.json",
+      "ext": ".json",
+      "sourceBase": "data-tools.md",
+      "sourceExt": ".md"
+    },
     "content/docs/front/tracker-enrichment.json": {
       "preview": "Обогащение на сервере\n\nПри получении данных на вход, серверная часть трекера производит обогащение данных на",
       "title": "Обогащение на сервере",
@@ -80,35 +80,6 @@
       "base": "tracker-enrichment.json",
       "ext": ".json",
       "sourceBase": "tracker-enrichment.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/data/data-overview.json": {
-      "parent": "exploitation-data",
-      "slug": "exploit-data-overview",
-      "preview": "Обзор данных\n\n! Раздел в работе\n\n События на сайте\n\nRockstat задумывался и создавался как платформа, которая",
-      "title": "Обзор данных",
-      "dir": "content/docs/data",
-      "base": "data-overview.json",
-      "ext": ".json",
-      "sourceBase": "data-overview.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/jslib/alcojs-autotrack.json": {
-      "preview": "Автоматичексие события\n\n Старт сессии\n\nСессионные данные общие на все события, у сессии есть только название.",
-      "title": "Автоматичексие события",
-      "dir": "content/docs/jslib",
-      "base": "alcojs-autotrack.json",
-      "ext": ".json",
-      "sourceBase": "alcojs-autotrack.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/jslib/alcojs-methods-special.json": {
-      "preview": "Установка персональных параметров трекера\n\nalco.push('setCustomConfig', {\n  trackClicks: true, \n  trackForms:",
-      "title": "Установка персональных параметров трекера",
-      "dir": "content/docs/jslib",
-      "base": "alcojs-methods-special.json",
-      "ext": ".json",
-      "sourceBase": "alcojs-methods-special.md",
       "sourceExt": ".md"
     },
     "content/docs/jslib/alcojs-callbacks.json": {
@@ -129,24 +100,33 @@
       "sourceBase": "alcojs-features.md",
       "sourceExt": ".md"
     },
-    "content/docs/front/tracker-features.json": {
-      "id": "front",
-      "parent": "root",
-      "preview": "Особенности серверного трекера\n\n! Раздел в работе\n\n HTTP 2\n\nПреимущества:\nHTTP 2 бинарный, а не текстовый,",
-      "title": "Особенности серверного трекера",
-      "dir": "content/docs/front",
-      "base": "tracker-features.json",
+    "content/docs/jslib/alcojs-methods.json": {
+      "preview": "Отправка событий\n\nВы самостоятельно придумываете название и список данных, которые хотите передать. Сразу",
+      "title": "Отправка событий",
+      "dir": "content/docs/jslib",
+      "base": "alcojs-methods.json",
       "ext": ".json",
-      "sourceBase": "tracker-features.md",
+      "sourceBase": "alcojs-methods.md",
       "sourceExt": ".md"
     },
-    "content/docs/micro/band-overview.json": {
-      "preview": "Микросервисная архитектура с Band\n\n Протокол взаимодействия\n\nJSON-RPC2 over Redis PubSub\n\nСтруктура",
-      "title": "Микросервисная архитектура с Band",
-      "dir": "content/docs/micro",
-      "base": "band-overview.json",
+    "content/docs/jslib/alcojs-methods-special.json": {
+      "preview": "Установка персональных параметров трекера\n\nalco.push('setCustomConfig', {\n  trackClicks: true, \n  trackForms:",
+      "title": "Установка персональных параметров трекера",
+      "dir": "content/docs/jslib",
+      "base": "alcojs-methods-special.json",
       "ext": ".json",
-      "sourceBase": "band-overview.md",
+      "sourceBase": "alcojs-methods-special.md",
+      "sourceExt": ".md"
+    },
+    "content/docs/data/data-tools-clickhouse-scheme.json": {
+      "parent": "exploitation-data",
+      "slug": "exploitation-data-clickhouse",
+      "preview": "Схема ClickHouse\n\n! Раздел в работе\n\n events_v2\n\n| Колонка                    | Тип CH         | Тип JS  |",
+      "title": "Схема ClickHouse",
+      "dir": "content/docs/data",
+      "base": "data-tools-clickhouse-scheme.json",
+      "ext": ".json",
+      "sourceBase": "data-tools-clickhouse-scheme.md",
       "sourceExt": ".md"
     },
     "content/docs/jslib/alcojs-enrichment.json": {
@@ -158,13 +138,51 @@
       "sourceBase": "alcojs-enrichment.md",
       "sourceExt": ".md"
     },
-    "content/docs/jslib/alcojs-methods.json": {
-      "preview": "Отправка событий\n\nВы самостоятельно придумываете название и список данных, которые хотите передать. Сразу",
-      "title": "Отправка событий",
-      "dir": "content/docs/jslib",
-      "base": "alcojs-methods.json",
+    "content/docs/data/data-tools-grafana.json": {
+      "parent": "exploitation-data",
+      "slug": "exploitation-data-grafana",
+      "preview": "Grafana\n\n Доступ в Grafana по адресу http://172.16.25.1:3000 после подключения к VPN. Данные для входа",
+      "title": "Grafana",
+      "dir": "content/docs/data",
+      "base": "data-tools-grafana.json",
       "ext": ".json",
-      "sourceBase": "alcojs-methods.md",
+      "sourceBase": "data-tools-grafana.md",
+      "sourceExt": ".md"
+    },
+    "content/docs/micro/band-overview.json": {
+      "preview": "Микросервисная архитектура с Band\n\n Протокол взаимодействия\n\nJSON-RPC2 over Redis PubSub\n\nСтруктура",
+      "title": "Микросервисная архитектура с Band",
+      "dir": "content/docs/micro",
+      "base": "band-overview.json",
+      "ext": ".json",
+      "sourceBase": "band-overview.md",
+      "sourceExt": ".md"
+    },
+    "content/docs/jslib/alcojs-semantic-events.json": {
+      "preview": "Семантические события\n\nПомимо автоматического отслеживания действий пользователя, следует приметить все",
+      "title": "Семантические события",
+      "dir": "content/docs/jslib",
+      "base": "alcojs-semantic-events.json",
+      "ext": ".json",
+      "sourceBase": "alcojs-semantic-events.md",
+      "sourceExt": ".md"
+    },
+    "content/docs/jslib/alcojs-autotrack.json": {
+      "preview": "Автоматичексие события\n\n Старт сессии\n\nСессионные данные общие на все события, у сессии есть только название.",
+      "title": "Автоматичексие события",
+      "dir": "content/docs/jslib",
+      "base": "alcojs-autotrack.json",
+      "ext": ".json",
+      "sourceBase": "alcojs-autotrack.md",
+      "sourceExt": ".md"
+    },
+    "content/docs/jslib/alcojs-sessions.json": {
+      "preview": "Обработка сессий\n\nВсе происходящие события группируются в активные периоды, называемые сессией или",
+      "title": "Обработка сессий",
+      "dir": "content/docs/jslib",
+      "base": "alcojs-sessions.json",
+      "ext": ".json",
+      "sourceBase": "alcojs-sessions.md",
       "sourceExt": ".md"
     },
     "content/docs/jslib/alcojs-setup.json": {
@@ -185,22 +203,13 @@
       "sourceBase": "server-maintein.md",
       "sourceExt": ".md"
     },
-    "content/docs/jslib/alcojs-sessions.json": {
-      "preview": "Обработка сессий\n\nВсе происходящие события группируются в активные периоды, называемые сессией или",
-      "title": "Обработка сессий",
-      "dir": "content/docs/jslib",
-      "base": "alcojs-sessions.json",
+    "content/docs/server/server-update.json": {
+      "preview": "Проект развивается очень быстро, обновления могут выходить часто, вплоть до нескольких раз в день. \nОбо всех",
+      "title": "Процесс обновления повторяет установку и приводит в порядок все, что не так:",
+      "dir": "content/docs/server",
+      "base": "server-update.json",
       "ext": ".json",
-      "sourceBase": "alcojs-sessions.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/jslib/alcojs-semantic-events.json": {
-      "preview": "Семантические события\n\nПомимо автоматического отслеживания действий пользователя, следует приметить все",
-      "title": "Семантические события",
-      "dir": "content/docs/jslib",
-      "base": "alcojs-semantic-events.json",
-      "ext": ".json",
-      "sourceBase": "alcojs-semantic-events.md",
+      "sourceBase": "server-update.md",
       "sourceExt": ".md"
     },
     "content/docs/server/server-vpn.json": {
@@ -210,15 +219,6 @@
       "base": "server-vpn.json",
       "ext": ".json",
       "sourceBase": "server-vpn.md",
-      "sourceExt": ".md"
-    },
-    "content/docs/server/server-update.json": {
-      "preview": "Проект развивается очень быстро, обновления могут выходить часто, вплоть до нескольких раз в день. \nОбо всех",
-      "title": "Процесс обновления повторяет установку и приводит в порядок все, что не так:",
-      "dir": "content/docs/server",
-      "base": "server-update.json",
-      "ext": ".json",
-      "sourceBase": "server-update.md",
       "sourceExt": ".md"
     },
     "content/docs/server/server-setup.json": {

@@ -131,5 +131,45 @@
         }
       }
     }
-  }  
+  }
+  
+  
+  @media(max-width: 720px) {
+    max-height: 1000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    padding: 0 25px;
+
+    .leftBg {
+      position: absolute;
+      left: 0;
+      top: 140vw;
+      bottom: 0;
+      margin: auto;
+      width: 100%;
+    }
+    .RightBg {
+      display: none;
+    }
+
+    .contentCenter {
+      flex-direction: column;
+      margin-top: 105vw;
+      .leftText {
+        width: 100%;
+      }
+      .rightText {
+        width: 100%;
+        margin-top: rem(30px);
+      }
+      .centerBg {
+        position: absolute;
+        top: 50vw;
+        width: 100%;
+        height: auto;
+        left: 0;
+      }
+    }
+  }
 }

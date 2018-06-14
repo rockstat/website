@@ -8,7 +8,7 @@ import Vivus from 'vivus';
 
 import VisibleDetect from "react-visibility-sensor";
 
-import { EverythingRhimbusIcon, CircleTransparent, CircleBlur, CircleGreenIcon } from '../../static/icons';
+import { EverythingRhimbusIcon, CircleTransparent, CircleBlur, CircleGreenIcon, LogoIcon } from '../../static/icons';
 import { linksMenu } from '../../constants';
 
 export class Everything extends React.PureComponent {
@@ -61,6 +61,7 @@ export class Everything extends React.PureComponent {
           </div>
         </div>
         <div className={style.bgContainer}>
+          <div className={style.logoMobile}><LogoIcon /></div>
           <div className={cl(style.centerBg, {[style.fillNone]: mainAnimationStatus}, {[style.mounted]: mountingDetect})}>
             <EverythingRhimbusIcon />
           </div>

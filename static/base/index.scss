@@ -73,6 +73,85 @@
     line-height: 1.5;
     word-wrap: break-word;
   }
+  .markdown-body {
+    h1, h2, h3, h4, div, p, ul {
+      padding: rem(0 192px);
+    }
+    table {
+      padding: rem(0 32px);
+    }
+  }
+
+  /*
+Dracula Theme v1.2.0
+https://github.com/zenorocha/dracula-theme
+Copyright 2015, All rights reserved
+Code licensed under the MIT license
+http://zenorocha.mit-license.org
+@author Éverton Ribeiro <nuxlli@gmail.com>
+@author Zeno Rocha <hi@zenorocha.com>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #282a36;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link {
+  color: #8be9fd;
+}
+
+.hljs-function .hljs-keyword {
+  color: #ff79c6;
+}
+
+.hljs,
+.hljs-subst {
+  color: #f8f8f2;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-type,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #f1fa8c;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #6272a4;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
   
   .markdown-body .pl-c {
     color: #6a737d;
@@ -356,12 +435,25 @@
   }
   
   .markdown-body blockquote {
+    border-left: 4px solid #00F0FF;
+    background-color: #F7FFFF;
+    padding: 1rem;
     margin: 0;
+    margin-left: rem(190px);
+    margin-right: rem(190px);
+
+    a {
+      color: #00f0ff;
+    }
+
+    p {
+      padding: 0;
+    }
   }
   
   .markdown-body ul,
   .markdown-body ol {
-    padding-left: 0;
+    // padding-left: 0;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -392,6 +484,7 @@
     margin-bottom: 0;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: rem(12px);
+    width: 105%;
   }
   
   .markdown-body .octicon {
@@ -481,9 +574,13 @@
   }
   
   .markdown-body blockquote {
-    padding: 0 1em;
-    color: #6a737d;
-    border-left: 0.25em solid #dfe2e5;
+    border-left: 4px solid #00F0FF;
+    background-color: #F7FFFF;
+    padding: 1rem;
+
+    a {
+      color: #00f0ff;
+    }
   }
   
   .markdown-body blockquote>:first-child {
@@ -552,13 +649,13 @@
   .markdown-body h1 {
     padding-bottom: 0.3em;
     font-size: 2em;
-    border-bottom: 1px solid #eaecef;
+    // border-bottom: 1px solid #eaecef;
   }
   
   .markdown-body h2 {
     padding-bottom: 0.3em;
     font-size: 1.5em;
-    border-bottom: 1px solid #eaecef;
+    // border-bottom: 1px solid #eaecef;
   }
   
   .markdown-body h3 {
@@ -580,7 +677,7 @@
   
   .markdown-body ul,
   .markdown-body ol {
-    padding-left: 2em;
+    // padding-left: 2em;
   }
   
   .markdown-body ul ul,
@@ -632,17 +729,24 @@
   
   .markdown-body table th,
   .markdown-body table td {
-    padding: rem(6px 13px);
-    border: 1px solid #dfe2e5;
+    padding: rem(12px 13px);
+    vertical-align: middle;
+    // border: 1px solid #dfe2e5;
   }
   
   .markdown-body table tr {
     background-color: #fff;
-    border-top: 1px solid #c6cbd1;
+    border-bottom: 1px solid #c6cbd1;
+  }
+
+  .markdown-body table thead tr {
+    border-top: none;
+    font-family: 'RalewayBold';
+    text-align: left;
   }
   
   .markdown-body table tr:nth-child(2n) {
-    background-color: #f6f8fa;
+    // background-color: #f6f8fa;
   }
   
   .markdown-body img {
@@ -696,7 +800,8 @@
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
-    background-color: #f6f8fa;
+    background-color: #0F1616;
+    color: #fff;
     border-radius: 3px;
   }
   

@@ -61,7 +61,7 @@ export class Header extends React.Component {
             linksMenu.map((item , index) => {
               return (
                 <div key={index} className={cl(style.menuItem, style.linksMenu)} >
-                  <Link href={`/${locale}${item.path}`}>
+                  <Link href={item.path}>
                     <a className={cl({[style.active]: activeSection === item.name})}> {item.name} </a>
                   </Link>
                 </div>
