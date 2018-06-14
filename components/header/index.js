@@ -43,7 +43,6 @@ export class Header extends React.Component {
           {[style.documentation]: documentation},
           {[style.menuActive]: menuActive}
         )}>
-
         <div onClick={this.changeMenu} className={cl(style.gamburger, {[style.active]: menuActive})}>
           <span></span>
           <span></span>
