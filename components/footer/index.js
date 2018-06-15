@@ -6,7 +6,7 @@ import style from './style.scss';
 
 import { LogoIcon } from '../../static/icons';
 
-import { footerMenu, footerRightMenu } from '../../constants';
+import { footerMenu, footerRightMenu, linksMenu } from '../../constants';
 
 export class Footer extends React.Component {
   render() {
@@ -61,8 +61,23 @@ export class Footer extends React.Component {
           </div>
         </div>
 
+        <div className={style.socialMenu}>
+            {
+              linksMenu.map((item, index) => {
+                return(
+                  <div key={index} className={cl(style.item, {[style.lastItem]: index === linksMenu.length - 1})}>
+                    <a href={item.path} target={'__blank'}> { item.name } </a>
+                  </div>
+                )
+              })
+            }
+        </div>
+
         <div className={style.bottom}>
           <span>Cодержимое данного сайта доступно по лицензии Creative Commons Attribution 4.0</span>
+            
+          <span className={style.footerTextMobile}>Dmitry Rodin, 2021</span>
+
           <span>Конфиденциальность и персональные данные</span>
         </div>
       </footer>

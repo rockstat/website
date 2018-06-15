@@ -146,5 +146,31 @@
         }
       }
     }
-  }  
+  }
+
+  @media(max-width: 720px) {
+    max-height: 1000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+
+    .backgroundIMG {
+      position: relative;
+      height: 70vw;
+      background-size: contain;
+    }
+
+    .contentCenter {
+      flex-direction: column;
+      padding: 0 25px;
+      width: 100%;
+      .leftText {
+        width: 100%;
+      }
+      .rightText {
+        width: 100%;
+        margin-top: rem(30px);
+      }
+    }
+  } 
 }

@@ -35,6 +35,21 @@ export class Center extends React.Component {
             <span> Микросервисы под контролем: запуск и управление, потребление ресурсов и SLA </span>
           </div>
         </div>
+
+        <div className={style.contentCenterMobile}>
+          <img src={'/_next/static/images/centerMobil/1.png'} />
+          <div className={style.text}>Сводка по базовым характеристикам трафика</div>
+
+          <img src={'/_next/static/images/centerMobil/2.png'} />
+          <div className={style.text}>Информация о загрузке системы и доступных ресурсах</div>
+
+          <div className={style.graphContainer}>
+            <img src={'/_next/static/images/centerMobil/3.png'} alt=""/>
+            <div className={style.text}>Динамика изменения метрик основных событий</div>
+          </div>
+
+          <div className={style.text}>Микросервисы под контролем: запуск и управление, потребление ресурсов и SLA </div>
+        </div>
       </div>
     )
   }

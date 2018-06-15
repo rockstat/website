@@ -25,6 +25,9 @@ export class Microservices extends React.Component {
           {/* <MicroservicesIcon /> */}
           <img src={'/_next/static/images/microservicesElement.png'} />
         </div>
+        <div className={style.mobileCenter}>
+          <img src={'/_next/static/images/microMobileBg.png'} />
+        </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>

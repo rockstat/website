@@ -9,13 +9,17 @@ export class Solution extends React.Component {
   render() {
     return (
       <div className={style.analyticContainer}>
-        <div className={style.backgroundIMG} />
+        
         <div className={style.textContainer}>
           <div className={style.title}>Продвинутые решения</div>
           <div className={style.description}>
           Несколько прмеров того, какие могут быть сервисы, использующие <br /> математические модели и машинное обучение.
           </div>
         </div>
+
+        <div className={style.backgroundIMG} />
+
+        
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>

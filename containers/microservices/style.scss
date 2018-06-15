@@ -36,6 +36,13 @@
 
   }
 
+  .mobileCenter {
+    display: none;
+    img {
+      width: 100%;
+    }
+  }
+
   .leftBg {
     position: absolute;
     left: 0;
@@ -129,5 +136,34 @@
         }
       }
     }
-  }  
+  }
+  @media(max-width: 720px) {
+    max-height: 1000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    .bottomGradient, .leftBg, .RightBg {
+      display: none;
+    }
+    .textContainer {
+      padding: 0 25px;
+    }
+    .mobileCenter {
+      display: block;
+    }
+
+    .contentCenter {
+      flex-direction: column;
+      padding: 0 25px;
+      width: 100%;
+      // margin-top: 105vw;
+      .leftText {
+        width: 100%;
+      }
+      .rightText {
+        width: 100%;
+        margin-top: rem(30px);
+      }
+    }
+  }
 }

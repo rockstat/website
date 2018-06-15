@@ -57,7 +57,7 @@ export class Documentation extends React.Component {
           </Link>
         </div>
 
-        <SideMenu docsMenu={docsMenu} query={query}/>
+        <SideMenu docsMenu={docsMenu} query={query} />
         <PageWrapper content={content} />
       </div>
     )

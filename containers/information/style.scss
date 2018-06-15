@@ -100,5 +100,39 @@
   //   img {
   //     width: 8%;
   //   }
-  // }  
+  // } 
+  
+  @media(max-width: 720px) {
+    max-height: 1000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    background: #000;
+
+    hr {
+      display: none;
+    }
+
+    .textContainer {
+      padding: 0 25px;
+    }
+
+    .partnersContainer {
+      .wrapper {
+        flex-wrap: wrap;
+        padding: 0 25px;
+        img {
+          width: 35%;
+          margin: 10px 0;
+        }
+      }
+    }
+    .reviewsContainer {
+      flex-direction: column;
+      padding: 0 25px;
+      .item {
+        margin: 25px 0;
+      }
+    }
+  }
 }

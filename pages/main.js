@@ -20,6 +20,11 @@ import '../static/images/repositoryBottom.png';
 import '../static/images/centerBg.png';
 
 import '../static/images/linesAnalytic.png';
+import '../static/images/microMobileBg.png';
+
+import '../static/images/centerMobil/1.png';
+import '../static/images/centerMobil/2.png';
+import '../static/images/centerMobil/3.png';
 
 export default class extends React.Component {
   static async getInitialProps ({query}) {

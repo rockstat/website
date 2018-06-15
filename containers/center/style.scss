@@ -24,6 +24,9 @@
     }
 
   }
+  .contentCenterMobile {
+    display: none;
+  }
   .contentCenter {
     // display: flex;
     // justify-content: space-between;
@@ -114,5 +117,51 @@
         }
       }
     }
-  }  
+  }
+  
+  @media(max-width: 720px) {
+    max-height: 1000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+
+    .textContainer {
+      padding: 0 25px;
+    }
+
+    .contentCenter {
+      display: none;
+    }
+
+    .contentCenterMobile {
+      display: block;
+      text-align: center;
+      img {
+        width: 80%;
+        padding: 0 25px;
+        margin: rem(30px 0);
+      }
+      .text {
+        @include raleway-medium(16px);
+        line-height: rem(19px);
+        padding: 0 25px;
+      }
+
+      .graphContainer {
+        position: relative;
+        img {
+          width: 100%;
+          padding: 0;
+        }
+        .text {
+          position: absolute;
+          top: 30%;
+          left: 0;
+          right: 0;
+          height: 20px;
+          margin: auto;
+        }
+      }
+    }
+  }
 }
