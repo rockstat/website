@@ -55,6 +55,10 @@
           transition: fill 1s ease, transform 1s ease;
           will-change: stroke-dasharray, stroke-dashoffset, fill, transform;
         }
+        g {
+          transition: transform .1s linear;
+          will-change: transform;
+        }
       }
     }
 

@@ -27,6 +27,9 @@
         overflow: hidden;
         .itemMain {
           @include raleway-bold(14px);
+          &.notClick {
+            pointer-events: none;
+          }
         }
         a {
           color: #fff;
@@ -79,6 +82,11 @@
           @include raleway-bold(14px);
           position: relative;
           transition: color .1s linear;
+
+          &.notActive {
+            opacity: 0.5;
+            pointer-events: none;
+          }
   
           &:after {
             content: "";

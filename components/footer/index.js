@@ -23,7 +23,7 @@ export class Footer extends React.Component {
                 return (
                   <div key={index} className={style.item} >
                     <Link href={item.path} >
-                      <a className={style.itemMain} > { item.name } </a>
+                      <a className={cl(style.itemMain, {[style.notClick]: item.event !== undefined})}> { item.name } </a>
                     </Link>
 
                     <div className={style.itemChildren}>
@@ -34,7 +34,10 @@ export class Footer extends React.Component {
                           return (
                             <div key={key} className={style.children}>
                               <Link href={child.path} >
-                                <a className={cl({[style.notActive]: !child.active})}>{child.name}</a>
+                                <a 
+                                  className={cl({[style.notActive]: !child.active})} 
+                                  target={child.target !== undefined && child.target ? '__blank' : 'none'} 
+                                >{child.name}</a>
                               </Link>
                             </div>
                           )
@@ -52,7 +55,7 @@ export class Footer extends React.Component {
                 return (
                   <div key={index} className={style.item} >
                     <Link href={item.path} >
-                      <a className={style.itemMain} > { item.name } </a>
+                      <a className={cl(style.itemMain, {[style.notActive]: !item.active})} > { item.name } </a>
                     </Link>
                   </div>
                 )

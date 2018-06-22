@@ -54,7 +54,7 @@
     "processmd": "^4.2.1",
     "prop-types": "^15.6.1",
     "resolve-url-loader": "^2.3.0",
-    "sass-loader": "^7.0.2",
+    "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack": "3.10.0"

@@ -12,7 +12,7 @@ export const langsMenu = [
 export const linksMenu = [
   {
     name: 'Facebook',
-    path: 'https://www.facebook.com/'
+    path: 'https://www.facebook.com/rockstatX/'
   },
   {
     name: 'Telegram',
@@ -67,6 +67,7 @@ export const footerMenu = [
   {
     name: 'Обучение',
     path: '/edu',
+    event: false,
     children: [
       {
         name: 'курс digital rockstar',
@@ -88,21 +89,25 @@ export const footerMenu = [
   {
     name: 'Сообщество',
     path: '/community',
+    event: false,
     children: [
       {
         name: 'Facebook',
         path: 'https://www.facebook.com/',
-        active: true
+        active: true,
+        target: true
       },
       {
         name: 'Telegram',
         path: 'https://t.me/rockstats',
-        active: true
+        active: true,
+        target: true
       },
       {
         name: 'Github',
         path: 'https://github.com/rockstat',
-        active: true
+        active: true,
+        target: true
       }
     ]
   }
@@ -111,14 +116,17 @@ export const footerMenu = [
 export const footerRightMenu = [
   {
     name: 'Личный кабинет',
-    path: '/'
+    path: '/',
+    active: false
   },
   {
     name: 'Блог',
-    path: '/'
+    path: '/',
+    active: false
   },
   {
     name: 'Premium support',
-    path: '/'
+    path: '/',
+    active: false
   }
 ];
