@@ -2,7 +2,8 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { AnalyticMain } from '../../static/icons/AnalyticMainIcon';
+
+import { Center, Two, Tree, BgLines } from '../../static/icons/analytic';
 
 export class Analytic extends React.Component {
 
@@ -13,12 +14,17 @@ export class Analytic extends React.Component {
           <div className={style.title}>Аналитическая система</div>
           <div className={style.description}>Сбор и анализ данных с web, мобильных приложений</div>
         </div>
-        <div className={style.leftBg}>
+
+        <div className={style.linesBg}> 
+          <BgLines />
+        </div>
+
+        {/* <div className={style.leftBg}>
           <img src={'/_next/static/images/linesAnalytic.png'} />
         </div>
         <div className={style.RightBg}>
           <img src={'/_next/static/images/linesAnalytic.png'} />
-        </div>
+        </div> */}
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>
@@ -38,8 +44,18 @@ export class Analytic extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            {/* <AnalyticMain /> */}
-            <img src={'/_next/static/images/analyticBg.png'} />
+            <div className={style.center}>
+              <Center />
+            </div>
+
+            <div className={style.two}>
+              <Two />
+            </div>
+
+            <div className={style.tree}>
+              <Tree />
+            </div>
+            {/* <img src={'/_next/static/images/analyticBg.png'} /> */}
           </div>
 
           <div className={style.rightText}>

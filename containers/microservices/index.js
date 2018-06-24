@@ -2,8 +2,9 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
+import { LeftFront } from '../../static/icons/microservices';
 
-import { MicroservicesIcon } from '../../static/icons';
+
 
 export class Microservices extends React.Component {
 
@@ -19,11 +20,12 @@ export class Microservices extends React.Component {
         </div>
         <div className={style.leftBg}>
           {/* <MicroservicesIcon /> */}
-          <img src={'/_next/static/images/microservicesElement.png'} />
+          {/* <img src={'/_next/static/images/microservicesElement.png'} /> */}
+          <LeftFront />
         </div>
         <div className={style.RightBg}>
           {/* <MicroservicesIcon /> */}
-          <img src={'/_next/static/images/microservicesElement.png'} />
+          {/* <img src={'/_next/static/images/microservicesElement.png'} /> */}
         </div>
         <div className={style.mobileCenter}>
           <img src={'/_next/static/images/microMobileBg.png'} />

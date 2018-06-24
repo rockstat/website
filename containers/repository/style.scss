@@ -118,6 +118,35 @@
       svg, img {
         width: 100%;
       }
+
+      .inner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 17vw;
+        height: 18.8vw;
+        svg {
+          width: 100%;
+        }
+      }
+
+      .outer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 30vw;
+        height: 30vw;
+        svg {
+          width: 100%;
+        }
+      }
+
       .repositoryCriclesMain {
         position: absolute;
         height: 90%;

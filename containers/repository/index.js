@@ -8,6 +8,7 @@ import { RepositoryCenterIcon } from '../../static/icons';
 
 import RepositoryTop from '../../static/images/repositoryTop.png';
 import RepositoryBottom from '../../static/images/repositoryBottom.png';
+import { CenterInner, CenterOuter } from '../../static/icons/repository';
 
 export class Repository extends React.Component {
 
@@ -53,7 +54,14 @@ export class Repository extends React.Component {
           <div className={style.centerBg}>
             {/* <div className={style.repositoryCriclesMain}> <RepositoryCenterIcon /> </div> */}
             {/* <div className={style.repositoryContur}> <img src={RepositoryMain} alt=''/> </div> */}
-            <img src={'/_next/static/images/repositoryBg.png'} />
+            {/* <img src={'/_next/static/images/repositoryBg.png'} /> */}
+
+            <div className={style.inner}>
+              <CenterInner />
+            </div>
+            <div className={style.outer}>
+              <CenterOuter />
+            </div>
           </div>
 
           <div className={style.rightText}>

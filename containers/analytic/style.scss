@@ -26,33 +26,16 @@
 
   }
 
-  .leftBg {
+  .linesBg {
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
-    img {
-      width: 100%;
+    left: -12%;
+    top: 30%;
+    width: 125%;
+    svg {
+      opacity: 0.5;
     }
   }
 
-  .RightBg {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 36%;
-    height: 36%;
-    img {
-      width: 100%;
-      transform: rotateY(180deg);
-      transform-origin: center;
-    }
-  }
   .contentCenter {
     display: flex;
     justify-content: space-between;
@@ -96,8 +79,49 @@
       justify-content: center;
       align-items: center;
       margin: auto;
-      svg, img {
-        width: 100%;
+      position: relative;
+      // svg, img {
+      //   width: 100%;
+      // }
+
+      .center {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        width: 12vw;
+        bottom: 0;
+        margin: auto;
+        height: 12vw;
+        svg {
+          width: 100%;
+        }
+      }
+      .two {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        width: 27vw;
+        bottom: 0;
+        margin: auto;
+        height: 27vw;
+        svg {
+          width: 100%;
+        }
+      }
+      .tree {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        width: 35vw;
+        bottom: 0;
+        margin: auto;
+        height: 35vw;
+        svg {
+          width: 100%;
+        }
       }
     }
     .rightText {

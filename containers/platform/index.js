@@ -2,7 +2,6 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { AnalyticMain } from '../../static/icons/AnalyticMainIcon';
 
 import LinesAnalytic from '../../static/images/linesAnalytic.png';
 
