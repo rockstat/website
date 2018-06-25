@@ -4,8 +4,6 @@ import cl from 'classnames';
 import style from './style.scss';
 import { LeftFront } from '../../static/icons/microservices';
 
-
-
 export class Microservices extends React.Component {
 
   render() {
@@ -19,13 +17,10 @@ export class Microservices extends React.Component {
           </div>
         </div>
         <div className={style.leftBg}>
-          {/* <MicroservicesIcon /> */}
-          {/* <img src={'/_next/static/images/microservicesElement.png'} /> */}
           <LeftFront />
         </div>
         <div className={style.RightBg}>
-          {/* <MicroservicesIcon /> */}
-          {/* <img src={'/_next/static/images/microservicesElement.png'} /> */}
+          <LeftFront />
         </div>
         <div className={style.mobileCenter}>
           <img src={'/_next/static/images/microMobileBg.png'} />

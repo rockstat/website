@@ -193,6 +193,20 @@
         width: 100%;
         height: auto;
         left: 0;
+        .center {
+          top: 30vw;
+          height: auto;
+          width: 40%;
+        }
+        .two {
+          top: 10vw;
+          width: 80%;
+          height: auto;
+        }
+        .tree {
+          width: 100%;
+          height: auto;
+        }
       }
     }
   }

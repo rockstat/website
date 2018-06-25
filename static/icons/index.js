@@ -5,5 +5,4 @@ export * from './CircleBlurIcon';
 export * from './CircleGreenIcon';
 export * from './RepositoryCircles';
 export * from './RepositoryCenterIcon';
-export * from './MicroservicesIcon';
 export * from './SolutionIcon';

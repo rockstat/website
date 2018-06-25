@@ -236,6 +236,16 @@
         width: 100%;
         height: auto;
         left: 0;
+        .inner {
+          width: 58%;
+          height: auto;
+          top: 26vw;
+        }
+        .outer {
+          width: 100%;
+          height: auto;
+          top: 8vw;
+        }
       }
     }
 

@@ -52,10 +52,6 @@ export class Repository extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            {/* <div className={style.repositoryCriclesMain}> <RepositoryCenterIcon /> </div> */}
-            {/* <div className={style.repositoryContur}> <img src={RepositoryMain} alt=''/> </div> */}
-            {/* <img src={'/_next/static/images/repositoryBg.png'} /> */}
-
             <div className={style.inner}>
               <CenterInner />
             </div>
