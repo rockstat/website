@@ -2,9 +2,6 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { RepositoryCenterIcon } from '../../static/icons';
-
-// import RepositoryMain from '../../static/images/RepositoryCircleMain.png';
 
 import RepositoryTop from '../../static/images/repositoryTop.png';
 import RepositoryBottom from '../../static/images/repositoryBottom.png';

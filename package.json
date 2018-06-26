@@ -53,6 +53,7 @@
     "postcss-loader": "^2.1.5",
     "processmd": "^4.2.1",
     "prop-types": "^15.6.1",
+    "react-svg-loader": "^2.1.0",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",

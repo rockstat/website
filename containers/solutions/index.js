@@ -2,7 +2,9 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { SolutionBgIcon } from '../../static/icons';
+import { Cube, VSolutions } from '../../static/icons/solutions';
+
+// import * as Cube from '../../design/3. storage/cube.svg';
 
 export class Solution extends React.Component {
 
@@ -17,7 +19,14 @@ export class Solution extends React.Component {
           </div>
         </div>
 
-        <div className={style.backgroundIMG} />
+        <div className={style.vector}>
+          <div className={style.cube}>
+            <Cube />
+          </div>
+          <div className={style.v}>
+            <VSolutions />
+          </div>
+        </div>
 
         
         <div className={style.contentCenter}>

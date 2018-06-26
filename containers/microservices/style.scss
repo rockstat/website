@@ -45,10 +45,10 @@
 
   .leftBg {
     position: absolute;
-    left: -11%;
+    left: 0%;
     top: 0;
-    width: 36vw;
-    height: 36vw;
+    width: 28vw;
+    height: 28vw;
     svg, img {
       width: 100%;
     }
@@ -56,10 +56,10 @@
 
   .RightBg {
     position: absolute;
-    right: -11%;
+    right: 0;
     top: 0;
-    width: 36vw;
-    height: 36vw;
+    width: 28vw;
+    height: 28vw;
     svg, img {
       width: 100%;
       transform: rotateY(180deg);

@@ -40,7 +40,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(woff2|woff?|otf|ttf|eot|svg)$/,
+        test: /\.(woff2|woff?|otf|ttf|eot)$/,
         loader: 'file-loader?name=static/fonts/[name].[ext]'
       },
       {
