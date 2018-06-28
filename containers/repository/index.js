@@ -5,7 +5,7 @@ import style from './style.scss';
 
 import RepositoryTop from '../../static/images/repositoryTop.png';
 import RepositoryBottom from '../../static/images/repositoryBottom.png';
-import { CenterInner, CenterOuter } from '../../static/icons/repository';
+import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '../../static/icons/repository';
 
 export class Repository extends React.Component {
 
@@ -20,16 +20,16 @@ export class Repository extends React.Component {
           </div>
         </div>
         <div className={style.leftBgTop}>
-          <img src={'/_next/static/images/repositoryTop.png'} alt='' />
+          <EnvOne/>
         </div>
         <div className={style.leftBgBottom}>
-          <img src={'/_next/static/images/repositoryBottom.png'} alt='' />
+          <EnvOne/>
         </div>
         <div className={style.rightBgTop}>
-          <img src={'/_next/static/images/repositoryTop.png'} alt='' />
+          <EnvOne/>
         </div>
         <div className={style.rightBgBottom}>
-          <img src={'/_next/static/images/repositoryBottom.png'} alt='' />
+          <EnvOne/>
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>
@@ -49,11 +49,17 @@ export class Repository extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            <div className={style.inner}>
-              <CenterInner />
+            <div className={style.dots}>
+              <CenterDots />
             </div>
             <div className={style.outer}>
               <CenterOuter />
+            </div>
+            <div className={style.rounds}>
+              <CenterRounds />
+            </div>
+            <div className={style.center}>
+              <Center />
             </div>
           </div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 export const CenterRounds = () => (
-  <svg fill="none">
+  <svg viewBox={'0 0 308 307'} fill="none">
     <path
       opacity={0.09}
       d="M154.1 293.05c77.11 0 139.62-62.48 139.62-139.55 0-77.07-62.5-139.55-139.62-139.55C77 13.95 14.48 76.43 14.48 153.5c0 77.07 62.5 139.55 139.62 139.55z"

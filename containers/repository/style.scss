@@ -32,7 +32,7 @@
     bottom: 0;
     width: 20%;
     height: 20%;
-    img {
+    svg {
       width: 100%;
     }
   }
@@ -43,7 +43,9 @@
     bottom: 0%;
     width: 20%;
     height: 20%;
-    img {
+    svg {
+      transform: rotateX(180deg);
+      transform-origin: center;
       width: 100%;
     }
   }
@@ -54,7 +56,7 @@
     top: 10%;
     width: 20%;
     height: 20%;
-    img {
+    svg {
       transform: rotateY(180deg);
       transform-origin: center;
       width: 100%;
@@ -68,8 +70,8 @@
     margin: auto;
     width: 20%;
     height: 20%;
-    img {
-      transform: rotateY(180deg);
+    svg {
+      transform: rotateY(180deg) rotateX(180deg);
       transform-origin: center;
       width: 100%;
     }
@@ -119,18 +121,35 @@
         width: 100%;
       }
 
-      .inner {
+      .dots {
         position: absolute;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
         margin: auto;
-        width: 17vw;
-        height: 18.8vw;
-        svg {
-          width: 100%;
-        }
+        width: 27vw;
+        height: 28vw;
+      }
+      .rounds {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 27vw;
+        height: 28vw;
+      }
+      .center {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 15vw;
+        height: 16vw;
       }
 
       .outer {
@@ -140,8 +159,8 @@
         top: 0;
         bottom: 0;
         margin: auto;
-        width: 30vw;
-        height: 30vw;
+        width: 39vw;
+        height: 38vw;
         svg {
           width: 100%;
         }

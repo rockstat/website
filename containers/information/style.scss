@@ -17,12 +17,15 @@
       transition: transform .1s linear;
       will-change: transform;
       padding: rem(31px 50px);
-      img {
+      .item {
         display: block;
         width: 9%;
         object-fit: contain;
         margin-right: 1%;
         margin-left: 1%;
+        svg {
+          width: 100%;
+        }
       }
     }
     margin: rem(53px 0 65px);

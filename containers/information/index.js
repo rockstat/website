@@ -40,7 +40,9 @@ export class Information extends React.Component {
             {
               parthners.map((item, index) => {
                 return (
-                  <img src={item} key={index} />
+                  <div className={style.item} key={index}>
+                    { item }
+                  </div>
                 )
               })
             }          

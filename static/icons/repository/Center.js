@@ -1,6 +1,8 @@
+import React from 'react';
+
 export const Center = () => (
-  <svg fill="none">
-    <g filter="url(#filter0_d)">
+  <svg viewBox={'0 0 175 176'} fill="none">
+    <g filter="url(#filter0_d_centerRepository)">
       <ellipse
         cx={53.39}
         cy={53.36}
@@ -16,7 +18,7 @@ export const Center = () => (
     </g>
     <defs>
       <filter
-        id="filter0_d"
+        id="filter0_d_centerRepository"
         x={0.07}
         y={0.6}
         width={174.78}
