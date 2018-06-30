@@ -29,7 +29,7 @@
     width: 50%;
     margin: auto;
     margin-top: rem(45px);
-    img {
+    img, svg {
       width: 8%;
     }
   }
@@ -44,7 +44,7 @@
     .contentCenter {
       width: 100%;
       padding: rem(31px 0);
-      img {
+      img, svg {
         width: 10%;
       }
     }

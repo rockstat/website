@@ -5,12 +5,7 @@ import style from './style.scss';
 
 import LinesAnalytic from '../../static/images/linesAnalytic.png';
 
-import docker from '../../static/images/logoPlatforms/docker.png';
-import js from '../../static/images/logoPlatforms/js.png';
-import lines from '../../static/images/logoPlatforms/lines.png';
-import python from '../../static/images/logoPlatforms/Python-logo-notext.png';
-import ts from '../../static/images/logoPlatforms/ts.png';
-import what from '../../static/images/logoPlatforms/what.png';
+import { Docker, Js, Golang, Python, Ts, Clickhouse } from '../../static/icons/technologies';
 
 export class Platform extends React.Component {
 
@@ -25,12 +20,13 @@ export class Platform extends React.Component {
             к cookie вашего домена.</div>
         </div>
         <div className={style.contentCenter}>
-          <img src={docker} />
-          <img src={js} />
-          <img src={lines} />
-          <img src={python} />
-          <img src={ts} />
-          <img src={what} />
+          <Docker />
+          <Js />
+          <Clickhouse />
+          <Python />
+          <Ts />
+          <Golang />
+          
         </div>
       </div>
     )

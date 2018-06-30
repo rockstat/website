@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { LeftFront } from '../../static/icons/microservices';
+import { LeftFront, LeftBg } from '../../static/icons/microservices';
 
 export class Microservices extends React.Component {
 
@@ -10,6 +10,14 @@ export class Microservices extends React.Component {
     return (
       <div className={style.analyticContainer}>
         <div className={style.bottomGradient} />
+        <div className={style.bacgroundM}>
+          <div className={style.left}>
+            <LeftBg />
+          </div>
+          <div className={style.right}>
+            <LeftBg />
+          </div>
+        </div>
         <div className={style.textContainer}>
           <div className={style.title}>Микросервисы</div>
           <div className={style.description}>

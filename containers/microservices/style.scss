@@ -8,9 +8,38 @@
   max-height: $maxHeightSceen;
   position: relative;
   background-color: #000;
-  background-image: url('/_next/static/images/microservicesBg.png');
-  background-size: cover;
   background-repeat: no-repeat;
+  .bacgroundM {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(63, 255, 192, 0), rgba(63, 255, 192, 0.38), rgba(0, 240, 255, 0));
+    display: flex;
+    justify-content: space-between;
+    
+    .left {
+      width: 48%;
+      svg {
+        width: 100%;
+        g {
+          opacity: 0.2;
+        }
+      }
+    }
+    .right {
+      width: 48%;
+      svg {
+        width: 100%;
+        transform: rotateY(180deg);
+        transform-origin: center;
+        g {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
   .bottomGradient {
     position: absolute;
     bottom: 0;
@@ -47,8 +76,8 @@
     position: absolute;
     left: 0%;
     top: 0;
-    width: 28vw;
-    height: 28vw;
+    width: 25vw;
+    height: 25vw;
     svg, img {
       width: 100%;
     }
@@ -58,8 +87,8 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: 28vw;
-    height: 28vw;
+    width: 25vw;
+    height: 25vw;
     svg, img {
       width: 100%;
       transform: rotateY(180deg);

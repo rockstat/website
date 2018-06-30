@@ -2,8 +2,6 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-
-import CenterBg from '../../static/images/centerBg.png';
 import { BgChart, Tooltips, Pies, Container } from '../../static/icons/dash';
 
 export class Center extends React.Component {

@@ -2,9 +2,6 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-
-import RepositoryTop from '../../static/images/repositoryTop.png';
-import RepositoryBottom from '../../static/images/repositoryBottom.png';
 import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '../../static/icons/repository';
 
 export class Repository extends React.Component {

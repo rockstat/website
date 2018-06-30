@@ -2,29 +2,9 @@ import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Pla
 import { Head } from '../components';
 import React from 'react';
 
-import '../static/images/linesAnalytic.png';
-import '../static/images/RepositoryCircleMain.png';
-import '../static/images/repositoryBottom.png';
-import '../static/images/repositoryTop.png';
-import '../static/images/microservicesBg.png';
-import '../static/images/solutionBg.png';
-
-import '../static/images/analyticBg.png';
-import '../static/images/microservicesElement.png';
-import '../static/images/prodResh.png';
-import '../static/images/repositoryBg.png';
-
-import '../static/images/repositoryTop.png';
-import '../static/images/repositoryBottom.png';
-
-import '../static/images/centerBg.png';
-
-import '../static/images/linesAnalytic.png';
-import '../static/images/microMobileBg.png';
-
-import '../static/images/centerMobil/1.png';
-import '../static/images/centerMobil/2.png';
-import '../static/images/centerMobil/3.png';
+import '../static/images/partners/7.png';
+import '../static/images/partners/6.png';
+import '../static/images/partners/2.png';
 
 export default class extends React.Component {
   static async getInitialProps ({query}) {
