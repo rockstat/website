@@ -4,10 +4,11 @@
 .analyticContainer {
   width: 100vw;
   height: 100vh;
-  min-height: $minHeightScreen;
-  max-height: $maxHeightSceen;
+  min-height: 65vw;
+  max-height: 65vw;
   position: relative;
   background: linear-gradient(#000, #1b361b, #000); 
+  contain: paint;
   .textContainer {
     text-align: center;
     .title {
@@ -165,6 +166,26 @@
     width: 100%;
     height: auto;
 
+    .vector {
+      .cube {
+        width: 80vw;
+        height: 100vw;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60%;
+        bottom: 100%;
+        margin: auto;
+      }
+      .v {
+        width: 200%;
+        height: 100%;
+        top: 10%;
+        left: -50%;
+        z-index: 5;
+      }
+    }
+
     .backgroundIMG {
       position: relative;
       height: 70vw;
@@ -175,6 +196,7 @@
       flex-direction: column;
       padding: 0 25px;
       width: 100%;
+      margin-top: 100%;
       .leftText {
         width: 100%;
       }

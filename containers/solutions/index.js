@@ -4,8 +4,6 @@ import cl from 'classnames';
 import style from './style.scss';
 import { Cube, VSolutions } from '../../static/icons/solutions';
 
-// import * as Cube from '../../design/3. storage/cube.svg';
-
 export class Solution extends React.Component {
 
   render() {
@@ -20,10 +18,10 @@ export class Solution extends React.Component {
         </div>
 
         <div className={style.vector}>
-          <div className={style.cube}>
+          <div className={cl(style.cube, 'rockstat-svg-container')}>
             <Cube />
           </div>
-          <div className={style.v}>
+          <div className={cl(style.v, 'rockstat-svg-container')}>
             <VSolutions />
           </div>
         </div>
@@ -46,11 +44,6 @@ export class Solution extends React.Component {
                 тут же передавая результат в браузер, где будет выполнено нужное действие.
               </div>
             </div>
-          </div>
-
-          <div className={style.centerBg}>
-            {/* <div className={style.repositoryCriclesMain}> <SolutionBgIcon /> </div> */}
-            {/* <div className={style.repositoryContur}> <img src={RepositoryMain} alt=''/> </div> */}
           </div>
 
           <div className={style.rightText}>

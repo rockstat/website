@@ -2,10 +2,6 @@ import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Pla
 import { Head } from '../components';
 import React from 'react';
 
-// import '../static/images/partners/7.png';
-// import '../static/images/partners/6.png';
-// import '../static/images/partners/2.png';
-
 export default class extends React.Component {
   static async getInitialProps ({query}) {
     return { query: query }

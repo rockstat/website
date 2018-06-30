@@ -6,6 +6,7 @@
   position: relative;
   padding: rem(31px 0px);
   background: linear-gradient(rgba(0, 0, 0, 1), #003c40, rgba(0, 0, 0, 1));
+  contain: paint;
 
   .partnersContainer {
     overflow: hidden;

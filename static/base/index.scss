@@ -1,6 +1,9 @@
 @import 'sass-rem';
 
 :global {
+  .rockstat-svg-container {
+    // contain: paint;
+  }
   html {
     font-size: 16PX;
     text-size-adjust: 100%;
@@ -13,6 +16,7 @@
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
+    background-color: #000;
 
     @media(max-width: 1650px) {
       font-size: 14px;

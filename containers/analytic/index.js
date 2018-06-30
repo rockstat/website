@@ -15,16 +15,9 @@ export class Analytic extends React.Component {
           <div className={style.description}>Сбор и анализ данных с web, мобильных приложений</div>
         </div>
 
-        <div className={style.linesBg}> 
+        <div className={cl(style.linesBg, 'rockstat-svg-container')}> 
           <BgLines />
         </div>
-
-        {/* <div className={style.leftBg}>
-          <img src={'/_next/static/images/linesAnalytic.png'} />
-        </div>
-        <div className={style.RightBg}>
-          <img src={'/_next/static/images/linesAnalytic.png'} />
-        </div> */}
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>
@@ -44,18 +37,17 @@ export class Analytic extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            <div className={style.center}>
+            <div className={cl(style.center, 'rockstat-svg-container')}>
               <Center />
             </div>
 
-            <div className={style.two}>
+            <div className={cl(style.two, 'rockstat-svg-container')}>
               <Two />
             </div>
 
-            <div className={style.tree}>
+            <div className={cl(style.tree, 'rockstat-svg-container')}>
               <Tree />
             </div>
-            {/* <img src={'/_next/static/images/analyticBg.png'} /> */}
           </div>
 
           <div className={style.rightText}>

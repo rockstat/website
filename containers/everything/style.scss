@@ -4,10 +4,11 @@
 .everythingContainer {
   width: 100vw;
   height: 100vh;
-  min-height: $minHeightScreen;
-  max-height: $maxHeightSceen;
+  min-height: 50vw;
+  max-height: 150vw;
   position: relative;
   background-color: #000;
+  // contain: paint;
   .textContainer {
     width: 25vw;
     height: 12vw;

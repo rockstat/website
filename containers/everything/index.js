@@ -62,16 +62,16 @@ export class Everything extends React.PureComponent {
         </div>
         <div className={style.bgContainer}>
           <div className={style.logoMobile}><LogoIcon /></div>
-          <div className={cl(style.centerBg, {[style.fillNone]: mainAnimationStatus}, {[style.mounted]: mountingDetect})}>
+          <div className={cl(style.centerBg, 'rockstat-svg-container', {[style.fillNone]: mainAnimationStatus}, {[style.mounted]: mountingDetect})}>
             <EverythingRhimbusIcon />
           </div>
-          <div className={style.circleTransparentBg}>
+          <div className={cl(style.circleTransparentBg, 'rockstat-svg-container')}>
             <CircleTransparent />
           </div>
-          <div className={style.circleBlurBg}>
+          <div className={cl(style.circleBlurBg, 'rockstat-svg-container')}>
             <CircleBlur />
           </div>
-          <div className={style.circleGreenBg}>
+          <div className={cl(style.circleGreenBg, 'rockstat-svg-container')}>
             <CircleGreenIcon />
           </div>
         </div>

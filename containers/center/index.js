@@ -19,10 +19,10 @@ export class Center extends React.Component {
         </div>
 
         <div className={style.contentCenter}>
-          <div className={style.bgChart}>
+          <div className={cl(style.bgChart, 'rockstat-svg-container')}>
             <BgChart />
           </div>
-          <div className={style.toolTips}>
+          <div className={cl(style.toolTips, 'rockstat-svg-container')}>
             <Tooltips />
             <div className={style.textContainer}>
               <div className={style.leftText}>
@@ -134,7 +134,7 @@ export class Center extends React.Component {
             {
               this.informData.map((item, index) => {
                 return (
-                  <div className={style.item} key={index} >
+                  <div className={cl(style.item, 'rockstat-svg-container')} key={index} >
                     <Container title={item}/>
                   </div>
                 )
@@ -145,14 +145,14 @@ export class Center extends React.Component {
         </div>
 
         <div className={style.contentCenterMobile}>
-          <img src={'/_next/static/images/centerMobil/1.png'} />
+          {/* <img src={'/_next/static/images/centerMobil/1.png'} /> */}
           <div className={style.text}>Сводка по базовым характеристикам трафика</div>
 
-          <img src={'/_next/static/images/centerMobil/2.png'} />
+          {/* <img src={'/_next/static/images/centerMobil/2.png'} /> */}
           <div className={style.text}>Информация о загрузке системы и доступных ресурсах</div>
 
           <div className={style.graphContainer}>
-            <img src={'/_next/static/images/centerMobil/3.png'} alt=""/>
+            {/* <img src={'/_next/static/images/centerMobil/3.png'} alt=""/> */}
             <div className={style.text}>Динамика изменения метрик основных событий</div>
           </div>
 

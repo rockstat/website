@@ -9,6 +9,7 @@
   position: relative;
   // background: linear-gradient(#e66465, #9198e5);
   background: linear-gradient(rgba(0, 0, 0, 1), #350061, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  contain: paint;
   .textContainer {
     text-align: center;
     .title {

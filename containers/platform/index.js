@@ -3,8 +3,6 @@ import cl from 'classnames';
 
 import style from './style.scss';
 
-import LinesAnalytic from '../../static/images/linesAnalytic.png';
-
 import { Docker, Js, Golang, Python, Ts, Clickhouse } from '../../static/icons/technologies';
 
 export class Platform extends React.Component {
@@ -19,7 +17,7 @@ export class Platform extends React.Component {
             Apache 2.0 <br /> Установка производится на ваш сервер, а данные собираются в привязке <br />
             к cookie вашего домена.</div>
         </div>
-        <div className={style.contentCenter}>
+        <div className={cl(style.contentCenter, 'rockstat-svg-container')}>
           <Docker />
           <Js />
           <Clickhouse />

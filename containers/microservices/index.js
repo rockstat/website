@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { LeftFront, LeftBg } from '../../static/icons/microservices';
+import { LeftFront, LeftBg, MobCube } from '../../static/icons/microservices';
 
 export class Microservices extends React.Component {
 
@@ -11,10 +11,10 @@ export class Microservices extends React.Component {
       <div className={style.analyticContainer}>
         <div className={style.bottomGradient} />
         <div className={style.bacgroundM}>
-          <div className={style.left}>
+          <div className={cl(style.left, 'rockstat-svg-container')}>
             <LeftBg />
           </div>
-          <div className={style.right}>
+          <div className={cl(style.right, 'rockstat-svg-container')}>
             <LeftBg />
           </div>
         </div>
@@ -24,14 +24,14 @@ export class Microservices extends React.Component {
             Позволяет легко реализовать произвольную логику обработки запросов или фоновые задачи. 
           </div>
         </div>
-        <div className={style.leftBg}>
+        <div className={cl(style.leftBg, 'rockstat-svg-container')}>
           <LeftFront />
         </div>
-        <div className={style.RightBg}>
+        <div className={cl(style.RightBg, 'rockstat-svg-container')}>
           <LeftFront />
         </div>
         <div className={style.mobileCenter}>
-          <img src={'/_next/static/images/microMobileBg.png'} />
+          <MobCube />
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>

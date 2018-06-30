@@ -9,6 +9,7 @@
   position: relative;
   background-color: #000;
   background-repeat: no-repeat;
+  contain: paint;
   .bacgroundM {
     position: absolute;
     left: 0;
@@ -67,7 +68,7 @@
 
   .mobileCenter {
     display: none;
-    img {
+    img, svg {
       width: 100%;
     }
   }
@@ -171,7 +172,9 @@
     min-height: auto;
     width: 100%;
     height: auto;
-    .bottomGradient, .leftBg, .RightBg {
+    background-color: #000;
+    background: linear-gradient(rgba(63, 255, 192, 0), rgba(63, 255, 192, 0.38), rgba(0, 240, 255, 0));
+    .bottomGradient, .bacgroundM {
       display: none;
     }
     .textContainer {
@@ -179,12 +182,27 @@
     }
     .mobileCenter {
       display: block;
+      position: absolute;
+      left: 0;
+      margin: auto;
+      right: 0;
+      top: 18%;
+      width: 40%;
+    }
+    .leftBg {
+      width: 50%;
+      top: 23%;
+    }
+    .RightBg {
+      width: 50%;
+      top: 23%;
     }
 
     .contentCenter {
       flex-direction: column;
       padding: 0 25px;
       width: 100%;
+      margin-top: 125%;
       // margin-top: 105vw;
       .leftText {
         width: 100%;

@@ -16,16 +16,16 @@ export class Repository extends React.Component {
             Множество способов получения данных и возможность стриминга.
           </div>
         </div>
-        <div className={style.leftBgTop}>
+        <div className={cl(style.leftBgTop, 'rockstat-svg-container')}>
           <EnvOne/>
         </div>
-        <div className={style.leftBgBottom}>
+        <div className={cl(style.leftBgBottom, 'rockstat-svg-container')}>
           <EnvOne/>
         </div>
-        <div className={style.rightBgTop}>
+        <div className={cl(style.rightBgTop, 'rockstat-svg-container')}>
           <EnvOne/>
         </div>
-        <div className={style.rightBgBottom}>
+        <div className={cl(style.rightBgBottom, 'rockstat-svg-container')}>
           <EnvOne/>
         </div>
         <div className={style.contentCenter}>
@@ -46,16 +46,16 @@ export class Repository extends React.Component {
           </div>
 
           <div className={style.centerBg}>
-            <div className={style.dots}>
+            <div className={cl(style.dots, 'rockstat-svg-container')}>
               <CenterDots />
             </div>
-            <div className={style.outer}>
+            <div className={cl(style.outer, 'rockstat-svg-container')}>
               <CenterOuter />
             </div>
-            <div className={style.rounds}>
+            <div className={cl(style.rounds, 'rockstat-svg-container')}>
               <CenterRounds />
             </div>
-            <div className={style.center}>
+            <div className={cl(style.center, 'rockstat-svg-container')}>
               <Center />
             </div>
           </div>

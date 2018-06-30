@@ -8,6 +8,7 @@
   max-height: $maxHeightSceen;
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 1), #003c40, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  contain: paint;
   .textContainer {
     text-align: center;
     .title {
@@ -255,15 +256,25 @@
         width: 100%;
         height: auto;
         left: 0;
-        .inner {
-          width: 58%;
-          height: auto;
-          top: 26vw;
-        }
         .outer {
           width: 100%;
           height: auto;
           top: 8vw;
+        }
+        .dots {
+          width: 68%;
+          height: auto;
+          top: 22vw;
+        }
+        .rounds {
+          width: 65%;
+          height: auto;
+          top: 22vw;
+        }
+        .center {
+          width: 36%;
+          height: auto;
+          top: 36.4vw;
         }
       }
     }
@@ -273,6 +284,7 @@
       top: 180vw;
       bottom: 0;
       width: 50%;
+      opacity: 0.5;
     }
   
     .leftBgBottom {
@@ -284,6 +296,7 @@
       top: 180vw;
       bottom: 0;
       width: 50%;
+      opacity: 0.5;
     }
   
     .rightBgBottom {

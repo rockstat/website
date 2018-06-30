@@ -40,7 +40,7 @@ export class Information extends React.Component {
             {
               parthners.map((item, index) => {
                 return (
-                  <div className={style.item} key={index}>
+                  <div className={cl(style.item, 'rockstat-svg-container')} key={index}>
                     { item }
                   </div>
                 )
