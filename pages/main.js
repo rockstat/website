@@ -6,6 +6,10 @@ export default class extends React.Component {
   static async getInitialProps ({query}) {
     return { query: query }
   }
+
+  componentDidMount() {
+    document.querySelector('html').style.backgroundColor = '#000';
+  }
   
   state = {
     linksMenuPosition: 'bottom'

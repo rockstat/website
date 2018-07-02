@@ -128,7 +128,7 @@
       .wrapper {
         flex-wrap: wrap;
         padding: 0 25px;
-        img {
+        .item {
           width: 35%;
           margin: 10px 0;
         }
@@ -136,9 +136,10 @@
     }
     .reviewsContainer {
       flex-direction: column;
-      padding: 0 25px;
+      padding: 0;
       .item {
         margin: 25px 0;
+        width: 100%;
       }
     }
   }

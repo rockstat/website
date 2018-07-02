@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './style.scss';
-import { BgChart, Tooltips, Pies, Container } from '../../static/icons/dash';
+import { BgChart, Tooltips, Pies, Container, CircleMobile, OneCircleMobile, BgChartMobile, ContainerMobile } from '../../static/icons/dash';
 
 export class Center extends React.Component {
   informData = ['Kernel', 'Band director', 'Audience interest...', 'Web IDE Theia', 'Clickhouse upload'];
@@ -145,15 +145,78 @@ export class Center extends React.Component {
         </div>
 
         <div className={style.contentCenterMobile}>
-          {/* <img src={'/_next/static/images/centerMobil/1.png'} /> */}
-          <div className={style.text}>Сводка по базовым характеристикам трафика</div>
+        <div className={style.circleContainer}>
+          <CircleMobile />
+          <div className={style.textContainer}>
+            <div className={style.left}>
 
-          {/* <img src={'/_next/static/images/centerMobil/2.png'} /> */}
+              <div className={style.item}>
+                <span>Desktop</span>
+                <span>49.1%</span>
+              </div>
+
+              <div className={style.item}>
+                <span>Mobile</span>
+                <span>50.1%</span>
+              </div>
+
+            </div>
+            <div className={style.right}>
+              <div className={style.item}>
+                <span>New users</span>
+                <span>72.1%</span>
+              </div>
+
+              <div className={style.item}>
+                <span>Returning</span>
+                <span>27.9%</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+          <div className={style.text}>Сводка по базовым характеристикам трафика</div>
+          <div className={style.parameterContainer}>
+            <OneCircleMobile />
+            <div className={style.textContainer}>
+            <div className={style.item}>
+                <span>Disk write</span>
+                <span>0.3 mb/s</span>
+              </div>
+
+              <div className={style.item}>
+                <span>Disk read</span>
+                <span>0.1 mb/s</span>
+              </div>
+
+              <div className={style.item}>
+                <span>Network in</span>
+                <span>0.3 mbps</span>
+              </div>
+
+              <div className={style.item}>
+                <span>Network out</span>
+                <span>0.8 mbps</span>
+              </div>
+
+            </div>
+          </div>
+
           <div className={style.text}>Информация о загрузке системы и доступных ресурсах</div>
 
           <div className={style.graphContainer}>
-            {/* <img src={'/_next/static/images/centerMobil/3.png'} alt=""/> */}
+            <BgChartMobile />
             <div className={style.text}>Динамика изменения метрик основных событий</div>
+          </div>
+
+          <div className={style.containerParams}>
+            <div className={style.left}>
+              <ContainerMobile />
+            </div>
+            
+            <div className={style.right}>
+              <ContainerMobile />
+            </div>
           </div>
 
           <div className={style.text}>Микросервисы под контролем: запуск и управление, потребление ресурсов и SLA </div>
