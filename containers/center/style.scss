@@ -69,26 +69,34 @@
           position: absolute;
           left: 5.6%;
           top: 2.4%;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
         .centerText {
           position: absolute;
-          top: 40%;
+          top: 39.7%;
           bottom: 0;
           left: 0;
           right: 0;
           margin: auto;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
         .rightText {
           position: absolute;
           right: 4.6%;
           top: 2.4%;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
         .bottomText {
           position: absolute;
-          bottom: 2.4%;
+          bottom: 2.8%;
           left: 0;
           right: 0;
           margin: auto;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
       }
     }

@@ -4,11 +4,10 @@
 .analyticContainer {
   width: 100vw;
   height: 100vh;
-  min-height: 65vw;
-  max-height: 65vw;
+  min-height: 60vw;
+  max-height: 60vw;
   position: relative;
-  background: linear-gradient(#000, #1b361b, #000); 
-  contain: paint;
+  background: linear-gradient(#000, #1b361b, #000);
   .textContainer {
     text-align: center;
     .title {
@@ -36,7 +35,7 @@
       width: 100%;
     }
     .cube {
-      width: 43vw;
+      width: 40.7vw;
       height: 50vw;
       position: absolute;
       left: 0;
@@ -74,11 +73,11 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
       .leftTextBottom {
-        margin-top: rem(51px);
+        margin-top: rem(65px);
         text-align: center;
         .title {
           @include raleway-regular(28px);
@@ -87,7 +86,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
     }
@@ -141,11 +140,11 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
       .rightTextBottom {
-        margin-top: rem(51px);
+        margin-top: rem(65px);
         text-align: center;
         .title {
           @include raleway-regular(28px);
@@ -154,7 +153,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
     }
