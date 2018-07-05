@@ -69,26 +69,34 @@
           position: absolute;
           left: 5.6%;
           top: 2.4%;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
         .centerText {
           position: absolute;
-          top: 40%;
+          top: 39.7%;
           bottom: 0;
           left: 0;
           right: 0;
           margin: auto;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
         .rightText {
           position: absolute;
           right: 4.6%;
           top: 2.4%;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
         .bottomText {
           position: absolute;
-          bottom: 2.4%;
+          bottom: 2.8%;
           left: 0;
           right: 0;
           margin: auto;
+          @include raleway-medium(16px);
+          line-height: rem(19px);
         }
       }
     }
@@ -212,11 +220,101 @@
     .contentCenterMobile {
       display: block;
       text-align: center;
-      img {
-        width: 80%;
-        padding: 0 25px;
-        margin: rem(30px 0);
+      .circleContainer {
+        position: relative;
+        svg {
+          width: 100%;
+          padding: 0 25px;
+          margin: rem(30px 0);
+        }
+        .textContainer {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          align-items: flex-start;
+          .left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 18vw;
+            margin-top: 19vw;
+            .item {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: flex-start;
+              span {
+                white-space: nowrap;
+                display: block;
+                @include raleway-medium(16px);
+                line-height: rem(16px);
+              }
+              &:last-child {
+                margin-top: 1vw;
+              }
+            }
+          }
+          .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 22vw;
+            margin-top: 46vw;
+            .item {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              align-items: flex-start;
+              span {
+                white-space: nowrap;
+                display: block;
+                @include raleway-medium(16px);
+                line-height: rem(16px);
+              }
+              &:last-child {
+                margin-top: 3vw;
+              }
+            }
+          }
+        }
       }
+
+      .parameterContainer {
+        position: relative;
+        svg {
+          width: 80%;
+          padding: 0 25px;
+          margin: rem(30px 0);
+        }
+        .textContainer {
+          position: absolute;
+          top: 0;
+          bottom: 3%;
+          right: 0;
+          left: 0;
+          height: 58%;
+          margin: auto;
+          width: 20%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          align-items: flex-start;
+          .item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            span {
+              white-space: nowrap;
+              display: block;
+              @include raleway-medium(16px);
+              line-height: rem(16px);
+            }
+          }
+        }
+      }
+
       .text {
         @include raleway-medium(16px);
         line-height: rem(19px);
@@ -225,17 +323,41 @@
 
       .graphContainer {
         position: relative;
-        img {
-          width: 100%;
+        svg {
+          width: 340vw;
           padding: 0;
+          margin-left: -240vw;
         }
         .text {
           position: absolute;
-          top: 30%;
+          top: 75%;
           left: 0;
           right: 0;
           height: 20px;
           margin: auto;
+        }
+      }
+      .containerParams {
+        position: relative;
+        height: 100vw;
+        svg {
+          width: 100%;
+        }
+        .right {
+          position: absolute;
+          right: 10%;
+          top: 0;
+          width: 50%;
+          height: 50vw;
+          z-index: 0;
+        }
+        .left {
+          position: absolute;
+          left: 10%;
+          top: 30vw;
+          width: 50%;
+          height: 50vw;
+          z-index: 1;
         }
       }
     }

@@ -16,7 +16,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    top: 0;
+    top: 5%;
     margin: auto;
     text-align: center;
     .title {
@@ -30,7 +30,9 @@
       @include raleway-regular(18px);
       margin-top: rem(15px);
       opacity: 0.8;
-      line-height: rem(25px);
+      line-height: rem(32px);
+      width: 80%;
+      margin: 5% auto;
     }
   }
 

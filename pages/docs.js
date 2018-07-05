@@ -24,6 +24,9 @@ export default class extends React.Component {
         console.log('docs catched err', error);
       })
   }
+  componentDidMount() {
+    document.querySelector('html').style.backgroundColor = '#fff';
+  }
 
 
   componentWillReceiveProps(props) {

@@ -7,7 +7,7 @@
   min-height: $minHeightScreen;
   max-height: $maxHeightSceen;
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 1), #003c40, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  background: linear-gradient(rgba(0, 0, 0, 1), #003c40, #003c40, rgba(0, 0, 0, 1));
   contain: paint;
   .textContainer {
     text-align: center;
@@ -29,9 +29,9 @@
   .leftBgTop {
     position: absolute;
     left: 0;
-    top: 10%;
+    top: 20%;
     bottom: 0;
-    width: 20%;
+    width: 15%;
     height: 20%;
     svg {
       width: 100%;
@@ -41,8 +41,8 @@
   .leftBgBottom {
     position: absolute;
     left: 0;
-    bottom: 0%;
-    width: 20%;
+    bottom: 0;
+    width: 15%;
     height: 20%;
     svg {
       transform: rotateX(180deg);
@@ -54,8 +54,9 @@
   .rightBgTop {
     position: absolute;
     right: 0;
-    top: 10%;
-    width: 20%;
+    top: 20%;
+    bottom: 0;
+    width: 15%;
     height: 20%;
     svg {
       transform: rotateY(180deg);
@@ -67,9 +68,8 @@
   .rightBgBottom {
     position: absolute;
     right: 0;
-    bottom: 0%;
-    margin: auto;
-    width: 20%;
+    bottom: 0;
+    width: 15%;
     height: 20%;
     svg {
       transform: rotateY(180deg) rotateX(180deg);
@@ -86,7 +86,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 22%;
       .leftTextTop {
         text-align: center;
         .title {
@@ -96,11 +96,11 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
       .leftTextBottom {
-        margin-top: rem(51px);
+        margin-top: rem(65px);
         text-align: center;
         .title {
           @include raleway-regular(28px);
@@ -109,7 +109,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
     }
@@ -192,7 +192,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 22%;
       .rightTextTop {
         text-align: center;
         .title {
@@ -202,11 +202,11 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
       .rightTextBottom {
-        margin-top: rem(51px);
+        margin-top: rem(65px);
         text-align: center;
         .title {
           @include raleway-regular(28px);
@@ -215,7 +215,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
     }

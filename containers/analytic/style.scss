@@ -8,7 +8,7 @@
   max-height: $maxHeightSceen;
   position: relative;
   // background: linear-gradient(#e66465, #9198e5);
-  background: linear-gradient(rgba(0, 0, 0, 1), #350061, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  background: linear-gradient(rgba(0, 0, 0, 1), #350061, #350061, rgba(0, 0, 0, 1));
   contain: paint;
   .textContainer {
     text-align: center;
@@ -46,7 +46,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 22%;
       .leftTextTop {
         text-align: center;
         .title {
@@ -56,11 +56,11 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
       .leftTextBottom {
-        margin-top: rem(51px);
+        margin-top: rem(65px);
         text-align: center;
         .title {
           @include raleway-regular(28px);
@@ -69,7 +69,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
     }
@@ -129,7 +129,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 22%;
       .rightTextTop {
         text-align: center;
         .title {
@@ -139,11 +139,11 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
       .rightTextBottom {
-        margin-top: rem(51px);
+        margin-top: rem(65px);
         text-align: center;
         .title {
           @include raleway-regular(28px);
@@ -152,7 +152,7 @@
         .description {
           @include raleway-regular(16px);
           line-height: rem(25px);
-          margin-top: rem(30px);
+          margin-top: rem(10px);
         }
       }
     }
@@ -186,7 +186,7 @@
       }
       .rightText {
         width: 100%;
-        margin-top: rem(30px);
+        margin-top: rem(10px);
       }
       .centerBg {
         position: absolute;

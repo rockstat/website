@@ -91,8 +91,8 @@ export class Everything extends React.PureComponent {
             <VisibleDetect onChange={this._linkMenuPositionDetect} />
             <div className={style.btn}> <a href={'/'}> Demo </a> </div>
             <div className={style.description}>
-              Open Source <br />
-              Apache 2.0
+              <div>Open Source</div>
+              <div>Apache 2.0</div>
             </div>
           </div>
         </div>
