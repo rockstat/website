@@ -1,4 +1,4 @@
 export * from './Center';
 export * from './Two';
-export * from './Tree';
+export * from './Three';
 export * from './BgLines';

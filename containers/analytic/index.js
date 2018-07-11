@@ -3,7 +3,7 @@ import cl from 'classnames';
 
 import style from './style.scss';
 
-import { Center, Two, Tree, BgLines } from '../../static/icons/analytic';
+import { Center, Two, Three, BgLines } from '../../static/icons/analytic';
 
 export class Analytic extends React.Component {
 
@@ -46,7 +46,7 @@ export class Analytic extends React.Component {
             </div>
 
             <div className={cl(style.tree, 'rockstat-svg-container')}>
-              <Tree />
+              <Three />
             </div>
           </div>
 

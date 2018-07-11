@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 import style from './style.scss';
 
-import Vivus from 'vivus';
+// import Vivus from 'vivus';
 
 import VisibleDetect from "react-visibility-sensor";
 
-import { EverythingRhimbusIcon, CircleTransparent, CircleBlur, CircleGreenIcon, LogoIcon } from '../../static/icons';
+import { LogoIcon } from '../../static/icons';
+import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '../../static/icons/everything';
 import { linksMenu } from '../../constants';
 
 export class Everything extends React.PureComponent {
@@ -27,18 +28,18 @@ export class Everything extends React.PureComponent {
       mountingDetect: true
     });
 
-    this.vivus = new Vivus('EverythingRhimbusIcon',
-      {
-        type: 'delayed',
-        duration: 80,
-        animTimingFunction: Vivus.LINEAR
-      },
-      () => {
-        this.setState({
-          mainAnimationStatus: false
-        })
-      }
-    )
+    // this.vivus = new Vivus('EverythingRhimbusIcon',
+    //   {
+    //     type: 'delayed',
+    //     duration: 80,
+    //     animTimingFunction: Vivus.LINEAR
+    //   },
+    //   () => {
+    //     this.setState({
+    //       mainAnimationStatus: false
+    //     })
+    //   }
+    // )
   }
 
   _linkMenuPositionDetect = (e) => this.props.setStateLinkMenu(e ? 'bottom' : 'top');
@@ -55,18 +56,18 @@ export class Everything extends React.PureComponent {
             Теперь <br /> возможно все
           </div>
           <div className={style.text}>
-            Открытая платформа для создания 
-            собственной аналитической системы
-            и автоматизации маркетинга
+            <span>Открытая платформа для создания</span>
+            <span>собственной аналитической системы</span>
+            <span>и автоматизации маркетинга</span>
           </div>
         </div>
         <div className={style.bgContainer}>
           <div className={style.logoMobile}><LogoIcon /></div>
-          <div className={cl(style.centerBg, 'rockstat-svg-container', {[style.fillNone]: mainAnimationStatus}, {[style.mounted]: mountingDetect})}>
+          <div className={cl(style.centerBg, 'rockstat-svg-container', style.mounted)}>
             <EverythingRhimbusIcon />
           </div>
           <div className={cl(style.circleTransparentBg, 'rockstat-svg-container')}>
-            <CircleTransparent />
+            <Circletransparent />
           </div>
           <div className={cl(style.circleBlurBg, 'rockstat-svg-container')}>
             <CircleBlur />

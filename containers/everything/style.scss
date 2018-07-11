@@ -33,6 +33,10 @@
       line-height: rem(32px);
       width: 80%;
       margin: 5% auto;
+      span {
+        display: block;
+        white-space: nowrap;
+      }
     }
   }
 
@@ -83,15 +87,15 @@
     }
     .circleTransparentBg {
       width: 60%;
-      height: 60vw;
+      height: 53vw;
     }
     .circleBlurBg {
       width: 90%;
-      height: 90vw;
+      height: 80vw;
     }
     .circleGreenBg {
       width: 61%;
-      height: 61vw;
+      height: 50vw;
     }
   }
   .bottomMenuContainer {

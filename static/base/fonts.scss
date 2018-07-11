@@ -45,21 +45,21 @@
 }
 
 @mixin raleway-regular($size) {
-  font-family: 'RalewayRegular';
+  font-family: 'RalewayRegular', Arial, Helvetica, sans-serif;
   font-size: rem($size);
 }
 
 @mixin raleway-bold($size) {
-  font-family: 'RalewayBold';
+  font-family: 'RalewayBold', Arial, Helvetica, sans-serif;
   font-size: rem($size);
 }
 
 @mixin raleway-medium($size) {
-  font-family: 'RalewayMedium';
+  font-family: 'RalewayMedium', Arial, Helvetica, sans-serif;
   font-size: rem($size);
 }
 
 @mixin raleway-light($size) {
-  font-family: 'RalewayLight';
+  font-family: 'RalewayLight', Arial, Helvetica, sans-serif;
   font-size: rem($size);
 }
