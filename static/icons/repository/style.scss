@@ -18,34 +18,25 @@
     margin: auto;
     transform: scale(0);
     transform-origin: 50%;
-    transition: transform 1s ease;
+    transition: transform 1.2s ease;
     will-change: transform;
   }
 }
 
 .centerOuter {
   will-change: transform;
-  animation-duration: 10s;
-  animation-delay: 3s;
   transform-origin: 50% 48%;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
   opacity: 0;
-  transition: opacity 1s ease;
-  transition-delay: 3s;
+  transition: opacity 4s ease;
   &.active {
     opacity: 1;
-    animation-name: OuterAnimation;
-    animation-delay: 0;
-    transition-delay: 0;
   }
 }
 
 .centrContainer {
   opacity: 0;
-  transition: opacity .5s ease;
-  transition-delay: .5s;
+  transition: opacity 1s ease;
+  transition-delay: 1s;
   will-change: opacity;
   &.active {
     opacity: 1;
@@ -54,20 +45,11 @@
 
 .dotsContainer {
   will-change: transform;
-  animation-duration: 5s;
-  animation-delay: 3s;
   transform-origin: center;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
   opacity: 0;
-  transition: opacity 1s ease;
-  transition-delay: 3s;
+  transition: opacity 4s ease;
   &.active {
     opacity: 1;
-    animation-name: DotsAnimation;
-    transition-delay: 0;
-    animation-delay: 0;
   }
 }
 

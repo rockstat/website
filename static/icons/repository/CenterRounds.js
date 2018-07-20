@@ -36,7 +36,7 @@ export class CenterRounds extends React.Component {
       actualRound: length - 1,
       animated: true
     });
-    this.interval = setInterval(this.renderAnimation, 200);
+    this.interval = setInterval(this.renderAnimation, 300);
   }
 
   stopInterval = () => {
