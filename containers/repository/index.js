@@ -1,12 +1,26 @@
 import React from 'react';
 import cl from 'classnames';
-
+import Waypoint from 'react-waypoint';
 import style from './style.scss';
 import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '../../static/icons/repository';
 
 export class Repository extends React.Component {
-
+  state = {
+    startAnimation: false
+  }
+  changeAnimationStart = () => {
+    this.setState({
+      startAnimation: true
+    })
+  }
+  changeAnimationEnd = () => {
+    this.setState({
+      startAnimation: false
+    })
+  }
   render() {
+    const { startAnimation } = this.state;
+
     return (
       <div className={style.analyticContainer}>
         <div className={style.textContainer}>
@@ -44,21 +58,22 @@ export class Repository extends React.Component {
               </div>
             </div>
           </div>
-
-          <div className={style.centerBg}>
-            <div className={cl(style.dots, 'rockstat-svg-container')}>
-              <CenterDots />
+          <Waypoint onEnter={this.changeAnimationStart} onLeave={this.changeAnimationEnd}>
+            <div className={style.centerBg}>
+                <div className={cl(style.dots, 'rockstat-svg-container')}>
+                  <CenterDots startAnimation={startAnimation} />
+                </div>
+                <div className={cl(style.outer, 'rockstat-svg-container')}>
+                  <CenterOuter startAnimation={startAnimation}/>
+                </div>
+                <div className={cl(style.rounds, 'rockstat-svg-container')}>
+                  <CenterRounds startAnimation={startAnimation} />
+                </div>
+                <div className={cl(style.center, 'rockstat-svg-container')}>
+                  <Center startAnimation= {startAnimation} />
+                </div>
             </div>
-            <div className={cl(style.outer, 'rockstat-svg-container')}>
-              <CenterOuter />
-            </div>
-            <div className={cl(style.rounds, 'rockstat-svg-container')}>
-              <CenterRounds />
-            </div>
-            <div className={cl(style.center, 'rockstat-svg-container')}>
-              <Center />
-            </div>
-          </div>
+          </Waypoint>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>
