@@ -1,0 +1,54 @@
+.centerContainer {
+  animation-duration: 14s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  animation-delay: 1s;
+  opacity: 0;
+  transition: opacity 1s ease 1s;
+  &.active {
+    animation-name: CenterAnimation;
+    opacity: 1;
+  }
+}
+
+.twoContainer {
+  animation-duration: 16s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  animation-delay: 1s;
+  opacity: 0;
+  transition: opacity 1s ease 1s;
+  &.active {
+    animation-name: TwoAnimation;
+    opacity: 1;
+  }
+}
+
+.treeContainer {
+  transform-origin: center;
+  transform: scale(0);
+  transition: transform 1s ease;
+  &.active {
+    transform: scale(1);
+  }
+}
+
+@keyframes CenterAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes TwoAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}

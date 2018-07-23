@@ -1,13 +1,30 @@
 import React from 'react';
 import cl from 'classnames';
-
+import Waypoint from 'react-waypoint';
 import style from './style.scss';
 
 import { Center, Two, Three, BgLines } from '../../static/icons/analytic';
 
 export class Analytic extends React.Component {
+  state = {
+    animationChange: false
+  }
+
+  changeAnimationStart = () => {
+    this.setState({
+      animationChange: true
+    })
+  }
+
+  changeAnimationEnd = () => {
+    this.setState({
+      animationChange: false
+    })
+  }
 
   render() {
+    const { animationChange } = this.state;
+
     return (
       <div className={style.analyticContainer}>
         <div className={style.textContainer}>
@@ -36,19 +53,22 @@ export class Analytic extends React.Component {
             </div>
           </div>
 
-          <div className={style.centerBg}>
-            <div className={cl(style.center, 'rockstat-svg-container')}>
-              <Center />
-            </div>
+          
+          <Waypoint onEnter={this.changeAnimationStart} onLeave={this.changeAnimationEnd}>
+            <div className={style.centerBg}>
+              <div className={cl(style.center, 'rockstat-svg-container')}>
+                <Center animationChange={animationChange} />
+              </div>
 
-            <div className={cl(style.two, 'rockstat-svg-container')}>
-              <Two />
-            </div>
+              <div className={cl(style.two, 'rockstat-svg-container')}>
+                <Two animationChange={animationChange} />
+              </div>
 
-            <div className={cl(style.tree, 'rockstat-svg-container')}>
-              <Three />
+              <div className={cl(style.tree, 'rockstat-svg-container')}>
+                <Three animationChange={animationChange} />
+              </div>
             </div>
-          </div>
+          </Waypoint>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>
