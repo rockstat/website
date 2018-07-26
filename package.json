@@ -53,7 +53,7 @@
     "markdown-loader": "^3.0.0",
     "mini-css-extract-plugin": "^0.4.0",
     "next": "^6.0.3",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.5",
     "processmd": "^4.2.1",
     "prop-types": "^15.6.1",

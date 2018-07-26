@@ -29,9 +29,29 @@
 
   .linesBg {
     position: absolute;
-    left: -12%;
-    top: 30%;
-    width: 125%;
+    left: 0;
+    top: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .left {
+      width: 50%;
+      position: relative;
+      left: -12%;
+      svg {
+        width: 100%;
+      }
+    }
+    .right {
+      width: 50%;
+      position: relative;
+      right: -12%;
+      svg {
+        transform-origin: center;
+        transform: rotateY(180deg);
+        width: 100%;
+      }
+    }
     svg {
       opacity: 0.5;
     }
@@ -88,12 +108,12 @@
       .center {
         position: absolute;
         left: 0;
-        top: 0;
-        right: 0;
-        width: 12vw;
+        top: -1%;
+        right: 1%;
+        width: 13vw;
         bottom: 0;
         margin: auto;
-        height: 12vw;
+        height: 13vw;
         svg {
           width: 100%;
         }

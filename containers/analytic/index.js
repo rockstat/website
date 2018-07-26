@@ -3,7 +3,7 @@ import cl from 'classnames';
 import Waypoint from 'react-waypoint';
 import style from './style.scss';
 
-import { Center, Two, Three, BgLines } from '../../static/icons/analytic';
+import { CenterIcon, Two, Three, BgLines, WawesLustra } from '../../static/icons/analytic';
 
 export class Analytic extends React.Component {
   state = {
@@ -33,7 +33,9 @@ export class Analytic extends React.Component {
         </div>
 
         <div className={cl(style.linesBg, 'rockstat-svg-container')}> 
-          <BgLines />
+          {/* <BgLines /> */}
+          <div className={style.left}> <WawesLustra /> </div>
+          <div className={style.right}> <WawesLustra /> </div>
         </div>
         <div className={style.contentCenter}>
           <div className={style.leftText}>
@@ -57,7 +59,7 @@ export class Analytic extends React.Component {
           <Waypoint onEnter={this.changeAnimationStart} onLeave={this.changeAnimationEnd}>
             <div className={style.centerBg}>
               <div className={cl(style.center, 'rockstat-svg-container')}>
-                <Center animationChange={animationChange} />
+                <CenterIcon animationChange={animationChange} />
               </div>
 
               <div className={cl(style.two, 'rockstat-svg-container')}>
