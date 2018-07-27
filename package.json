@@ -32,6 +32,8 @@
     "vivus": "^0.4.3"
   },
   "devDependencies": {
+    "@svgr/cli": "^2.1.1",
+    "@svgr/webpack": "^2.1.1",
     "@zeit/next-sass": "^0.2.0",
     "ansi-html": "0.0.7",
     "autoprefixer": "^8.6.0",
@@ -61,6 +63,7 @@
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "svgo": "^1.0.5",
     "url-loader": "^1.0.1",
     "webpack": "3.10.0"
   }
