@@ -30,14 +30,14 @@
   .linesBg {
     position: absolute;
     left: 0;
-    top: 25%;
+    top: 30%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     .left {
       width: 50%;
       position: relative;
-      left: -12%;
+      left: -5%;
       svg {
         width: 100%;
       }
@@ -45,7 +45,7 @@
     .right {
       width: 50%;
       position: relative;
-      right: -12%;
+      right: -5%;
       svg {
         transform-origin: center;
         transform: rotateY(180deg);

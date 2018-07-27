@@ -1,10 +1,10 @@
 .centerContainer {
-  animation-duration: 70s;
+  animation-duration: 170s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   transform-origin: center;
   animation-delay: 1s;
-  opacity: 0;
+  opacity: 0.7;
   transition: opacity 1s ease 1s;
   &.active {
     animation-name: CenterAnimation;
@@ -13,12 +13,12 @@
 }
 
 .twoContainer {
-  animation-duration: 50s;
+  animation-duration: 450s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   transform-origin: center;
   animation-delay: 1s;
-  opacity: 0;
+  opacity: 0.7;
   transition: opacity 1s ease 1s;
   &.active {
     animation-name: TwoAnimation;
@@ -28,7 +28,7 @@
 
 .treeContainer {
   transform-origin: center;
-  transform: scale(0);
+  transform: scale(0.8);
   transition: transform 1s ease;
   &.active {
     transform: scale(1);
@@ -40,7 +40,7 @@
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 
@@ -49,6 +49,6 @@
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 }
