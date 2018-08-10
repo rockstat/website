@@ -42,7 +42,7 @@ export class Wrapper extends React.Component {
         <div className={'rockstat-container-content'}>
           { this.props.children }
         </div>
-        <Footer />
+        <Footer locale={locale} />
       </div>
     )
   }

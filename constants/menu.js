@@ -1,3 +1,5 @@
+const digitalGodWeb = 'https://digitalgod.be';
+
 export const langsMenu = [
   {
     name: 'ru',
@@ -12,15 +14,18 @@ export const langsMenu = [
 export const linksMenu = [
   {
     name: 'Facebook',
-    path: 'https://www.facebook.com/rockstatX/'
+    path: 'https://www.facebook.com/rockstatX/',
+    newTab: true
   },
   {
     name: 'Telegram',
-    path: 'https://t.me/rockstats'
+    path: 'https://t.me/rockstats',
+    newTab: true
   },
   {
     name: 'Github',
-    path: 'https://github.com/rockstat'
+    path: 'https://github.com/rockstat',
+    newTab: true
   }
 ]
 
@@ -28,7 +33,9 @@ export const headerMenu = [
   {
     name: 'edu',
     title: 'Обучение',
-    path: '/edu'
+    // path: '/edu'
+    path: digitalGodWeb,
+    newTab: true
   },
   {
     name: 'docs',
@@ -70,19 +77,22 @@ export const footerMenu = [
     event: false,
     children: [
       {
-        name: 'курс digital rockstar',
-        path: 'https://digitalgod.be',
-        active: true
+        name: 'Курсы Digital God',
+        path: digitalGodWeb,
+        active: true,
+        newTab: true
       },
       {
-        name: 'типовые задачи',
+        name: 'Типовые решения',
         path: '/training/type',
-        active: false
+        active: false,
+        newTab: true
       },
       {
-        name: 'рекомендации',
+        name: 'Рекомендации',
         path: '/dock/recomendation',
-        active: false
+        active: false,
+        newTab: true
       }
     ]
   },
@@ -95,19 +105,22 @@ export const footerMenu = [
         name: 'Facebook',
         path: 'https://www.facebook.com/',
         active: true,
-        target: true
+        target: true,
+        newTab: true
       },
       {
         name: 'Telegram',
         path: 'https://t.me/rockstats',
         active: true,
-        target: true
+        target: true,
+        newTab: true
       },
       {
         name: 'Github',
         path: 'https://github.com/rockstat',
         active: true,
-        target: true
+        target: true,
+        newTab: true
       }
     ]
   }

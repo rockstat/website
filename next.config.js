@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.(woff2|woff?|otf|ttf|eot)$/,
-        loader: 'file-loader?name=static/fonts/[name].[ext]'
+        loader: 'file-loader?name=[path][name].[ext]'
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -51,7 +51,8 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: '[path][name].[ext]'
+              name: '[path][name].[ext]',
+              fallback: 'file-loader?name=[path][name].[ext]'
             }
           }]
       }
