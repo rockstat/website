@@ -1,7 +1,7 @@
 import React from 'react';
 import * as fetch from 'isomorphic-fetch';
 import { Wrapper, Everything } from '../containers';
-import { Head } from '../components';
+// import { Head } from '../components';
 import { Documentation } from '../containers';
 import { docsMenu, docsItems } from '../utils/menuData'
 // import { Link } from '../routes'
@@ -38,7 +38,7 @@ export default class extends React.Component {
 
     return (
       <span>
-        <Head />
+        {/* <Head /> */}
         <Wrapper activeSection={'docs'} {...this.props} locale={query.lang} headerBgActive={true} documentation={true}>
           <Documentation {...this.props} content={content} locale={query.lang} docsMenu={docsMenu} />
         </Wrapper>

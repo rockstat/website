@@ -1,44 +1,45 @@
-const withSass = require('@zeit/next-sass')
+const withSass = require('@zeit/next-sass');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SUMMARY_JSON = require('./content/summary.json')
 const getRoutes = require('./routes');
 
-const extarctCSS = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: 'css-loader!resolve-url-loader'
-});
+// const extarctCSS = ExtractTextPlugin.extract({
+//   fallback: 'style-loader',
+//   use: 'css-loader!resolve-url-loader'
+// });
 
-const extarctSCSS = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: 'css-loader?module&importLoaders=1&localIdentName=[local]__[hash:base64:5]!resolve-url-loader!sass-loader'
-});
+// const extarctSCSS = ExtractTextPlugin.extract({
+//   fallback: 'style-loader',
+//   use: 'css-loader?module&importLoaders=1&localIdentName=[local]__[hash:base64:5]!resolve-url-loader!sass-loader'
+// });
 
 
-module.exports = {
+module.exports = withSass({
+  cssModules: true,
   exportPathMap: getRoutes,
   webpack: (config) => {
     // config.node = {
     //   fs: false
     // }
-    config.plugins.push(
-      new ExtractTextPlugin({
-        filename: 'static/css/style.css',
-        allChunks: true
-      })
-    )
+    // config.plugins.push(
+    //   new ExtractTextPlugin({
+    //     filename: 'static/css/style.css',
+    //     allChunks: true
+    //   })
+    // )
 
     config.module.rules.push(
-      {
-        test: /\.(scss)$/,
-        use: extarctSCSS,
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(css)$/,
-        use: extarctCSS,
-        exclude: /node_modules/,
-      },
+      // {
+      //   test: /\.(scss)$/,
+      //   use: extarctSCSS,
+      //   exclude: /node_modules/,
+      // },
+      // {
+      //   test: /\.(css)$/,
+      //   use: extarctCSS,
+      //   exclude: /node_modules/,
+      // },
       {
         test: /\.(woff2|woff?|otf|ttf|eot)$/,
         loader: 'file-loader?name=[path][name].[ext]'
@@ -60,4 +61,4 @@ module.exports = {
 
     return config;
   }
-};
+});
