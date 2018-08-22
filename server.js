@@ -1,6 +1,7 @@
 const { createServer } = require('http')
 const { parse: urlParse } = require('url')
 const micro = require('micro')
+const redirect = require('micro-redirect')
 const next = require('next')
 // const { getRoutes } = require('./routes')
 const nextRoutes = require('./next-routes')
@@ -10,21 +11,21 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handler = nextRoutes.getRequestHandler(app)
 
-// const handler = routes.getRequestHandler(nextapp)
-// const handler = app.getRequestHandler()
-
-// const app = connect()
 console.log('nextjs preparing')
 const port = process.env.PORT || 3000;
 
 app.prepare()
   .then(() => {
-    // const routes = getRoutes();
     console.log('nextjs creating server')
     const server = micro((req, res) => {
 
       const { pathname, query } = urlParse(req.url, true)
       console.log('request:', { pathname, query })
+
+      if (pathname === '/') {
+        redirect(res, 303, '/ru')
+        return;
+      }
       // const route = routes[pathname];
       // if (route) {
       //   console.log('-> route match', pathname, route)

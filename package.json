@@ -17,6 +17,7 @@
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
     "micro": "^9.3.3",
+    "micro-redirect": "^1.0.0",
     "next-routes": "^1.4.2",
     "path-match": "^1.2.4",
     "raleway-cyrillic": "^4.0.2",

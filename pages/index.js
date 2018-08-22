@@ -1,9 +1,12 @@
 import React from 'react';
-import {Link} from '../next-routes';
+import { Router } from '../next-routes';
 
 
 export default class extends React.Component {
-  static async getInitialProps({ query }) {
+  static async getInitialProps({ res, query }) {
+    if (!res) {
+      Router.pushRoute('/ru')
+    }
     return {}
   }
 
@@ -14,9 +17,6 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <Link route="/ru">
-          <a>Hello world</a>
-        </Link>
       </div>
     )
   }

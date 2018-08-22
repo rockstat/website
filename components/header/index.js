@@ -52,7 +52,7 @@ export class Header extends React.Component {
         </div>
 
         <div className={style.logo}>
-          <Link route={linkTo()}>
+          <Link route={'/'}>
             <a><LogoIcon /></a>
           </Link>
         </div>

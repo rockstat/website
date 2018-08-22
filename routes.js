@@ -4,7 +4,7 @@ console.log('nextjs routes module')
 module.exports.getRoutes = (defaultPathMap) => {
     console.log('nextjs building routes')
     const paths = {
-        '/': { page: '/main', query: { lang: 'ru' } },
+        '/': { page: '/index' },
         // '/404': { page: '/404', lang: 'ru' },
         // '/ru/docs': { page: '/docs', query: { lang: 'ru', path: 'docs/about/about', slug: 'about' } },
         '/ru/docs': { page: '/docs', query: { lang: 'ru' } },
