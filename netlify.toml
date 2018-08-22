@@ -2,8 +2,8 @@
 publish = "out"
 command = "yarn build:export"
 
-[build.environment]
-NODE_ENV = "production"
+# [build.environment]
+# NODE_ENV = "production"
 
 [context.production.environment]
 REPOSITORY_URL = "https://github.com/madiedinro/rockstat.ru-nextjs"
