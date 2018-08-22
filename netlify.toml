@@ -1,6 +1,6 @@
 [build]
-publish = "out"
-command = "yarn build"
+publish = "build"
+command = "yarn build:export"
 
 [context.production.environment]
 REPOSITORY_URL = "https://github.com/madiedinro/rockstat.ru-nextjs"

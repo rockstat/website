@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Header, Footer } from '../../components';
+import { Footer, Header } from '../../components';
 import PropTypes from 'prop-types';
 
 import 'raleway-cyrillic/fonts/Raleway-v4020-Bold.ttf';
@@ -23,17 +23,17 @@ export class Wrapper extends React.Component {
   static propTypes = {
     headerBgActive: PropTypes.bool,
     linkMenuPosition: PropTypes.string,
-    locale: PropTypes.string,
+    lang: PropTypes.string,
     documentation: PropTypes.bool
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, locale, documentation, activeSection } = this.props;
-
+    const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
+    console.log('wrapper lang', lang)
     return (
       <div className={'rockstat-container'}>
         <Header 
-          locale={locale} 
+          lang={lang} 
           headerBgActive={headerBgActive}
           linkMenuPosition={linkMenuPosition}
           documentation={documentation}
@@ -42,7 +42,7 @@ export class Wrapper extends React.Component {
         <div className={'rockstat-container-content'}>
           { this.props.children }
         </div>
-        <Footer locale={locale} />
+        <Footer lang={lang} />
       </div>
     )
   }

@@ -49,9 +49,9 @@ export default class MyDocument extends Document {
   }
 }
 
-Head.propTypes = {
-  title: string,
-  description: string,
-  url: string,
-  ogImage: string
-}
+// Head.propTypes = {
+//   title: string,
+//   description: string,
+//   url: string,
+//   ogImage: string
+// }

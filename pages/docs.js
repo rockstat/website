@@ -11,9 +11,9 @@ const defaultPage = 'about-platform';
 
 export default class extends React.Component {
   static async getInitialProps({ query }) {
-    const pageConfig = docsItems[defaultPage];
-    const fn = `http://localhost:3000/static/${query.path}.json`;
-    return Promise.resolve().then(() => { return require(`../content/${query.path}.json`) })
+    const doc = query.slug || 'about/about';
+    // const fn = `http://localhost:3000/static/${doc}.json`;
+    return Promise.resolve().then(() => { return require(`../content/docs/${doc}.json`) })
       // return fetch(fn).then(resp => resp.json())
       .then(content => {
         return {
@@ -39,8 +39,8 @@ export default class extends React.Component {
     return (
       <span>
         {/* <Head /> */}
-        <Wrapper activeSection={'docs'} {...this.props} locale={query.lang} headerBgActive={true} documentation={true}>
-          <Documentation {...this.props} content={content} locale={query.lang} docsMenu={docsMenu} />
+        <Wrapper activeSection={'docs'} {...this.props} lang={query.lang} headerBgActive={true} documentation={true}>
+          <Documentation {...this.props} content={content} lang={query.lang} docsMenu={docsMenu} />
         </Wrapper>
       </span>
     )

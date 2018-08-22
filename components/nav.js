@@ -1,5 +1,5 @@
 import Head from './head'
-import Link from 'next/link'
+import {Link} from '../next-routes'
 
 const links = [
   { href: 'https://github.com/segmentio/create-next-app', label: 'Github' }

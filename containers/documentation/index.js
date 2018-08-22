@@ -2,7 +2,7 @@ import * as React from 'react';
 import style from './style.scss';
 import cl from 'classnames';
 import { Router } from '../../routes';
-import Link from 'next/link';
+import { Link } from '../../next-routes';
 import dynamic from 'next/dynamic'
 
 import { LogoIcon } from '../../static/icons';
@@ -31,7 +31,8 @@ export class Documentation extends React.Component {
   render() {
     // const arrContet = Object.keys(CONFIG_CONTENT.fileMap);
     // const { activeContent, activeMenu } = this.state;
-    const { locale, docsMenu, content, query } = this.props;
+    const { lang, docsMenu, content, query } = this.props;
+    console.log('lang', lang)
     // console.log('active menu', activeMenu, activeMenu.fn)
     let Contents = '404';
     // Contents = [dynamic(import(activeMenu.fn))]
@@ -52,12 +53,12 @@ export class Documentation extends React.Component {
     return (
       <div className={style.documentationContainer}>
         <div className={style.logo}>
-          <Link href={`/${locale}`}>
+          <Link route='main' params={{ lang: lang }}>
             <a><LogoIcon /></a>
           </Link>
         </div>
 
-        <SideMenu docsMenu={docsMenu} query={query} />
+        <SideMenu lang={lang} docsMenu={docsMenu} query={query} />
         <PageWrapper content={content} />
       </div>
     )

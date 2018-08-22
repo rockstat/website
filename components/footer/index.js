@@ -1,21 +1,20 @@
 import * as React from 'react';
-import Link from 'next/link';
+import {Link} from '../../next-routes';
 import cl from 'classnames';
 
 import style from './style.scss';
 
 import { createLinker } from '../../utils/url-maker'
 import { itemTarget } from '../../utils/menu'
-
 import { LogoIcon } from '../../static/icons';
-
 import { footerMenu, footerRightMenu, linksMenu } from '../../constants';
 
 
 export class Footer extends React.Component {
   render() {
-    const { locale } = this.props;
-    const linkTo = createLinker(locale);
+    const { lang } = this.props;
+    console.log('footer lang', lang)
+    const linkTo = createLinker(lang);
     return (
       <footer className={style.rockstatFooter}>
         <div className={style.top}>
@@ -28,7 +27,7 @@ export class Footer extends React.Component {
               footerMenu.map((item, index) => {
                 return (
                   <div key={index} className={style.item} >
-                    <Link href={linkTo(item.path)} >
+                    <Link route={linkTo(item.path)} >
                       <a className={cl(style.itemMain, { [style.notClick]: item.event !== undefined })} target={itemTarget(item)} > {item.name} </a>
                     </Link>
 
@@ -39,7 +38,7 @@ export class Footer extends React.Component {
                         item.children.map((child, key) => {
                           return (
                             <div key={key} className={style.children}>
-                              <Link href={linkTo(child.path)} >
+                              <Link route={linkTo(child.path)} >
                                 <a
                                   className={cl({ [style.notActive]: !child.active })}
                                   target={itemTarget(child)}
@@ -60,7 +59,7 @@ export class Footer extends React.Component {
               footerRightMenu.map((item, index) => {
                 return (
                   <div key={index} className={style.item} >
-                    <Link href={linkTo(item.path)} >
+                    <Link route={linkTo(item.path)} >
                       <a className={cl(style.itemMain, { [style.notActive]: !item.active })} target={itemTarget(item)} > {item.name} </a>
                     </Link>
                   </div>

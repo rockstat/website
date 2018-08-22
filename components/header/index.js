@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from 'next/link';
+import {Link} from '../../next-routes';
 
 import cl from 'classnames';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ export class Header extends React.Component {
   static propTypes = {
     headerBgActive: PropTypes.bool,
     linkMenuPosition: PropTypes.string,
-    locale: PropTypes.string,
+    lang: PropTypes.string,
     documentation: PropTypes.bool,
     activePath: PropTypes.string
   }
@@ -33,9 +33,9 @@ export class Header extends React.Component {
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, locale, documentation, activeSection } = this.props;
+    const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
     const { menuActive } = this.state;
-    const linkTo = createLinker(locale);
+    const linkTo = createLinker(lang);
 
     return (
       <header
@@ -52,7 +52,7 @@ export class Header extends React.Component {
         </div>
 
         <div className={style.logo}>
-          <Link href={linkTo()}>
+          <Link route={linkTo()}>
             <a><LogoIcon /></a>
           </Link>
         </div>
@@ -62,7 +62,7 @@ export class Header extends React.Component {
             linksMenu.map((item, index) => {
               return (
                 <div key={index} className={cl(style.menuItem, style.linksMenu)} >
-                  <Link href={linkTo(item.path)}>
+                  <Link route={linkTo(item.path)}>
                     <a target={itemTarget(item)} className={cl({ [style.active]: activeSection === item.name })}> {item.name} </a>
                   </Link>
                 </div>
@@ -73,7 +73,7 @@ export class Header extends React.Component {
             headerMenu.map((item, index) => {
               return (
                 <div key={index} className={style.menuItem} >
-                  <Link href={linkTo(item.path)}>
+                  <Link route={linkTo(item.path)}>
                     <a target={itemTarget(item)} className={cl({ [style.active]: activeSection === item.name })}> {item.title} </a>
                   </Link>
                 </div>
@@ -85,8 +85,8 @@ export class Header extends React.Component {
               langsMenu.map((item, index) => {
                 return (
                   <div key={index} className={style.menuItemLgItem} >
-                    <Link href={linkTo(item.path)} >
-                      <a target={itemTarget(item)} className={cl({ [style.active]: locale === item.name })}> {item.name} </a>
+                    <Link route="main" params={{lang: item.key}} >
+                      <a target={itemTarget(item)} className={cl({ [style.active]: lang === item.name })}> {item.name} </a>
                     </Link>
                   </div>
                 )

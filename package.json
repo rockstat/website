@@ -1,11 +1,12 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build && next export",
+    "start": "node server.js",
+    "start:prod": "NODE_ENV=production node server.js",
+    "build:export": "next build && next export",
+    "build": "NODE_ENV=production next build",
     "build:docs": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json",
-    "build:docs:watch": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json --watch",
-    "start": "next start"
+    "build:docs:watch": "processmd content/docs/**/*.md --outputDir content/docs --preview 110 --summaryOutput content/summary.json --watch"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -15,6 +16,7 @@
     "d3-scale": "^2.1.0",
     "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1",
+    "micro": "^9.3.3",
     "next-routes": "^1.4.2",
     "path-match": "^1.2.4",
     "raleway-cyrillic": "^4.0.2",
@@ -58,6 +60,7 @@
     "markdown-loader": "^3.0.0",
     "mini-css-extract-plugin": "^0.4.0",
     "next": "^6.0.3",
+    "nextein": "^1.3.1",
     "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.5",
     "processmd": "^4.2.1",

@@ -1,6 +1,4 @@
 import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Platform, Center, Information } from '../containers';
-// import { Head } from '../components';
-import Router from 'next/router'
 import React from 'react';
 
 export default class extends React.Component {
@@ -24,12 +22,12 @@ export default class extends React.Component {
 
   render() {
     const { linksMenuPosition } = this.state;
-    const { query } = this.props;
-
+    const { asPath, query } = this.props;
+    console.log('route params', asPath, query);
     return (
       <span>
         {/* <Head/> */}
-        <Wrapper activeSection={'main'} {...this.props} locale={query.lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
+        <Wrapper activeSection={'main'} {...this.props} lang={query.lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
           <Everything setStateLinkMenu={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition}/>
           <Analytic />
           <Repository />

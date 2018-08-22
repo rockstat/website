@@ -3,10 +3,12 @@ const digitalGodWeb = 'https://digitalgod.be';
 export const langsMenu = [
   {
     name: 'ru',
+    key: 'ru',
     path: '/ru'
   },
   {
     name: 'en',
+    key: 'en',
     path: '/en'
   }
 ];
@@ -51,22 +53,27 @@ export const footerMenu = [
     children: [
       {
         name: 'ахитектура',
-        path: '/dock/arhitecture',
+        page: 'docs',
+        slug: 'arhitecture',
+        path: '/docs/arhitecture',
         active: false
       },
       {
         name: 'сбор данных',
-        path: '/dock/get_data',
+        page: 'docs',
+        path: '/docs/get_data',
         active: true
       },
       {
         name: 'популярные вопросы',
-        path: '/dock/populare_get',
+        page: 'docs',
+        path: '/docs/populare_get',
         active: false
       },
       {
         name: 'микросервисы',
-        path: '/dock/mikroservices',
+        page: 'docs',
+        path: '/docs/mikroservices',
         active: false
       }
     ]

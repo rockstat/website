@@ -2,22 +2,13 @@ const withSass = require('@zeit/next-sass');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SUMMARY_JSON = require('./content/summary.json')
-const getRoutes = require('./routes');
-
-// const extarctCSS = ExtractTextPlugin.extract({
-//   fallback: 'style-loader',
-//   use: 'css-loader!resolve-url-loader'
-// });
-
-// const extarctSCSS = ExtractTextPlugin.extract({
-//   fallback: 'style-loader',
-//   use: 'css-loader?module&importLoaders=1&localIdentName=[local]__[hash:base64:5]!resolve-url-loader!sass-loader'
-// });
-
+const getRoutes = require('./routes').getRoutes;
 
 module.exports = withSass({
   cssModules: true,
   exportPathMap: getRoutes,
+  distDir: 'build',
+  // useFileSystemPublicRoutes: false,
   webpack: (config) => {
     // config.node = {
     //   fs: false

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import style from './style.scss';
-// import { Router, Link } from '../../routes';
 import cl from 'classnames';
-import Link from 'next/link'
+import { Link } from '../../next-routes'
 
 export class SideMenu extends React.Component {
   goTo = (menuItem) => {
@@ -13,7 +12,7 @@ export class SideMenu extends React.Component {
   }
 
   render() {
-    const { query, docsMenu } = this.props;
+    const { query, docsMenu, lang } = this.props;
 
     return (
       <div className={style.sideBar}>
@@ -42,13 +41,10 @@ export class SideMenu extends React.Component {
                         <span>
                           {/* <Link route='docs' params={{ slug: third.id, lang: 'ru' }}> */}
                           {/* <Link href='/blog?id=first' as='/blog/first'><a>My first blog post</a></Link> */}
-                          <Link 
-                            href={`/docs?slug=${third.slug}&lang=ru&path=${third.path}`} 
-                            as={`/ru/docs/${third.slug}`} 
-                          >
-                            <a 
-                              className={cl({[style.active]: query && third.slug === query.slug})}
-                            >{ third.title }</a>
+                          <Link route={`docs`} params={{ lang, slug: third.slug }}>
+                            <a
+                              className={cl({ [style.active]: query && third.slug === query.slug })}
+                            >{third.title}</a>
                           </Link>
 
                           {/* </Link> */}

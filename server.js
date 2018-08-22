@@ -1,51 +1,64 @@
 const { createServer } = require('http')
-const { parse } = require('url')
+const { parse: urlParse } = require('url')
+const micro = require('micro')
 const next = require('next')
-const routes = require('./routes')
-const pathMatch = require('path-match')
-const connect = require('connect')
-const serveStatic = require('serve-static')
-const nextapp = next({ dev: process.env.NODE_ENV !== 'production' })
-// const handler = routes.getRequestHandler(nextapp)
-const handle = nextapp.getRequestHandler()
-const fs = require('fs');
-const summary = require('./content/summary.json');
-const route = pathMatch()
-const match = route('/docs/:slug')
+// const { getRoutes } = require('./routes')
+const nextRoutes = require('./next-routes')
 
+
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handler = nextRoutes.getRequestHandler(app)
+
+// const handler = routes.getRequestHandler(nextapp)
+// const handler = app.getRequestHandler()
 
 // const app = connect()
-console.log('starting http server')
-const static = serveStatic('content');
+console.log('nextjs preparing')
 const port = process.env.PORT || 3000;
 
-nextapp.prepare()
+app.prepare()
   .then(() => {
-    createServer((req, res) => {
-      const { pathname, query } = parse(req.url, true)
-      console.log({ pathname, query })
+    // const routes = getRoutes();
+    console.log('nextjs creating server')
+    const server = micro((req, res) => {
 
-
-      if (routes[pathname]) {
-        console.log('if(routes[pathname]){')
-        app.render(req, res, pathname, routes[pathname])
-        return;
-      }
-      // const params = match(pathname)
-
-      // if (params === false) {
-        handle(req, res)
-        return
+      const { pathname, query } = urlParse(req.url, true)
+      console.log('request:', { pathname, query })
+      // const route = routes[pathname];
+      // if (route) {
+      //   console.log('-> route match', pathname, route)
+      //   app.render(req, res, route.page, route.query)
+      //   return;
       // }
-      // assigning `query` into the params means that we still
-      // get the query string passed to our application
-      // i.e. /blog/foo?show-comments=true
-      // app.render(req, res, '/docs', Object.assign(params, query))
+      handler(req, res);
     })
-      .listen(port, (err) => {
-        if (err) throw err
-        console.log(`> Ready on http://localhost:${port}`)
-      })
+
+    server.listen(port, (err) => {
+      if (err) {
+        throw err
+      }
+
+      console.log(`> Ready on http://localhost:${port}`)
+    })
+    // createServer((req, res) => {
+
+
+    //   if (routes[pathname]) {
+    //     console.log('if(routes[pathname]){')
+    //     app.render(req, res, pathname, routes[pathname])
+    //     return;
+    //   }
+
+    //   // if (params === false) {
+    //     handle(req, res)
+    //     return
+    //   // }
+    //   // assigning `query` into the params means that we still
+    //   // get the query string passed to our application
+    //   // i.e. /blog/foo?show-comments=true
+    //   // app.render(req, res, '/docs', Object.assign(params, query))
+    // })
   })
 
 // nextapp.prepare().then(() => {
