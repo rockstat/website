@@ -1,5 +1,5 @@
 [build]
-publish = "build"
+publish = "out"
 command = "yarn build:export"
 
 [context.production.environment]

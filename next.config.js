@@ -7,7 +7,7 @@ const getRoutes = require('./routes').getRoutes;
 module.exports = withSass({
   cssModules: true,
   exportPathMap: getRoutes,
-  distDir: 'build',
+  // distDir: 'build',
   // useFileSystemPublicRoutes: false,
   webpack: (config) => {
     // config.node = {
