@@ -9,11 +9,7 @@ export default class extends React.Component {
     }
     return {}
   }
-
-  // componentWillMount() {
-  //   Router.push('/ru')
-  // }
-
+  
   render() {
     return (
       <div>

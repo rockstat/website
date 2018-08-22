@@ -39,12 +39,12 @@ for (const l1 of docsMenuConfig) {
 
 const docs = [];
 
-// Fill third level
+// Fill second and third levels
 for (const [fn, obj] of Object.entries(summary.fileMap)) {
   const { title, bodyHtml, parent, slug } = obj;
   if (docsItems[parent] && slug) {
     path = fn.split('content/docs/').join('').split('.json').join('');
-    const item = { slug: path, path, title, bodyHtml, parent }
+    const item = { slug, path, title, bodyHtml, parent }
     docsItems[slug] = item;
     docsItems[parent].items = docsItems[parent].items || []
     docsItems[parent].items.push(item)

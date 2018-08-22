@@ -11,9 +11,11 @@ const defaultPage = 'about-platform';
 
 export default class extends React.Component {
   static async getInitialProps({ query }) {
-    const doc = query.slug || 'about/about';
+    const slug = query.slug || 'about-platform';
+    const item = docsItems[slug];
+    
     // const fn = `http://localhost:3000/static/${doc}.json`;
-    return Promise.resolve().then(() => { return require(`../content/docs/${doc}.json`) })
+    return Promise.resolve().then(() => { return require(`../content/docs/${item.path}.json`) })
       // return fetch(fn).then(resp => resp.json())
       .then(content => {
         return {
