@@ -2,7 +2,10 @@
 
 ./bin/toc
 yarn start:static --cors "*" &
-SRVPID="$!"
-echo "${SRVPID}"
+export SRVPID="$!"
+echo "static server pid ${SRVPID}"
 yarn build:export
+echo "killing ${SRVPID}"
 kill "${SRVPID}"
+killall node
+
