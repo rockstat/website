@@ -1,13 +1,13 @@
 import 'react';
-import { Addinbox, Flora, Textapp, Virgins, Vrtech, TcehLogo, BurlesqueLogo } from '../static/icons/clients';
+import { Addinbox, Flora, Textapp, Virgins, Vrtech, TcehLogo, BurlesqueLogo, UrbanLogo } from '../static/icons/clients';
 
 export const parthners = [
-  <Virgins/>,
+  <Virgins />,
   <BurlesqueLogo />,
-  <Flora/>,
-  <TcehLogo/>,
-  <Addinbox/>,
-  <Textapp/>,
-  <img src={'/static/images/partners/urban.png'} />,
-  <Vrtech/>
+  <Flora />,
+  <TcehLogo />,
+  <Addinbox />,
+  <Textapp />,
+  <UrbanLogo />,
+  <Vrtech />
 ];
