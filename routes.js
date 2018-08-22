@@ -15,6 +15,6 @@ module.exports.getRoutes = (defaultPathMap) => {
         // paths[`/ru/docs/${page.slug}`] = { page: '/docs', query: { lang: 'ru', path: page.path, slug: page.slug } }
     }
 
-    // console.log(paths)
+    console.log(paths)
     return paths;
 }

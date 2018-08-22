@@ -1,11 +1,1 @@
-{
-  "bodyContent": "## Установка персональных параметров трекера\n\n```javascript\nalco.push('setCustomConfig', {\n  trackClicks: true, \n  trackForms: true, \n  trackActivity: true \n});\n```\nПараметры будут установлены только в том браузере, где выполнили кастомизацию. Используется для тестирования: можно подставить себе другой projectId или использовать другие настройки.\n\nЧтобы вернуться к общим настройкам нужно сбросить персональный конфиг.\n\n```javascript\nalco.push('setCustomConfig', {});\n```",
-  "bodyHtml": "<h2>Установка персональных параметров трекера</h2>\n<pre><code class=\"hljs\">alco.push(<span class=\"hljs-string\">'setCustomConfig'</span>, {\n  <span class=\"hljs-attr\">trackClicks</span>: <span class=\"hljs-literal\">true</span>, \n  <span class=\"hljs-attr\">trackForms</span>: <span class=\"hljs-literal\">true</span>, \n  <span class=\"hljs-attr\">trackActivity</span>: <span class=\"hljs-literal\">true</span> \n});</code></pre><p>Параметры будут установлены только в том браузере, где выполнили кастомизацию. Используется для тестирования: можно подставить себе другой projectId или использовать другие настройки.</p>\n<p>Чтобы вернуться к общим настройкам нужно сбросить персональный конфиг.</p>\n<pre><code class=\"hljs\">alco.push(<span class=\"hljs-string\">'setCustomConfig'</span>, {});</code></pre>",
-  "preview": "Установка персональных параметров трекера\n\nalco.push('setCustomConfig', {\n  trackClicks: true, \n  trackForms:",
-  "title": "Установка персональных параметров трекера",
-  "dir": "content/docs/jslib",
-  "base": "alcojs-methods-special.json",
-  "ext": ".json",
-  "sourceBase": "alcojs-methods-special.md",
-  "sourceExt": ".md"
-}
+{"data":"<h2 id=\"-\">Установка персональных параметров трекера</h2>\n<pre><code class=\"language-javascript\">alco.push(&#39;setCustomConfig&#39;, {\n  trackClicks: true, \n  trackForms: true, \n  trackActivity: true \n});</code></pre>\n<p>Параметры будут установлены только в том браузере, где выполнили кастомизацию. Используется для тестирования: можно подставить себе другой projectId или использовать другие настройки.</p>\n<p>Чтобы вернуться к общим настройкам нужно сбросить персональный конфиг.</p>\n<pre><code class=\"language-javascript\">alco.push(&#39;setCustomConfig&#39;, {});</code></pre>\n"}

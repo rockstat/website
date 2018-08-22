@@ -18,7 +18,7 @@ export class PageWrapper extends React.Component {
   render() {
     const { content } = this.props;
     return (
-      <div className={cl(style.content, 'markdown-body')} dangerouslySetInnerHTML={{ __html: content.bodyHtml }}></div>
+      <div className={cl(style.content, 'markdown-body')} dangerouslySetInnerHTML={{ __html: content }}></div>
     )
   }
 }

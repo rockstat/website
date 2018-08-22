@@ -3,6 +3,7 @@ const { parse: urlParse } = require('url')
 const micro = require('micro')
 const redirect = require('micro-redirect')
 const next = require('next')
+const serve = require('serve-handler')
 // const { getRoutes } = require('./routes')
 const nextRoutes = require('./next-routes')
 
@@ -13,6 +14,7 @@ const handler = nextRoutes.getRequestHandler(app)
 
 console.log('nextjs preparing')
 const port = process.env.PORT || 3000;
+const contentPrefix = '/content';
 
 app.prepare()
   .then(() => {
@@ -22,16 +24,19 @@ app.prepare()
       const { pathname, query } = urlParse(req.url, true)
       console.log('request:', { pathname, query })
 
+      // if (pathname.substr(0, contentPrefix.length) == contentPrefix) {
+      //   return serve(req, res, {
+      //     "cleanUrls": false,
+      //     "public": "content"
+      //   });
+
+      // }
+
       if (pathname === '/') {
         redirect(res, 303, '/ru')
         return;
       }
-      // const route = routes[pathname];
-      // if (route) {
-      //   console.log('-> route match', pathname, route)
-      //   app.render(req, res, route.page, route.query)
-      //   return;
-      // }
+
       handler(req, res);
     })
 

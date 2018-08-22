@@ -1,6 +1,7 @@
 ---
 parent: exploitation-data
 slug: exploitation-data-jupyter
+title: Использование jupyter
 ---
 # Jupyter
 

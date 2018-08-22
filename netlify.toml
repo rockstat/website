@@ -1,6 +1,6 @@
 [build]
 publish = "out"
-command = "yarn build:export"
+command = "make export"
 
 # [build.environment]
 # NODE_ENV = "production"
@@ -37,3 +37,16 @@ WEBHOOK_URL = "https://bolt.rstat.org/netlify/build/1"
 # [context.next.environment]
 # HUGO_ENABLEGITINFO = "true"
 
+[[redirects]]
+  from = "/"
+  to = "/ru"
+  status = 303
+  force = false
+  conditions = {Language = ["ru"]}
+
+[[redirects]]
+  from = "/"
+  to = "/en"
+  status = 303
+#   force = false
+#   conditions = {Language = ["en"]}
