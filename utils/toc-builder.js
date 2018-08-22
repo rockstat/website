@@ -1,20 +1,51 @@
 const frontMatter = require('front-matter');
 const marked = require('marked');
 const globby = require('globby');
+const hljs = require('highlight.js');
 const { promisify } = require('bluebird')
 const { readFile, writeFile } = require('fs');
 const { basename, dirname } = require('path');
 
 const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);
-const mdOptions = {};
+
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
+hljs.registerLanguage('sql', require('highlight.js/lib/languages/sql'));
+
+function helper(className, content) {
+  return `<p class="${className}">${content.slice(5).trim()}</p>`
+}
+
+
+function initRenderer() {
+  const renderer = new marked.Renderer()
+  const origin = {}
+
+  origin.paragraph = renderer.paragraph = function (text) {
+    let result
+    if (/^!&gt;/.test(text)) {
+      result = helper('tip', text)
+    } else if (/^\?&gt;/.test(text)) {
+      result = helper('warn', text)
+    } else {
+      result = `<p>${text}</p>`
+    }
+    return result
+  }
+
+  renderer.origin = origin
+
+  return renderer
+
+}
 
 
 marked.setOptions({
-  renderer: new marked.Renderer(),
-  // highlight: function(code) {
-  // return require('highlight.js').highlightAuto(code).value;
-  // },
+  renderer: initRenderer(),
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value;
+  },
   pedantic: false,
   gfm: true,
   tables: true,

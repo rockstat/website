@@ -24,13 +24,9 @@ app.prepare()
       const { pathname, query } = urlParse(req.url, true)
       console.log('request:', { pathname, query })
 
-      // if (pathname.substr(0, contentPrefix.length) == contentPrefix) {
-      //   return serve(req, res, {
-      //     "cleanUrls": false,
-      //     "public": "content"
-      //   });
-
-      // }
+      if (pathname.substr(0, contentPrefix.length) == contentPrefix) {
+        return serve(req, res);
+      }
 
       if (pathname === '/') {
         redirect(res, 303, '/ru')

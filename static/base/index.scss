@@ -438,7 +438,7 @@ http://zenorocha.mit-license.org
     margin-bottom: 10px;
   }
   
-  .markdown-body blockquote {
+  .markdown-body blockquote, .markdown-body p.tip, .markdown-body p.warn {
     border-left: 4px solid #00F0FF;
     background-color: #F7FFFF;
     padding: 1rem;
@@ -453,6 +453,19 @@ http://zenorocha.mit-license.org
     p {
       padding: 0;
     }
+  }
+
+
+  .markdown-body p.tip {
+    background-color: #F4FEFF;
+    color: #000000;
+    // padding: 1rem;
+  }
+
+  .markdown-body p.warn {
+    background: #FCECFF;
+    color: #000000;
+    // padding: 1rem;
   }
   
   .markdown-body ul,
@@ -862,4 +875,7 @@ http://zenorocha.mit-license.org
   .markdown-body hr {
     border-bottom-color: #eee;
   }
+
+
+
 }
