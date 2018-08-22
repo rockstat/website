@@ -13,7 +13,7 @@ const app = next({ dev })
 const handler = nextRoutes.getRequestHandler(app)
 
 console.log('nextjs preparing')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4444;
 const contentPrefix = '/content';
 
 app.prepare()

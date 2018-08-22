@@ -1,0 +1,8 @@
+#/bin/bash
+
+./bin/toc
+yarn start:static --cors "*" &
+SRVPID="$!"
+echo "${SRVPID}"
+yarn build:export
+kill "${SRVPID}"

@@ -1,8 +1,5 @@
 export:
-	./bin/toc
-	yarn start:static --cors "*" &
-	yarn build:export
-	
+	./bin/export
 start:
 	./bin/toc
 	yarn start:static --cors "*" &

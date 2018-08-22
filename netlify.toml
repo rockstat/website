@@ -1,6 +1,6 @@
 [build]
 publish = "out"
-command = "make export"
+command = "./bin/export"
 
 # [build.environment]
 # NODE_ENV = "production"
