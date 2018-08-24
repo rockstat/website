@@ -21,6 +21,10 @@
         line-height: rem(16px);
         color: #fff;
         margin: rem(14px 0);
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
         .childItemTree {
           margin: rem(14px 0 14px 15px);
           a {

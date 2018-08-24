@@ -17,8 +17,16 @@
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
 
+    @media(max-width: 2048px) {
+      font-size: 324PX;
+    }
+
+    @media(max-width: 1920px) {
+      font-size: 224PX;
+    }
+
     @media(max-width: 1650px) {
-      font-size: 14px;
+      font-size: 12PX;
     }
     @media(max-width: 1350px) {
       font-size: 12px;

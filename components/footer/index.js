@@ -7,7 +7,7 @@ import { itemTarget } from '../../utils/menu'
 import { LogoIcon } from '../../static/icons';
 import { footerMenu, footerRightMenu, linksMenu } from '../../constants';
 
-import style from './style.css';
+import style from './footer.css';
 
 
 export class Footer extends React.Component {

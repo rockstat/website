@@ -4,7 +4,7 @@ import {Link} from '../../next-routes';
 import cl from 'classnames';
 import PropTypes from 'prop-types';
 
-import style from './style.css';
+import style from './header.css';
 import { LogoIcon } from '../../static/icons';
 import { headerMenu, langsMenu, linksMenu } from '../../constants';
 

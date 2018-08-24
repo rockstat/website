@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './style.css';
+import style from './solutions.css';
 import { Cube, VSolutions } from '../../static/icons/solutions';
 
 export class Solution extends React.Component {

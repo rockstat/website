@@ -2,20 +2,27 @@
 .documentationContainer {
   color: #000;
   display: flex;
+  background-color: #fff;
 
   .logo {
     position: absolute;
-    top: rem(31px);
-    left: rem(47px);
-    width: rem(111px);
+    top: rem(-45px);
+    left: 0;
+    width: rem(362px);
+    background-color: #000;
     z-index: 100;
+    padding: rem(35px);
     svg {
-      width: 100%;
+      width: 35.5%;
+      path {
+        fill: #fff;
+      }
     }
   }
 
   .content {
     width: 75%;
     padding: rem(200px 0 50px);
+    background-color: #fff;
   }
 }

@@ -57,7 +57,12 @@
     "mini-css-extract-plugin": "^0.4.2",
     "next": "6.1.1-canary.3",
     "node-sass": "^4.9.2",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-pixels-to-rem": "^0.8.0",
+    "postcss-pxtorem": "^4.0.1",
     "postcss-rem": "^1.1.1",
+    "postcss-sassy-mixins": "^2.1.0",
+    "postcss-simple-vars": "^4.1.0",
     "precss": "^3.1.2",
     "prop-types": "^15.6.1",
     "svgo": "^1.0.5"

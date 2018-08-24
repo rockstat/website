@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 import Waypoint from 'react-waypoint';
-import style from './style.css';
+import style from './analytic.css';
 
 import { CenterIcon, AnalyticOuter, Center2, Two, Three, BgLines, WawesLustra, Wawe } from '../../static/icons/analytic';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './style.css';
+import style from './information.css';
 
 import { parthners } from '../../constants';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import style from './style.css';
+import style from './sideMenu.css';
 import cl from 'classnames';
 import { Link } from '../../next-routes'
 import { ShowIf } from '..'
