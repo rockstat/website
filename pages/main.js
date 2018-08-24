@@ -1,6 +1,8 @@
 import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Platform, Center, Information } from '../containers';
 import React from 'react';
 
+const lang = 'ru';
+
 export default class extends React.Component {
   static async getInitialProps ({query}) {
     return { query: query }
@@ -9,7 +11,7 @@ export default class extends React.Component {
   componentDidMount() {
     document.querySelector('html').style.backgroundColor = '#000';
   }
-  
+
   state = {
     linksMenuPosition: 'bottom'
   }
@@ -27,7 +29,7 @@ export default class extends React.Component {
     return (
       <span>
         {/* <Head/> */}
-        <Wrapper activeSection={'main'} {...this.props} lang={query.lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
+        <Wrapper activeSection={'main'} {...this.props} lang={lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
           <Everything setStateLinkMenu={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition}/>
           <Analytic />
           <Repository />

@@ -7,7 +7,7 @@ module.exports.getRoutes = (defaultPathMap) => {
         '/': { page: '/index' },
         // '/404': { page: '/404', lang: 'ru' },
         // '/ru/docs': { page: '/docs', query: { lang: 'ru', path: 'docs/about/about', slug: 'about' } },
-        '/ru/docs': { page: '/docs', query: { lang: 'ru' } },
+        // '/ru/docs': { page: '/docs', query: { lang: 'ru' } },
         '/ru': { page: '/main', query: { lang: 'ru' } },
     }
     // for (const page of handleDocs) {
