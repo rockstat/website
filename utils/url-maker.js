@@ -5,7 +5,7 @@ export function createLinker(locale = 'en') {
     if (path.indexOf('http') === 0) {
       return path
     }
-    return `/${locale}${path}`
+    return `${path}`
 
   }
 }

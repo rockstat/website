@@ -1,2 +1,2 @@
-import GetStartAbout from './getting-started/about.mdx'
+import GetStartAbout from './getting-started/introduction-to-rockstat.mdx'
 export default GetStartAbout;

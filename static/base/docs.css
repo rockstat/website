@@ -1,4 +1,3 @@
-@import './fonts.css';
 
 .documentationContainer {
   color: #000;
@@ -18,6 +17,5 @@
   .content {
     width: 75%;
     padding: rem(200px 0 50px);
-
   }
 }
