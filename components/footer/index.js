@@ -1,13 +1,13 @@
 import * as React from 'react';
-import {Link} from '../../next-routes';
 import cl from 'classnames';
 
-import style from './style.scss';
-
+import { Link } from '../../next-routes';
 import { createLinker } from '../../utils/url-maker'
 import { itemTarget } from '../../utils/menu'
 import { LogoIcon } from '../../static/icons';
 import { footerMenu, footerRightMenu, linksMenu } from '../../constants';
+
+import style from './style.css';
 
 
 export class Footer extends React.Component {

@@ -1,0 +1,29 @@
+import asset from 'next/asset'
+import withDoc from '../../lib/with-doc'
+
+import { TerminalInput } from '../../components/text/terminal'
+import Image from '../../components/image'
+
+export const meta = {
+  title: 'Introduction to Now',
+  description: 'A quick-start guide to deploying your Node.js, Docker, or static apps with Now and what you can do with your deployments',
+  date: '30 July 2017',
+  // authors: [leo, arunoda],
+  editUrl: 'pages/docs/getting-started/introduction-to-now.md'
+}
+
+With Now's help, you can deploy and publish any kind of web application (or service) in
+under five minutes.
+
+This quick-start guide will show you how to deploy an app, connect it to a
+domain name of your choice, and configure an SSL certificate.
+
+## Installing Now Desktop
+
+<Image
+  src={asset(`${IMAGE_ASSETS_URL}/media/about/alco_scheme.png`)}
+  width={600}
+  height={500}
+/>
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

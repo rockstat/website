@@ -1,0 +1,37 @@
+@import '../../static/base/fonts.css';
+
+.sideBar {
+    position: relative;
+    z-index: 99;
+    width: rem(362px);
+    padding: rem(200px 47px 50px);
+    color: #fff;
+    background-color: #000;
+    .mainItem {
+      .title {
+        @include raleway-medium(16px);
+        line-height: rem(19px);
+        text-transform: uppercase;
+        color: #BDBDBD;
+        margin: rem(28px 0px);
+        display: block;
+      }
+      .childItem {
+        @include raleway-medium(14px);
+        line-height: rem(16px);
+        color: #fff;
+        margin: rem(14px 0);
+        .childItemTree {
+          margin: rem(14px 0 14px 15px);
+          a {
+            color: #fff;
+            text-decoration: none;
+            &:hover, &.active {
+              color: #00F0FF;
+            }
+          }
+        }
+      }
+    }
+  }
+  

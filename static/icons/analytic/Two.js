@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from 'classnames';
-import style from './style.scss';
+import style from './style.css';
 
 export class Two extends React.Component {
   render() {

@@ -1,0 +1,11 @@
+#/bin/bash
+
+./bin/toc
+yarn start:prod &
+export SRVPID="$!"
+echo "static server pid ${SRVPID}"
+NODE_ENV=production yarn run next build && yarn run next export
+echo "killing ${SRVPID}"
+kill "${SRVPID}"
+killall node
+

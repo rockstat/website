@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
-import style from './style.scss';
+import style from './style.css';
 
 // import Vivus from 'vivus';
 

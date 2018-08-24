@@ -3,9 +3,9 @@ const { parse: urlParse } = require('url')
 const micro = require('micro')
 const redirect = require('micro-redirect')
 const next = require('next')
-const serve = require('serve-handler')
 // const { getRoutes } = require('./routes')
 const nextRoutes = require('./next-routes')
+// const postsRepo = require('./utils/docs-repo');
 
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -24,9 +24,10 @@ app.prepare()
       const { pathname, query } = urlParse(req.url, true)
       console.log('request:', { pathname, query })
 
-      if (pathname.substr(0, contentPrefix.length) == contentPrefix) {
-        return serve(req, res);
-      }
+      // if (pathname.includes(contentPrefix)) {
+      //   return serve(req, res);
+          // app.serveStatic(req, res, path)
+      // }
 
       if (pathname === '/') {
         redirect(res, 303, '/ru')

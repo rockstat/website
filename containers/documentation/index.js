@@ -1,5 +1,5 @@
 import * as React from 'react';
-import style from './style.scss';
+import style from './style.css';
 import cl from 'classnames';
 import { Router } from '../../routes';
 import { Link } from '../../next-routes';
@@ -15,7 +15,7 @@ export class Documentation extends React.Component {
     activeMenu: undefined
   }
 
-  // componentWillMount() {    
+  // componentWillMount() {
   //   this.setState({
   //     activeContent: 'body',
   //     activeMenu: activeItem
@@ -50,17 +50,8 @@ export class Documentation extends React.Component {
     //   console.log(r);
     // })
 
-    return (
-      <div className={style.documentationContainer}>
-        <div className={style.logo}>
-          <Link route='main' params={{ lang: lang }}>
-            <a><LogoIcon /></a>
-          </Link>
-        </div>
+    // return (
 
-        <SideMenu lang={lang} docsMenu={docsMenu} query={query} />
-        <PageWrapper content={content} />
-      </div>
-    )
+    // )
   }
 }

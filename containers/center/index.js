@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './style.scss';
+import style from './style.css';
 import { BgChart, Tooltips, Pies, Container, CircleMobile, OneCircleMobile, BgChartMobile, ContainerMobile } from '../../static/icons/dash';
 
 export class Center extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './style.scss';
+import style from './style.css';
 import { LeftFront, LeftBg, MobCube } from '../../static/icons/microservices';
 
 export class Microservices extends React.Component {

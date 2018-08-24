@@ -1,7 +1,7 @@
 import React from "react"
 
 import cl from 'classnames';
-import style from './style.scss';
+import style from './style.css';
 
 export const Center2 = props => <svg width={190} height={190} fill="none" viewBox="0 0 190 190">
 <path fill="none" d="M6 9h175.75v173.73H6z" />

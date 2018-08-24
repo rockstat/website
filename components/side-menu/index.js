@@ -1,5 +1,5 @@
 import * as React from 'react';
-import style from './style.scss';
+import style from './style.css';
 import cl from 'classnames';
 import { Link } from '../../next-routes'
 import { ShowIf } from '..'

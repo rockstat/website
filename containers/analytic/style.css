@@ -1,0 +1,233 @@
+@import '../../static/base/fonts.css';
+@import '../../static/base/variables.css';
+
+.analyticContainer {
+  width: 100vw;
+  height: 100vh;
+  min-height: $minHeightScreen;
+  max-height: $maxHeightSceen;
+  position: relative;
+  // background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(rgba(0, 0, 0, 1), #350061, #350061, rgba(0, 0, 0, 1));
+  contain: paint;
+  .textContainer {
+    text-align: center;
+    .title {
+      @include raleway-light(36px);
+      text-transform: uppercase;
+      line-height: rem(42px);
+      padding-top: rem(80px);
+    }
+    .description {
+      @include raleway-medium(18px);
+      line-height: rem(25px);
+      opacity: 0.8;
+      margin-top: rem(2px);
+    }
+
+  }
+
+  .linesBg {
+    position: absolute;
+    left: 0;
+    top: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .left {
+      width: 50%;
+      position: relative;
+      left: -5%;
+      svg {
+        width: 100%;
+      }
+    }
+    .right {
+      width: 50%;
+      position: relative;
+      right: -5%;
+      svg {
+        transform-origin: center;
+        transform: rotateY(180deg);
+        width: 100%;
+      }
+    }
+    svg {
+      opacity: 0.5;
+    }
+  }
+
+  .contentCenter {
+    display: flex;
+    justify-content: space-between;
+    padding: rem(31px 50px);
+    height: 75%;
+    .leftText {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 22%;
+      .leftTextTop {
+        text-align: center;
+        .title {
+          @include raleway-regular(28px);
+          line-height: rem(25px);
+        }
+        .description {
+          @include raleway-regular(16px);
+          line-height: rem(25px);
+          margin-top: rem(10px);
+        }
+      }
+      .leftTextBottom {
+        margin-top: rem(65px);
+        text-align: center;
+        .title {
+          @include raleway-regular(28px);
+          line-height: rem(25px);
+        }
+        .description {
+          @include raleway-regular(16px);
+          line-height: rem(25px);
+          margin-top: rem(10px);
+        }
+      }
+    }
+    .centerBg {
+      width: 42%;
+      height: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      position: relative;
+      /* svg, img {
+      //   width: 100%;
+      // }*/
+      .center {
+        position: absolute;
+        left: 0;
+        top: -1%;
+        right: 1%;
+        width: 13vw;
+        bottom: 0;
+        margin: auto;
+        height: 13vw;
+        svg {
+          width: 100%;
+        }
+      }
+      .two {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        width: 27vw;
+        bottom: 0;
+        margin: auto;
+        height: 27vw;
+        svg {
+          width: 100%;
+        }
+      }
+      .tree {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        width: 35vw;
+        bottom: 0;
+        margin: auto;
+        height: 35vw;
+        svg {
+          width: 100%;
+        }
+      }
+    }
+    .rightText {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 22%;
+      .rightTextTop {
+        text-align: center;
+        .title {
+          @include raleway-regular(28px);
+          line-height: rem(25px);
+        }
+        .description {
+          @include raleway-regular(16px);
+          line-height: rem(25px);
+          margin-top: rem(10px);
+        }
+      }
+      .rightTextBottom {
+        margin-top: rem(65px);
+        text-align: center;
+        .title {
+          @include raleway-regular(28px);
+          line-height: rem(25px);
+        }
+        .description {
+          @include raleway-regular(16px);
+          line-height: rem(25px);
+          margin-top: rem(10px);
+        }
+      }
+    }
+  }
+
+
+  @media(max-width: 720px) {
+    max-height: 10000px;
+    min-height: auto;
+    width: 100%;
+    height: auto;
+    padding: 0 25px;
+
+    .leftBg {
+      position: absolute;
+      left: 0;
+      top: 140vw;
+      bottom: 0;
+      margin: auto;
+      width: 100%;
+    }
+    .RightBg {
+      display: none;
+    }
+
+    .contentCenter {
+      flex-direction: column;
+      margin-top: 105vw;
+      .leftText {
+        width: 100%;
+      }
+      .rightText {
+        width: 100%;
+        margin-top: rem(10px);
+      }
+      .centerBg {
+        position: absolute;
+        top: 50vw;
+        width: 100%;
+        height: auto;
+        left: 0;
+        .center {
+          top: 30vw;
+          height: auto;
+          width: 40%;
+        }
+        .two {
+          top: 10vw;
+          width: 80%;
+          height: auto;
+        }
+        .tree {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}

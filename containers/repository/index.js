@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 import Waypoint from 'react-waypoint';
-import style from './style.scss';
+import style from './style.css';
 import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '../../static/icons/repository';
 
 export class Repository extends React.Component {

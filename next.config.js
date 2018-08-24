@@ -1,12 +1,14 @@
-const withSass = require('@zeit/next-sass');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const SUMMARY_JSON = require('./content/summary.json')
-const getRoutes = require('./routes').getRoutes;
+const withCSS = require('@zeit/next-css');
+const withMDX = require('@zeit/next-mdx')()
 
-module.exports = withSass({
+
+module.exports = withMDX(withCSS({
   cssModules: true,
-  exportPathMap: getRoutes,
+  cssLoaderOptions: {
+    importLoaders: 1,
+    localIdentName: "[local]___[hash:base64:5]",
+  },
+  pageExtensions: ['js', 'jsx', 'mdx'],
   // distDir: 'build',
   // useFileSystemPublicRoutes: false,
   webpack: (config) => {
@@ -19,7 +21,7 @@ module.exports = withSass({
     //     allChunks: true
     //   })
     // )
-
+    // config.optimization = config.optimization || {};
     config.module.rules.push(
       // {
       //   test: /\.(scss)$/,
@@ -31,25 +33,26 @@ module.exports = withSass({
       //   use: extarctCSS,
       //   exclude: /node_modules/,
       // },
-      {
-        test: /\.(woff2|woff?|otf|ttf|eot)$/,
-        loader: 'file-loader?name=[path][name].[ext]'
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              name: '[path][name].[ext]',
-              fallback: 'file-loader?name=[path][name].[ext]'
-            }
-          }]
-      }
+
+      // {
+      //   test: /\.(woff2|woff?|otf|ttf|eot)$/,
+      //   loader: 'file-loader?name=[path][name].[ext]'
+      // },
+      // {
+      //   test: /\.(png|jpg|gif)$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 10000,
+      //         name: '[path][name].[ext]',
+      //         fallback: 'file-loader?name=[path][name].[ext]'
+      //       }
+      //     }]
+      // }
     );
 
     return config;
   }
-});
+}));
