@@ -25,7 +25,8 @@
     "react-on-visible": "^1.5.0",
     "react-svg-morph": "^0.2.1",
     "react-visibility-sensor": "^3.11.0",
-    "react-waypoint": "^8.0.3"
+    "react-waypoint": "^8.0.3",
+    "remark-custom-blocks": "^2.2.3"
   },
   "devDependencies": {
     "@mdx-js/loader": "^0.15.0",

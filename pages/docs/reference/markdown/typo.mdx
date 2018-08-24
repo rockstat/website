@@ -1,0 +1,16 @@
+import withDoc from '../../../../lib/with-doc'
+
+import { TerminalInput } from '../../../../components/text/terminal'
+
+export const meta = {
+  title: 'Отладка markdown',
+}
+
+# Заголовок H1
+
+## Заголовок H2
+
+[[tip]]
+| tip block content
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

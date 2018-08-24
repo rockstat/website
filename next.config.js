@@ -1,5 +1,17 @@
 const withCSS = require('@zeit/next-css');
-const withMDX = require('@zeit/next-mdx')()
+const remarkCustomBlocks = require('remark-custom-blocks')
+const withMDX = require('@zeit/next-mdx')({
+  options: {
+    mdPlugins: [
+      [remarkCustomBlocks, {
+        tip: {
+          classes: 'tip-block',
+          title: 'optional'
+        },
+      }]
+    ]
+  }
+})
 
 
 module.exports = withMDX(withCSS({
