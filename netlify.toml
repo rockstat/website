@@ -8,7 +8,7 @@ command = "yarn build:export"
 [context.production.environment]
 REPOSITORY_URL = "https://github.com/madiedinro/rockstat.ru-nextjs"
 CONTEXT = "production"
-NODE_VERSION= "10.9"
+# NODE_VERSION= "10.9"
 # WEBHOOK_TITLE = "rstat.ru build"
 WEBHOOK_URL = "https://bolt.rstat.org/netlify/build/1"
 # HUGO_VERSION = "0.41"
