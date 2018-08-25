@@ -1,6 +1,6 @@
 [build]
 publish = "out"
-command = "./bin/export"
+command = "yarn build:export"
 
 # [build.environment]
 # NODE_ENV = "production"
