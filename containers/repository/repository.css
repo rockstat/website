@@ -23,7 +23,6 @@
       opacity: 0.8;
       margin-top: rem(2px);
     }
-
   }
 
   .leftBgTop {
@@ -220,7 +219,7 @@
       }
     }
   }
-  
+
   @media(max-width: 720px) {
     max-height: 10000px;
     min-height: auto;
@@ -286,11 +285,11 @@
       width: 50%;
       opacity: 0.5;
     }
-  
+
     .leftBgBottom {
       display: none;
     }
-  
+
     .rightBgTop {
       right: -14%;
       top: 180vw;
@@ -298,7 +297,7 @@
       width: 50%;
       opacity: 0.5;
     }
-  
+
     .rightBgBottom {
       display: none;
     }

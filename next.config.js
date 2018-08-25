@@ -48,10 +48,10 @@ module.exports = withMDX(withCSS({
       //   exclude: /node_modules/,
       // },
 
-      // {
-      //   test: /\.(woff2|woff?|otf|ttf|eot)$/,
-      //   loader: 'file-loader?name=[path][name].[ext]'
-      // },
+      {
+        test: /\.(woff2|woff?|otf|ttf|eot)$/,
+        loader: 'file-loader?name=[path][name].[ext]'
+      },
       // {
       //   test: /\.(png|jpg|gif)$/,
       //   exclude: /node_modules/,
