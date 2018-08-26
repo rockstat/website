@@ -4,8 +4,7 @@
     "start": "node server.js",
     "start:prod": "NODE_ENV=production node server.js",
     "build:export": "NODE_ENV=production next build && next export",
-    "build": "NODE_ENV=production next build",
-    "build:docs:clean": "find content/docs -name \"*.js\"  -exec rm -r \"{}\" \\; && find content/docs -name \"*.json\"  -exec rm -r \"{}\" \\;"
+    "build:prod": "NODE_ENV=production next build"
   },
   "license": "Apache-2.0",
   "dependencies": {
