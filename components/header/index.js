@@ -5,11 +5,11 @@ import cl from 'classnames';
 import PropTypes from 'prop-types';
 
 import style from './header.css';
-import { LogoIcon } from '../icons';
 import { headerMenu, langsMenu, linksMenu } from '../../constants';
 
 import { createLinker } from '../../utils/url-maker'
 import { itemTarget } from '../../utils/menu'
+import { Logo } from '../logo';
 
 
 
@@ -51,11 +51,7 @@ export class Header extends React.Component {
           <span></span>
         </div>
 
-        <div className={style.logo}>
-          <Link route={'/'}>
-            <a><LogoIcon /></a>
-          </Link>
-        </div>
+        <Logo/>
 
         <div className={style.menu}>
           {

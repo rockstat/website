@@ -1,0 +1,7 @@
+.logo {
+  width: rem(111px);
+  svg {
+    width: 100%;
+  }
+}
+

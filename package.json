@@ -1,10 +1,14 @@
 {
-  "name": "rockst.at",
+  "name": "rockstat",
   "scripts": {
-    "start": "node server.js",
-    "start:prod": "NODE_ENV=production node server.js",
-    "build:export": "NODE_ENV=production next build && next export",
-    "build:prod": "NODE_ENV=production next build"
+    "start:dev": "node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "build:dev": "next build",
+    "build": "next build",
+    "build:export": "next build && next export"
+  },
+  "engines": {
+    "node": "10.9.0"
   },
   "license": "Apache-2.0",
   "dependencies": {

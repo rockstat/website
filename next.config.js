@@ -22,6 +22,7 @@ module.exports = withMDX(withCSS({
     cssModules: true,
     localIdentName: '[name]__[local]__[hash:base64:5]',
   },
+  // distDir: 'build',
   pageExtensions: ['js', 'jsx', 'mdx'],
   // distDir: 'build',
   // useFileSystemPublicRoutes: false,
