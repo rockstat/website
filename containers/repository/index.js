@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 import Waypoint from 'react-waypoint';
 import style from './repository.css';
-import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '../../static/icons/repository';
+import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '../../components/icons/repository';
 
 export class Repository extends React.Component {
   state = {
@@ -47,7 +47,7 @@ export class Repository extends React.Component {
             <div className={style.leftTextTop}>
               <div className={style.title}>Быстрая обработка</div>
               <div className={style.description}>
-                  Под капотом высокопроизводительная колоночная СУБД 
+                  Под капотом высокопроизводительная колоночная СУБД
                   ClickHouse. Система записи динамически подстраивается под струкруту БД.
               </div>
             </div>
@@ -79,7 +79,7 @@ export class Repository extends React.Component {
             <div className={style.rightTextTop}>
               <div className={style.title}>Доступ к данным</div>
               <div className={style.description}>
-                В комплекте инструменты для создания дашбордов. 
+                В комплекте инструменты для создания дашбордов.
                 Можно конструировать собственное API для доступа к своим данным.
               </div>
             </div>

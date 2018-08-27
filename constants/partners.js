@@ -1,5 +1,5 @@
 import 'react';
-import { Addinbox, Flora, Textapp, Virgins, Vrtech, TcehLogo, BurlesqueLogo, UrbanLogo } from '../static/icons/clients';
+import { Addinbox, Flora, Textapp, Virgins, Vrtech, TcehLogo, BurlesqueLogo, UrbanLogo } from '../components/icons/clients';
 
 export const parthners = [
   <Virgins />,

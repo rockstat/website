@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './microservices.css';
-import { LeftFront, LeftBg, MobCube } from '../../static/icons/microservices';
+import { LeftFront, LeftBg, MobCube } from '../../components/icons/microservices';
 
 export class Microservices extends React.Component {
 
@@ -21,7 +21,7 @@ export class Microservices extends React.Component {
         <div className={style.textContainer}>
           <div className={style.title}>Микросервисы</div>
           <div className={style.description}>
-            Позволяет легко реализовать произвольную логику обработки запросов или фоновые задачи. 
+            Позволяет легко реализовать произвольную логику обработки запросов или фоновые задачи.
           </div>
         </div>
         <div className={cl(style.leftBg, 'rockstat-svg-container')}>
@@ -45,7 +45,7 @@ export class Microservices extends React.Component {
             <div className={style.leftTextBottom}>
               <div className={style.title}>Реактивные сервисы</div>
               <div className={style.description}>
-              Создавайте сервисы, реагирующие на события в реальном времени. Можно обращаться 
+              Создавайте сервисы, реагирующие на события в реальном времени. Можно обращаться
               в хранилище, отправлять Push, Email, Webhooks или передавать сигналы
               в браузер.
               </div>
@@ -56,14 +56,14 @@ export class Microservices extends React.Component {
             <div className={style.rightTextTop}>
               <div className={style.title}>Создавайте чатботов</div>
               <div className={style.description}>
-                Создавайте чатботов, работа которых основана на данных из хранилища. 
+                Создавайте чатботов, работа которых основана на данных из хранилища.
                 Поддерживаются Telegram, WhatsApp, Slack, Facebook.
               </div>
             </div>
             <div className={style.rightTextBottom}>
               <div className={style.title}>Работа со сторонними API</div>
               <div className={style.description}>
-                  Вы можете сделать подключаться к любым сторонним 
+                  Вы можете сделать подключаться к любым сторонним
                   API для получения или передачи данных, сохранять результаты
                   в хранилище.
               </div>

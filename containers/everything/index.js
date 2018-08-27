@@ -8,8 +8,8 @@ import style from './everething.css';
 
 import VisibleDetect from "react-visibility-sensor";
 
-import { LogoIcon } from '../../static/icons';
-import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '../../static/icons/everything';
+import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '../../components/icons/everything';
+import { LogoIcon } from '../../components/icons';
 import { linksMenu } from '../../constants';
 
 

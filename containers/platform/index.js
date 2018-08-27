@@ -3,7 +3,7 @@ import cl from 'classnames';
 
 import style from './platform.css';
 
-import { Docker, Js, Golang, Python, Ts, Clickhouse } from '../../static/icons/technologies';
+import { Docker, Js, Golang, Python, Ts, Clickhouse } from '../../components/icons/technologies';
 
 export class Platform extends React.Component {
 
@@ -13,7 +13,7 @@ export class Platform extends React.Component {
         <div className={style.textContainer}>
           <div className={style.title}>Эта платформа — ваша</div>
           <div className={style.description}>
-            Открыто распространяется в исходным коде под лицензией 
+            Открыто распространяется в исходным коде под лицензией
             Apache 2.0 <br /> Установка производится на ваш сервер, а данные собираются в привязке <br />
             к cookie вашего домена.</div>
         </div>
@@ -24,7 +24,7 @@ export class Platform extends React.Component {
           <Python />
           <Ts />
           <Golang />
-          
+
         </div>
       </div>
     )

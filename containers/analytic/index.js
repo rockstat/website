@@ -3,7 +3,7 @@ import cl from 'classnames';
 import Waypoint from 'react-waypoint';
 import style from './analytic.css';
 
-import { CenterIcon, AnalyticOuter, Center2, Two, Three, BgLines, WawesLustra, Wawe } from '../../static/icons/analytic';
+import { CenterIcon, AnalyticOuter, Center2, Two, Three, BgLines, WawesLustra, Wawe } from '../../components/icons/analytic';
 
 export class Analytic extends React.Component {
   state = {
@@ -32,7 +32,7 @@ export class Analytic extends React.Component {
           <div className={style.description}>Сбор и анализ данных с web, мобильных приложений</div>
         </div>
 
-        <div className={cl(style.linesBg, 'rockstat-svg-container')}> 
+        <div className={cl(style.linesBg, 'rockstat-svg-container')}>
           {/* <BgLines /> */}
           <div className={style.left}> <Wawe /> </div>
           <div className={style.right}> <Wawe /> </div>
@@ -49,13 +49,13 @@ export class Analytic extends React.Component {
             <div className={style.leftTextBottom}>
               <div className={style.title}>Продуктовая аналитика</div>
               <div className={style.description}>
-                Неограниченное количество параметров 
+                Неограниченное количество параметров
                 событий и метрик. Любые срезы на основе собранных данных
               </div>
             </div>
           </div>
 
-          
+
           <Waypoint onEnter={this.changeAnimationStart} onLeave={this.changeAnimationEnd}>
             <div className={style.centerBg}>
               <div className={cl(style.center, 'rockstat-svg-container')}>
@@ -76,14 +76,14 @@ export class Analytic extends React.Component {
             <div className={style.rightTextTop}>
               <div className={style.title}>Работает на Raw Data </div>
               <div className={style.description}>
-                Все отчеты строятся напрямую из Raw Data, за секунды. 
+                Все отчеты строятся напрямую из Raw Data, за секунды.
                 Никакого семплирования, а также задержек поступления данных.
               </div>
             </div>
             <div className={style.rightTextBottom}>
               <div className={style.title}>Cross-all-in-one</div>
               <div className={style.description}>
-                Все для кросс-доменного-канального от трекинга. 
+                Все для кросс-доменного-канального от трекинга.
                 Можно отслеживать  web, мессенджеры, mobile apps
               </div>
             </div>

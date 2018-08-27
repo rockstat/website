@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './center.css';
-import { BgChart, Tooltips, Pies, Container, CircleMobile, OneCircleMobile, BgChartMobile, ContainerMobile } from '../../static/icons/dash';
+import { BgChart, Tooltips, Pies, Container, CircleMobile, OneCircleMobile, BgChartMobile, ContainerMobile } from '../../components/icons/dash';
 
 export class Center extends React.Component {
   informData = ['Kernel', 'Band director', 'Audience interest...', 'Web IDE Theia', 'Clickhouse upload'];
@@ -213,7 +213,7 @@ export class Center extends React.Component {
             <div className={style.left}>
               <ContainerMobile />
             </div>
-            
+
             <div className={style.right}>
               <ContainerMobile />
             </div>

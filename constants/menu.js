@@ -9,7 +9,23 @@ export const langsMenu = [
   {
     name: 'en',
     key: 'en',
-    path: '/en'
+    path: '/en',
+    disabled: true
+  }
+];
+
+export const headerMenu = [
+  {
+    name: 'edu',
+    title: 'Обучение',
+    // path: '/edu'
+    path: digitalGodWeb,
+    newTab: true
+  },
+  {
+    name: 'docs',
+    title: 'Документация',
+    path: '/docs'
   }
 ];
 
@@ -29,22 +45,7 @@ export const linksMenu = [
     path: 'https://github.com/rockstat',
     newTab: true
   }
-]
-
-export const headerMenu = [
-  {
-    name: 'edu',
-    title: 'Обучение',
-    // path: '/edu'
-    path: digitalGodWeb,
-    newTab: true
-  },
-  {
-    name: 'docs',
-    title: 'Документация',
-    path: '/docs'
-  }
-]
+];
 
 export const footerMenu = [
   {

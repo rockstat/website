@@ -915,7 +915,7 @@
     line-height: 1.45;
     background-color: #0F1616;
     color: #fff;
-    border-radius: 3px;
+    // border-radius: 3px;
   }
 
   .markdown-body pre code {

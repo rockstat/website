@@ -1,10 +1,11 @@
 @import '../../static/base/fonts.css';
 
+
 .sideBar {
     position: relative;
     z-index: 99;
     width: rem(362px);
-    padding: rem(200px 47px 50px);
+    padding: rem(80px 47px 50px);
     color: #fff;
     background-color: #000;
     .mainItem {
@@ -38,4 +39,3 @@
       }
     }
   }
-  

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {Link} from '../../next-routes';
+import { Link } from '../../next-routes';
 
 import cl from 'classnames';
 import PropTypes from 'prop-types';
 
 import style from './header.css';
-import { LogoIcon } from '../../static/icons';
+import { LogoIcon } from '../icons';
 import { headerMenu, langsMenu, linksMenu } from '../../constants';
 
 import { createLinker } from '../../utils/url-maker'
@@ -81,17 +81,16 @@ export class Header extends React.Component {
             })
           }
           <div className={style.menuItemLg}>
-            {
-              langsMenu.map((item, index) => {
-                return (
-                  <div key={index} className={style.menuItemLgItem} >
-                    <Link route="main" params={{lang: item.key}} >
-                      <a target={itemTarget(item)} className={cl({ [style.active]: lang === item.name })}> {item.name} </a>
-                    </Link>
-                  </div>
-                )
-              })
-            }
+            <div className={style.menuItemLgItem} >
+              <Link route="/" >
+                <a className={style.active}> ru </a>
+              </Link>
+            </div>
+            <div className={style.menuItemLgItem} >
+              <Link route="/en" >
+                <a className={style.noClick}> en </a>
+              </Link>
+            </div>
           </div>
         </div>
       </header>

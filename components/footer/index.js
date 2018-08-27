@@ -4,7 +4,7 @@ import cl from 'classnames';
 import { Link } from '../../next-routes';
 import { createLinker } from '../../utils/url-maker'
 import { itemTarget } from '../../utils/menu'
-import { LogoIcon } from '../../static/icons';
+import { LogoIcon } from '../icons';
 import { footerMenu, footerRightMenu, linksMenu } from '../../constants';
 
 import style from './footer.css';
