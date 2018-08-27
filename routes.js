@@ -2,7 +2,7 @@
 // console.log('nextjs routes module')
 
 module.exports.getRoutes = (defaultPathMap) => {
-    console.log('nextjs building routes')
+
     const paths = {
         '/': { page: '/index' },
         // '/404': { page: '/404', lang: 'ru' },

@@ -2,18 +2,19 @@
 .documentationContainer {
   color: #000;
   display: flex;
+  margin: rem(40px 0 0 0) !important;
   background-color: #fff;
 
   .logo {
     position: absolute;
-    top: rem(-45px);
+    top: -45px;
     left: 0;
     width: rem(362px);
     background-color: #000;
     z-index: 100;
-    padding: rem(35px);
+    padding: rem(37px 35px 35px 50px);
     svg {
-      width: 35.5%;
+      width: 40%;
       path {
         fill: #fff;
       }

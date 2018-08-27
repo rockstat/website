@@ -25,7 +25,7 @@ export default class extends React.Component {
   render() {
     const { linksMenuPosition } = this.state;
     const { asPath, query } = this.props;
-    console.log('route params', asPath, query);
+
     return (
       <span>
         {/* <Head/> */}

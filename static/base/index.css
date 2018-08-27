@@ -17,16 +17,8 @@
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
 
-    @media(max-width: 2048px) {
-      font-size: 324PX;
-    }
-
-    @media(max-width: 1920px) {
-      font-size: 224PX;
-    }
-
     @media(max-width: 1650px) {
-      font-size: 12PX;
+      font-size: 14PX;
     }
     @media(max-width: 1350px) {
       font-size: 12px;
@@ -85,8 +77,8 @@
     word-wrap: break-word;
   }
   .markdown-body {
-    h1, h2, h3, h4, div, p, ul {
-      padding: rem(0 192px);
+    h1, h2, h3, h4, h5, h6, p, ul {
+      padding: rem(0 192px) !important;
     }
     table {
       padding: rem(0 32px);
@@ -872,7 +864,4 @@
   .markdown-body hr {
     border-bottom-color: #eee;
   }
-
-
-
 }

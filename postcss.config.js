@@ -1,7 +1,7 @@
 module.exports = {
   plugins: {
     // Illustrational
-    'postcss-extend-rule': {}, // precss
+    // 'postcss-extend-rule': {}, // precss
     'postcss-sassy-mixins': {},
     // 'postcss-simple-vars': {},
     'postcss-advanced-variables': {}, // precss

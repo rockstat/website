@@ -29,7 +29,7 @@ export class Wrapper extends React.Component {
 
   render() {
     const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
-    console.log('wrapper lang', lang)
+    
     return (
       <div className={'rockstat-container'}>
         <Header

@@ -32,7 +32,6 @@ export class Documentation extends React.Component {
     // const arrContet = Object.keys(CONFIG_CONTENT.fileMap);
     // const { activeContent, activeMenu } = this.state;
     const { lang, docsMenu, content, query } = this.props;
-    console.log('lang', lang)
     // console.log('active menu', activeMenu, activeMenu.fn)
     let Contents = '404';
     // Contents = [dynamic(import(activeMenu.fn))]

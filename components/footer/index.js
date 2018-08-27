@@ -13,7 +13,6 @@ import style from './footer.css';
 export class Footer extends React.Component {
   render() {
     const { lang } = this.props;
-    console.log('footer lang', lang)
     const linkTo = createLinker(lang);
     return (
       <footer className={style.rockstatFooter}>
