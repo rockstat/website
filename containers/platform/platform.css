@@ -1,5 +1,5 @@
-@import '../../static/base/fonts.css';
 @import '../../static/base/variables.css';
+@import '../../static/base/fonts.css';
 
 .analyticContainer {
   width: 100vw;

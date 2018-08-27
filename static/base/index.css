@@ -81,7 +81,7 @@
       padding: rem(0 192px) !important;
     }
     table {
-      padding: rem(0 32px);
+      padding: rem(0 192px);
     }
   }
 
@@ -181,6 +181,112 @@
   .markdown-body .pl-sr .pl-sre,
   .markdown-body .pl-sr .pl-sra {
     color: #032f62;
+  }
+
+  .markdown-body .tip-block .custom-block-body {
+    background-color: #F4FEFF;
+    padding: 2rem 0;
+    margin: 1rem 12rem;
+    position: relative;
+    &:before {
+      content: '';
+      background-color: #00F0FF;
+      width: 20px;
+      height: 1.2rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &:after {
+      content: '';
+      background-color: #00F0FF;
+      width: 20px;
+      height: 3.5rem;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .markdown-body .success-block .custom-block-body {
+    background-color: #EDFFF9;
+    padding: 2rem 0;
+    margin: 1rem 12rem;
+    position: relative;
+    &:before {
+      content: '';
+      background-color: #3FFFC0;
+      width: 20px;
+      height: 3.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &:after {
+      content: '';
+      background-color: #3FFFC0;
+      width: 20px;
+      height: 1.2rem;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .markdown-body .info-block .custom-block-body {
+    background-color: #FCECFF;
+    padding: 2rem 0;
+    margin: 1rem 12rem;
+    position: relative;
+    &:before {
+      content: '';
+      background-color: #D900FF;
+      width: 20px;
+      height: 3.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &:after {
+      content: '';
+      background-color: #D900FF;
+      width: 20px;
+      height: 1.2rem;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .markdown-body .alert-block .custom-block-body {
+    background-color: #E5FFE6;
+    padding: 2rem 0;
+    margin: 1rem 12rem;
+    position: relative;
+    &:before {
+      content: '';
+      background-color: #80FF81;
+      width: 20px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    p {
+      margin: 0;
+    }
+  }
+
+  .markdown-body .table-responive {
+    table {
+      padding: 0 2rem;
+    }
   }
 
   .markdown-body .pl-v,
@@ -490,7 +596,8 @@
     margin-bottom: 0;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: rem(12px);
-    width: 105%;
+    width: 100%;
+    border-radius: 0;
   }
 
   .markdown-body .octicon {
