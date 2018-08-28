@@ -10,6 +10,7 @@ const app = next({ dev })
 const handler = nextRoutes.getRequestHandler(app)
 
 const port = process.env.PORT || 4444;
+const host = process.env.HOST || '127.0.0.1';
 
 app.prepare()
   .then(() => {
@@ -25,11 +26,11 @@ app.prepare()
       handler(req, res);
     })
 
-    server.listen(port, (err) => {
+    server.listen(port, host, (err) => {
       if (err) {
         throw err
       }
 
-      console.log(`> Ready on http://localhost:${port}`)
+      console.log(`> Ready on http://${host}:${port}`)
     })
   })
