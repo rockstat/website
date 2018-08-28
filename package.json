@@ -7,9 +7,6 @@
     "build": "next build",
     "build:export": "next build && next export"
   },
-  "engines": {
-    "node": "10.9.0"
-  },
   "license": "Apache-2.0",
   "dependencies": {
     "classnames": "^2.2.5",

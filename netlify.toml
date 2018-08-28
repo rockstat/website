@@ -38,15 +38,6 @@ WEBHOOK_URL = "https://bolt.rstat.org/netlify/build/1"
 # HUGO_ENABLEGITINFO = "true"
 
 [[redirects]]
-  from = "/"
-  to = "/ru"
-  status = 303
-  force = false
-  conditions = {Language = ["ru"]}
-
-[[redirects]]
-  from = "/"
-  to = "/en"
-  status = 303
-#   force = false
-#   conditions = {Language = ["en"]}
+from = "/"
+to = "/ru"
+status = 303

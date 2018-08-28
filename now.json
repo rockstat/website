@@ -1,3 +1,4 @@
 {
-  "alias": "rock.st"
+  "name": "rockstat",
+  "alias": ["rock.st"]
 }
