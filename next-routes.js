@@ -7,3 +7,4 @@ module.exports = routes()
   .add('main', '/:lang(en|ru)', 'main')
   .add('docs', '/docs', 'docs')
   // .add('blog', '/:lang(en|ru)/blog/:slug')
+
