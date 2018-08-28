@@ -4,7 +4,7 @@
     "start:dev": "node server.js",
     "start": "NODE_ENV=production node server.js",
     "build:dev": "next build",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "build:export": "next build && next export"
   },
   "license": "Apache-2.0",
