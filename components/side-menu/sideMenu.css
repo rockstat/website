@@ -1,5 +1,3 @@
-@import '../../static/base/fonts.css';
-
 
 .sideBar {
     position: relative;
@@ -10,7 +8,7 @@
     background-color: #000;
     .mainItem {
       .title {
-        @include raleway-medium(16px);
+        @mixin raleway-medium 16px;
         line-height: rem(19px);
         text-transform: uppercase;
         color: #BDBDBD;
@@ -18,7 +16,7 @@
         display: block;
       }
       .childItem {
-        @include raleway-medium(14px);
+        @mixin raleway-medium 14px;
         line-height: rem(16px);
         color: #fff;
         margin: rem(14px 0);

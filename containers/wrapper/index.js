@@ -15,7 +15,6 @@ import PropTypes from 'prop-types';
 // import 'raleway-cyrillic/fonts/Raleway-v4020-Light.ttf';
 // import 'raleway-cyrillic/fonts/Raleway-v4020-Light.woff';
 
-import '../../static/base/fonts.css';
 import '../../static/base/reset.css';
 import '../../static/base/index.css';
 
@@ -29,7 +28,7 @@ export class Wrapper extends React.Component {
 
   render() {
     const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
-    
+
     return (
       <div className={'rockstat-container'}>
         <Header

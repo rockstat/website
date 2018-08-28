@@ -1,4 +1,3 @@
-@import '../../static/base/fonts.css';
 @import '../../static/base/variables.css';
 
 
@@ -51,12 +50,12 @@
       width: 45%;
       .title {
         color: #F2F2F2;
-        @include raleway-medium(18px);
+        @mixin raleway-medium 18px;
         line-height: rem(27px);
       }
       .text {
         color: #BDBDBD;
-        @include raleway-regular(16px);
+        @mixin raleway-regular 16px;
         line-height: rem(24px);
       }
     }
@@ -85,13 +84,13 @@
   /*// .textContainer {
   //   text-align: center;
   //   .title {
-  //     @include raleway-light(36px);
+  //     @mixin raleway-light 36px;
   //     text-transform: uppercase;
   //     line-height: rem(42px);
   //     padding-top: rem(80px);
   //   }
   //   .description {
-  //     @include raleway-medium(18px);
+  //     @mixin raleway-medium 18px;
   //     line-height: rem(25px);
   //     opacity: 0.8;
   //     margin-top: rem(2px);

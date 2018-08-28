@@ -1,7 +1,12 @@
+const path = require('path');
+
 module.exports = {
   plugins: {
     // Illustrational
     // 'postcss-extend-rule': {}, // precss
+    'postcss-mixins': {
+      mixinsDir: path.join(__dirname, 'lib', 'style', 'mixin')
+    },
     'postcss-sassy-mixins': {},
     // 'postcss-simple-vars': {},
     'postcss-advanced-variables': {}, // precss
