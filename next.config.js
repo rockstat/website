@@ -8,7 +8,7 @@ const withMDX = require('@zeit/next-mdx')({
         info: { classes: 'info-block', title: 'optional' },
         success: { classes: 'success-block', title: 'optional' },
         alert: { classes: 'alert-block', title: 'optional' },
-        tableResponsive: {classes: 'table-responive', title: 'table'}
+        tableResponsive: { classes: 'table-responive', title: 'table' }
       }]
     ]
   }
@@ -21,6 +21,14 @@ module.exports = withMDX(withCSS({
     modules: true,
     cssModules: true,
     localIdentName: '[name]__[local]__[hash:base64:5]',
+  },
+  exportPathMap: (paths) => {
+    return {
+      '/': { page: '/index' },
+      '/ru': { page: '/main' },
+      '/en': { page: '/main' },
+      ...paths
+    };
   },
   // postcssLoaderOptions: {
   // },
