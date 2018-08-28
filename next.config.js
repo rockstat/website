@@ -18,10 +18,12 @@ module.exports = withMDX(withCSS({
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    module: true,
+    modules: true,
     cssModules: true,
     localIdentName: '[name]__[local]__[hash:base64:5]',
   },
+  // postcssLoaderOptions: {
+  // },
   // distDir: 'build',
   pageExtensions: ['js', 'jsx', 'mdx'],
   // distDir: 'build',
