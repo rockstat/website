@@ -35,11 +35,75 @@ export const meta = {
 [[alert]]
 | block content like alert
 
+## Short py code
 
-# Схема ClickHouse
+```python
+import sys
+from . import settings, start_server
+
+def main():
+    start_server(**settings)
+
+if __name__ == '__main__':
+    main()
+```
+
+## JS Code
+
+inline
+
+This is `inline code` element
 
 
-## events_v2
+block
+
+```html
+<script type="text/javascript">
+  !function (w, d, st, rst, se, he) {
+    if(w.rstat) return; rst = w.rstat = function () {
+      var args = Array.prototype.slice.call(arguments);
+      return rst.doCall ? rst.doCall.call(rst, args) : rst._q.push(args); };
+    rst.push = rst; rst._l = !0; rst._sv = 3.0; rst._q = [];
+    rst._jsl = function (src) {
+      se = d.createElement(st); se.async = !0; se.src = src;
+      he = d.getElementsByTagName(st)[0]; he.parentNode.insertBefore(se, he); };
+    rst.attach = function(host){ rst._host = host; rst._jsl('https://'+rst._host+'/lib.js'); }
+  }(window, document, 'script');
+  // Configuration
+  rstat('configure', {
+    projectId: 1 // <<< придумайте номер сайта, если их несколько
+  });
+  rstat('page'); // <<< отправка просмотра страницы, убирается на SPA
+  rstat.attach('tracker.rockstat.test') // <<< Подставьте домен, на котором расположен трекер
+  //rstat('onReady', function(){
+  //  console.log('rstat` ready callback! uid:', rstat('getUid'));
+  //});
+  //rstat('onEvent', function(name, data){
+  //  console.log('rstat event callback:', name, data);
+  //});
+  //rstat('onServerMessage', 'sm', function(name, data){
+  //  console.log('onServerMessage', name, data);
+  //});
+</script>
+```
+
+## Simple table
+
+| Property          |Type       |Default    |Description
+|---------------------|---------|---------|--------------------------------------------------------------------------------------------------------------------------|
+| projectId           | Number  | 1       | Произвольный ID сайта/проекта/чего-то еще                                                                                |
+| sessionTimeout      | Number  | 1800    | Тайм-аут сессии: сколько времени с   последнего события должно пройти                                                    |
+| lastCampaignExpires | Number  | 7776000 | Период, на который запоминаются   последние рекламные метки. Указывается в секундах.                                      |
+| cookieDomain        | String  | auto    | Домен                                                                                                                    |
+| trackActivity       | Boolean | true    | Флаг автоматического отслеживания   активности посетителей на сайте. Отслеживается движение мышью                        |
+| trackClicks         | Boolean | true    | Автоматическое отслеживание   кликов. Обрабатывает все клики и автоматически классифицирует их на   внутренние и внешние |
+| trackForms          | Boolean | true    | Автоматическое отслеживание   взаимодействий с формами. Генерирует события фокуса                                        |
+| allowHTTP           | Boolean | false   | По дефолту работает только на   https. Этим параметром можете разрешить работу на http                                   |
+
+## Схема ClickHouse
+
+
+### events_v2
 
 [[tableResponsive]]
 | Колонка                    | Тип CH         | Тип JS  | Описание                                                                                                                                                    |
