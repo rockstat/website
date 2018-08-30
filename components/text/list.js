@@ -1,8 +1,9 @@
 export const UL = ({ children }) => (
-  <ul>
-    {children}
-    <style jsx>
-      {`
+  <div>
+    <ul>
+      {children}
+      <style jsx>
+        {`
         ul {
           padding: 0;
           list-style-type: none;
@@ -16,22 +17,25 @@ export const UL = ({ children }) => (
           margin-left: -15px;
         }
       `}
-    </style>
-  </ul>
+      </style>
+    </ul>
+  </div>
 )
 
 export const OL = ({ children }) => (
-  <ol>
-    {children}
-    <style jsx>
-      {`
+  <div>
+    <ol>
+      {children}
+      <style jsx>
+        {`
         ol {
           padding: 0;
           margin-left: 15px;
         }
       `}
-    </style>
-  </ol>
+      </style>
+    </ol>
+  </div>
 )
 
 export const LI = ({ children }) => (

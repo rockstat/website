@@ -7,16 +7,16 @@ export const meta = {
 
 ## Endpoint
 
-```
-POST https://домен/:service/:name/:projectId
-GET  https://домен/:service/:name/:projectId
+```shell
+POST https://yourdomain/<service>/<event_name>/<project_id>
+GET  https://yourdomain/<service>/<event_name>/<project_id>?param=values&...
 ```
 
-или без id проекта
+или без id проекта (будет записан 0)
 
-```
-POST https://домен/:service/:name
-GET  https://домен/:service/:name
+```shell
+POST https://yourdomain/<service>/<event_name>
+GET  https://yourdomain/<service>/<event_name>?param=values&...
 ```
 
 Пример:

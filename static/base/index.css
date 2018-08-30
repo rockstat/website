@@ -129,10 +129,34 @@
       padding-right: 192px;
     }
 
-    & > div > .md-expand {
+
+    & > div > div.md-expand {
+      padding-left: 0;
+      padding-right: 0;
+
+      pre > pre {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+
+    /*
+    & > div > div > pre > pre {
       padding-left: 0;
       padding-right: 0;
     }
+
+
+    & > div > pre.md-expand > pre {
+      margin: 1rem !important;
+      // paddind-left: 1rem  !important;
+      // paddind-right: 1rem  !important;
+
+    }
+
+    */
+
 
     pre {
       // width: calc(100% - 24rem) !important;
@@ -146,8 +170,7 @@
       position: relative;
       margin: auto;
       pre {
-        width: 100% !important;
-        margin: 1rem !important;
+        // width: 100% !important;
         code {
           /* border: 1px solid #eaeaea;
           padding: 20px;
@@ -603,7 +626,7 @@
   .markdown-body dl,
   .markdown-body table,
   .markdown-body pre {
-    margin-top: 0;
+    margin-top: 16px;
     margin-bottom: 16px;
   }
 
