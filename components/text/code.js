@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types'
+import Highlight from 'react-highlight'
+// import style from 'highlight.js/styles/vs.css'
 
-export const Code = ({ children, syntax }, { darkBg } = {}) => (
-  <pre className={(darkBg ? 'dark' : '') + (syntax ? ` ${syntax}` : '')}>
-    <code>{children}</code>
+
+export const Code = ({ children, className }, { darkBg } = {}) => (
+  // <pre className={(darkBg ? 'dark' : '') + (syntax ? ` ${syntax}` : '')}>
+  <div>
+    {/* <code>{children}</code> */}
+    <Highlight className={className}>{children}</Highlight>
     <style jsx>
       {`
         pre {
@@ -32,7 +37,8 @@ export const Code = ({ children, syntax }, { darkBg } = {}) => (
         }
       `}
     </style>
-  </pre>
+  </div>
+  // </pre>
 )
 
 Code.contextTypes = {
