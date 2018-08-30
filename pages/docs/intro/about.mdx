@@ -13,42 +13,31 @@ export const meta = {
 
 Rockstat - это платформа, это не просто система аналитики, это платформа для реализации своей собственной бизнес логики для автоматизации принятия решений;
 Из коробки доступна сессионная и событийная/продуктовая аналитика.
-Платформа способная обслуживать несколько сайтов с 2-3 млн. уников на сервере по цене двух чашек кофе
 
-![Aclo simple scheme](/static/media/schemas/rockstat-main-components.svg)
-
-В составе платформы:
-
-- **Серверный трекер:** принимает данные, обогащает (геокодинг, определение девайса), сохраняет данные в ClickHouse, отправляет во внешние сервисы.
-- **Браузерный трекер:** Отслеживает загрузки страниц и события на сайте, строит сессии, отправляет данные на сервер.
-- **Yandex ClickHouse:** охрененно быстрая колоночная база данных с открытым исходным кодом
-- **CHProxy:** Прокси-сервер для ClickHouse. Позволяет ограничить нагрузку на сервер и распределить запросы на несколько серверов
-- **GeoIP:** cервис определения региона по ip
-- **Device Detector:** Сервис определения клиентского девайса: десктоп/мобайл, операционная система, изготовитель и модель устройства на базе User-Agent
-- **Grafana:** система построения дашбордов и оповещений о критических изменениях в показателях
-- **Anaconda:** специальная сборка Python и его компонентов, предназначенных для Data Science и удобной работы с данными. В составе: Jupyter, sk-learn, NumPy, Pandas, SciPy. Добавлена библиотека для *работы* с ClickHouse
-- **Certbot:** запрос SSL сертификата для трекингового домена
-- **OpenVPN сервер**: для безопасного доступа к данным и инструментам их анализа
-- **Netdata:** система мониторинга показателей сервера, нотификации о проблемах.
-- **Ansible Playbook:** скрипт автоматической настройки всех компонентов платформы
+![Rockstat scheme](/static/media/schemas/rockstat-main-components.svg)
 
 ## Исходный код
 
-Исходники всех компонентов платформы досупны на GitHub
-
 [[tip]]
-|[https://github.com/alcolytics](https://github.com/alcolytics)  не забываем ставить ⭐!
+|[https://github.com/rockstat](https://github.com/alcolytics)  не забываем ставить ⭐!
 
-Репозитории:
-  * [**alcojs:**](https://github.com/alcolytics/alcojs) js библиотека браузерной части трекера
-  * [**alco-tracker:**](https://github.com/alcolytics/alco-tracker) серверная часть трекера
-  * [**alco-bootstrap:**](https://github.com/alcolytics/alco-bootstrap) скрипт установки сервера
-  * [**alco-chproxy:**](https://github.com/alcolytics/alco-chproxy) файл сборки контейнера ClickHouse proxy
-  * [**alco-geoip:**](https://github.com/alcolytics/alco-geoip) сервис гео-кодинга
-  * [**alco-devicedetector:** ](https://github.com/alcolytics/alco-devicedetector) сервис разбора user-agent
-  * [**simple-clickhouse:**](https://github.com/alcolytics/simple-clickhouse)  библиотека для работы с ClickHouse из Python
 
 ## Лицензия
 
+```
+Copyright 2018 Dmitry Rodin
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
 export default withDoc({...meta})(({children}) => <>{children}</>)
