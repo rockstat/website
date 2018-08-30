@@ -68,8 +68,6 @@ export class SideMenu extends React.Component {
   render() {
     const { menuData } = this.props;
 
-    console.log(this.props);
-
     return (
       <div className={style.sideBar}>
         {menuData.map(category => this.renderCategory(category))}
