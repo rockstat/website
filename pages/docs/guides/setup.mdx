@@ -73,26 +73,27 @@ ansible-playbook alcolytics.yml --connection=local
 Подготовка сервера без использования скипта. Установите минимальные необходимые
 зависимости и произведите преднастройку системы, последовательно выполнив все команды.
 
-```bash
-sudo -i
-
-apt -y update
-
-apt install -y python-minimal python-pip python-netaddr git locales
-
-echo -e 'LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8' | sudo tee /etc/default/locale
-locale-gen en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-pip install ansible
-
-exit
-
-git clone https://github.com/alcolytics/alco-bootstrap
-git submodules init
-
-cd ~/alco-bootstrap
+[[expand]]
+|```bash
+|sudo -i
+|
+|apt -y update
+|
+|apt install -y python-minimal python-pip python-netaddr git locales
+|
+|echo -e 'LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8' | sudo tee /etc/default/locale
+|locale-gen en_US.UTF-8
+|export LANG=en_US.UTF-8
+|export LC_ALL=en_US.UTF-8
+|
+|pip install ansible
+|
+|exit
+|
+|git clone https://github.com/alcolytics/alco-bootstrap
+|git submodules init
+|
+|cd ~/alco-bootstrap
 ```
 
 Теперь надо создать файл inventory/private вот с таким содержимым:

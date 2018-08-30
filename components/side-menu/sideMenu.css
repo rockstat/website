@@ -20,17 +20,42 @@
         line-height: rem(16px);
         color: #fff;
         margin: rem(14px 0);
+        &.active {
+          color: #f00;
+          .childItemTreeContainer {
+            display: block;
+          }
+        }
+        span {
+          color: #fff;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+          svg {
+            fill: #fff;
+            width: rem(12px);
+            height: rem(12px);
+            margin-right: rem(5px);
+          }
+        }
+        .itemTwo {
+          pointer-events: auto;
+          cursor: pointer;
+        }
         a {
           color: #fff;
           text-decoration: none;
         }
-        .childItemTree {
-          margin: rem(14px 0 14px 15px);
-          a {
-            color: #fff;
-            text-decoration: none;
-            &:hover, &.active {
-              color: #00F0FF;
+        .childItemTreeContainer {
+          display: none;
+          .childItemTree {
+            margin: rem(14px 0 14px 15px);
+            a {
+              color: #fff;
+              text-decoration: none;
+              &:hover, &.active {
+                color: #00F0FF;
+              }
             }
           }
         }

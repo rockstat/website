@@ -117,9 +117,40 @@
     h1, h2, h3, h4, h5, h6, p, ul, ol {
       padding: rem(0 192px) !important;
     }
+    pre {
+      width: calc(100% - 24rem) !important;
+      padding: 16px;
+      overflow: auto;
+      /* font-size: 85%; */
+      line-height: 1.45;
+      background-color: #0F1616;
+      color: #fff;
+      // border-radius: 3px;
+      position: relative;
+      margin: auto;
+      pre {
+        width: 100% !important;
+        margin: 0 !important;
+        code {
+          /* border: 1px solid #eaeaea;
+          padding: 20px;
+          margin: 24px 0 40px;
+          white-space: pre; */
+        }
+      }
+    }
     table {
       padding: rem(0 192px);
     }
+  }
+
+  .markdown-body pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: rem(12px);
+    width: 100%;
+    border-radius: 0;
   }
 
 .hljs {
@@ -320,9 +351,12 @@
     }
   }
 
-  .markdown-body .table-responive {
+  .markdown-body .expand {
     table {
-      padding: 0 2rem;
+      padding: 0 2rem !important;
+    }
+    pre {
+      width: 100% !important;
     }
   }
 
@@ -628,15 +662,6 @@
     font-size: rem(12px);
   }
 
-  .markdown-body pre {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: rem(12px);
-    width: 100%;
-    border-radius: 0;
-  }
-
   .markdown-body .octicon {
     vertical-align: text-bottom;
   }
@@ -916,7 +941,7 @@
   .markdown-body code {
     padding: 0.2em 0.4em;
     margin: 0;
-    font-size: 85%;
+    font-size: 75%;
     background-color: rgba(27,31,35,0.05);
     border-radius: 3px;
   }
@@ -928,7 +953,7 @@
   .markdown-body pre>code {
     padding: 0;
     margin: 0;
-    font-size: 100%;
+    font-size: 75%;
     word-break: normal;
     white-space: pre;
     background: transparent;
@@ -944,8 +969,7 @@
     word-break: normal;
   }
 
-  .markdown-body .highlight pre,
-  .markdown-body pre {
+  .markdown-body .highlight pre {
     padding: 16px;
     overflow: auto;
     font-size: 85%;
