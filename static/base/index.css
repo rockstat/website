@@ -152,7 +152,7 @@
     width: 100%;
     border-radius: 0;
   }
-
+/*
 .hljs {
   display: block;
   overflow-x: auto;
@@ -212,7 +212,7 @@
 
 .hljs-emphasis {
   font-style: italic;
-}
+} */
 
   .markdown-body .pl-c {
     color: #6a737d;
@@ -251,33 +251,45 @@
     color: #032f62;
   }
 
-  .markdown-body .tip-block .custom-block-body {
-    background-color: #F4FEFF;
-    padding: 2rem 0;
-    margin: 1rem 12rem;
-    position: relative;
-    &:before {
-      content: '';
-      background-color: #00F0FF;
-      width: 20px;
-      height: 1.2rem;
-      position: absolute;
-      left: 0;
-      top: 0;
+  .markdown-body .custom-block {
+
+
+    &.tip-block .custom-block-body {
+
+      p {
+        padding: 2rem 0;
+      }
+
+      background-color: #F4FEFF;
+      padding: 2rem 0;
+      margin: 1rem 12rem;
+      position: relative;
+      &:before {
+        content: '';
+        background-color: #00F0FF;
+        width: 20px;
+        height: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &:after {
+        content: '';
+        background-color: #00F0FF;
+        width: 20px;
+        height: 3.5rem;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+      p {
+        margin: 0;
+      }
     }
-    &:after {
-      content: '';
-      background-color: #00F0FF;
-      width: 20px;
-      height: 3.5rem;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
-    p {
-      margin: 0;
-    }
+
   }
+
+
   .markdown-body .success-block .custom-block-body {
     background-color: #EDFFF9;
     padding: 2rem 0;
