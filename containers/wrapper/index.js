@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 
 import '../../static/base/reset.css';
 import '../../static/base/index.css';
+import '../../static/base/hljs/tomorrow-night-bright.css';
 
 export class Wrapper extends React.Component {
   static propTypes = {

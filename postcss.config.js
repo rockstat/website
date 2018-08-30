@@ -4,6 +4,7 @@ module.exports = {
   plugins: {
     // Illustrational
     // 'postcss-extend-rule': {}, // precss
+    // 'postcss-import': { },
     'postcss-mixins': {
       mixinsDir: path.join(__dirname, 'lib', 'style', 'mixin')
     },
@@ -13,7 +14,6 @@ module.exports = {
     'postcss-rem': {},
 
 
-    // 'postcss-advanced-variables': {}, // precss
     'postcss-preset-env': {}, // precss
     'postcss-atroot': {}, // precss
     'postcss-property-lookup': {}, // precss

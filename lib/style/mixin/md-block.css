@@ -1,0 +1,34 @@
+
+@define-mixin md-block $name, $color1, $color2 {
+
+  .markdown-body .custom-block {
+    &.$(name)-block .custom-block-body {
+      background-color: $color1;
+      padding: 2rem 2rem;
+      // margin: 1rem 12rem;
+      position: relative;
+      &:before {
+        content: '';
+        background-color: $color2;
+        width: 20px;
+        height: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &:after {
+        content: '';
+        background-color: $color2;
+        width: 20px;
+        height: 3.5rem;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+      p {
+        margin: 0;
+      }
+      @mixin-content;
+    }
+  }
+}
