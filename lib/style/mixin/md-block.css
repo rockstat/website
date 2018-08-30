@@ -2,6 +2,7 @@
 @define-mixin md-block $name, $color1, $color2 {
 
   .markdown-body .custom-block {
+    margin: 0.67em 0;
     &.$(name)-block .custom-block-body {
       background-color: $color1;
       padding: 2rem 2rem;

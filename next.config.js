@@ -47,6 +47,8 @@ module.exports = withMDX(withCSS({
     //   })
     // )
     // config.optimization = config.optimization || {};
+    config.resolve.modules = ['node_modules', '.']
+
     config.module.rules.push(
       // {
       //   test: /\.(scss)$/,

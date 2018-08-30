@@ -125,11 +125,13 @@
     // padding: rem(0 192px) !important;
 
     & > div > * {
-      padding: rem(0 192px);
+      padding-left: 192px;
+      padding-right: 192px;
     }
 
-    & > div > .expand {
-      padding: 0 0;
+    & > div > .md-expand {
+      padding-left: 0;
+      padding-right: 0;
     }
 
     pre {
@@ -145,9 +147,8 @@
       margin: auto;
       pre {
         width: 100% !important;
-        margin: 0 !important;
+        margin: 1rem !important;
         code {
-
           /* border: 1px solid #eaeaea;
           padding: 20px;
           margin: 24px 0 40px;
@@ -170,11 +171,6 @@
       }
     }*/
   }
-
-
-
-
-
 
   .markdown-body code {
     margin-top: 0;

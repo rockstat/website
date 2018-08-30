@@ -1,6 +1,6 @@
-import withDoc from '../../../../lib/with-doc'
+import withDoc from 'lib/with-doc'
 
-import { TerminalInput } from '../../../../components/text/terminal'
+import { Expand } from 'components/expand'
 
 export const meta = {
   title: 'Отладка markdown'
@@ -50,17 +50,20 @@ if __name__ == '__main__':
 
 ## full w
 
-[[expand]]
-|```python
-|import sys
-|from . import settings, start_server
-|
-|def main():
-|    start_server(**settings)
-|
-|if __name__ == '__main__':
-|    main()
-|```
+<Expand>
+
+```python
+import sys
+from . import settings, start_server
+
+def main():
+    start_server(**settings)
+
+if __name__ == '__main__' and full_W:
+    main()
+```
+
+</Expand>
 
 ### JS Code
 
@@ -121,7 +124,8 @@ block
 
 ### events_v2
 
-[[expand]]
+<Expand>
+
 | Колонка                    | Тип CH         | Тип JS  | Описание                                                                                                                                                    |
 |----------------------------|----------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                         | UInt64         | -       | Идентификатор записи                                                                                                                                        |
@@ -235,6 +239,7 @@ block
 | perf:di                    | Int16          | number  | Dom Interactive: загружены html и js, браузер в интерактивном режиме. мс с момента cs                                                                       |
 | perf:dc                    | Int16          | number  | Dom Complete: завершена загрузка стилей и изображений,  страница готова. мс с момента cs                                                                    |
 
+</Expand>
 
 
 export default withDoc({...meta})(({children}) => <>{children}</>)
