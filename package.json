@@ -5,6 +5,7 @@
     "start": "NODE_ENV=production node server.js",
     "build:dev": "next build",
     "build": "NODE_ENV=production next build",
+    "build:toc": "node scripts/toc-to-js",
     "build:export": "next build && next export"
   },
   "license": "Apache-2.0",
@@ -50,6 +51,7 @@
     "globby": "^8.0.1",
     "highlight.js": "^9.12.0",
     "isomorphic-unfetch": "^2.1.1",
+    "js-yaml": "^3.12.0",
     "markdown-in-js": "^1.1.4",
     "next": "6.1.1-canary.3",
     "postcss-advanced-variables": "^2.3.3",

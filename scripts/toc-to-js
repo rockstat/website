@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+const yaml = require('js-yaml');
+const fs = require('fs');
+const path = require('path')
+
+
+const baseDir = path.join(__dirname, '..');
+
+const setEnabled = (items) => {
+  let hasActiveChild = false;
+  for (const item of items) {
+    let activeChild = false;
+    if (item.items) {
+      const childData = setEnabled(item.items);
+      if (childData.hasActiveChild) {
+        activeChild = true;
+      }
+    }
+    let fileExists = false;
+    if (item.href) {
+      const fpath = path.join(baseDir, 'pages', item.href + '.mdx');
+      const fdir = path.dirname(fpath)
+      if (!fs.existsSync(fdir)) {
+        fs.mkdirSync(fdir)
+      }
+      fileExists = fs.existsSync(fpath);
+    }
+    if (fileExists){
+      item.enabled = true;
+      // hasActiveChild = true;
+      console.log(item.href)
+    }
+  }
+  return {
+    hasActiveChild
+  }
+}
+
+const data = yaml.load(fs.readFileSync(path.join(baseDir, 'lib', 'data', 'docs.yml')));
+setEnabled(data)
+fs.writeFileSync(path.join(baseDir, 'lib', 'data', 'docs.js'), `export default ${JSON.stringify(data, undefined, 2)}`)

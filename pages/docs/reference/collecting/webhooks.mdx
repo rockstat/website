@@ -1,0 +1,39 @@
+import asset from 'next/asset'
+import withDoc from '../../../../lib/with-doc'
+
+export const meta = {
+  title: '',
+}
+
+sdfds
+
+## Endpoint
+
+```
+POST https://домен/:service/:name/:projectId
+GET  https://домен/:service/:name/:projectId
+```
+
+или без id проекта
+
+```
+POST https://домен/:service/:name
+GET  https://домен/:service/:name
+```
+
+Пример:
+
+```
+GET  https://домен/wh/secret-action?param1=pamparam&pam=pam
+```
+
+## Формат входящих данных
+
+* GET запросы
+* POST с данными в JSON или URLEncoded
+* Одновременно можно и POST  и параметры url
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)
+
+

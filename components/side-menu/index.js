@@ -1,29 +1,32 @@
 import * as React from 'react';
 import style from './sideMenu.css';
-import cl from 'classnames';
+import styleCommon from '../../lib/style/common.css';
+import cls from 'classnames';
 import { Link } from '../../next-routes'
 import { ShowIf } from '..'
 
 export class SideMenu extends React.Component {
 
-  renderItem({ name, href, items }) {
+  renderItem({ name, href, enabled, items }) {
     const { lang } = this.props;
     return (
       <div className={style.childItem} key={href || name} >
         <ShowIf condition={href}>
           <Link route={href} params={{ lang }}>
-            <a>{name}</a>
+            <a className={cls({ [styleCommon['disabled-link']]: !enabled })}>{name}</a>
           </Link>
         </ShowIf>
         <ShowIf condition={!href}>
-          {name}
+          <span className={cls({ [styleCommon['disabled-link']]: !enabled })}>
+            {name}
+          </span>
         </ShowIf>
         {/* 3rd level */}
-        {items && items.map(({ name, href }) => (
+        {items && items.map(({ name, href, enabled }) => (
           <div className={style.childItemTree} key={href || name}>
             <span>
               <Link route={href} params={{ lang }}>
-                <a>{name}</a>
+                <a className={cls({ [styleCommon['disabled-link']]: !enabled })}>{name}</a>
               </Link>
             </span>
           </div>

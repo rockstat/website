@@ -1,0 +1,37 @@
+
+import asset from 'next/asset'
+import withDoc from '../../../../lib/with-doc'
+
+export const meta = {
+  title: '',
+}
+
+
+Используется для:
+
+1. Использования в рекламных материалах, для контроля кол-ва показов и пост-вью аналитики
+2. Установки на сторонние сайты, в случае, если не соглашаются ставить JS код
+3. Выполнения cooke-sync стандартным подходом т.е. при помощи редиректа пикселя
+
+## Endpoint
+
+```
+GET  https://домен/img/:name/:projectId
+```
+
+можно без projectId
+
+```
+GET  https://домен/pixel/:name
+```
+
+помимо `pixel` еще работают `img` и `gif`
+
+### Ограничения
+
+Размер данных ограничен допустимым размером url в браузере.
+
+
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)
