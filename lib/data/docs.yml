@@ -166,28 +166,28 @@
         - name: Организация сервиса
           href: /docs/build-service-rockme/stucture
 
-    - name: Туториалы
-      items:
+- name: Туториалы
+  items:
 
-        - name: Построение истории отдельного пользователя
-          href: /docs/tutorials/user-history
+    - name: Построение истории отдельного пользователя
+      href: /docs/tutorials/user-history
 
-        - name: Классические модели атрибуции
-          href: /docs/tutorials/attribution/classic
+    - name: Классические модели атрибуции
+      href: /docs/tutorials/attribution/classic
 
-        - name: Вероятностное прохождение воронки
-          href: /docs/tutorials/attribution/funnel
+    - name: Вероятностное прохождение воронки
+      href: /docs/tutorials/attribution/funnel
 
-        - name: Атрибуция по индексу активности
-          href: /docs/tutorials/attribution/activity
+    - name: Атрибуция по индексу активности
+      href: /docs/tutorials/attribution/activity
 
-        - name: Воронки
-          href: /docs/tutorials/funnel
+    - name: Воронки
+      href: /docs/tutorials/funnel
 
-        - name: Реализация Cookie-Sync
-          href: /docs/tutorials/cookie-sync
+    - name: Реализация Cookie-Sync
+      href: /docs/tutorials/cookie-sync
 
-        - name: Сегментация пользователей
-          href: /docs/tutorials/segmentation
+    - name: Сегментация пользователей
+      href: /docs/tutorials/segmentation
 
 
