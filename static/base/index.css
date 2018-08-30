@@ -114,7 +114,7 @@
     word-wrap: break-word;
   }
   .markdown-body {
-    h1, h2, h3, h4, h5, h6, p, ul {
+    h1, h2, h3, h4, h5, h6, p, ul, ol {
       padding: rem(0 192px) !important;
     }
     table {
