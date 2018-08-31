@@ -138,6 +138,10 @@
     & > div > * {
       padding-left: 192px;
       padding-right: 192px;
+      @media(max-width: 720px) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
     }
 
 

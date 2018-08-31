@@ -5,27 +5,17 @@
   margin: rem(40px 0 0 0) !important;
   background-color: #fff;
 
-
-  .floatLogo {
-    position: absolute;
-    top: -45px;
-    left: 0;
-    width: rem(362px);
-    background-color: #000;
-    z-index: 100;
-    padding: rem(37px 35px 35px 50px);
-    svg {
-      // width: 40%;
-      path {
-        fill: #fff;
-      }
-    }
+  @media(max-width: 720px) {
+    margin: 0 !important;
   }
 
   .content {
     width: 75%;
     padding: rem(40px 0 40px);
     background-color: #fff;
+    @media(max-width: 720px) {
+      width: 100%;
+    }
   }
 }
 

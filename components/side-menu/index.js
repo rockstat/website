@@ -5,10 +5,12 @@ import cls from 'classnames';
 import { Link } from '../../next-routes'
 import { ShowIf } from '..'
 import { ShowMenuIcon } from '../icons';
+import { Logo } from '../logo';
 
 export class SideMenu extends React.Component {
   state = {
-    activeMenuItem: []
+    activeMenuItem: [],
+    showMenu: false
   }
 
   setActiveMenuItem = (index) => {
@@ -20,6 +22,12 @@ export class SideMenu extends React.Component {
 
     this.setState({
       activeMenuItem: newActvieMenuItem
+    })
+  }
+
+  changeMenu = () => {
+    this.setState({
+      showMenu: !this.state.showMenu
     })
   }
 
@@ -67,11 +75,23 @@ export class SideMenu extends React.Component {
 
   render() {
     const { menuData } = this.props;
+    const { showMenu } = this.state;
 
-    return (
-      <div className={style.sideBar}>
+    return [
+      <div key={0} className={cls(style.sideBar, {[style.show]: showMenu})}>
+        <div className={style.floatLogo}>
+          <Logo />
+        </div>
         {menuData.map(category => this.renderCategory(category))}
+      </div>,
+      <div key={1} className={cls(style.closebtn, {[style.show]: showMenu})} onClick={this.changeMenu}>X</div>,
+      <div 
+        key={2}
+        onClick={this.changeMenu}
+        className={cls(style.mobileShowMenu, {[style.show]: showMenu})}
+      >
+        Выберите раздел
       </div>
-    )
+    ]
   }
 }

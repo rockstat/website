@@ -1,4 +1,44 @@
 
+.mobileShowMenu {
+  display: none;
+  @media(max-width: 720px) {
+    color: #fff;
+    padding: 1rem;
+    z-index: 99;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    opacity: 1;
+    will-change: opacity;
+    transition: opacity .3s ease;
+    &.show {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+.closebtn {
+  display: none;
+  @media(max-width: 720px) {
+    display: block;
+    position: absolute;
+    right: rem(50px);
+    top: rem(40px);
+    opacity: 0;
+    pointer-events: none;
+    color: #fff;
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity .3s ease;
+    z-index: 999;
+    font-size: 1.5rem;
+    &.show {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+}
 .sideBar {
     position: relative;
     z-index: 99;
@@ -6,6 +46,40 @@
     padding: rem(80px 47px 50px);
     color: #fff;
     background-color: #000;
+    @media(max-width: 720px) {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: auto;
+      transform: translateX(-100%);
+      transition: transform .2s linear;
+      will-change: transform;
+      &.show {
+        transform: translateX(0);
+      }
+    }
+
+    .floatLogo {
+      position: absolute;
+      top: -6.15rem;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      z-index: 100;
+      padding: rem(37px 35px 35px 50px);
+      svg {
+        // width: 40%;
+        path {
+          fill: #fff;
+        }
+      }
+      @media(max-width: 720px) {
+        top: 0;
+      }
+    }
+
     .mainItem {
       .title {
         @mixin raleway-medium 16px;

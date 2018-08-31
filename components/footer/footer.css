@@ -17,12 +17,12 @@
     }
     .menu {
       display: flex;
-      flex-wrap: wrap;
-      margin-left: rem(229px);
-      width: 34%;
+      flex-wrap: no-wrap;
+      margin-left: rem(223px);
+      width: 40rem;
       .item {
-        margin-left: rem(50px);
         overflow: hidden;
+        margin-left: 3.8rem;
         .itemMain {
           @mixin raleway-bold 14px;
           &.notClick {
@@ -72,7 +72,7 @@
     }
     .menuRight {
       .item {
-        margin-left: rem(50px);
+        margin-left: 1rem;
         overflow: hidden;
         a {
           color: #fff;

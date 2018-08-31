@@ -161,7 +161,7 @@
 
       &.top {
         position: fixed;
-        top: 1.1%;
+        top: 0.6vw;
         left: 0;
         z-index: 11;
         padding: rem(31px 50px);
