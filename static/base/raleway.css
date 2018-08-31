@@ -1,0 +1,48 @@
+$ralewayv4020-font-path: '/static/fonts/ralewayv4020/';
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/static/fonts/Raleway-v4020-Light.eot'); /* IE9 Compat Modes */
+    src: local('Raleway Light'), local('Raleway-Light'), local('Raleway-v4020 Light'),
+    url('/static/fonts/Raleway-v4020-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/static/fonts/Raleway-v4020-Light.woff') format('woff'), /* Modern Browsers */
+    url('/static/fonts/Raleway-v4020-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+  }
+
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/static/fonts/Raleway-v4020-Regular.eot'); /* IE9 Compat Modes */
+    src: local('Raleway Regular'), local('Raleway-Regular'), local('Raleway-v4020 Regular'),
+    url('/static/fonts/Raleway-v4020-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/static/fonts/Raleway-v4020-Regular.woff') format('woff'), /* Modern Browsers */
+    url('/static/fonts/Raleway-v4020-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+  }
+
+
+
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/static/fonts/Raleway-v4020-Medium.eot'); /* IE9 Compat Modes */
+    src: local('Raleway Medium'), local('Raleway-Medium'), local('Raleway-v4020 Medium'),
+    url('/static/fonts/Raleway-v4020-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/static/fonts/Raleway-v4020-Medium.woff') format('woff'), /* Modern Browsers */
+    url('/static/fonts/Raleway-v4020-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
+  }
+
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/static/fonts/Raleway-v4020-Bold.eot'); /* IE9 Compat Modes */
+    src: local('Raleway Bold'), local('Raleway-Bold'), local('Raleway-v4020 Bold'),
+    url('Raleway-v4020-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/static/fonts/Raleway-v4020-Bold.woff') format('woff'), /* Modern Browsers */
+    url('/static/fonts/Raleway-v4020-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+  }
+

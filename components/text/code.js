@@ -4,13 +4,9 @@ import cls from 'classnames';
 // import style from 'highlight.js/styles/vs.css'
 
 
-export const Code = ({ children, className }, { darkBg } = {}) => (
-  <Highlight className={cls(className, 'hz')}>{children}</Highlight>
-  // <pre className={(darkBg ? 'dark' : '') + (syntax ? ` ${syntax}` : '')}>
-  // <div>
-  // </div>
-  // </pre>
-)
+export const Code = ({ children, className }, { darkBg } = {}) =>
+  <Highlight className={cls(className || 'language-shell')}>{children}</Highlight>
+
 
 Code.contextTypes = {
   darkBg: PropTypes.bool

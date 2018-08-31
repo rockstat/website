@@ -9,45 +9,56 @@
     // contain: paint;
   }
 
+  $raleway-font-path: /static/fonts/raleway/;
+
   @font-face {
-    font-family: 'RalewayMedium';
+    font-family: 'Raleway Light';
+    src: url('#{$raleway-font-path}Raleway-Light.eot');
+    src: url('#{$raleway-font-path}Raleway-Light.eot?#iefix') format('embedded-opentype'),
+    url('#{$raleway-font-path}Raleway-Light.woff') format('woff'),
+    url('#{$raleway-font-path}Raleway-Light.ttf') format('truetype');
+    font-weight: 300;
     font-style: normal;
-    src: url('/static/fonts/Raleway-v4020-Medium.eot'); /* IE9 Compat Modes */
-    src: url('/static/fonts/Raleway-v4020-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/static/fonts/Raleway-v4020-Medium.woff') format('woff'), /* Modern Browsers */
-    url('/static/fonts/Raleway-v4020-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
   }
 
   @font-face {
-    font-family: 'RalewayBold';
+    font-family: 'Raleway Regular';
+    src: url('#{$raleway-font-path}Raleway-Regular.eot');
+    src: url('#{$raleway-font-path}Raleway-Regular.eot?#iefix') format('embedded-opentype'),
+    url('#{$raleway-font-path}Raleway-Regular.woff') format('woff'),
+    url('#{$raleway-font-path}Raleway-Regular.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
-    src: url('/static/fonts/Raleway-v4020-Bold.eot'); /* IE9 Compat Modes */
-    src: url('/static/fonts/Raleway-v4020-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/static/fonts/Raleway-v4020-Bold.woff') format('woff'), /* Modern Browsers */
-    url('/static/fonts/Raleway-v4020-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
   }
+
 
   @font-face {
-    font-family: 'RalewayRegular';
+    font-family: 'Raleway Medium';
+    src: url('#{$raleway-font-path}Raleway-Medium.eot');
+    src: url('#{$raleway-font-path}Raleway-Medium.eot?#iefix') format('embedded-opentype'),
+    url('#{$raleway-font-path}Raleway-Medium.woff') format('woff'),
+    url('#{$raleway-font-path}Raleway-Medium.ttf') format('truetype');
+    font-weight: 500;
     font-style: normal;
-    src: url('/static/fonts/Raleway-v4020-Regular.eot'); /* IE9 Compat Modes */
-    src: url('/static/fonts/Raleway-v4020-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/static/fonts/Raleway-v4020-Regular.woff') format('woff'), /* Modern Browsers */
-    url('/static/fonts/Raleway-v4020-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
   }
+
 
   @font-face {
-    font-family: 'RalewayLight';
+    font-family: 'Raleway Bold';
+    src: url('#{$raleway-font-path}Raleway-Bold.eot');
+    src: url('#{$raleway-font-path}Raleway-Bold.eot?#iefix') format('embedded-opentype'),
+    url('#{$raleway-font-path}Raleway-Bold.woff') format('woff'),
+    url('#{$raleway-font-path}Raleway-Bold.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
-    src: url('/static/fonts/Raleway-v4020-Light.eot'); /* IE9 Compat Modes */
-    src: url('/static/fonts/Raleway-v4020-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/static/fonts/Raleway-v4020-Light.woff') format('woff'), /* Modern Browsers */
-    url('/static/fonts/Raleway-v4020-Light.ttf') format('truetype'); /* Safari, Android, iOS */
   }
 
+
+
+  /*@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,700&subset=latin-ext');*/
 
   html {
-    font-size: 16PX;
+    font-size: 14px;
     text-size-adjust: 100%;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
@@ -60,7 +71,7 @@
     overflow-x: hidden;
 
     @media(max-width: 1650px) {
-      font-size: 14PX;
+      font-size: 14px;
     }
     @media(max-width: 1350px) {
       font-size: 12px;
@@ -113,7 +124,7 @@
     -webkit-text-size-adjust: 100%;
     line-height: 1.5;
     color: #24292e;
-    font-family: 'RalewayLight';
+    font-family: 'Raleway';
     font-size: rem(16px);
     line-height: 1.5;
     word-wrap: break-word;
@@ -531,11 +542,16 @@
     margin-bottom: 0;
   }
 
+  .markdown-body ol {
+    list-style-type: decimal;
+  }
+
   .markdown-body ol ol,
   .markdown-body ul ol {
     list-style-type: lower-roman;
   }
 
+  .markdown-body ul ul ol,
   .markdown-body ul ul ol,
   .markdown-body ul ol ol,
   .markdown-body ol ul ol,
@@ -742,7 +758,7 @@
 
   .markdown-body ul,
   .markdown-body ol {
-    // padding-left: 2em;
+    margin-left: 2em;
   }
 
   .markdown-body ul ul,
@@ -806,7 +822,7 @@
 
   .markdown-body table thead tr {
     border-top: none;
-    font-family: 'RalewayBold';
+    font-family: 'Raleway';
     text-align: left;
   }
 

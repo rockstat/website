@@ -17,7 +17,7 @@
       padding-top: rem(80px);
     }
     .description {
-      @mixin raleway-medium 18px;
+      @mixin raleway-regular 18px;
       line-height: rem(25px);
       opacity: 0.8;
       margin-top: rem(2px);

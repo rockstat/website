@@ -11,7 +11,9 @@ module.exports = {
     'postcss-sassy-mixins': {},
     // 'postcss-simple-vars': {},
     'postcss-advanced-variables': {}, // precss
-    'postcss-rem': {},
+    'postcss-rem': {
+      baseline: 14,
+    },
 
 
     'postcss-preset-env': {}, // precss

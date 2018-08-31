@@ -1,19 +1,25 @@
-@define-mixin raleway-regular $size: blue {
-  font-family: 'RalewayRegular', Arial, Helvetica, sans-serif;
+
+
+@define-mixin raleway-light $size {
+  font-family: 'Raleway Light', Helvetica, sans-serif;
+  font-weight: 300;
   font-size: rem($size);
 }
 
-@define-mixin raleway-bold $size {
-  font-family: 'RalewayBold', Arial, Helvetica, sans-serif;
+@define-mixin raleway-regular $size: blue {
+  font-family: 'Raleway Regular', Helvetica, sans-serif;
+  font-weight: 400;
   font-size: rem($size);
 }
 
 @define-mixin raleway-medium $size {
-  font-family: 'RalewayMedium', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway Medium', Helvetica, sans-serif;
+  font-weight: 500;
   font-size: rem($size);
 }
 
-@define-mixin raleway-light $size {
-  font-family: 'RalewayLight', Arial, Helvetica, sans-serif;
+@define-mixin raleway-bold $size {
+  font-family: 'Raleway Bold', Helvetica, sans-serif;
+  font-weight: 700;
   font-size: rem($size);
 }

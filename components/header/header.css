@@ -36,7 +36,7 @@
         color: #fff;
         text-decoration: none;
         transition: color .1s linear;
-        @mixin raleway-medium 16px;
+        @mixin raleway-medium 14px;
 
         &:after {
           content: "";

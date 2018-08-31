@@ -57,7 +57,7 @@
       padding-top: rem(80px);
     }
     .description {
-      @mixin raleway-medium 18px;
+      @mixin raleway-regular 18px;
       line-height: rem(25px);
       opacity: 0.8;
       margin-top: rem(2px);
@@ -109,12 +109,12 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 33%;
       .leftTextTop {
         text-align: center;
         margin-top: rem(25px);
         .title {
-          @mixin raleway-regular 28px;
+          @mixin raleway-light 28px;
           line-height: rem(25px);
         }
         .description {
@@ -127,7 +127,7 @@
         text-align: center;
         margin-top: rem(25px);
         .title {
-          @mixin raleway-regular 28px;
+          @mixin raleway-light 28px;
           line-height: rem(25px);
         }
         .description {
@@ -141,12 +141,12 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 33%;
       .rightTextTop {
         text-align: center;
         margin-top: rem(25px);
         .title {
-          @mixin raleway-regular 28px;
+          @mixin raleway-light 28px;
           line-height: rem(25px);
         }
         .description {
@@ -159,7 +159,7 @@
         text-align: center;
         margin-top: rem(25px);
         .title {
-          @mixin raleway-regular 28px;
+          @mixin raleway-light 28px;
           line-height: rem(25px);
         }
         .description {
