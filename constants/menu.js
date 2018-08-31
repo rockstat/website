@@ -17,7 +17,7 @@ export const langsMenu = [
 export const headerMenu = [
   {
     name: 'main',
-    title: 'Intro',
+    title: 'Интро',
     path: '/ru'
   },
   {
