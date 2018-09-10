@@ -17,3 +17,9 @@
 
 - Вместо переменной CH_DSN, указывающей на ClickHouse Proxy теперь есть CHS_DSN, указывающая на ClickHouse Server и CHP_DSN ClickHouse Proxy
 - Родительскиф образ для сервисов на Band Framework теперь rockstat/band-base-py (вместо rst/band-base-py)
+
+
+### band 06 sep
+
+- Новый синтакс logger. Никуда не деаться, режим совместимости не работает корректно `logger.info('extract result %s', out)` должго превратиться в `logger.info('extract result', out=out)`
+
