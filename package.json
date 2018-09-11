@@ -1,12 +1,12 @@
 {
   "name": "rockstat",
   "scripts": {
-    "start:dev": "node server.js",
-    "start": "NODE_ENV=production node server.js",
+    "start:dev": "node scripts/toc-to-js && node server.js",
+    "start": "node scripts/toc-to-js && NODE_ENV=production node server.js",
     "build:dev": "next build",
     "build": "NODE_ENV=production next build",
     "build:toc": "node scripts/toc-to-js",
-    "build:export": "next build && next export"
+    "build:export": "node scripts/toc-to-js && next build && next export"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -52,6 +52,7 @@
     "highlight.js": "^9.12.0",
     "isomorphic-unfetch": "^2.1.1",
     "js-yaml": "^3.12.0",
+    "json-loader": "^0.5.7",
     "markdown-in-js": "^1.1.4",
     "next": "6.1.1-canary.3",
     "postcss-advanced-variables": "^2.3.3",
@@ -70,6 +71,7 @@
     "postcss-simple-vars": "^4.1.0",
     "prop-types": "^15.6.1",
     "remark-custom-blocks": "^2.2.3",
-    "svgo": "^1.0.5"
+    "svgo": "^1.0.5",
+    "yaml-loader": "^0.5.0"
   }
 }

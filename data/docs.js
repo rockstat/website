@@ -9,13 +9,15 @@ export default [
       },
       {
         "name": "Быстрый старт",
-        "href": "/docs/intro/getting-started"
+        "href": "/docs/intro/getting-started",
+        "enabled": true
       },
       {
         "name": "Список изменений",
         "href": "/docs/intro/changelog"
       }
-    ]
+    ],
+    "enabled": true
   },
   {
     "name": "Архитектура",
@@ -30,7 +32,8 @@ export default [
         "items": [
           {
             "name": "Жизненный цикл и адресация",
-            "href": "/docs/architecture/request-lifecycle"
+            "href": "/docs/architecture/request-lifecycle",
+            "enabled": true
           },
           {
             "name": "Обогащение данных",
@@ -44,7 +47,8 @@ export default [
             "name": "Слушатели",
             "href": "/docs/architecture/listeners"
           }
-        ]
+        ],
+        "enabled": true
       },
       {
         "name": "Коммуникация сервисов",
@@ -54,7 +58,8 @@ export default [
         "name": "Сетевая инфраструктура",
         "href": "/docs/architecture/network"
       }
-    ]
+    ],
+    "enabled": true
   },
   {
     "name": "Справочная информация",
@@ -80,7 +85,8 @@ export default [
             "name": "Websocket",
             "href": "/docs/reference/collecting/websocket"
           }
-        ]
+        ],
+        "enabled": true
       },
       {
         "name": "Загрузка больших файлов",
@@ -104,6 +110,19 @@ export default [
           {
             "name": "Транспорт",
             "href": "/docs/reference/web-sdk/transport"
+          }
+        ]
+      },
+      {
+        "name": "Библиотеки для ClickHouse",
+        "items": [
+          {
+            "name": "Синхронная SimpleCH",
+            "href": "/docs/reference/a-simplech/simplech"
+          },
+          {
+            "name": "Асинхронная ASimpleCH",
+            "href": "/docs/reference/a-simplech/asimplech"
           }
         ]
       },
@@ -135,14 +154,15 @@ export default [
         "name": "Схема хранилища ClickHouse",
         "href": "/docs/reference/clickhouse/schema"
       }
-    ]
+    ],
+    "enabled": true
   },
   {
     "name": "Руководство пользователя",
     "items": [
       {
         "name": "Установка платформы",
-        "href": "/docs/guides/setup",
+        "href": "/docs/guides/setup/main",
         "enabled": true
       },
       {
@@ -186,7 +206,8 @@ export default [
         "name": "Подключение по VPN",
         "href": "/docs/guides/connect-vpn"
       }
-    ]
+    ],
+    "enabled": true
   },
   {
     "name": "Создание сервисов",
@@ -220,8 +241,7 @@ export default [
           },
           {
             "name": "Другие возможности",
-            "href": "/docs/build-service-band/other-functions",
-            "enabled": true
+            "href": "/docs/build-service-band/other-functions"
           }
         ]
       },
@@ -268,5 +288,16 @@ export default [
         "href": "/docs/tutorials/segmentation"
       }
     ]
+  },
+  {
+    "name": "Отладка сайта",
+    "items": [
+      {
+        "name": "Markdown typo",
+        "href": "/docs/debug/markdown-typo",
+        "enabled": true
+      }
+    ],
+    "enabled": true
   }
 ]

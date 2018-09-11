@@ -1,0 +1,130 @@
+import asset from 'next/asset'
+import { withDoc } from 'lib'
+import { Tip, Success, Alert, Info, Expand } from 'components'
+
+export const meta = {
+  title: '',
+}
+
+# Быстрый старт с Rockstat
+
+<Tip>
+В этом руководстве будет рассказан типичный сцераний установки Rockstat на ваш собственный сервер.
+</Tip>
+
+## Подготовка сервера к установке платформы
+
+### Минимальные требования
+
+Rockstat устанавливается на собственный сервер. Подходят как физические, так и виртуальные серверы.
+Для работы требуется конфигурация: **2+ CPU core, 8+ Gb MEM, 60+ Gb SSD disk** с OS **Ubuntu 16.04 64bit**;
+поддомен на основном домене, например **stat.rstat.org**. Для теста хватит конфигурации вдвое меньше.
+На больших нагрузках 5+ миллионой визитов в месяц требуется конфигурация больше.
+
+#### Выбор провайдера
+
+Для размещения в России хорошим вариантом является [Vscale](https://vscale?utm_source=rock.st),
+за границей будет достаточно бюджетного [Hetzner](https://hetzner.de?utm_source=rock.st).
+
+### Запуск сервера
+
+Запуск на примере облачного провайдера [Vscale](https://vscale.io/?utm_source=rock.st).
+Полсле регистрации в личном кабинете, можно сразу переходить к созданию сервера.
+На стартовом экране нажимаем **Создать сервер** и начинаем с выбора операционной системы.
+Требуется выбрать Ubuntu 16.04 64bit.
+
+![vscale start server](/static/images/docs/setup/start_server_vscale.jpg)
+
+Затем нужно выбрать размер будущего сервера:
+
+![vscale choose size](/static/images/docs/setup/choose_size_vscale.jpg)
+
+Выбрать локацию и присвоить отображаемое имя сервера
+
+![vscale start server](/static/images/docs/setup/vscale_location_hostname.jpg)
+
+Если вы не знаете, что такое SSH ключи, не трогайте эти поля.
+
+![vscale start server](/static/images/docs/setup/vscale_finish_create.jpg)
+
+
+Несколько секунд и сервер готов! Обязательно запишите имя прользователя и пароль, а затем и IP-адрес сервера.
+
+![vscale start server](/static/images/docs/setup/vscale_server_ready.jpg)
+
+### Базовые принципы конфигурации DNS зоны
+
+К этому момент должен иметься сервер с установленной операционной системой.
+Сервисов представляющих DNS хостинг великое множество и процесс каждого немного отличается, но суть одна и та же.
+Требуется добавить 2 дополнительные записи:
+
+```
+stat       A  1.2.3.4
+*.stat     A  1.2.3.4
+```
+
+#### Пример конфигурации для Vscale
+
+Внимание! Домен настраиваентся **не там**, где располоржен сервер, а там где зарегистрирован или обслуживается домен, а точноее его DNS-серверы.
+Уточните этот вопрос у вашего системного администратора. Для примера, покажем процесс настройки, если DNS серверы домена будут перенастроены на серверы Vscale.
+
+![vscale start server](/static/images/docs/setup/vscale_add_dns_domain.jpg)
+
+Далее переходим в интерфейс настройки DNS зоны
+
+![Vscale example](/static/images/docs/setup/dns_setup_vscale_example.jpg)
+
+Следующий этап это подключение к серверу для запуска процесса установки.
+
+#### Внешний вид зоны у Amazon AWS
+
+![Aws zone overview](/static/images/docs/setup/aws_dns_zone_overview.jpg)
+
+### Подключение к серверу
+
+На серверах не используются графические интерфейсы, для взаимодействия используется обычный текстовый терминал.
+Терминал Linux это вевероятно мощное орудие, используя которое можно проще и быстрее произвести настройку.
+
+#### Подключение к серверу в MacOS, Linux, etc...
+
+В Unix подобных системах, коими являются MacOS и Linix терминал всегда встроен в базовую поставку.
+Запустите терминал и подключитесь к серверу по имени домена,
+к которому привязали сервер, тем самым проверив корректность настройки.
+
+![vscale start server](/static/images/docs/setup/macos_terminal_overview.jpg)
+
+Для подключения к серверу по ssh, вводим:
+
+```bash
+ssh root@stat.pornhub.com
+```
+Все получилось, мы на сервере!
+
+![vscale start server](/static/images/docs/setup/macos_ssh_authorized.jpg)
+
+
+#### Подключение к серверу в Windows.
+
+<Info>
+В типовой поставке Windows нет ssh клиента, но есть сторонние, например <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank">putty</a>
+</Info>
+
+Следует воспользоваться одним из многоческленных руководств по использованию ["putty установка"](http://bit.ly/2CGTwme)
+
+export default withDoc({...meta})(({children}) => <>{children}</>)
+
+
+### Установщик
+
+Первый раз надо вып
+
+```bash
+$ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
+```
+
+Для изменения конфигурации и обновления используется тот же самый скрипт, только вызывать его можно коротким способом
+
+```shell
+$ rockstat
+```
+

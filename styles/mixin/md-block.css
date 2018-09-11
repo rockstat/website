@@ -5,7 +5,7 @@
     margin: 0.67em 0;
     &.$(name)-block .custom-block-body {
       background-color: $color1;
-      padding: 2rem 2rem;
+      padding: 1.6rem 3rem;
       // margin: 1rem 12rem;
       position: relative;
       &:before {

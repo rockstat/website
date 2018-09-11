@@ -170,7 +170,15 @@
 
     }
 
-    */
+        */
+
+    code, pre {
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    }
 
 
     pre {
@@ -184,6 +192,7 @@
       // border-radius: 3px;
       position: relative;
       margin: auto;
+x
       pre {
         // width: 100% !important;
         code {
@@ -259,11 +268,11 @@
 
   @add-mixin md-block tip, #F4FEFF, #00F0FF;
 
-  @add-mixin md-block success, #EDFFF9, #3FFFC0;
+  @add-mixin md-block success, #E5FFE6, #80FF81;
 
-  @add-mixin md-block info, #FCECFF, #D900FF;
+  @add-mixin md-block info, #EDFFF9, #3FFFC0;
 
-  @add-mixin md-block alert, #E5FFE6, #80FF81;
+  @add-mixin md-block alert, #FCECFF, #D900FF;
 
   .markdown-body .pl-v,
   .markdown-body .pl-smw {
@@ -864,7 +873,7 @@
     padding: 0;
     margin: 0;
     font-size: 75%;
-    word-break: normal;
+    // word-break: normal;
     white-space: pre;
     background: transparent;
     border: 0;

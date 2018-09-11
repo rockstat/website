@@ -1,5 +1,6 @@
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
+const path = require('path')
 const withMDX = require('@zeit/next-mdx')({
   options: {
     mdPlugins: [
@@ -7,8 +8,7 @@ const withMDX = require('@zeit/next-mdx')({
         tip: { classes: 'tip-block', title: 'optional' },
         info: { classes: 'info-block', title: 'optional' },
         success: { classes: 'success-block', title: 'optional' },
-        alert: { classes: 'alert-block', title: 'optional' },
-        expand: { classes: 'expand', title: 'expand' }
+        alert: { classes: 'alert-block', title: 'optional' }
       }]
     ]
   }
@@ -48,6 +48,9 @@ module.exports = withMDX(withCSS({
     // )
     // config.optimization = config.optimization || {};
     config.resolve.modules = ['node_modules', '.']
+    config.resolve.alias = {
+      'app': path.resolve(__dirname)
+    }
 
     config.module.rules.push(
       // {
@@ -58,6 +61,12 @@ module.exports = withMDX(withCSS({
       // {
       //   test: /\.(css)$/,
       //   use: extarctCSS,
+      //   exclude: /node_modules/,
+      // },
+      // {
+      //   test: /\.(yml|yaml)$/,
+      //   loader: 'yaml',
+      //   include: path.resolve('lib'),
       //   exclude: /node_modules/,
       // },
 

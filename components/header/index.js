@@ -5,10 +5,10 @@ import cl from 'classnames';
 import PropTypes from 'prop-types';
 
 import style from './header.css';
-import { headerMenu, langsMenu, linksMenu } from '../../constants';
+import { headerMenu, linksMenu } from '../../constants';
 
 import { createLinker } from '../../utils/url-maker'
-import { itemTarget } from '../../utils/menu'
+import { itemTarget } from '../../lib/menu'
 import { Logo } from '../logo';
 
 

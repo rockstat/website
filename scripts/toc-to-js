@@ -6,18 +6,21 @@ const path = require('path')
 
 
 const baseDir = path.join(__dirname, '..');
+const dataDir = path.join(baseDir, 'data')
 
 const setEnabled = (items) => {
-  let hasActiveChild = false;
+  let hasActiveItems = false;
   for (const item of items) {
-    let activeChild = false;
+    let hasActiveChild = false;
+    let fileExists = false;
+
     if (item.items) {
       const childData = setEnabled(item.items);
-      if (childData.hasActiveChild) {
-        activeChild = true;
+      if (childData.hasActiveItems) {
+        hasActiveChild = true;
       }
     }
-    let fileExists = false;
+
     if (item.href) {
       const fpath = path.join(baseDir, 'pages', item.href + '.mdx');
       const fdir = path.dirname(fpath)
@@ -26,17 +29,16 @@ const setEnabled = (items) => {
       }
       fileExists = fs.existsSync(fpath);
     }
-    if (fileExists){
+
+    if (fileExists || hasActiveChild) {
       item.enabled = true;
-      // hasActiveChild = true;
-      console.log(item.href)
+      hasActiveItems = true;
     }
   }
   return {
-    hasActiveChild
+    hasActiveItems
   }
 }
-
-const data = yaml.load(fs.readFileSync(path.join(baseDir, 'lib', 'data', 'docs.yml')));
+const data = yaml.load(fs.readFileSync(path.join(dataDir, 'docs.yml')));
 setEnabled(data)
-fs.writeFileSync(path.join(baseDir, 'lib', 'data', 'docs.js'), `export default ${JSON.stringify(data, undefined, 2)}`)
+fs.writeFileSync(path.join(dataDir, 'docs.js'), `export default ${JSON.stringify(data, undefined, 2)}`)

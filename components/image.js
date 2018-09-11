@@ -7,7 +7,7 @@
 // Because if you want to do that, you need to set the aspect
 // ratio of the image's container BEFORE the image loads
 
-const Image = ({
+export const Image = ({
   src,
   width,
   height,
@@ -79,4 +79,4 @@ const Image = ({
 
 export const Video = props => <Image {...props} video />
 
-export default Image
+// export default Image

@@ -8,9 +8,9 @@
   justify-content: space-between;
   align-items: baseline;
   padding: rem(31px 50px);
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0);
   &.activeBg {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   .noClick {
@@ -65,8 +65,8 @@
     }
   }
   &.documentation {
-    background-color: #fff;
-    border-bottom: 1px solid #E0E0E0;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(224, 244, 224, 0.7);
      .menu {
       .menuItemLgItem, .menuItem {
         a {

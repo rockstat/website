@@ -6,7 +6,7 @@ module.exports = {
     // 'postcss-extend-rule': {}, // precss
     // 'postcss-import': { },
     'postcss-mixins': {
-      mixinsDir: path.join(__dirname, 'lib', 'style', 'mixin')
+      mixinsDir: path.join(__dirname, 'styles', 'mixin')
     },
     'postcss-sassy-mixins': {},
     // 'postcss-simple-vars': {},

@@ -74,6 +74,15 @@
         - name: Транспорт
           href: /docs/reference/web-sdk/transport
 
+    - name: Библиотеки для ClickHouse
+      items:
+
+        - name: Синхронная SimpleCH
+          href: /docs/reference/a-simplech/simplech
+
+        - name: Асинхронная ASimpleCH
+          href: /docs/reference/a-simplech/asimplech
+
     - name: JSON-RPC 2.0 RST
       href: /docs/reference/json-rpc-rst
 
@@ -100,7 +109,7 @@
   items:
 
     - name: Установка платформы
-      href: /docs/guides/setup
+      href: /docs/guides/setup/main
 
     - name: Отслеживание событий на сайте
       href: /docs/guides/web-sdk/setup
@@ -190,4 +199,8 @@
     - name: Сегментация пользователей
       href: /docs/tutorials/segmentation
 
+- name: Отладка сайта
+  items:
 
+    - name: Markdown typo
+      href: /docs/debug/markdown-typo

@@ -27,6 +27,9 @@
     - WebSDK
       - Js API
       - Транспорт
+  - Библиотеки для ClickHouse
+      - Синхронная SimpleCH
+      - Асинхронная версия
   - JSON-RPC 2.0 RST
   - Director HTTP API
   - Front HTTP API

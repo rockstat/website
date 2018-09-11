@@ -1,4 +1,4 @@
-export * from './wrapper/index';
+export * from './wrapper/wrapper';
 export * from './everything';
 export * from './analytic';
 export * from './repository';

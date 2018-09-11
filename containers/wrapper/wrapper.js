@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Footer, Header } from '../../components';
+import { Footer, Header } from 'app/components';
 import PropTypes from 'prop-types';
 
 import '../../static/base/reset.css';

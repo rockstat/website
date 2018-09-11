@@ -1,8 +1,8 @@
 import asset from 'next/asset'
-import withDoc from '../../../lib/with-doc'
+import {withDoc} from '../../../lib/with-doc'
 
 import { TerminalInput } from '../../../components/text/terminal'
-import Image from '../../../components/image'
+import Image from 'components/image'
 
 export const meta = {
   title: 'Введение в Rockstat',
@@ -11,10 +11,10 @@ export const meta = {
 
 # Введение в Rockstat
 
-Rockstat - это платформа, это не просто система аналитики, это платформа для реализации своей собственной бизнес логики для автоматизации принятия решений;
-Из коробки доступна сессионная и событийная/продуктовая аналитика.
+Rockstat - это маркетинговая платформа, которая включает: браузерный трекер, серверный трекер, сервис сохранения данных в Clichouse и др.
+Главной особенностью является возможность простой автоматизации маркетинга, причем возможны как триггерные действия, так и на основле ранее собранных данных.
 
-![Rockstat scheme](/static/media/schemas/rockstat-main-components.svg)
+![Rockstat main components](/static/media/schemas/rockstat-main-components.svg)
 
 ## Исходный код
 

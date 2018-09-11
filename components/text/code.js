@@ -12,47 +12,17 @@ Code.contextTypes = {
   darkBg: PropTypes.bool
 }
 
-
-// <style jsx>
-//       {`
-//         pre {
-//           border: 1px solid #eaeaea;
-//           padding: 20px;
-//           margin: 24px 0 40px;
-//           white-space: pre;
-//           overflow: auto;
-//           -webkit-overflow-scrolling: touch;
-//         }
-//         code {
-//           color: #bd10e0;
-//           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-//             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-//             serif;
-//           font-size: 13px;
-//           line-height: 20px;
-//         }
-//         pre.dark {
-//           border-color: #333;
-//         }
-//         .dark code {
-//           color: #fff;
-//         }
-//         .dark.shell code {
-//           color: #50e3c2;
-//         }
-//       `}
-//     </style>
-
 export const InlineCode = ({ children, noWrap }) => (
   <code className={noWrap && 'no-wrap'}>
     {children}
-    <style jsx>
+    {/* <style jsx>
       {`
+        /* Menlo, Monaco, Lucida Console, Liberation Mono,
+        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
+        serif;/*
         code {
           color: #bd10e0;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-            serif;
+          font-family:
           font-size: 0.9em;
           white-space: pre-wrap;
         }
@@ -60,15 +30,7 @@ export const InlineCode = ({ children, noWrap }) => (
         code.no-wrap {
           white-space: nowrap;
         }
-
-        code::before {
-          content: '\`';
-        }
-
-        code::after {
-          content: '\`';
-        }
       `}
-    </style>
+    </style> */}
   </code>
 )

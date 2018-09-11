@@ -1,6 +1,5 @@
 import * as React from 'react';
 import style from './sideMenu.css';
-import styleCommon from '../../lib/style/common.css';
 import cls from 'classnames';
 import { Link } from '../../next-routes'
 import { ShowIf } from '..'
@@ -35,16 +34,16 @@ export class SideMenu extends React.Component {
     const { lang } = this.props;
     const { activeMenuItem } = this.state;
     return (
-      <div 
-        className={cls(style.childItem, {[style.active]: activeMenuItem.indexOf(index) > -1})} key={href || name} 
+      <div
+        className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(index) > -1 })} key={href || name}
       >
         <ShowIf condition={href}>
           <Link route={href} params={{ lang }}>
-            <a className={cls({ [styleCommon['disabled-link']]: !enabled })}>{name}</a>
+            <a className={cls({ [style['disabled-link']]: !enabled })}>{name}</a>
           </Link>
         </ShowIf>
         <ShowIf condition={!href}>
-          <span onClick={this.setActiveMenuItem.bind(this, index)} className={cls(style.itemTwo, { [styleCommon['disabled-link']]: !enabled })}>
+          <span onClick={this.setActiveMenuItem.bind(this, index)} className={cls({ [style.itemTwo]: true, [style['disabled-link']]: !enabled })}>
             <ShowMenuIcon /> {name}
           </span>
         </ShowIf>
@@ -54,7 +53,7 @@ export class SideMenu extends React.Component {
             <div className={style.childItemTree} key={href || name}>
               <span>
                 <Link route={href} params={{ lang }}>
-                  <a className={cls({ [styleCommon['disabled-link']]: !enabled })}>{name}</a>
+                  <a className={cls({ [style['disabled-link']]: !enabled })}>{name}</a>
                 </Link>
               </span>
             </div>
@@ -78,17 +77,17 @@ export class SideMenu extends React.Component {
     const { showMenu } = this.state;
 
     return [
-      <div key={0} className={cls(style.sideBar, {[style.show]: showMenu})}>
+      <div key={0} className={cls(style.sideBar, { [style.show]: showMenu })}>
         <div className={style.floatLogo}>
           <Logo />
         </div>
         {menuData.map(category => this.renderCategory(category))}
       </div>,
-      <div key={1} className={cls(style.closebtn, {[style.show]: showMenu})} onClick={this.changeMenu}>X</div>,
-      <div 
+      <div key={1} className={cls(style.closebtn, { [style.show]: showMenu })} onClick={this.changeMenu}>X</div>,
+      <div
         key={2}
         onClick={this.changeMenu}
-        className={cls(style.mobileShowMenu, {[style.show]: showMenu})}
+        className={cls(style.mobileShowMenu, { [style.show]: showMenu })}
       >
         Выберите раздел
       </div>
