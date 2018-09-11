@@ -68,7 +68,7 @@ export class Footer extends React.Component {
           </div>
         </div>
 
-        <div className={style.socialMenu}>
+        {/* <div className={style.socialMenu}>
           {
             linksMenu.map((item, index) => {
               return (
@@ -78,7 +78,7 @@ export class Footer extends React.Component {
               )
             })
           }
-        </div>
+        </div> */}
 
         <div className={style.bottom}>
           <span>Cодержимое данного сайта доступно по лицензии Creative Commons Attribution 4.0</span>
