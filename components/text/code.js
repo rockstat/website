@@ -12,18 +12,17 @@ Code.contextTypes = {
   darkBg: PropTypes.bool
 }
 
+
+/* */
+
 export const InlineCode = ({ children, noWrap }) => (
   <code className={noWrap && 'no-wrap'}>
     {children}
-    {/* <style jsx>
+    <style jsx>
       {`
-        /* Menlo, Monaco, Lucida Console, Liberation Mono,
-        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-        serif;/*
+
         code {
           color: #bd10e0;
-          font-family:
-          font-size: 0.9em;
           white-space: pre-wrap;
         }
 
@@ -31,6 +30,6 @@ export const InlineCode = ({ children, noWrap }) => (
           white-space: nowrap;
         }
       `}
-    </style> */}
+    </style>
   </code>
 )

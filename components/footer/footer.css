@@ -115,9 +115,14 @@
   .bottom {
     display: flex;
     justify-content: space-between;
+    a {
+      color: #ddd;
+    }
     span {
       @mixin raleway-regular 12px;
       color: #BDBDBD;
+      // display: block;
+      // max-width: 500px;
     }
     .footerTextMobile {
       display: none;

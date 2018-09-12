@@ -1,4 +1,10 @@
 const digitalGodWeb = 'https://digitalgod.be';
+const RST_FB = 'https://fb.com/rockstat.pub';
+const RST_TG = 'https://t.me/rockstats';
+const RST_GH = 'https://github.com/rockstat';
+const TG_TITLE = 'Telegram'
+const FB_TITLE = 'Facebook'
+const GH_TITLE = 'GitHub'
 
 export const langsMenu = [
   {
@@ -36,18 +42,18 @@ export const headerMenu = [
 
 export const linksMenu = [
   {
-    name: 'Facebook',
-    path: 'https://www.facebook.com/rockstatX/',
+    name: FB_TITLE,
+    path: RST_FB,
     newTab: true
   },
   {
-    name: 'Telegram',
-    path: 'https://t.me/rockstats',
+    name: TG_TITLE,
+    path: RST_TG,
     newTab: true
   },
   {
-    name: 'Github',
-    path: 'https://github.com/rockstat',
+    name: GH_TITLE,
+    path: RST_GH,
     newTab: true
   }
 ];
@@ -58,16 +64,13 @@ export const footerMenu = [
     path: '/docs',
     children: [
       {
-        name: 'ахитектура',
-        page: 'docs',
-        slug: 'arhitecture',
-        path: '/docs/arhitecture',
-        active: false
+        name: 'Быстрый старт',
+        path: '/docs/intro/getting-started',
+        active: true
       },
       {
-        name: 'сбор данных',
-        page: 'docs',
-        path: '/docs/get_data',
+        name: 'Архитектура',
+        path: '/docs/architecture/overview',
         active: true
       },
       {
@@ -115,22 +118,22 @@ export const footerMenu = [
     event: false,
     children: [
       {
-        name: 'Facebook',
-        path: 'https://www.facebook.com/',
+        name: FB_TITLE,
+        path: RST_FB,
         active: true,
         target: true,
         newTab: true
       },
       {
-        name: 'Telegram',
-        path: 'https://t.me/rockstats',
+        name: TG_TITLE,
+        path: RST_TG,
         active: true,
         target: true,
         newTab: true
       },
       {
-        name: 'Github',
-        path: 'https://github.com/rockstat',
+        name: GH_TITLE,
+        path: RST_GH,
         active: true,
         target: true,
         newTab: true
@@ -147,11 +150,6 @@ export const footerRightMenu = [
   },
   {
     name: 'Блог',
-    path: '/',
-    active: false
-  },
-  {
-    name: 'Premium support',
     path: '/',
     active: false
   }

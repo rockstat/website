@@ -1,6 +1,6 @@
 import asset from 'next/asset'
 import { withDoc } from 'lib'
-import { Tip, Success, Alert, Info, Expand } from 'components'
+import { Tip, Success, Alert, Info, Expand, Image } from 'components'
 
 export const meta = {
   title: '',
@@ -96,11 +96,11 @@ stat       A  1.2.3.4
 Для подключения к серверу по ssh, вводим:
 
 ```bash
-ssh root@stat.pornhub.com
+ssh root@stat.rstat.org
 ```
 Все получилось, мы на сервере!
 
-![vscale start server](/static/images/docs/setup/macos_ssh_authorized.jpg)
+![ssh authorized](/static/images/docs/setup/terminal-authorized.svg)
 
 
 #### Подключение к серверу в Windows.
@@ -111,20 +111,39 @@ ssh root@stat.pornhub.com
 
 Следует воспользоваться одним из многоческленных руководств по использованию ["putty установка"](http://bit.ly/2CGTwme)
 
-export default withDoc({...meta})(({children}) => <>{children}</>)
-
 
 ### Установщик
 
-Первый раз надо вып
-
-```bash
-$ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
-```
-
-Для изменения конфигурации и обновления используется тот же самый скрипт, только вызывать его можно коротким способом
+Установка минимального набора зависимостей, требующихся для запуска установщика
 
 ```shell
-$ rockstat
+sudo apt -qqy update && sudo apt -qqy install curl
 ```
 
+![vscale start server](/static/images/docs/setup/setup_minimal_deps.jpg)
+
+
+Для запуска установщика, выполните:
+
+```shell
+curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
+```
+В дальнейшем для изменения конфигурации или обновления платформы используется тот же самый установщик, но теперь он будет доступен по команде `rockstat`
+
+![vscale start server](/static/images/docs/setup/kickstart-startring.svg)
+
+После продготовки системы предстоит ответить на несколько простых вопросов.
+
+![vscale start server](/static/images/docs/setup/kickstart-enter-domain.svg)
+
+
+![vscale start server]()
+
+
+#### Изменение конфигурации
+
+```shell
+rockstat
+```
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

@@ -71,6 +71,7 @@
     "postcss-simple-vars": "^4.1.0",
     "prop-types": "^15.6.1",
     "remark-custom-blocks": "^2.2.3",
+    "svg-inline-loader": "^0.8.0",
     "svgo": "^1.0.5",
     "yaml-loader": "^0.5.0"
   }

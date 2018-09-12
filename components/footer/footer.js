@@ -81,11 +81,13 @@ export class Footer extends React.Component {
         </div> */}
 
         <div className={style.bottom}>
-          <span>Cодержимое данного сайта доступно по лицензии Creative Commons Attribution 4.0</span>
+          <span>
+            Содержимое сайта доступно по лицензии <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-NC-SA</a>; в некоторых случаях могут действовать дополнительные условия. Dmitry Rodin, 2018
+          </span>
 
           <span className={style.footerTextMobile}>Dmitry Rodin, 2021</span>
 
-          <span>Конфиденциальность и персональные данные</span>
+          {/* <span>Конфиденциальность и персональные данные</span> */}
         </div>
       </footer>
     )
