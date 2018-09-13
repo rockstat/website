@@ -2,7 +2,7 @@
   "name": "rockstat",
   "scripts": {
     "start:dev": "node scripts/toc-to-js && node server.js",
-    "start": "node scripts/toc-to-js && NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node server.js",
     "build:dev": "next build",
     "build": "NODE_ENV=production next build",
     "build:toc": "node scripts/toc-to-js",

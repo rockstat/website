@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 767 370" width="767" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="90" rows="17"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[:root {
+            --animation-duration: 15300ms;
+        }
+        
+        #screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+        }]]></style>
+        <style type="text/css" id="user-style">
+            /* gjm8 color theme (source: https://terminal.sexy/) */
+            .foreground {fill: #f8f8f8}
+            .background {fill: #1b1d1e}
+            .color0 {fill: #1b1d1e}
+            .color1 {fill: #f92672}
+            .color2 {fill: #4df840}
+            .color3 {fill: #f4fd22}
+            .color4 {fill: #2757d6}
+            .color5 {fill: #8c54fe}
+            .color6 {fill: #38c8b5}
+            .color7 {fill: #ccccc6}
+            .color8 {fill: #505354}
+            .color9 {fill: #ff5995}
+            .color10 {fill: #b6e354}
+            .color11 {fill: #feed6c}
+            .color12 {fill: #3f78ff}
+            .color13 {fill: #9e6ffe}
+            .color14 {fill: #23cfd5}
+            .color15 {fill: #f8f8f2}
+        </style>
+    </defs>
+    <rect id="terminalui" class="background" width="100%" height="100%" ry="4.5826941"/>
+    <circle cx="24" cy="23" r="7" class="color1"/>
+    <circle cx="44" cy="23" r="7" class="color3"/>
+    <circle cx="64" cy="23" r="7" class="color2"/>
+    <svg id="screen" width="720" x="23" y="50" viewBox="0 0 720 289" preserveAspectRatio="xMidYMin meet">
+        <defs><g id="g1"><text class="color9" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="0">user</text><text class="color11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="8" x="32">@</text><text class="color14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="24" x="40">DR&#160;</text><text class="color11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="16" x="64">~&#160;</text><text class="color13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="16" x="80">$&#160;</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="96">&#160;</text></g><g id="g2"><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="0">&#160;</text></g><g id="g3"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="256" x="0">root@stat.rstat.org's&#160;password:&#160;</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="256">&#160;</text></g><g id="g4"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="136" x="0">root@cs343281:~#&#160;</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="136">&#160;</text></g><g id="g5"><text class="color9" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="0">user</text><text class="color11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="8" x="32">@</text><text class="color14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="24" x="40">DR&#160;</text><text class="color11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="16" x="64">~&#160;</text><text class="color13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="16" x="80">$&#160;</text><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="184" x="96">ssh&#160;root@stat.rstat.org</text></g><g id="g6"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="256" x="0">root@stat.rstat.org's&#160;password:&#160;</text></g><g id="g7"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="528" x="0">Welcome&#160;to&#160;Ubuntu&#160;16.04.5&#160;LTS&#160;(GNU/Linux&#160;4.4.0-133-generic&#160;x86_64)</text></g><g id="g13"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="376" x="0">individual&#160;files&#160;in&#160;/usr/share/doc/*/copyright.</text></g><g id="g12"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="528" x="0">the&#160;exact&#160;distribution&#160;terms&#160;for&#160;each&#160;program&#160;are&#160;described&#160;in&#160;the</text></g><g id="g8"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="336" x="0">&#160;*&#160;Documentation:&#160;&#160;https://help.ubuntu.com</text></g><g id="g10"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="376" x="0">&#160;*&#160;Support:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;https://ubuntu.com/advantage</text></g><g id="g14"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="544" x="0">Ubuntu&#160;comes&#160;with&#160;ABSOLUTELY&#160;NO&#160;WARRANTY,&#160;to&#160;the&#160;extent&#160;permitted&#160;by</text></g><g id="g15"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="120" x="0">applicable&#160;law.</text></g><g id="g11"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="504" x="0">The&#160;programs&#160;included&#160;with&#160;the&#160;Ubuntu&#160;system&#160;are&#160;free&#160;software;</text></g><g id="g9"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="400" x="0">&#160;*&#160;Management:&#160;&#160;&#160;&#160;&#160;https://landscape.canonical.com</text></g><g id="g16"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="136" x="0">root@cs343281:~#&#160;</text></g></defs><rect class="background" height="100%" width="100%" x="0" y="0"/><g display="none"><rect class="foreground" height="17" width="8" x="96" y="0"/><use y="0" xlink:href="#g1"/><animate attributeName="display" begin="0ms; anim_last.end" dur="2000ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="0" y="17"/><use y="17" xlink:href="#g2"/><animate attributeName="display" begin="2000ms; anim_last.end+2000ms" dur="300ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="256" y="17"/><use y="17" xlink:href="#g3"/><animate attributeName="display" begin="2300ms; anim_last.end+2300ms" dur="2000ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="0" y="34"/><use y="34" xlink:href="#g2"/><animate attributeName="display" begin="4300ms; anim_last.end+4300ms" dur="1000ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="0" y="255"/><use y="255" xlink:href="#g2"/><animate attributeName="display" begin="5300ms; anim_last.end+5300ms" dur="35ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="136" y="255"/><use y="255" xlink:href="#g4"/><animate attributeName="display" begin="5335ms; anim_last.end+5335ms" dur="8965ms" from="inline" to="inline"/></g><g display="none"><use y="0" xlink:href="#g5"/><animate attributeName="display" begin="2000ms; anim_last.end+2000ms" dur="13300ms" from="inline" to="inline"/></g><g display="none"><use y="17" xlink:href="#g6"/><animate attributeName="display" begin="4300ms; anim_last.end+4300ms" dur="11000ms" from="inline" to="inline"/></g><g display="none"><use y="34" xlink:href="#g7"/><use y="68" xlink:href="#g8"/><use y="85" xlink:href="#g9"/><use y="102" xlink:href="#g10"/><use y="136" xlink:href="#g11"/><use y="153" xlink:href="#g12"/><use y="170" xlink:href="#g13"/><use y="204" xlink:href="#g14"/><use y="221" xlink:href="#g15"/><animate attributeName="display" begin="5300ms; anim_last.end+5300ms" dur="10000ms" from="inline" to="inline"/></g><g display="none"><use y="255" xlink:href="#g16"/><rect class="foreground" height="17" width="8" x="0" y="272"/><use y="272" xlink:href="#g2"/><animate attributeName="display" begin="14300ms; anim_last.end+14300ms" dur="1000ms" from="inline" to="inline" id="anim_last"/></g></svg>
+</svg>
