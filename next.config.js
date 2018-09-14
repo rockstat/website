@@ -77,6 +77,10 @@ module.exports = withMDX(withCSS({
       {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
+      },
+      {
+        test: /\.(c|d|t)sv$/, // load all .csv, .dsv, .tsv files with dsv-loader
+        use: ['dsv-loader'] // or dsv-loader?delimiter=,
       }
       // {
       //   test: /\.(png|jpg|gif)$/,

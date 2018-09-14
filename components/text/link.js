@@ -1,6 +1,7 @@
 // Packages
-import NativeLink from 'next/link'
-import PropTypes from 'prop-types'
+import NativeLink from 'next/link';
+import PropTypes from 'prop-types';
+import { Link } from 'app/next-routes';
 
 export const GenericLink = props => {
   if (props.href.startsWith('/docs') || props.href.startsWith('/api')) {
@@ -13,36 +14,13 @@ export const GenericLink = props => {
 
   return <ExternalLink {...props} />
 }
-
-export const InternalLink = ({ href, as, children, darkBg }) => (
-  <NativeLink prefetch href={href} as={as}>
+//prefetch
+export const InternalLink = ({ href, children, darkBg, ...rest }) => (
+  <Link route={href}>
     <a className={darkBg ? 'dark' : ''}>
       {children}
-
-      <style jsx>
-        {`
-          a {
-            text-decoration: none;
-            color: #067df7;
-            font-size: inherit;
-          }
-
-          a:hover {
-            text-decoration: underline;
-          }
-
-          a.dark {
-            color: #fff;
-            border-bottom: 1px solid #fff;
-          }
-
-          a.dark:hover {
-            text-decoration: none;
-          }
-        `}
-      </style>
     </a>
-  </NativeLink>
+  </Link>
 )
 
 InternalLink.contextTypes = {

@@ -7,8 +7,8 @@
     - name: Быстрый старт
       href: /docs/intro/getting-started
 
-    - name: Список изменений
-      href: /docs/intro/changelog
+    - name: Лог разработки
+      href: /docs/what-s-new
 
 
 - name: Архитектура

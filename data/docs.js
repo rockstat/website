@@ -13,8 +13,9 @@ export default [
         "enabled": true
       },
       {
-        "name": "Список изменений",
-        "href": "/docs/intro/changelog"
+        "name": "Лог разработки",
+        "href": "/docs/what-s-new",
+        "enabled": true
       }
     ],
     "enabled": true
