@@ -19,7 +19,7 @@ export class Footer extends React.Component {
         <div className={style.top}>
           <div className={style.logo}>
             <LogoIcon />
-            <span>Dmitry Rodin, 2021</span>
+            <span>2021</span>
           </div>
           <div className={style.menu}>
             {
@@ -82,12 +82,13 @@ export class Footer extends React.Component {
 
         <div className={style.bottom}>
           <span>
-            Содержимое сайта доступно по лицензии <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-NC-SA</a>; в некоторых случаях могут действовать дополнительные условия. Dmitry Rodin, 2018
+            Содержимое сайта доступно по лицензии <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-NC-SA</a>, Dmitry Rodin, 2018 /
+            В некоторых случаях могут действовать дополнительные условия.
           </span>
 
           <span className={style.footerTextMobile}>Dmitry Rodin, 2021</span>
 
-          {/* <span>Конфиденциальность и персональные данные</span> */}
+          {/* <span>В некоторых случаях могут действовать дополнительные условия.</span> */}
         </div>
       </footer>
     )

@@ -98,7 +98,8 @@ export default [
         "items": [
           {
             "name": "Общее",
-            "href": "/docs/reference/web-sdk/common"
+            "href": "/docs/reference/web-sdk/common",
+            "enabled": true
           },
           {
             "name": "JavaScript api",
@@ -112,7 +113,8 @@ export default [
             "name": "Транспорт",
             "href": "/docs/reference/web-sdk/transport"
           }
-        ]
+        ],
+        "enabled": true
       },
       {
         "name": "Библиотеки для ClickHouse",
@@ -163,8 +165,7 @@ export default [
     "items": [
       {
         "name": "Установка платформы",
-        "href": "/docs/guides/setup/main",
-        "enabled": true
+        "href": "/docs/guides/setup/main"
       },
       {
         "name": "Отслеживание событий на сайте",
@@ -207,8 +208,7 @@ export default [
         "name": "Подключение по VPN",
         "href": "/docs/guides/connect-vpn"
       }
-    ],
-    "enabled": true
+    ]
   },
   {
     "name": "Создание сервисов",

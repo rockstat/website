@@ -31,15 +31,13 @@ export class SideMenu extends React.Component {
   }
 
   renderItem({ name, href, enabled, items }, index) {
-    const { lang } = this.props;
+    const { lang, pathname } = this.props;
     const { activeMenuItem } = this.state;
     return (
-      <div
-        className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(index) > -1 })} key={href || name}
-      >
+      <div className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(index) > -1 })} key={href || name}>
         <ShowIf condition={href}>
           <Link route={href} params={{ lang }}>
-            <a className={cls({ [style['disabled-link']]: !enabled })}>{name}</a>
+            <a className={cls({ [style['disabled-link']]: !enabled, [style.active]: pathname === href })}>{name}</a>
           </Link>
         </ShowIf>
         <ShowIf condition={!href}>
@@ -53,7 +51,7 @@ export class SideMenu extends React.Component {
             <div className={style.childItemTree} key={href || name}>
               <span>
                 <Link route={href} params={{ lang }}>
-                  <a className={cls({ [style['disabled-link']]: !enabled })}>{name}</a>
+                  <a className={cls({ [style['disabled-link']]: !enabled, [style.active]: pathname === href })}>{name}</a>
                 </Link>
               </span>
             </div>

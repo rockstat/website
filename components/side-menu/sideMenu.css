@@ -120,6 +120,9 @@
         a {
           color: #fff;
           text-decoration: none;
+          &:hover, &.active {
+            color: #00F0FF;
+          }
         }
         .childItemTreeContainer {
           display: none;

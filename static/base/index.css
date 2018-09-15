@@ -562,6 +562,9 @@ x
   .markdown-body ul  {
     list-style-position: outside;
     list-style-type: none;
+    & > li {
+      text-indent: -0.8rem;
+    }
 
     li::before {
       content: '\2014';
