@@ -7,7 +7,7 @@
     - name: Быстрый старт
       href: /docs/intro/getting-started
 
-    - name: Лог разработки
+    - name: Что нового
       href: /docs/what-s-new
 
 
@@ -41,7 +41,29 @@
 - name: Справочная информация
   items:
 
-    - name: Прием данных
+    - name: Web-SDK
+      items:
+
+        - name: Сниппет и конфигурация
+          href: /docs/reference/web-sdk/snippet-and-configuration
+
+        - name: Базовая структура событий
+          href: /docs/reference/web-sdk/event-struct
+
+        - name: Автоматичексие события
+          href: /docs/reference/web-sdk/auto-track
+
+        - name: Построение сессий
+          href: /docs/reference/web-sdk/sessions
+
+        - name: JavaScript api
+          href: /docs/reference/web-sdk/js-api
+
+        - name: Транспорт
+          href: /docs/reference/web-sdk/transport
+
+
+    - name: Каналы получения данных
       items:
 
         - name: GET,POST (webhook/postback)
@@ -56,25 +78,19 @@
         - name: Websocket
           href: /docs/reference/collecting/websocket
 
-    - name: Загрузка больших файлов
-      href: /docs/reference/collecting/large-files
+        - name: Загрузка больших файлов
+          href: /docs/reference/collecting/large-files
 
-    - name: Web-SDK
+    - name: Обзор конфигурации
       items:
 
-        - name: Общее
-          href: /docs/reference/web-sdk/common
+        - name: Переменные окружения
+          href: /docs/reference/environment
 
-        - name: JavaScript api
-          href: /docs/reference/web-sdk/js-api
+        - name: Карта путей
+          href: /docs/reference/directories
 
-        - name: Авто-отслеживание
-          href: /docs/reference/web-sdk/auto-track
-
-        - name: Транспорт
-          href: /docs/reference/web-sdk/transport
-
-    - name: Библиотеки для ClickHouse
+    - name: SimpleClickHouse
       items:
 
         - name: Синхронная SimpleCH
@@ -91,9 +107,6 @@
 
     - name: Front API
       href: /docs/reference/font-service/api
-
-    - name: Переменные окружения
-      href: /docs/reference/environment
 
     - name: API band framework
       href: /docs/reference/band-framework/api

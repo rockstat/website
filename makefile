@@ -13,4 +13,5 @@ push:
 	git push origin master --tags
 
 deploy:
-	now --public && now alias set $(pbpaste) rock.st
+	now --public && now alias
+  # set $(pbpaste) rock.st

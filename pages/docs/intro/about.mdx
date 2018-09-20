@@ -1,8 +1,6 @@
 import asset from 'next/asset'
-import {withDoc} from '../../../lib/with-doc'
-
-import { TerminalInput } from '../../../components/text/terminal'
-import {Image} from 'components/image'
+import {withDoc} from 'app/lib'
+import {Expand} from 'app/components'
 
 export const meta = {
   title: 'Введение в Rockstat',
@@ -14,13 +12,10 @@ export const meta = {
 Rockstat - это маркетинговая платформа, которая включает: браузерный трекер, серверный трекер, сервис сохранения данных в Clichouse и др.
 Главной особенностью является возможность простой автоматизации маркетинга, причем возможны как триггерные действия, так и на основле ранее собранных данных.
 
-![Rockstat main components](/static/media/schemas/rockstat-main-components.svg)
 
-## Исходный код
-
-[[tip]]
-|[https://github.com/rockstat](https://github.com/alcolytics)  не забываем ставить ⭐!
-
+<Expand>
+  <img src="/static/images/docs/schemas/common-scheme.svg"/>
+</Expand>
 
 ## Лицензия
 

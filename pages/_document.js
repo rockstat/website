@@ -6,14 +6,28 @@ You could include it into the page using either next/head or a custom _document.
 
 import Document, { Head, Main, NextScript } from 'next/document'
 import { string } from 'prop-types'
+import gtmParts, { buildParts } from 'react-google-tag-manager';
 
 const defaultDescription = ''
 const defaultOGURL = ''
 const defaultOGImage = ''
 
+
 export default class MyDocument extends Document {
+  // static propTypes = {
+  //   gtmId: PropTypes.string,
+  // }
+
   render() {
     const { props } = this;
+    const gtm = gtmParts({
+      id: 'GTM-5HMC8Z4',
+      dataLayerName: 'dataLayer',
+      additionalEvents: {},
+      previewVariables: false,
+      scheme: 'https:',
+    });
+
     return (
       <html>
         <Head>
@@ -36,8 +50,10 @@ export default class MyDocument extends Document {
           <meta property="og:image:height" content="630" />
           {/* <link rel="stylesheet" href="/_next/static/css/style.css" /> */}
           {/* <link rel='stylesheet' href='/_next/static/style.css'/> */}
+          {gtm.scriptAsReact()}
         </Head>
         <body>
+          {gtm.noScriptAsReact()}
           <Main />
           <NextScript />
         </body>

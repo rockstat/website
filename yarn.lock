@@ -6777,6 +6777,10 @@ react-error-overlay@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
+react-google-tag-manager@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-google-tag-manager/-/react-google-tag-manager-2.2.1.tgz#b0659c7b19d9263c7cb45d3c019f506529af9077"
+
 react-highlight@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/react-highlight/-/react-highlight-0.12.0.tgz#34de986a0bfdf228904d0c269b69538d95b35802"

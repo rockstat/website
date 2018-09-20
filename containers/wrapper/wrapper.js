@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { Footer, Header } from 'app/components';
 import PropTypes from 'prop-types';
+import { withRouter } from 'next/router'
+import { pageview } from 'app/lib/gtm';
+import Router from 'next/router'
+
 
 import '../../static/base/reset.css';
 import '../../static/base/index.css';
 import '../../static/base/hljs/tomorrow-night-bright.css';
 
-export class Wrapper extends React.Component {
+class WrapperClass extends React.Component {
   static propTypes = {
     headerBgActive: PropTypes.bool,
     linkMenuPosition: PropTypes.string,
@@ -14,11 +18,26 @@ export class Wrapper extends React.Component {
     documentation: PropTypes.bool
   }
 
+  componentDidMount() {
+    const { asPath } = this.props.router;
+    const dataLayerVar = 'dataLayer';
+    if (window[dataLayerVar]) {
+      window[dataLayerVar].push({ 'event': 'page' , 'path': asPath});
+    }
+  }
+
+  trackPageView = () => {
+
+  }
+
+  componentWillUnmount() {
+    // this.props.router.events.off('routeChangeComplete', this.trackPageview);
+  }
+
   render() {
     const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
-
     return (
-      <div className={'rockstat-container'} style={{width: '100%'}}>
+      <div className={'rockstat-container'} style={{ width: '100%' }}>
         <Header
           lang={lang}
           headerBgActive={headerBgActive}
@@ -27,10 +46,12 @@ export class Wrapper extends React.Component {
           activeSection={activeSection}
         />
         <div className={'rockstat-container-content'}>
-          { this.props.children }
+          {this.props.children}
         </div>
         <Footer lang={lang} />
       </div>
     )
   }
 }
+
+export const Wrapper = withRouter(WrapperClass);

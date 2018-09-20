@@ -13,7 +13,7 @@ export default [
         "enabled": true
       },
       {
-        "name": "Лог разработки",
+        "name": "Что нового",
         "href": "/docs/what-s-new",
         "enabled": true
       }
@@ -66,7 +66,42 @@ export default [
     "name": "Справочная информация",
     "items": [
       {
-        "name": "Прием данных",
+        "name": "Web-SDK",
+        "items": [
+          {
+            "name": "Сниппет и конфигурация",
+            "href": "/docs/reference/web-sdk/snippet-and-configuration",
+            "enabled": true
+          },
+          {
+            "name": "Базовая структура событий",
+            "href": "/docs/reference/web-sdk/event-struct",
+            "enabled": true
+          },
+          {
+            "name": "Автоматичексие события",
+            "href": "/docs/reference/web-sdk/auto-track",
+            "enabled": true
+          },
+          {
+            "name": "Построение сессий",
+            "href": "/docs/reference/web-sdk/sessions",
+            "enabled": true
+          },
+          {
+            "name": "JavaScript api",
+            "href": "/docs/reference/web-sdk/js-api",
+            "enabled": true
+          },
+          {
+            "name": "Транспорт",
+            "href": "/docs/reference/web-sdk/transport"
+          }
+        ],
+        "enabled": true
+      },
+      {
+        "name": "Каналы получения данных",
         "items": [
           {
             "name": "GET,POST (webhook/postback)",
@@ -85,39 +120,29 @@ export default [
           {
             "name": "Websocket",
             "href": "/docs/reference/collecting/websocket"
+          },
+          {
+            "name": "Загрузка больших файлов",
+            "href": "/docs/reference/collecting/large-files"
           }
         ],
         "enabled": true
       },
       {
-        "name": "Загрузка больших файлов",
-        "href": "/docs/reference/collecting/large-files"
-      },
-      {
-        "name": "Web-SDK",
+        "name": "Обзор конфигурации",
         "items": [
           {
-            "name": "Общее",
-            "href": "/docs/reference/web-sdk/common",
-            "enabled": true
+            "name": "Переменные окружения",
+            "href": "/docs/reference/environment"
           },
           {
-            "name": "JavaScript api",
-            "href": "/docs/reference/web-sdk/js-api"
-          },
-          {
-            "name": "Авто-отслеживание",
-            "href": "/docs/reference/web-sdk/auto-track"
-          },
-          {
-            "name": "Транспорт",
-            "href": "/docs/reference/web-sdk/transport"
+            "name": "Карта путей",
+            "href": "/docs/reference/directories"
           }
-        ],
-        "enabled": true
+        ]
       },
       {
-        "name": "Библиотеки для ClickHouse",
+        "name": "SimpleClickHouse",
         "items": [
           {
             "name": "Синхронная SimpleCH",
@@ -140,10 +165,6 @@ export default [
       {
         "name": "Front API",
         "href": "/docs/reference/font-service/api"
-      },
-      {
-        "name": "Переменные окружения",
-        "href": "/docs/reference/environment"
       },
       {
         "name": "API band framework",

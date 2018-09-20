@@ -5,6 +5,19 @@ export const meta = {
   title: 'Приемы',
 }
 
+# Webhooks / Postback / etc...
+
+Это обычные HTTP запросы от сервера к серверу.
+В некоторых сервисах может называться HTTP нотификацией, как в случае с CoMagic.
+Поддерживаются повсеместно:
+
+  * CRM системы
+  * Коллтрекинги
+  * CPA-трекеры: например Affise, HasOffers...
+  * Мобильные трекеры: Yandex Metrika, AppsFlyer...
+  * И множество других
+
+
 ## Endpoint
 
 ```shell
@@ -22,7 +35,7 @@ GET  https://yourdomain/<service>/<event_name>?param=values&...
 Пример:
 
 ```
-GET  https://домен/wh/secret-action?param1=pamparam&pam=pam
+GET  https://yourdomain/wh/secret-action?param1=pamparam&pam=pam
 ```
 
 ## Формат входящих данных
@@ -30,6 +43,13 @@ GET  https://домен/wh/secret-action?param1=pamparam&pam=pam
 * GET запросы
 * POST с данными в JSON или URLEncoded
 * Одновременно можно и POST  и параметры url
+
+## Пример с использованием Curl
+
+```shell
+$ curl --request POST --url https://yourdomain/calltrack/call/99 --data '{"phone":"79990109999"}'
+```
+
 
 
 export default withDoc({...meta})(({children}) => <>{children}</>)

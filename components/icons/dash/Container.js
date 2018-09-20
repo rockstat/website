@@ -5,7 +5,7 @@ export class Container extends React.Component {
   // state = {
   //   title: ''
   // }
-  
+
   // componentWillMount() {
   //   const { title } = this.props;
   //   // const textToSVG = TextToSVG.loadSync();
@@ -15,7 +15,6 @@ export class Container extends React.Component {
   //   //   }
   //   // })
 
-  //   console.log(title);
 
   //   // this.setState({ title: result })
   // }
