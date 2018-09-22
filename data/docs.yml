@@ -191,6 +191,9 @@
 - name: Туториалы
   items:
 
+    - name: Собственный формат событий
+      href: /docs/tutorials/custom-event-table
+
     - name: Построение истории отдельного пользователя
       href: /docs/tutorials/user-history
 
