@@ -18,18 +18,5 @@ Code.contextTypes = {
 export const InlineCode = ({ children, noWrap }) => (
   <code className={noWrap && 'no-wrap'}>
     {children}
-    <style jsx>
-      {`
-
-        code {
-          color: #bd10e0;
-          white-space: pre-wrap;
-        }
-
-        code.no-wrap {
-          white-space: nowrap;
-        }
-      `}
-    </style>
   </code>
 )

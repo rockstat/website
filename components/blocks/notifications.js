@@ -1,10 +1,3 @@
-export const Expand = ({ children }) => {
-  return (
-    <div className={"md-expand"}>
-      {children}
-    </div>
-  )
-}
 
 export const Tip = ({ children }) => {
   return (

@@ -29,7 +29,6 @@
     opacity: 0;
     pointer-events: none;
     color: #fff;
-    opacity: 0;
     will-change: opacity;
     transition: opacity .3s ease;
     z-index: 999;
@@ -71,7 +70,7 @@
       z-index: 100;
       padding: rem(37px 35px 35px 50px);
       svg {
-        // width: 40%;
+        /* width: 40%; */
         path {
           fill: #fff;
         }
