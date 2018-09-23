@@ -1,0 +1,94 @@
+@import '../../styles/common.css';
+
+.postsListContainer {
+  .post {
+    .header {
+      h1 {
+        @mixin raleway-light 36px;
+        line-height: rem(42px);
+        color: #333;
+        margin-bottom: rem(20px);
+      }
+    }
+    .informationContainer {
+      display: flex;
+      align-items: center;
+      .author {
+        display: flex;
+        align-items: center;
+        .avatar {
+          img {
+            width: rem(56px);
+            border-radius: 100%;
+            margin-right: rem(18px);
+          }
+        }
+        .name {
+          @mixin raleway-medium 14px;
+          line-height: rem(25px);
+          color: #17D8E4;
+          margin-right: rem(18px);
+        }
+      }
+      .date {
+          @mixin raleway-medium 14px;
+          line-height: rem(25px);
+          color: #828282;
+      }
+    }
+
+    .content {
+      @mixin raleway-medium 16px;
+      line-height: rem(28px);
+      margin: rem(20px 0 25px);
+    }
+    .openPost {
+      text-align: left;
+      margin-bottom: rem(29px);
+      margin-top: rem(50px);
+      a {
+        @mixin raleway-medium 16px;
+        padding: rem(18px 38px);
+        text-transform: capitalize;
+        /* border: 1px solid #fff; */
+        border-radius: 80px;
+        background: linear-gradient(45deg, #D900FF 33%, #00F0FF 62%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: #CEAD78;
+        text-decoration: none;
+        position: relative;
+        svg {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+    .tagsContainer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin: rem(32px 0 0);
+      .tag {
+        margin: rem(8px 0 0);
+        @mixin raleway-medium 12px;
+        line-height: rem(21px);
+        color: #17D8E4;
+        border: 1px solid #17D8E4;
+        border-radius: 80px;
+        padding: rem(8px 12px);
+        margin-right: rem(10px);
+      }
+    }
+  }
+
+  .postLine {
+    width: 100%;
+    height: 0px;
+    border: 1px solid #E0E0E0;
+    margin: rem(40px 0)
+  }
+}

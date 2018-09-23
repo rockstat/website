@@ -1,0 +1,34 @@
+@import '../../styles/common.css';
+
+.sideBarContainer {
+  width: 100%;
+  .menuContainer {
+    background: #F4FEFF;
+    padding: rem(38px 10px 32px 40px);
+    .item {
+      a {
+        @mixin raleway-regular 16px;
+        line-height: rem(34px);
+        color: #17D8E4;
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+  .gitHubContainer {
+    margin-top: rem(30px);
+    background: #F6F6F6;
+    color: #000;
+    display: block;
+    padding: rem(37px 40px);
+    a, span {
+      @mixin raleway-regular 16px;
+      line-height: rem(28px);
+    }
+    a {
+      text-decoration: none;
+      color: #17D8E4;
+      margin-left: rem(8px);
+    }
+  }
+}

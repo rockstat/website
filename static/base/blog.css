@@ -1,0 +1,30 @@
+.rockstatBlogContainer {
+  color: #000;
+  margin: rem(0 0 0 0) !important;
+  padding: rem(180px 192px 21px 42px) !important;
+  background-color: #fff;
+  display: flex;
+
+  .pstslist {
+    width: 75%;
+    @media(max-width: 720px) {
+      width: 100%;
+    }
+  }
+  .sidebar {
+    width: 35%;
+    margin-left: rem(104px);
+    @media(max-width: 720px) {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: rem(40px)
+    }
+  }
+
+  @media(max-width: 720px) {
+    margin: 0 !important;
+    padding: rem(70px 10px) !important;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+}

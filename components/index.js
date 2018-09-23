@@ -5,3 +5,5 @@ export * from './image';
 export * from './blocks/table';
 export * from './blocks/notifications';
 export * from './blocks/expand';
+export * from './postslist/postslist';
+export * from './blogsidebar/blogsitebar';
