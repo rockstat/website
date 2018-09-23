@@ -16,6 +16,7 @@
     "isomorphic-fetch": "^2.2.1",
     "micro": "^9.3.3",
     "micro-redirect": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "next-routes": "^1.4.2",
     "path-match": "^1.2.4",
     "react": "^16.4.0",

@@ -3,7 +3,7 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path')
-
+var mkdirp = require('mkdirp');
 
 const baseDir = path.join(__dirname, '..');
 const dataDir = path.join(baseDir, 'data')
@@ -25,7 +25,7 @@ const setEnabled = (items) => {
       const fpath = path.join(baseDir, 'pages', item.href + '.mdx');
       const fdir = path.dirname(fpath)
       if (!fs.existsSync(fdir)) {
-        fs.mkdirSync(fdir)
+        mkdirp.sync(fdir)
       }
       fileExists = fs.existsSync(fpath);
     }

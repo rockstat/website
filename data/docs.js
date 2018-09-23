@@ -314,7 +314,8 @@ export default [
         "name": "Сегментация пользователей",
         "href": "/docs/tutorials/segmentation"
       }
-    ]
+    ],
+    "enabled": true
   },
   {
     "name": "Отладка сайта",
