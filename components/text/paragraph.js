@@ -18,7 +18,7 @@ const B = ({ children }) => (
     <style jsx>
       {`
         span {
-          font-weight: 600;
+          font-weight: 500;
         }
       `}
     </style>
@@ -40,23 +40,6 @@ export const HR = () => (
 export const Quote = ({ children }, { darkBg } = {}) => (
   <blockquote className={darkBg ? 'dark' : ''}>
     {children}
-    <style jsx>{`
-      blockquote {
-        padding: 10px 20px;
-        border-left: 5px solid #000;
-        margin: 20px 0;
-        color: #888;
-      }
-
-      blockquote.dark {
-        border-left-color: #fff;
-      }
-
-      blockquote :global(div),
-      blockquote :global(p) {
-        margin: 0;
-      }
-    `}</style>
   </blockquote>
 )
 

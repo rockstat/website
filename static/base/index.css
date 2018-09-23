@@ -12,7 +12,7 @@
   $raleway-font-path: /static/fonts/raleway/;
 
   @font-face {
-    font-family: 'Raleway Light';
+    font-family: 'Raleway';
     src: url('#{$raleway-font-path}Raleway-Light.eot');
     src: url('#{$raleway-font-path}Raleway-Light.eot?#iefix') format('embedded-opentype'),
     url('#{$raleway-font-path}Raleway-Light.woff') format('woff'),
@@ -22,7 +22,7 @@
   }
 
   @font-face {
-    font-family: 'Raleway Regular';
+    font-family: 'Raleway';
     src: url('#{$raleway-font-path}Raleway-Regular.eot');
     src: url('#{$raleway-font-path}Raleway-Regular.eot?#iefix') format('embedded-opentype'),
     url('#{$raleway-font-path}Raleway-Regular.woff') format('woff'),
@@ -33,7 +33,7 @@
 
 
   @font-face {
-    font-family: 'Raleway Medium';
+    font-family: 'Raleway';
     src: url('#{$raleway-font-path}Raleway-Medium.eot');
     src: url('#{$raleway-font-path}Raleway-Medium.eot?#iefix') format('embedded-opentype'),
     url('#{$raleway-font-path}Raleway-Medium.woff') format('woff'),
@@ -44,7 +44,7 @@
 
 
   @font-face {
-    font-family: 'Raleway Bold';
+    font-family: 'Raleway';
     src: url('#{$raleway-font-path}Raleway-Bold.eot');
     src: url('#{$raleway-font-path}Raleway-Bold.eot?#iefix') format('embedded-opentype'),
     url('#{$raleway-font-path}Raleway-Bold.woff') format('woff'),
@@ -133,7 +133,7 @@
 
 
     & > div > * {
-      @mixin raleway-regular 16px;
+      @mixin raleway-regular 15px;
 
       padding-left: 192px;
       padding-right: 192px;
@@ -155,7 +155,7 @@
     h6 {
       margin-top: rem(24px);
       margin-bottom: rem(16px);
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.25;
     }
     h1:hover .anchor,
@@ -172,47 +172,30 @@
       margin: 0.67em 0;
     }
     h2 {
-      font-size: rem(24px);
+      font-size: rem(26px);
     }
   
     h3 {
-      font-size: rem(20px);
+      font-size: rem(22px);
     }
   
     h4 {
-      font-size: rem(16px);
+      font-size: rem(20px);
     }
   
     h5 {
-      font-size: rem(14px);
+      font-size: rem(17px);
     }
   
     h6 {
-      font-size: rem(12px);
+      font-size: rem(14px);
+      font-weight: 700;
     }
   
     p, blockquote, ul, ol, dl, table, pre {
       margin-top: 16px;
       margin-bottom: 16px;
     }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 10px;
-      
-      & .tip {
-        background-color: #F4FEFF;
-        color: #000000;
-        /* padding: 1rem; */
-      }
-
-      & .warn {
-        background: #FCECFF;
-        color: #000000;
-        /* padding: 1rem; */
-      }
-    }
-
 
     /*
     & > div > div > pre > pre {
@@ -247,16 +230,17 @@
       color: #bd10e0;
       font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;
       font-weight: 400;
-      font-size: 75%;      /* white-space: pre-wrap; */
+      font-size: rem(12px);     
+      white-space: pre-wrap;
       /* &.no-wrap { */
-      white-space: nowrap;
+      /* white-space: nowrap; */
       /* } */
     }
 
     pre {
       /* width: calc(100% - 24rem) !important;
       // padding: 16px; */
-      overflow: auto;
+      /* overflow: auto; */
       /* font-size: 85%; */
       line-height: 1.1;
       background-color: #0F1616;
@@ -265,22 +249,26 @@
       position: relative;
       margin: auto;
       word-wrap: normal;
+      overflow: auto;
 
       &> pre {
         /* width: 100% !important; */
         padding: 1rem 0;
+        overflow: visible;
 
         &>code {
           padding: 0;
           margin: 0;
           color: inherit;
-          word-break:normal;
-          word-wrap: break-word;
+          word-break: keep-all;
+          word-wrap: normal;
+          white-space: pre;
+          overflow: visible;
           /* word-wrap: normal; */
-          white-space: pre-wrap;       /* Since CSS 2.1 */
-          white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-          white-space: -pre-wrap;      /* Opera 4-6 */
-          white-space: -o-pre-wrap;    /* Opera 7 */
+          /* white-space: pre-wrap;       Since CSS 2.1 */
+          /* white-space: -moz-pre-wrap;  Mozilla, since 1999 */
+          /* white-space: -pre-wrap;      Opera 4-6 */
+          /* white-space: -o-pre-wrap;    Opera 7 */
           background: transparent;
           border: 0;
    
@@ -290,7 +278,6 @@
           white-space: pre; */
           display: inline;
           max-width: auto;
-          overflow: visible;
           line-height: inherit;
           background-color: transparent;
           width: 100%;
@@ -366,7 +353,7 @@
     }
 
     strong {
-      font-weight: 600;
+      font-weight: 500;
     }
 
     hr {
@@ -470,7 +457,7 @@
       width: 100%;
       overflow: auto;
       th {
-        font-weight: 600;
+        @mixin raleway-bold 14px;
         border-top: none;
         text-align: left;
       }
@@ -492,6 +479,9 @@
       tr {
         background-color: #fff;
         border-bottom: 1px solid #c6cbd1;
+      }
+      td {
+        font-size: rem(14px);
       }
       tr:nth-child(2n) {
         /* background-color: #f6f8fa; */

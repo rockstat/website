@@ -27,8 +27,8 @@ module.exports = {
     'postcss-cssnext': {},
     // 'postcss-pixels-to-rem': {}
     // 'postcss-css-variables': {}
-    'postcss-modules': {
+    // 'postcss-modules': {
       // scopeBehaviour: 'global'
-    }
+    // }
   }
 }

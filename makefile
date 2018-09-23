@@ -12,6 +12,9 @@ to_master:
 push:
 	git push origin master --tags
 
+clean:
+	now rm rockstat --safe
+
 deploy:
 	now --public && now alias
   # set $(pbpaste) rock.st

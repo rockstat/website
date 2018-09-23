@@ -19,22 +19,6 @@ const Caption = ({ children }) => (
 const Code = ({ children }) => (
   <code>
     {children}
-    <style jsx>
-      {`
-        code {
-          color: #666;
-          font-family: ${FONT_FAMILY_MONO};
-        }
-
-        code::before {
-          content: '\`';
-        }
-
-        code::after {
-          content: '\`';
-        }
-      `}
-    </style>
   </code>
 )
 
