@@ -1,7 +1,7 @@
 import asset from 'next/asset'
 import { withDoc } from 'app/lib'
 import { Alert, Tip, Info, RenderTable, Expand } from 'app/components'
-import { JSProps } from 'app/lib'
+import * as eventStruct from 'app/data/tables/event-struct.csv'
 
 export const meta = {
   title: '',
@@ -96,7 +96,7 @@ export const meta = {
 Обратите внимание, что у некоторых значений указан список событий в которых они присутствуют.
 
 <Expand>
-  <RenderTable data={JSProps}/>
+  <RenderTable data={eventStruct} colFilter={v=>v!="ClickHouse"} rowFilter={v=>v["JavaScript"]}/>
 </Expand>
 
 

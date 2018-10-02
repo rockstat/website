@@ -36,27 +36,38 @@ Column.contextTypes = {
   header: PropTypes.bool
 }
 
+export class RenderTable extends React.Component { 
 
-export const RenderTable = ({ data }) => {
-  return (
-    <Table>
-      <thead>
-        <Row header={true}>
-          {data.columns.map(col => (
-            <Column key={col}>{col}</Column>
-          ))}
-        </Row>
-      </thead>
-      <tbody>
-        {data.map((row, r) => (
-          <Row key={r}>
-            {data.columns.map(col => (
-              <Column key={r + col}>{row[col]}</Column>
+  render(){
+    const cols = this.props.data.columns.filter(this.props.colFilter);
+    return (
+      <Table>
+        <thead>
+          <Row header={true}>
+            {cols.map(col => (
+              <Column key={col}>{col}</Column>
             ))}
           </Row>
-        ))}
-      </tbody>
-    </Table>
-  )
+        </thead>
+        <tbody>
+          {this.props.data.filter(this.props.rowFilter).map((row, r) => (
+            <Row key={r}>
+              {cols.map(col => (
+                <Column key={r + col}>{row[col]}</Column>
+              ))}
+            </Row>
+          ))}
+        </tbody>
+      </Table>
+    )
+  }
 }
+
+RenderTable.defaultProps = {
+  colFilter: (v) => true,
+  rowFilter: (v) => true,
+  data: []
+};
+
+
 
