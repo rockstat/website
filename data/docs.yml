@@ -53,13 +53,13 @@
         - name: Автоматичексие события
           href: /docs/reference/web-sdk/auto-track
 
-        - name: Построение сессий
+        - name: Процессинг сессий
           href: /docs/reference/web-sdk/sessions
 
-        - name: JavaScript api
+        - name: JavaScript API
           href: /docs/reference/web-sdk/js-api
 
-        - name: Транспорт
+        - name: Используемый транспорт
           href: /docs/reference/web-sdk/transport
 
 

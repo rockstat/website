@@ -89,33 +89,13 @@
         margin: rem(28px 0px);
         display: block;
       }
+      
       .childItem {
         @mixin raleway-medium 14px;
         line-height: rem(16px);
         color: #fff;
         margin: rem(14px 0);
-        &.active {
-          color: #f00;
-          .childItemTreeContainer {
-            display: block;
-          }
-        }
-        span {
-          color: #fff;
-          opacity: 1;
-          display: flex;
-          align-items: center;
-          svg {
-            fill: #fff;
-            width: rem(12px);
-            height: rem(12px);
-            margin-right: rem(5px);
-          }
-        }
-        .itemTwo {
-          pointer-events: auto;
-          cursor: pointer;
-        }
+        
         a {
           color: #fff;
           text-decoration: none;
@@ -123,6 +103,7 @@
             color: #00F0FF;
           }
         }
+
         .childItemTreeContainer {
           display: none;
           .childItemTree {
@@ -134,6 +115,28 @@
                 color: #00F0FF;
               }
             }
+          }
+        }
+
+        &.active {
+          color: #f00;
+          .childItemTreeContainer {
+            display: block;
+          }
+        }
+
+        span {
+          color: #fff;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+          pointer-events: auto;
+          cursor: pointer;
+          svg {
+            fill: #fff;
+            width: rem(12px);
+            height: rem(12px);
+            margin-right: rem(5px);
           }
         }
       }

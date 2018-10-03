@@ -12,7 +12,7 @@
 
   .content {
     width: 75%;
-    padding: rem(40px 0 40px);
+    padding: rem(70px 0 40px);
     background-color: #fff;
     @media(max-width: 720px) {
       width: 100%;

@@ -1,10 +1,10 @@
-@import '../../static/base/variables.css';
+@import '../../styles/variables.css';
 
 .analyticContainer {
   width: 100vw;
-  // height: 100vh;
+  /*height: 100vh;
   // min-height: $minHeightScreen;
-  // max-height: $maxHeightSceen;
+  // max-height: $maxHeightSceen; */
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 1), #1e0123, rgba(0, 0, 0, 1));
   contain: paint;

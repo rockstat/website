@@ -5,10 +5,9 @@ import { withRouter } from 'next/router'
 import { pageview } from 'app/lib/gtm';
 import Router from 'next/router'
 
-
-import '../../static/base/reset.css';
-import '../../static/base/index.css';
-import '../../static/base/hljs/tomorrow-night-bright.css';
+import 'styles/reset.css';
+import 'styles/index.css';
+import 'styles/hljs/tomorrow-night-bright.css';
 
 class WrapperClass extends React.Component {
   static propTypes = {
