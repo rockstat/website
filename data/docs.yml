@@ -90,14 +90,14 @@
         - name: Карта путей
           href: /docs/reference/directories
 
-    - name: SimpleClickHouse
+    - name: Simple ClickHouse
       items:
 
-        - name: Синхронная SimpleCH
-          href: /docs/reference/a-simplech/simplech
+        - name: Синхронная версия
+          href: /docs/reference/simplech/sync
 
         - name: Асинхронная ASimpleCH
-          href: /docs/reference/a-simplech/asimplech
+          href: /docs/reference/simplech/async
 
     - name: JSON-RPC 2.0 RST
       href: /docs/reference/json-rpc-rst

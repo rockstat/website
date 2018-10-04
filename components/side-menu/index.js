@@ -30,6 +30,13 @@ export class SideMenu extends React.Component {
     })
   }
 
+  renderItemStatus(enabled, pathname, href) {
+    return cls({
+      [style['disabled-link']]: !enabled,
+      [style.active]: pathname === href
+    })
+  }
+
   renderItem({ name, href, enabled, items }, [i1, i2]) {
     const { lang, pathname } = this.props;
     const { activeMenuItem } = this.state;
@@ -38,11 +45,14 @@ export class SideMenu extends React.Component {
       <div className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(key) >= 0 })} key={`side-menu-${key}`}>
         <ShowIf condition={href}>
           <Link route={href} params={{ lang }}>
-            <a className={cls({ [style['disabled-link']]: !enabled, [style.active]: pathname === href })}>{name}</a>
+            <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
           </Link>
         </ShowIf>
         <ShowIf condition={!href}>
-          <span onClick={this.setActiveMenuItem.bind(this, `${key}`)} className={cls({ [style.itemTwo]: true, [style['disabled-link']]: !enabled })}>
+          <span
+            onClick={() => this.setActiveMenuItem(`${key}`)}
+            className={this.renderItemStatus(enabled, pathname, href)}
+          >
             <ShowMenuIcon /> {name}
           </span>
         </ShowIf>
@@ -52,7 +62,7 @@ export class SideMenu extends React.Component {
             <div className={style.childItemTree} key={`side-menu-${key}-${i3}`}>
               <span>
                 <Link route={href} params={{ lang }}>
-                  <a className={cls({ [style['disabled-link']]: !enabled, [style.active]: pathname === href })}>{name}</a>
+                  <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
                 </Link>
               </span>
             </div>
