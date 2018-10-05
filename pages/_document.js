@@ -12,7 +12,7 @@ import gtmParts, { buildParts } from 'react-google-tag-manager';
 const defaultTitle = 'Rockstat | Open Source Customer Data Platform'
 const defaultDescription = 'Session analytics, Product analytics, ClickHouse writer, Microservice platform, Framework for Python, Framework for TypeScript, etc...'
 const defaultOGURL = 'https:/rock.st'
-const defaultOGImage = `${defaultOGURL}/images/social/fig.png`
+const defaultOGImage = `${defaultOGURL}/static/images/social/fig.png`
 
 
 export default class MyDocument extends Document {
