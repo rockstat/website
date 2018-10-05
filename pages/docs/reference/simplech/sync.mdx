@@ -21,28 +21,6 @@ export const meta = {
 $ pip install simplech
 ```
 
-## Быстрый старт
-
-```py
-from simplech import ClickHouse
-ch = ClickHouse()
-
-# Чтение 
-
-print(ch.select('SHOW DATABASES'))
-
-# Запись
-
-ch.push('my_table', {'name': 'hux', 'num': 1})
-
-#...
-#...
-#...
-
-ch.flush_all()
-
-
-```	
 
 ## Параметры
 
@@ -50,6 +28,10 @@ ch.flush_all()
   Для удобства, во всех контейнерах уже установлена переменная окружения CH_DSN, это позволяет в большинстве случаев не попросту не указывать параметры подключения.
 </Tip>
 
+```py
+>>> from simplech import ClickHouse
+>>> ch = ClickHouse(host='localhost')
+```
 
 - **host:** [default: `127.0.0.1`] Хост с clickhouse
 - **port:** [default: `8123`]  Порт подключения

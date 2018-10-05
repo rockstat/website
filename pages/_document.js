@@ -8,9 +8,11 @@ import Document, { Head, Main, NextScript } from 'next/document'
 import { string } from 'prop-types'
 import gtmParts, { buildParts } from 'react-google-tag-manager';
 
-const defaultDescription = ''
-const defaultOGURL = ''
-const defaultOGImage = ''
+
+const defaultTitle = 'Rockstat | Open Source Customer Data Platform'
+const defaultDescription = 'Session analytics, Product analytics, ClickHouse writer, Microservice platform, Framework for Python, Framework for TypeScript, etc...'
+const defaultOGURL = 'https:/rock.st'
+const defaultOGImage = `${defaultOGURL}/images/social/fig.png`
 
 
 export default class MyDocument extends Document {
@@ -32,7 +34,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <meta charSet="UTF-8" />
-          <title>{props.title || 'Rockstat platform'}</title>
+          <title>{defaultTitle}</title>
           <meta name="description" content={props.description || defaultDescription} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* <link rel="icon" sizes="192x192" href="/static/touch-icon.png" /> */}
@@ -40,16 +42,14 @@ export default class MyDocument extends Document {
           {/* <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" /> */}
           <link rel="icon" href="/static/favicon.ico" />
           <meta property="og:url" content={props.url || defaultOGURL} />
-          <meta property="og:title" content={props.title || ''} />
-          <meta property="og:description" content={props.description || defaultDescription} />
+          <meta property="og:title" content={defaultTitle} />
+          <meta property="og:description" content={defaultDescription} />
           <meta name="twitter:site" content={props.url || defaultOGURL} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:image" content={props.ogImage || defaultOGImage} />
           <meta property="og:image" content={props.ogImage || defaultOGImage} />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
-          {/* <link rel="stylesheet" href="/_next/static/css/style.css" /> */}
-          {/* <link rel='stylesheet' href='/_next/static/style.css'/> */}
           {gtm.scriptAsReact()}
         </Head>
         <body>
