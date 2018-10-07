@@ -8,10 +8,10 @@ import Document, { Head, Main, NextScript } from 'next/document'
 import { string } from 'prop-types'
 import gtmParts, { buildParts } from 'react-google-tag-manager';
 
-
+const domain = 'rock.st'
 const defaultTitle = 'Rockstat | Open Source Customer Data Platform'
-const defaultDescription = 'Session analytics, Product analytics, ClickHouse writer, Microservice platform, Framework for Python, Framework for TypeScript, etc...'
-const defaultOGURL = 'https://rock.st'
+const defaultDescription = 'Session analysis, Product metrics analysis, WebSDK, ClickHouse DBMS, ClickHouse Writer service, Microservice platform, Framework for Python, Framework for TypeScript, etc...'
+const defaultOGURL = `https://${domain}`
 const defaultOGImage = `${defaultOGURL}/static/images/social/fig.png`
 
 
@@ -41,10 +41,10 @@ export default class MyDocument extends Document {
           {/* <link rel="apple-touch-icon" href="/static/touch-icon.png" /> */}
           {/* <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" /> */}
           <link rel="icon" href="/static/favicon.ico" />
-          <meta property="og:url" content={props.url || defaultOGURL} />
+          {/* <meta property="og:url" content={props.url || defaultOGURL} /> */}
           <meta property="og:title" content={defaultTitle} />
           <meta property="og:description" content={defaultDescription} />
-          <meta name="twitter:site" content={props.url || defaultOGURL} />
+          {/* <meta name="twitter:site" content={props.url || defaultOGURL} /> */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:image" content={props.ogImage || defaultOGImage} />
           <meta property="og:image" content={props.ogImage || defaultOGImage} />

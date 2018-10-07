@@ -1,12 +1,14 @@
-@import '../../styles/variables.css';
+@import '../../../styles/variables.css';
 
 .analyticContainer {
   width: 100vw;
   height: 100vh;
-  min-height: 60vw;
-  max-height: 60vw;
+  min-height: $minHeightScreen;
+  max-height: $maxHeightSceen;
   position: relative;
-  background: linear-gradient(#000, #1b361b, #000);
+  /* background: linear-gradient(#e66465, #9198e5); */
+  background: linear-gradient(rgba(0, 0, 0, 1), #350061, #350061, rgba(0, 0, 0, 1));
+  contain: paint;
   .textContainer {
     text-align: center;
     .title {
@@ -24,45 +26,48 @@
 
   }
 
-  .vector {
+  .linesBg {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
     left: 0;
+    top: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     svg {
-      width: 100%;
+      opacity: 0.5;
     }
-    .cube {
-      width: 49vw;
-      height: 59vw;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
+    
+    .left {
+      width: 50%;
+      position: relative;
+      left: -5%;
+      svg {
+        width: 100%;
+      }
     }
-    .v {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 5;
+    .right {
+      width: 50%;
+      position: relative;
+      right: -5%;
+      svg {
+        transform-origin: center;
+        transform: rotateY(180deg);
+        width: 100%;
+      }
     }
+
   }
 
   .contentCenter {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: rem(31px 50px);
-    height: 81%;
+    height: 75%;
     .leftText {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 22%;
       .leftTextTop {
         text-align: center;
         .title {
@@ -91,45 +96,61 @@
     }
     .centerBg {
       width: 42%;
-      height: 86%;
+      height: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: auto;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 9%;
-
-      svg, img {
-        width: 100%;
-      }
-      .repositoryCriclesMain {
+      position: relative;
+      /* svg, img {
+      //   width: 100%;
+      // }*/
+      .center {
         position: absolute;
-        height: 90%;
-        width: 90%;
         left: 0;
-        top: 0;
-        right: 0;
+        top: -1%;
+        right: -1%;
+        width: 13vw;
         bottom: 0;
         margin: auto;
-        @media(min-width: 1467px) {
+        height: 13vw;
+        svg {
+          width: 100%;
           height: 100%;
         }
       }
-      .repositoryContur {
+      .two {
         position: absolute;
-        height: 100%;
-        width: 100%;
         left: 0;
         top: 0;
         right: 0;
+        width: 27vw;
         bottom: 0;
         margin: auto;
+        height: 27vw;
+        svg {
+          width: 100%;
+        }
+      }
+      .tree {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        width: 35vw;
+        bottom: 0;
+        margin: auto;
+        height: 35vw;
+        svg {
+          width: 100%;
+        }
       }
     }
     .rightText {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 25%;
+      width: 22%;
       .rightTextTop {
         text-align: center;
         .title {
@@ -158,49 +179,56 @@
     }
   }
 
+
   @media(max-width: 720px) {
     max-height: 10000px;
     min-height: auto;
     width: 100%;
     height: auto;
+    padding: 0 25px;
 
-    .vector {
-      .cube {
-        width: 80vw;
-        height: 100vw;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 60%;
-        bottom: 100%;
-        margin: auto;
-      }
-      .v {
-        width: 200%;
-        height: 100%;
-        top: 10%;
-        left: -50%;
-        z-index: 5;
-      }
+    .leftBg {
+      position: absolute;
+      left: 0;
+      top: 140vw;
+      bottom: 0;
+      margin: auto;
+      width: 100%;
     }
-
-    .backgroundIMG {
-      position: relative;
-      height: 70vw;
-      background-size: contain;
+    .RightBg {
+      display: none;
     }
 
     .contentCenter {
       flex-direction: column;
-      padding: 0 25px;
-      width: 100%;
-      margin-top: 100%;
+      margin-top: 105vw;
       .leftText {
         width: 100%;
       }
       .rightText {
         width: 100%;
-        margin-top: rem(30px);
+        margin-top: rem(10px);
+      }
+      .centerBg {
+        position: absolute;
+        top: 50vw;
+        width: 100%;
+        height: auto;
+        left: 0;
+        .center {
+          top: 30vw;
+          height: auto;
+          width: 40%;
+        }
+        .two {
+          top: 10vw;
+          width: 80%;
+          height: auto;
+        }
+        .tree {
+          width: 100%;
+          height: auto;
+        }
       }
     }
   }

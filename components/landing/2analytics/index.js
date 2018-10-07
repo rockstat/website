@@ -3,7 +3,7 @@ import cl from 'classnames';
 import Waypoint from 'react-waypoint';
 import style from './analytic.css';
 
-import { CenterIcon, AnalyticOuter, Center2, Two, Three, BgLines, WawesLustra, Wawe } from '../../components/icons/analytic';
+import { Center2, Two, Three, Wawe } from 'app/components/icons/analysis-platform';
 
 export class Analytic extends React.Component {
   state = {

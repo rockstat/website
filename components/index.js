@@ -5,3 +5,4 @@ export * from './image';
 export * from './blocks/table';
 export * from './blocks/notifications';
 export * from './blocks/expand';
+export * from './landing';

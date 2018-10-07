@@ -1,4 +1,4 @@
-@import '../../styles/variables.css';
+@import '../../../styles/variables.css';
 
 .everythingContainer {
   width: 100vw;
@@ -7,7 +7,7 @@
   max-height: 150vw;
   position: relative;
   background-color: #000;
-  // contain: paint;
+  /* contain: paint; */
   .textContainer {
     width: 30vw;
     height: 12vw;
@@ -20,7 +20,7 @@
     text-align: center;
     .title {
       @mixin raleway-light 42px;
-      // filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+      /* filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)); */
       text-shadow: 0px 0px 9px white;
       text-transform: uppercase;
       line-height: rem(49px);
@@ -28,10 +28,10 @@
     .text {
       @mixin raleway-light 18px;
       margin-top: rem(15px);
+      margin-bottom: 5%;
       opacity: 0.8;
       line-height: rem(32px);
       width: 80%;
-      margin: 5% auto;
       span {
         display: block;
         white-space: nowrap;
@@ -107,6 +107,31 @@
     justify-content: space-between;
     align-items: flex-end;
 
+    .demoContainer {
+      .btn {
+        padding: rem(10px, 25px);
+        border: 1px solid #00F0FF;
+        border-radius: 10px;
+        @mixin raleway-medium 14px;
+        text-transform: uppercase;
+        text-align: center;
+        transition: opacity .3s ease;
+        will-change: opacity;
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+      .description {
+        @mixin raleway-medium 12px;
+        text-align: right;
+        margin-top: rem(17px);
+      }
+      &.top {
+        opacity: 0;
+      }
+    }
+
     .socialMenu {
       display: flex;
       @mixin raleway-medium 14px;
@@ -166,33 +191,10 @@
         z-index: 11;
         padding: rem(31px 50px);
         transform: translateX(45%);
-        z-index: 99;
+        /* z-index: 99; */
       }
     }
-    .demoContainer {
-      .btn {
-        padding: rem(10px, 25px);
-        border: 1px solid #00F0FF;
-        border-radius: 10px;
-        @mixin raleway-medium 14px;
-        text-transform: uppercase;
-        text-align: center;
-        transition: opacity .3s ease;
-        will-change: opacity;
-        a {
-          text-decoration: none;
-          color: #fff;
-        }
-      }
-      .description {
-        @mixin raleway-medium 12px;
-        text-align: right;
-        margin-top: rem(17px);
-      }
-      &.top {
-        opacity: 0;
-      }
-    }
+    
   }
   @media(max-width: 720px) {
     max-height: 10000px;

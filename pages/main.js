@@ -1,10 +1,22 @@
-import { Wrapper, Everything, Analytic, Repository, Microservices, Solution, Platform, Center, Information } from '../containers';
 import React from 'react';
+import {
+  Wrapper
+} from 'containers'
+import {
+  Everything,
+  Analytic,
+  Repository,
+  Microservices,
+  Solution,
+  Platform,
+  Center,
+  Information
+} from 'components';
 
 const lang = 'ru';
 
 export default class extends React.Component {
-  static async getInitialProps ({query}) {
+  static async getInitialProps({ query }) {
     return { query: query }
   }
 
@@ -30,7 +42,7 @@ export default class extends React.Component {
       <span>
         {/* <Head/> */}
         <Wrapper activeSection={'main'} {...this.props} lang={lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
-          <Everything setStateLinkMenu={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition}/>
+          <Everything setStateLinkMenu={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition} />
           <Analytic />
           <Repository />
           <Microservices />

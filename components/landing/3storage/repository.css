@@ -1,4 +1,4 @@
-@import '../../styles/variables.css';
+@import '../../../styles/variables.css';
 
 .analyticContainer {
   width: 100vw;
@@ -6,8 +6,7 @@
   min-height: $minHeightScreen;
   max-height: $maxHeightSceen;
   position: relative;
-  // background: linear-gradient(#e66465, #9198e5);
-  background: linear-gradient(rgba(0, 0, 0, 1), #350061, #350061, rgba(0, 0, 0, 1));
+  background: linear-gradient(rgba(0, 0, 0, 1), #003c40, #003c40, rgba(0, 0, 0, 1));
   contain: paint;
   .textContainer {
     text-align: center;
@@ -18,49 +17,69 @@
       padding-top: rem(80px);
     }
     .description {
-      @mixin raleway-medium 18px;
+      @mixin raleway-regular 18px;
       line-height: rem(25px);
       opacity: 0.8;
       margin-top: rem(2px);
     }
-
   }
 
-  .linesBg {
+  .leftBgTop {
     position: absolute;
     left: 0;
-    top: 30%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    .left {
-      width: 50%;
-      position: relative;
-      left: -5%;
-      svg {
-        width: 100%;
-      }
-    }
-    .right {
-      width: 50%;
-      position: relative;
-      right: -5%;
-      svg {
-        transform-origin: center;
-        transform: rotateY(180deg);
-        width: 100%;
-      }
-    }
+    top: 20%;
+    bottom: 0;
+    width: 15%;
+    height: 20%;
     svg {
-      opacity: 0.5;
+      width: 100%;
     }
   }
 
+  .leftBgBottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 15%;
+    height: 20%;
+    svg {
+      transform: rotateX(180deg);
+      transform-origin: center;
+      width: 100%;
+    }
+  }
+
+  .rightBgTop {
+    position: absolute;
+    right: 0;
+    top: 20%;
+    bottom: 0;
+    width: 15%;
+    height: 20%;
+    svg {
+      transform: rotateY(180deg);
+      transform-origin: center;
+      width: 100%;
+    }
+  }
+
+  .rightBgBottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 15%;
+    height: 20%;
+    svg {
+      transform: rotateY(180deg) rotateX(180deg);
+      transform-origin: center;
+      width: 100%;
+    }
+  }
   .contentCenter {
     display: flex;
     justify-content: space-between;
     padding: rem(31px 50px);
-    height: 75%;
+    height: 81%;
     .leftText {
       display: flex;
       flex-direction: column;
@@ -94,54 +113,77 @@
     }
     .centerBg {
       width: 42%;
-      height: 70%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 86%;
       margin: auto;
       position: relative;
-      /* svg, img {
-      //   width: 100%;
-      // }*/
+      svg, img {
+        width: 100%;
+      }
+
+      .dots {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 27vw;
+        height: 28vw;
+      }
+      .rounds {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 27vw;
+        height: 28vw;
+      }
       .center {
         position: absolute;
         left: 0;
-        top: -1%;
-        right: -1%;
-        width: 13vw;
-        bottom: 0;
+        right: 0;
+        top: 0;
+        bottom: 0.5%;
         margin: auto;
-        height: 13vw;
-        svg {
-          width: 100%;
-          height: 100%;
-        }
+        width: 15vw;
+        height: 15vw;
       }
-      .two {
+
+      .outer {
         position: absolute;
         left: 0;
-        top: 0;
         right: 0;
-        width: 27vw;
+        top: 0;
         bottom: 0;
         margin: auto;
-        height: 27vw;
+        width: 39vw;
+        height: 38vw;
         svg {
           width: 100%;
         }
       }
-      .tree {
+
+      .repositoryCriclesMain {
         position: absolute;
+        height: 90%;
+        width: 90%;
         left: 0;
         top: 0;
         right: 0;
-        width: 35vw;
         bottom: 0;
         margin: auto;
-        height: 35vw;
-        svg {
-          width: 100%;
-        }
+      }
+      .repositoryContur {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
       }
     }
     .rightText {
@@ -177,7 +219,6 @@
     }
   }
 
-
   @media(max-width: 720px) {
     max-height: 10000px;
     min-height: auto;
@@ -205,7 +246,7 @@
       }
       .rightText {
         width: 100%;
-        margin-top: rem(10px);
+        margin-top: rem(30px);
       }
       .centerBg {
         position: absolute;
@@ -213,21 +254,51 @@
         width: 100%;
         height: auto;
         left: 0;
-        .center {
-          top: 30vw;
-          height: auto;
-          width: 40%;
-        }
-        .two {
-          top: 10vw;
-          width: 80%;
-          height: auto;
-        }
-        .tree {
+        .outer {
           width: 100%;
           height: auto;
+          top: 8vw;
+        }
+        .dots {
+          width: 68%;
+          height: auto;
+          top: 22vw;
+        }
+        .rounds {
+          width: 65%;
+          height: auto;
+          top: 22vw;
+        }
+        .center {
+          width: 36%;
+          height: auto;
+          top: 36.4vw;
         }
       }
+    }
+
+    .leftBgTop {
+      left: -14%;
+      top: 180vw;
+      bottom: 0;
+      width: 50%;
+      opacity: 0.5;
+    }
+
+    .leftBgBottom {
+      display: none;
+    }
+
+    .rightBgTop {
+      right: -14%;
+      top: 180vw;
+      bottom: 0;
+      width: 50%;
+      opacity: 0.5;
+    }
+
+    .rightBgBottom {
+      display: none;
     }
   }
 }

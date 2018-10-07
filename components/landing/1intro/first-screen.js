@@ -2,15 +2,15 @@ import React from 'react';
 import cl from 'classnames';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
-import style from './everething.css';
+import style from './first-screen.css';
 
 // import Vivus from 'vivus';
 
 import VisibleDetect from "react-visibility-sensor";
 
-import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '../../components/icons/everything';
-import { LogoIcon } from '../../components/icons';
-import { linksMenu } from '../../constants';
+import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from 'components/icons/everything';
+import { LogoIcon } from 'components/icons';
+import { linksMenu } from 'constants/index';
 
 
 class CircleComponent extends React.PureComponent {
@@ -85,10 +85,10 @@ export class Everything extends React.PureComponent {
       <div className={style.everythingContainer}>
         <div className={style.textContainer}>
           <div className={style.title}>
-            Теперь <br /> возможно все
+            Почувствуй <br /> силу возможностей
           </div>
           <div className={style.text}>
-            <span>Открытая платформа для создания</span>
+            <span>Open source платформа </span>
             <span>собственной аналитической системы</span>
             <span>и автоматизации маркетинга</span>
           </div>

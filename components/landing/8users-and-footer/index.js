@@ -2,8 +2,10 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './information.css';
+import { Link } from 'app/next-routes'
+import * as Icons from 'app/components/icons/users';
 
-import { parthners } from '../../constants';
+
 
 export class Information extends React.Component {
   state = {
@@ -13,24 +15,38 @@ export class Information extends React.Component {
   in = (e) => {
     let x = e.clientX;
     let width = this.wrapper.offsetWidth;
-    let result = parseInt( 100 / width * x);
+    let result = parseInt(100 / width * x);
 
     this.setState({
       wrapperPosition: result > 0 ? result + 10 : 0
     })
   };
 
+
+
+  users = [
+    <Icons.Virgins />,
+    <Icons.BurlesqueLogo />,
+    <Icons.Flora />,
+    <Icons.TcehLogo />,
+    <Icons.UtairIcon />,
+    <Icons.Textapp />,
+    <Icons.UrbanLogo />,
+    <Icons.Vrtech />
+  ];
+
+
   render() {
     const { wrapperPosition } = this.state;
 
     return (
       <div className={style.analyticContainer}>
-        <div 
+        <div
           className={style.partnersContainer}
-          // onMouseMove={this.in}
-          // onMouseLeave={this.out}
+        // onMouseMove={this.in}
+        // onMouseLeave={this.out}
         >
-          <div 
+          <div
             className={style.wrapper}
             ref={ref => this.wrapper = ref}
             style={{
@@ -38,14 +54,14 @@ export class Information extends React.Component {
             }}
           >
             {
-              parthners.map((item, index) => {
+              this.users.map((item, index) => {
                 return (
                   <div className={cl(style.item, 'rockstat-svg-container')} key={index}>
-                    { item }
+                    {item}
                   </div>
                 )
               })
-            }          
+            }
           </div>
         </div>
 
@@ -71,19 +87,21 @@ export class Information extends React.Component {
         </div>
 
         <div className={style.btn}>
-          <a href={'https://github.com/rockstat'} target={'__blank'}>
-            Установить Rockstat
+          <Link route={'/docs'}>
+            <a>
+              Установить Rockstat
 
             <svg viewBox="0 0 272 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="271" height="48" rx="24" stroke="url(#paint0_linear_information)"/>
-            <defs>
-              <linearGradient id="paint0_linear_information" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(160 33 -183.184 888.163 171.592 -436.082)">
-                <stop stopColor="#D900FF"/>
-                <stop offset="1" stopColor="#00F0FF"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          </a>
+                <rect x="0.5" y="0.5" width="271" height="48" rx="24" stroke="url(#paint0_linear_information)" />
+                <defs>
+                  <linearGradient id="paint0_linear_information" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(160 33 -183.184 888.163 171.592 -436.082)">
+                    <stop stopColor="#D900FF" />
+                    <stop offset="1" stopColor="#00F0FF" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </a>
+          </Link>
         </div>
 
       </div>
