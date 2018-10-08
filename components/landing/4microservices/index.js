@@ -19,9 +19,9 @@ export class Microservices extends React.Component {
           </div>
         </div>
         <div className={style.textContainer}>
-          <div className={style.title}>Микросервисы</div>
+          <div className={style.title}>Собственная логика</div>
           <div className={style.description}>
-            Позволяет легко реализовать произвольную логику обработки запросов или фоновые задачи.
+            Для решения базовых задач хватит начального уровня программирования.
           </div>
         </div>
         <div className={cl(style.leftBg, 'rockstat-svg-container')}>
@@ -36,36 +36,33 @@ export class Microservices extends React.Component {
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>
-              <div className={style.title}>Целая экосистема</div>
+              <div className={style.title}>Работа с API</div>
               <div className={style.description}>
-                Есть все небходимое: специальный framework для Python и JavaScript/TypeScript,
-                шаблоны приложений, встроенная среда разработки, система запуска и управления.
+                Автоматизируйте взаимодействие с сторонними API для получения или отправки данных, триггерно и по рассписанию.
               </div>
             </div>
             <div className={style.leftTextBottom}>
               <div className={style.title}>Реактивные сервисы</div>
               <div className={style.description}>
-              Создавайте сервисы, реагирующие на события в реальном времени. Можно обращаться
-              в хранилище, отправлять Push, Email, Webhooks или передавать сигналы
-              в браузер.
+                Создавайте сервисы, реагирующие на события.
+                Отправляйте Push, Email, Webhooks используя данных их храннилища. Это может быть чатбот.
               </div>
             </div>
           </div>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>
-              <div className={style.title}>Создавайте чатботов</div>
+              <div className={style.title}>Только логика</div>
               <div className={style.description}>
-                Создавайте чатботов, работа которых основана на данных из хранилища.
-                Поддерживаются Telegram, WhatsApp, Slack, Facebook.
+                Общие задачи уже реализованы, остается описать желаемую логику.
+                Помогут готовые примеры приложений и среда разработки. Поддержка Python и JS/TS.
               </div>
             </div>
             <div className={style.rightTextBottom}>
-              <div className={style.title}>Работа со сторонними API</div>
+              <div className={style.title}>Микросервисы</div>
               <div className={style.description}>
-                  Вы можете сделать подключаться к любым сторонним
-                  API для получения или передачи данных, сохранять результаты
-                  в хранилище.
+                Одно нажатие и ваша программа будет запущена в виде изолированного микросервиса.
+                Готовыми решениями можно обмениваться с другими.
               </div>
             </div>
           </div>

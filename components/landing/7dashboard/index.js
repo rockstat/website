@@ -2,7 +2,16 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './dashboard.css';
-import { BgChart, Tooltips, Pies, Container, CircleMobile, OneCircleMobile, BgChartMobile, ContainerMobile } from 'components/icons/dash';
+import { 
+  BgChart, 
+  Tooltips, 
+  Pies, 
+  Container, 
+  CircleMobile, 
+  OneCircleMobile, 
+  BgChartMobile, 
+  ContainerMobile 
+} from 'components/icons/dashboard';
 
 export class Center extends React.Component {
   informData = ['Kernel', 'Band director', 'Audience interest...', 'Web IDE Theia', 'Clickhouse upload'];

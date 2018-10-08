@@ -29,6 +29,7 @@ export default class extends React.Component {
   }
 
   _changeLinkMenuPosition = (e) => {
+    console.log(e)
     this.setState({
       linksMenuPosition: e
     })
@@ -42,7 +43,7 @@ export default class extends React.Component {
       <span>
         {/* <Head/> */}
         <Wrapper activeSection={'main'} {...this.props} lang={lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
-          <Everything setStateLinkMenu={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition} />
+          <Everything linksMenuPositionChange={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition} />
           <Analytic />
           <Repository />
           <Microservices />

@@ -28,8 +28,8 @@ export class Analytic extends React.Component {
     return (
       <div className={style.analyticContainer}>
         <div className={style.textContainer}>
-          <div className={style.title}>Аналитическая система</div>
-          <div className={style.description}>Сбор и анализ данных с web, мобильных приложений</div>
+          <div className={style.title}>Аналитические возможности</div>
+          <div className={style.description}>Получение и предварительная обработка даннных из множества источников</div>
         </div>
 
         <div className={cl(style.linesBg, 'rockstat-svg-container')}>
@@ -40,17 +40,19 @@ export class Analytic extends React.Component {
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>
-              <div className={style.title}>Сессионная аналитика</div>
+
+              <div className={style.title}>Двойственная натура</div>
               <div className={style.description}>
-                Помимо типовых функций можно настраивать то, как строятся
-                сессии: изменить таймаут или условия перезапуска при наложении
+                Включает функции Сессионной и Продуктовой аналитики.
+                Настраиваемые параметры сессий и произвольная структура событий.
               </div>
+              
             </div>
             <div className={style.leftTextBottom}>
-              <div className={style.title}>Продуктовая аналитика</div>
+            <div className={style.title}>Сбор данных</div>
               <div className={style.description}>
-                Неограниченное количество параметров
-                событий и метрик. Любые срезы на основе собранных данных
+                Можно отслеживать Web, Mobile apps, Мессенджеры. 
+                Автоматитеское отслживание поведения пользователей.
               </div>
             </div>
           </div>
@@ -81,10 +83,10 @@ export class Analytic extends React.Component {
               </div>
             </div>
             <div className={style.rightTextBottom}>
-              <div className={style.title}>Cross-all-in-one</div>
+              <div className={style.title}>Сквозная аналитика</div>
               <div className={style.description}>
-                Все для кросс-доменного-канального от трекинга.
-                Можно отслеживать  web, мессенджеры, mobile apps
+                Есть все для совмещения данных из разных источников. Кросс-доменное отслеживание web,
+                возможно кросс-канальное сопоставленине.
               </div>
             </div>
           </div>

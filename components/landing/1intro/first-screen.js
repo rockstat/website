@@ -6,9 +6,9 @@ import style from './first-screen.css';
 
 // import Vivus from 'vivus';
 
-import VisibleDetect from "react-visibility-sensor";
+import VisibilitySensor from "react-visibility-sensor";
 
-import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from 'components/icons/everything';
+import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from 'components/icons/intro';
 import { LogoIcon } from 'components/icons';
 import { linksMenu } from 'constants/index';
 
@@ -26,28 +26,9 @@ class CircleComponent extends React.PureComponent {
   }
 }
 
-
-class IncrediblePoing extends React.PureComponent {
-
-}
-
-
-class Mixer extends React.PureComponent {
-  componentWillMount() {
-    d3.interval(() => this.setState({
-      alphabet: d3.shuffle(Alphabet.letters)
-        .slice(0, Math.floor(Math.random() * Alphabet.letters.length))
-        .sort()
-    }), 1500);
-  }
-
-}
-
-
 export class Everything extends React.PureComponent {
   state = {
     mainAnimationStatus: true,
-    mountingDetect: false
   }
 
   static propTypes = {
@@ -55,42 +36,25 @@ export class Everything extends React.PureComponent {
     linksMenuPosition: PropTypes.string
   }
 
-  componentDidMount() {
-    this.setState({
-      mountingDetect: true
-    });
-
-    // this.vivus = new Vivus('EverythingRhimbusIcon',
-    //   {
-    //     type: 'delayed',
-    //     duration: 80,
-    //     animTimingFunction: Vivus.LINEAR
-    //   },
-    //   () => {
-    //     this.setState({
-    //       mainAnimationStatus: false
-    //     })
-    //   }
-    // )
+  linksMenuPositionDetect = (isVisible) => {
+    const pos = isVisible ? 'bottom' : 'top'
+    console.log('main pos, vis', pos, isVisible)
+    this.props.linksMenuPositionChange(pos);
   }
 
-  _linkMenuPositionDetect = (e) => this.props.setStateLinkMenu(e ? 'bottom' : 'top');
-
-
   render() {
-    const { mainAnimationStatus, mountingDetect } = this.state;
     const { linksMenuPosition } = this.props;
 
     return (
       <div className={style.everythingContainer}>
         <div className={style.textContainer}>
           <div className={style.title}>
-            Почувствуй <br /> силу возможностей
+            Выпусти <br /> силу данных
           </div>
           <div className={style.text}>
-            <span>Open source платформа </span>
-            <span>собственной аналитической системы</span>
-            <span>и автоматизации маркетинга</span>
+            <span>Открытая платформа для создания</span>
+            <span>центрального хранилица и управления </span>
+            <span>жизненным циклом пользователей</span>
           </div>
         </div>
         <div className={style.bgContainer}>
@@ -114,19 +78,20 @@ export class Everything extends React.PureComponent {
               linksMenu.map((item, index) => {
                 return (
                   <div key={index} className={cl(style.item, { [style.lastItem]: index === linksMenu.length - 1 })}>
-                    <a href={item.path} target={'__blank'}> {item.name} </a>
+                    <a href={item.path} target={'_blank'}> {item.name} </a>
                   </div>
                 )
               })
             }
           </div>
           <div className={cl(style.demoContainer, { [style.top]: linksMenuPosition === 'top' })}>
-            <VisibleDetect onChange={this._linkMenuPositionDetect} />
             <div className={style.btn}> <a href={'/'}> Demo </a> </div>
-            <div className={style.description}>
-              <div>Open Source</div>
-              <div>Apache 2.0</div>
-            </div>
+            <VisibilitySensor onChange={this.linksMenuPositionDetect} >
+              <div className={style.description}>
+                <div>Open Source</div>
+                <div>Apache 2.0</div>
+              </div>
+            </VisibilitySensor>
           </div>
         </div>
       </div>

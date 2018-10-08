@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: baseline;
   padding: rem(31px 50px);
-  background-color: rgba(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
   &.activeBg {
     background-color: rgba(0, 0, 0, 0.5);
   }
@@ -86,12 +86,7 @@
     transition: background-color .3s ease;
     padding: 0;
     position: relative;
-    &.activeBg {
-      background-color: transparent;
-      .gamburger {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-    }
+    
     .gamburger {
       padding: rem(20px 0);
       text-align: center;
@@ -127,6 +122,12 @@
             transform: rotate(-45deg) translate3d(20%, -70%, 0);
           }
         }
+      }
+    }
+    &.activeBg {
+      background-color: transparent;
+      .gamburger {
+        background-color: rgba(0, 0, 0, 0.8);
       }
     }
     &.documentation {

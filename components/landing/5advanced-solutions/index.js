@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 
 import style from './solutions.css';
-import { Cube, VSolutions } from 'components/icons/solutions';
+import { Cube, VSolutions } from 'app/components/icons/advanced-solutions';
 
 export class Solution extends React.Component {
 
@@ -13,7 +13,7 @@ export class Solution extends React.Component {
         <div className={style.textContainer}>
           <div className={style.title}>Продвинутые решения</div>
           <div className={style.description}>
-          Несколько прмеров того, какие могут быть сервисы, использующие <br /> математические модели и машинное обучение.
+          Несколько примеров, какие могут быть сервисы, использующие <br /> математические модели.
           </div>
         </div>
 
@@ -32,16 +32,15 @@ export class Solution extends React.Component {
             <div className={style.leftTextTop}>
               <div className={style.title}>Сегментация посетителей</div>
               <div className={style.description}>
-                Определение интересов и предпочтений каждого
-                посетителя на собственных данных об их поведении,
-                Результаты могут использоваться в других сервисах, внутренних или внешних.
+                Определение предпочтений каждого
+                посетителя на собственных совокупных знаний о нем,
+                Результаты можно тут же использовать или передать во внешние сервисы.
               </div>
             </div>
             <div className={style.leftTextBottom}>
-              <div className={style.title}>Предикторы в реальном времени</div>
+              <div className={style.title}></div>
               <div className={style.description}>
-                Вычисление наилучшего способа провести пользователя по воронке,
-                тут же передавая результат в браузер, где будет выполнено нужное действие.
+                Определить возможные шаги и определить вероятнось совершения каждого. Определение 
               </div>
             </div>
           </div>
@@ -50,15 +49,15 @@ export class Solution extends React.Component {
             <div className={style.rightTextTop}>
               <div className={style.title}>Атрибуция на основе данных о поведении</div>
               <div className={style.description}>
-                Стройте модели атрибуции пологающиеся на поведение пользователей,
-                на их конкретные действия, а не на тип канала и номер визита.
+                Стройте модели атрибуции полагающиеся на поведение пользователей, 
+                а не на тип канала и номер визита.
               </div>
             </div>
             <div className={style.rightTextBottom}>
               <div className={style.title}>Машинный анализ данных</div>
               <div className={style.description}>
-                Находите закономерности в данных, среди тысяч признаков и миллионов
-                пользователей. Можно вычислять их значимость и выделять микроконверсии.
+                Находите закономерности в данных от множества пользователей
+                Вычисляйте дальнейшие шаги и их вероятность. Используйте результаты.
               </div>
             </div>
           </div>
