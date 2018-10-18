@@ -130,13 +130,16 @@
     line-height: 1.5;
     color: #24292e;
     word-wrap: break-word;
-
+    @mixin raleway-regular 15px;
 
     & > div > * {
-      @mixin raleway-regular 15px;
+      
+      padding-top: 8px;
+      padding-bottom: 8px;
 
       padding-left: 192px;
       padding-right: 192px;
+
       @media(max-width: 720px) {
         padding-left: 10px;
         padding-right: 10px;
@@ -153,8 +156,8 @@
     h4,
     h5,
     h6 {
-      margin-top: rem(24px);
-      margin-bottom: rem(16px);
+      margin-top: rem(16px);
+      margin-bottom: rem(8px);
       font-weight: 500;
       line-height: 1.25;
     }
@@ -192,10 +195,9 @@
       font-weight: 700;
     }
   
-    p, blockquote, ul, ol, dl, table, pre {
-      margin-top: 16px;
-      margin-bottom: 16px;
-    }
+    /* p, blockquote, ul, ol, dl, table, pre, img {
+
+    } */
 
     /*
     & > div > div > pre > pre {
@@ -381,10 +383,10 @@
       list-style-position: outside;
       list-style-type: none;
 
-      & > li {
+      /* & > li {
         text-indent: -0.8rem;
         word-wrap: break-all;
-      }
+      } */
     
       li::before {
         content: '\2014';
@@ -413,8 +415,10 @@
         }
       }
 
-      ul ol {
+      ul, ol {
         margin-left: 2em;
+        padding-top: 0;
+        padding-bottom: 0%;
       
         ul, ol {
           margin-left: 2em;

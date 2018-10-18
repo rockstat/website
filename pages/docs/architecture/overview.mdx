@@ -1,6 +1,6 @@
 import asset from 'next/asset'
 import { withDoc } from 'app/lib'
-import { Tip } from 'app/components'
+import { Tip, Expand } from 'app/components'
 
 export const meta = {
   title: '',
@@ -11,10 +11,11 @@ export const meta = {
 
 Rockstat состоит из множества компонентов: хранилищ, инструментов для работы с данными, специально разработанных сервисов, выполняющих свою часть общего дела, средств администрирования.
 
-На следующей схеме приведены только основные сервисы, разработанные специально для Rockstat и сторонние инструменты, которые были интегрированы с остальными частями платформы. Только представьте, сколько еще всего...
+На схеме приведены только основные сервисы, разработанные специально для Rockstat и сторонние инструменты, которые были интегрированы с остальными частями платформы. Только представьте, сколько еще всего...
 
-
-![Rockstat main components](/static/images/docs/schemas/common-scheme.svg)
+<Expand>
+  <img src="/static/images/docs/schemas/common-scheme.svg"/>
+</Expand>
 
 Основные компоненты
 
