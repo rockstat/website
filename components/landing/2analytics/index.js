@@ -28,7 +28,7 @@ export class Analytic extends React.Component {
     return (
       <div className={style.analyticContainer}>
         <div className={style.textContainer}>
-          <div className={style.title}>Аналитические возможности</div>
+          <div className={style.title}>Аналитическая система</div>
           <div className={style.description}>Получение и предварительная обработка даннных из множества источников</div>
         </div>
 

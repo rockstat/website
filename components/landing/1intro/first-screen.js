@@ -49,11 +49,11 @@ export class Everything extends React.PureComponent {
       <div className={style.everythingContainer}>
         <div className={style.textContainer}>
           <div className={style.title}>
-            Выпусти <br /> силу данных
+            Сила в данных
           </div>
           <div className={style.text}>
             <span>Открытая платформа для создания</span>
-            <span>центрального хранилица и управления </span>
+            <span>аналитической системы и управления</span>
             <span>жизненным циклом пользователей</span>
           </div>
         </div>

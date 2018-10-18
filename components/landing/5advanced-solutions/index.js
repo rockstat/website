@@ -30,34 +30,34 @@ export class Solution extends React.Component {
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>
-              <div className={style.title}>Сегментация посетителей</div>
+              <div className={style.title}>Цифровые профили</div>
               <div className={style.description}>
-                Определение предпочтений каждого
-                посетителя на собственных совокупных знаний о нем,
-                Результаты можно тут же использовать или передать во внешние сервисы.
+                Объединение данных о пользователях из различных источников: Сайт, CRM, реклама, мессенджеры, email, push и пр.
+                
               </div>
             </div>
             <div className={style.leftTextBottom}>
-              <div className={style.title}></div>
+              <div className={style.title}>Сегментация пользователей</div>
               <div className={style.description}>
-                Определить возможные шаги и определить вероятнось совершения каждого. Определение 
+                Стройте различные сегменты пользователей на основе цифровых профилей,
+                Результаты можно тут же использовать или передать во внешние сервисы.
+                
               </div>
             </div>
           </div>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>
-              <div className={style.title}>Атрибуция на основе данных о поведении</div>
+              <div className={style.title}>Многоканальные цепочки</div>
               <div className={style.description}>
-                Стройте модели атрибуции полагающиеся на поведение пользователей, 
-                а не на тип канала и номер визита.
+                Реализация многоканальных стратегий для работы с лояльносьтью, выращиванию и возврата кастомеров.
+                
               </div>
             </div>
             <div className={style.rightTextBottom}>
-              <div className={style.title}>Машинный анализ данных</div>
+              <div className={style.title}>Атрибуция на основе данных о поведении</div>
               <div className={style.description}>
-                Находите закономерности в данных от множества пользователей
-                Вычисляйте дальнейшие шаги и их вероятность. Используйте результаты.
+                Произвольные модели атрибуции на основе поведения пользователей: вероятностное прохождение вороки, индекс взаимодействий.
               </div>
             </div>
           </div>

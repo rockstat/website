@@ -19,9 +19,10 @@ export class Microservices extends React.Component {
           </div>
         </div>
         <div className={style.textContainer}>
-          <div className={style.title}>Собственная логика</div>
+          <div className={style.title}>Открытые возможности</div>
           <div className={style.description}>
-            Для решения базовых задач хватит начального уровня программирования.
+            Вся сила в простоте создания собственных решений оптимально подходящих под задачи.
+          
           </div>
         </div>
         <div className={cl(style.leftBg, 'rockstat-svg-container')}>
@@ -36,32 +37,31 @@ export class Microservices extends React.Component {
         <div className={style.contentCenter}>
           <div className={style.leftText}>
             <div className={style.leftTextTop}>
-              <div className={style.title}>Работа с API</div>
+              <div className={style.title}>Действия по расписанию</div>
               <div className={style.description}>
-                Автоматизируйте взаимодействие с сторонними API для получения или отправки данных, триггерно и по рассписанию.
+                Произвольная логика для обработки данных в хранилище, взаимодействия с внешними API и пр.
               </div>
             </div>
             <div className={style.leftTextBottom}>
-              <div className={style.title}>Реактивные сервисы</div>
+              <div className={style.title}>Триггерные обработчики</div>
               <div className={style.description}>
-                Создавайте сервисы, реагирующие на события.
-                Отправляйте Push, Email, Webhooks используя данных их храннилища. Это может быть чатбот.
+                Возможность обработки каждого события в реальном времени.
+                Инициация любых операций: HTTP Webhooks, Push, Email и пр.
               </div>
             </div>
           </div>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>
-              <div className={style.title}>Только логика</div>
+              <div className={style.title}>Готовая основа</div>
               <div className={style.description}>
-                Общие задачи уже реализованы, остается описать желаемую логику.
-                Помогут готовые примеры приложений и среда разработки. Поддержка Python и JS/TS.
+                Frameworks для Python и TypeScript/JavaScript и набор библиотек делают процесс разработки действительно простым.
               </div>
             </div>
             <div className={style.rightTextBottom}>
-              <div className={style.title}>Микросервисы</div>
+              <div className={style.title}>Экосистема</div>
               <div className={style.description}>
-                Одно нажатие и ваша программа будет запущена в виде изолированного микросервиса.
+                Имеются примеры готовых приложений и интегрированная среда разработки.
                 Готовыми решениями можно обмениваться с другими.
               </div>
             </div>

@@ -47,16 +47,16 @@ export class Repository extends React.Component {
 
               <div className={style.title}>Получение данных</div>
               <div className={style.description}>
-                Нативно: HTTP GET/POST, Socket. SDK: Web, Mobile Apps.
-                Специальные: HTTP redirector, pixel. Остальное, используя API
+                HTTP GET/POST, Socket. SDK: Web, Mobile Apps.
+                Специальные: HTTP redirect, pixel. Остальное, используя API
               </div>
 
 
             </div>
             <div className={style.leftTextBottom}>
-              <div className={style.title}>Адаптиваная запись</div>
+              <div className={style.title}>Адаптивная запись</div>
               <div className={style.description}>
-                В основе лежит универсальная схема, автоматически расширяемая до желаемой, на основе конфига.
+                Механизм автоматической подстройки стурктуры записываемых данных под схему СУБД ClickHouse.
               </div>
 
 
@@ -84,13 +84,13 @@ export class Repository extends React.Component {
               <div className={style.title}>Работа с данными</div>
               <div className={style.description}>
                 Grafana и Jupyter для дашбордов и отчетов.
-                Для безопасного доступа при использовании других инструментов, встроен VPN сервер 
+                Для безопасного доступа при использовании других инструментов, встроен VPN сервер.
               </div>
             </div>
             <div className={style.rightTextBottom}>
               <div className={style.title}>Передача данных</div>
               <div className={style.description}>
-                Стриминг во любые внешние сервисы и хранилища, например в BigQuery или Mixpanel.
+                Стриминг во внешние сервисы и хранилища, например в BigQuery или Mixpanel.
               </div>
             </div>
           </div>

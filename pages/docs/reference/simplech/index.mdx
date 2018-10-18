@@ -1,0 +1,85 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: '',
+}
+
+<h1 id="simplech">simplech</h1>
+
+
+This module implements the ...
+
+<h2 id="simplech.simplech.BaseClickHouse">BaseClickHouse</h2>
+
+```python
+BaseClickHouse(self, host=None, port=None, db=None, user=None, password='', session=False, session_id='', dsn='', debug=False, loop=None, buffer_size=1000)
+```
+
+This module implements the ...
+
+__Arguments__
+
+
+- __host__: [default: `127.0.0.1`] Хост с clickhouse
+- __port__: [default: `8123`]  Порт подключения
+- __db__: [default: `default`]  Название базы данных
+- __user__: [default: `default`]  Имя пользователя
+- __password__: [default: `""`]  Пароль
+- __session__: [default: `False`] Использовать сессию. Идентификатор сессии генерируется автоматически
+- __session_id__: [default: `""`] Идентификатор сессии взамен автоматически сгенериованного
+- __dsn__: [default: `""`] Использовать DSN для подключения (пример: `http://default@127.0.0.1:8123/stats`)
+- __debug__: [default: `False`] Включение логов в режим отладки
+- __buffer_limit__: [default: `1000`] Буффер записи на таблицу. При достижении будет произведена запись в БД
+- __loop__: [default: `None`] При необходимости указать конкретный loop (для асинхронной версии)
+
+
+<h3 id="simplech.simplech.BaseClickHouse.push">push</h3>
+
+```python
+BaseClickHouse.push(self, table, doc, jsonDump=True)
+```
+
+Add document to upload chunk
+
+<h2 id="simplech.simplech.AsyncClickHouse">AsyncClickHouse</h2>
+
+```python
+AsyncClickHouse(self, host=None, port=None, db=None, user=None, password='', session=False, session_id='', dsn='', debug=False, loop=None, buffer_size=1000)
+```
+
+<h3 id="simplech.simplech.AsyncClickHouse.flush">flush</h3>
+
+```python
+AsyncClickHouse.flush(self, table)
+```
+
+Flush buffer of table
+
+<h3 id="simplech.simplech.AsyncClickHouse.run">run</h3>
+
+```python
+AsyncClickHouse.run(self, sql_query, data=None, decoder=<function bytes_decoder at 0x10d58e6a8>)
+```
+
+Executes SQL code
+
+<h2 id="simplech.simplech.ClickHouse">ClickHouse</h2>
+
+```python
+ClickHouse(self, host=None, port=None, db=None, user=None, password='', session=False, session_id='', dsn='', debug=False, loop=None, buffer_size=1000)
+```
+
+<h3 id="simplech.simplech.ClickHouse.flush">flush</h3>
+
+```python
+ClickHouse.flush(self, table)
+```
+
+Flushing buffer to DB
+
+
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)
