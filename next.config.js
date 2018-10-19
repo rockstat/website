@@ -34,6 +34,7 @@ module.exports = withMDX(withCSS({
   // },
   // distDir: 'build',
   pageExtensions: ['js', 'jsx', 'mdx'],
+  // exportTrailingSlashes: false,
   // distDir: 'build',
   // useFileSystemPublicRoutes: false,
   webpack: (config) => {
