@@ -1,21 +1,31 @@
 import asset from 'next/asset'
 import {withDoc} from 'app/lib'
-import {Expand} from 'app/components'
+import {Expand, Alert, Tip} from 'app/components'
 
 export const meta = {
-  title: 'Введение в Rockstat',
+  title: 'О платформе Rockstat',
 }
 
 
-# Введение в Rockstat
+# О платформе Rockstat
 
-Rockstat - это маркетинговая платформа, которая включает: браузерный трекер, серверный трекер, сервис сохранения данных в ClickHouse и др.
-Главной особенностью является возможность простой автоматизации маркетинга, причем возможны как триггерные действия, так и на основле ранее собранных данных.
+Rockstat - это платформа, позволяющая построить собственную CDP (Customer Data Platform) для управления жизененным циклом пользователей,
+не завратив на это много времени.
+Платформа включает в себя: WebSDK, сервис сбора данных, сервис записи и управления ClickHouse, систему оркестровки, 
+frameworks для Python и TypeScript, сервисы геокодинга, разбора UserAgent, средства разработки, инструменты обработки и визуалищзации данных,
+СУБД ClickHouse, Redis, систему управления и множество других необходимых составляющих.
 
+<Tip>
+  В данный момент Rockstat проходит стадию Alpha, это
+  допускаетт возможность изменения API компонентов платформы и наличие сбоев.
+</Tip>
 
-<Expand>
-  <img src="/static/images/docs/schemas/common-scheme.svg"/>
-</Expand>
+Далее к прочтению:
+
+1. [Быстрый старт](/docs/intro/getting-started)
+1. [Основные компоненты](/docs/architecture/overview)
+1. [Что нового](/docs/what-s-new)
+
 
 ## Лицензия
 

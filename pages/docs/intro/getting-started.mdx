@@ -10,11 +10,9 @@ export const meta = {
 
 # Быстрый старт с Rockstat
 
-<Tip>
-В этом руководстве будет рассказан типичный сценарий установки Rockstat на ваш собственный сервер.
-</Tip>
+В этом руководстве приведен типичный сценарий установки Rockstat на виртуальный облачный сервер.
 
-## Подготовка сервера к установке платформы
+## Выбор и подготовка сервера
 
 ### Минимальные требования
 
@@ -30,7 +28,7 @@ Rockstat устанавливается на собственный сервер
   Все необходимое будет установлено автоматически и переконфигурировано под специфику платформы.
 </Alert>
 
-#### Выбор провайдера
+#### Выбор поставщика
 
 Для размещения в России хорошим вариантом является [Vscale](https://vscale?utm_source=rock.st),
 за границей будет достаточно бюджетного [Hetzner](https://hetzner.de?utm_source=rock.st).
@@ -125,13 +123,15 @@ ssh root@поддомен.вашдомен
 sudo apt -qqy update && sudo apt -qqy install curl
 ```
 
-Выполните для запуска установщика:
+Загрузите и запустите установщик:
 
 ```shell
 curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
 ```
 
-![ran setup](/static/images/docs/setup/start_setup2-fast.svg)
+Через несколько минут появится интерфейс параметров установки
+
+![ran setup](/static/images/docs/setup/bootstrap-menu.jpg)
 
 При первоначальной установке нужно последовательно выполнить шаги **1**, **2** и **3**.
 
@@ -148,7 +148,7 @@ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstar
 
 ## Обзор платформы
 
-![app services start](/static/images/docs/setup/app_services_start.png)
+![app services start](/static/images/docs/setup/app_services_start.jpg)
 
 Rockstat состоит из множества компонентов: хранилищ, инструментов для работы с данными, специально разработанных сервисов,
 выполняющих свою часть общего дела, средств администрирования.
@@ -156,7 +156,9 @@ Rockstat состоит из множества компонентов: хран
 На следующей схеме приведены только основные сервисы, разработанные специально для Rockstat и сторонние инструменты,
 которые были интегрированы с остальными частями платформы. Только представьте, сколько еще всего...
 
-![services overview](/static/images/docs/schemas/services-table.svg)
+<Expand>
+  <img src="/static/images/docs/schemas/services-table.svg"/>
+</Expand>
 
 Перейти в любой из инструментов можно через `https://app.поддомен.вашдомен`.
 

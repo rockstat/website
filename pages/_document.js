@@ -16,9 +16,6 @@ const defaultOGImage = `${defaultOGURL}/static/images/social/fig.png`
 
 
 export default class MyDocument extends Document {
-  // static propTypes = {
-  //   gtmId: PropTypes.string,
-  // }
 
   render() {
     const { props } = this;
