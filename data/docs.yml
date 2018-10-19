@@ -151,9 +151,11 @@
         - name: Модификация схемы
           href: /docs/guides/clickhouse/schema-modify
 
-    - name: Подключение по VPN
+    - name: Подключение к VPN
       href: /docs/guides/connect-vpn
 
+    - name: Хитрости конфигурации
+      href: /docs/guides/configuration-tricks
 
 - name: Создание сервисов
   items:

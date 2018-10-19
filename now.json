@@ -6,5 +6,13 @@
   "env": {
     "HOST": "0.0.0.0",
     "PORT": "8080"
+  },
+  "type": "static",
+  "static": {
+    "redirects": [
+      { "source": "/", "destination": "/ru", "type": 302 }
+    ],
+    "directoryListing": false,
+    "trailingSlash": false
   }
 }

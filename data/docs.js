@@ -231,10 +231,16 @@ export default [
         ]
       },
       {
-        "name": "Подключение по VPN",
+        "name": "Подключение к VPN",
         "href": "/docs/guides/connect-vpn"
+      },
+      {
+        "name": "Хитрости конфигурации",
+        "href": "/docs/guides/configuration-tricks",
+        "enabled": true
       }
-    ]
+    ],
+    "enabled": true
   },
   {
     "name": "Создание сервисов",
