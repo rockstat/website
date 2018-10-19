@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
   plugins: {
-    // Illustrational
     // 'postcss-extend-rule': {}, // precss
     // 'postcss-import': { },
     'postcss-mixins': {
@@ -17,18 +16,10 @@ module.exports = {
       precision: 6,
       fallback: false
     },
-
-    // 'postcss-pxtorem': {
-
-    // },
     'postcss-preset-env': {}, // precss
     'postcss-atroot': {}, // precss
     'postcss-property-lookup': {}, // precss
     'postcss-cssnext': {},
     // 'postcss-pixels-to-rem': {}
-    // 'postcss-css-variables': {}
-    // 'postcss-modules': {
-      // scopeBehaviour: 'global'
-    // }
   }
 }
