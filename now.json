@@ -13,6 +13,6 @@
       { "source": "/", "destination": "/ru", "type": 302 }
     ],
     "directoryListing": false,
-    "trailingSlash": false
+    "trailingSlash": true
   }
 }
