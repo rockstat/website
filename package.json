@@ -6,7 +6,8 @@
     "build:dev": "next build",
     "build": "NODE_ENV=production next build",
     "build:toc": "node scripts/toc-to-js",
-    "build:export": "yarn build:toc && next build && next export"
+    "build:export": "yarn build:toc && next build && next export -o ./public",
+    "export": "next export -o ./public"
   },
   "license": "Apache-2.0",
   "dependencies": {

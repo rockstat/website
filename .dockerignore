@@ -1,0 +1,8 @@
+.next
+.vscode
+node_modules
+.editorconfig
+makefile
+netlify.toml
+yarn-error.log
+

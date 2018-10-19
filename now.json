@@ -1,5 +1,6 @@
 {
   "name": "rockstat",
+  "type": "static",
   "alias": [
     "rock.st"
   ],
