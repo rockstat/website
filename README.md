@@ -9,6 +9,14 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 
 ```
 
+### next
+
+##### id gen
+
+Unsigned integer (0 to 18446744073709551615)
+simpleflake ---->??? fuckflake
+
+
 ### Установка node.js
 
 ```

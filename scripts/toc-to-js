@@ -8,20 +8,29 @@ var mkdirp = require('mkdirp');
 const baseDir = path.join(__dirname, '..');
 const dataDir = path.join(baseDir, 'data')
 
-const setEnabled = (items) => {
+const setEnabled = (items, level = 1) => {
   let hasActiveItems = false;
+  let hrefs = [];
+
   for (const item of items) {
+    item.level = level;
     let hasActiveChild = false;
     let fileExists = false;
 
+
     if (item.items) {
-      const childData = setEnabled(item.items);
+      const childData = setEnabled(item.items, level + 1);
       if (childData.hasActiveItems) {
         hasActiveChild = true;
       }
+      if (item.level >= 2) {
+        item.hrefs = [...childData.hrefs]
+      }
+
     }
 
     if (item.href) {
+      hrefs.push(item.href)
       const fpath = path.join(baseDir, 'pages', item.href + '.mdx');
       const fdir = path.dirname(fpath)
       if (!fs.existsSync(fdir)) {
@@ -31,12 +40,13 @@ const setEnabled = (items) => {
     }
 
     if (fileExists || hasActiveChild) {
-      item.enabled = true;
+      Object.assign(item, { enabled: true });
       hasActiveItems = true;
     }
+
   }
   return {
-    hasActiveItems
+    hasActiveItems, hrefs
   }
 }
 const data = yaml.load(fs.readFileSync(path.join(dataDir, 'docs.yml')));
