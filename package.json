@@ -1,14 +1,14 @@
 {
   "name": "rockstat",
   "scripts": {
-    "start:dev": "yarn build:toc && node server.js",
+    "start:dev": "node server.js",
     "start:serve": "serve",
     "start": "NODE_ENV=production node server.js",
     "clean": "rimraf public && rimraf .next",
     "build:dev": "next build",
     "build": "NODE_ENV=production next build",
     "build:toc": "node scripts/toc-to-js",
-    "build:export": "yarn build:toc && next build && next export -o ./public",
+    "build:export": "next build && next export -o ./public",
     "export:zeit": "next export -o /public"
   },
   "license": "Apache-2.0",

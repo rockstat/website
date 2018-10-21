@@ -1,9 +1,0 @@
-#!/usr/bin/env node
-const path = require('path');
-const builder = require('../lib/scripts/table_contents')
-const baseDir = path.join(__dirname, '..');
-
-let data = builder.read(baseDir, 'data/docs.yml');
-data = builder.build(baseDir, data);
-builder.write(baseDir, 'data/docs.js', data);
-

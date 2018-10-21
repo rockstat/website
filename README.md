@@ -9,14 +9,7 @@
 
 Документация расположена в `pages/docs`. Новую страницу можно создать, скопировав `template.mdx`. 
 
-
-```bash
-yarn build:toc
-```
-
-
-
-## Запуск dev версии и сборка
+## Запуск dev версии
 
 ### Установка NVM (node version manager) для node.js
 
@@ -48,18 +41,3 @@ yarn
 ```bash
 yarn start:dev
 ```
-
-### Экспорт статики
-
-Основные версии сайта хостятся в виде статики
-
-```bash
-yarn build:export
-```
-
-Предпросмотр статической версии
-
-```bash
-yarn start:serve
-```
-

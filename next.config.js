@@ -1,6 +1,9 @@
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
 const path = require('path')
+
+const TOCBuilder = require('./lib/scripts/table_of_contents')
+
 const withMDX = require('@zeit/next-mdx')({
   options: {
     mdPlugins: [
@@ -23,7 +26,6 @@ module.exports = withMDX(withCSS({
     localIdentName: '[name]__[local]__[hash:base64:5]',
   },
   exportPathMap: async (defaultPathMap, { dev, dir, outDir, distDir, buildId }) => {
-    console.log('exportPathMap called')
     const paths = {
       '/': { page: '/index' },
       '/ru': { page: '/main' },
@@ -31,7 +33,9 @@ module.exports = withMDX(withCSS({
       ...defaultPathMap
     };
     if (dev) {
-      return paths;
+      console.log('generating Table of contents');
+      const builder = new TOCBuilder(dir, 'data/docs.yml', `data/docs.js`);
+      builder.convert()
     }
 
     return paths;
