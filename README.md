@@ -10,7 +10,7 @@
 Документация расположена в `pages/docs`. Новую страницу можно создать, скопировав `template.mdx`. 
 
 
-```
+```bash
 yarn build:toc
 ```
 
@@ -20,14 +20,14 @@ yarn build:toc
 
 ### Установка NVM (node version manager) для node.js
 
-```
+```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
 ```
 
 ### Установка node.js и yarn
 
-```
+```bash
 nvm install 8
 
 npm -g install yarn
@@ -37,7 +37,7 @@ npm -g install yarn
 
 выполняется в папке с проектом
 
-```
+```bash
 yarn
 ```
 
@@ -45,7 +45,7 @@ yarn
 
 произоводится мониторинг измений и частичная пересборка
 
-```
+```bash
 yarn start:dev
 ```
 
@@ -53,13 +53,13 @@ yarn start:dev
 
 Основные версии сайта хостятся в виде статики
 
-```
+```bash
 yarn build:export
 ```
 
 Предпросмотр статической версии
 
-```
+```bash
 yarn start:serve
 ```
 
