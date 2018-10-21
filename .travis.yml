@@ -7,3 +7,5 @@ env:
   global:
   - PROJECT_NAME=rockstat-web
   - ORG=rockstat
+script: yarn build:export
+
