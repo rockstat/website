@@ -90,7 +90,7 @@ export class Repository extends React.Component {
             <div className={style.rightTextBottom}>
               <div className={style.title}>Передача данных</div>
               <div className={style.description}>
-                Стриминг во внешние сервисы и хранилища, например в BigQuery или Mixpanel.
+                Стриминг во внешние сервисы и хранилища, например, в BigQuery или Mixpanel.
               </div>
             </div>
           </div>
