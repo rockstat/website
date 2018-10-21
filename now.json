@@ -9,8 +9,9 @@
   },
   "type": "static",
   "static": {
+    "public": "public",
     "redirects": [
-      { "source": "/", "destination": "/ru", "type": 302 }
+      { "source": "/", "destination": "/ru", "type": 303 }
     ],
     "directoryListing": false,
     "trailingSlash": true

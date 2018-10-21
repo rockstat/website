@@ -2,7 +2,9 @@
   "name": "rockstat",
   "scripts": {
     "start:dev": "yarn build:toc && node server.js",
+    "start:serve": "serve",
     "start": "NODE_ENV=production node server.js",
+    "clean": "rimraf public && rimraf .next",
     "build:dev": "next build",
     "build": "NODE_ENV=production next build",
     "build:toc": "node scripts/toc-to-js",
@@ -69,6 +71,8 @@
     "postcss-rem": "^1.1.1",
     "prop-types": "^15.6.1",
     "remark-custom-blocks": "^2.2.3",
+    "rimraf": "^2.6.2",
+    "serve": "^10.0.2",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-declaration-use-variable": "^1.7.0",
     "svg-inline-loader": "^0.8.0",

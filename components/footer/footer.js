@@ -2,7 +2,7 @@ import * as React from 'react';
 import cl from 'classnames';
 
 import { Link } from '../../next-routes';
-import { createLinker } from '../../utils/url-maker'
+import { createLinker } from '../../lib/url-maker'
 import { itemTarget } from '../../lib/menu'
 import { LogoIcon } from '../icons';
 import { footerMenu, footerRightMenu, linksMenu } from '../../constants';

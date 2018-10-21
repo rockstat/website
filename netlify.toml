@@ -2,40 +2,12 @@
 publish = "public"
 command = "yarn build:export"
 
-# [build.environment]
-# NODE_ENV = "production"
-
 [context.production.environment]
-REPOSITORY_URL = "https://github.com/madiedinro/rockstat.ru-nextjs"
+REPOSITORY_URL = "https://github.com/madiedinro/rockstat-web"
 CONTEXT = "production"
-NODE_VERSION= "8.11.3"
-# WEBHOOK_TITLE = "rstat.ru build"
+NODE_VERSION= "8.12.0"
+WEBHOOK_TITLE = "rstat.org build"
 WEBHOOK_URL = "https://bolt.rstat.org/netlify/build/1"
-# HUGO_VERSION = "0.41"
-# HUGO_ENV = "production"
-# HUGO_ENABLEGITINFO = "true"
-
-# [context.split1]
-# command = "hugo --enableGitInfo"
-
-# [context.split1.environment]
-# HUGO_VERSION = "0.41"
-# HUGO_ENV = "production"
-
-# [context.deploy-preview]
-# command = "hugo -b $DEPLOY_PRIME_URL"
-
-# [context.deploy-preview.environment]
-# HUGO_VERSION = "0.41"
-
-# [context.branch-deploy]
-# command = "hugo -b $DEPLOY_PRIME_URL"
-
-# [context.branch-deploy.environment]
-# HUGO_VERSION = "0.41"
-
-# [context.next.environment]
-# HUGO_ENABLEGITINFO = "true"
 
 [[redirects]]
 from = "/"
