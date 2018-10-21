@@ -8,7 +8,6 @@ import Document, { Head, Main, NextScript } from 'next/document'
 import gtmParts, { buildParts } from 'react-google-tag-manager';
 
 const domain = 'rock.st'
-const defaultTitle = 'Rockstat | Open Source Customer Data Platform'
 const defaultDescription = 'Открытая платформа для создания собственной аналитической системы и управления жизненным циклом пользователей'
 const defaultOGURL = `https://${domain}`
 const defaultOGImage = `${defaultOGURL}/static/images/social/electric-star.png`
@@ -22,7 +21,6 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <meta charSet="UTF-8" />
-          <title>{defaultTitle}</title>
           {/* <meta name="description" content={props.description || defaultDescription} /> */}
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* <link rel="icon" sizes="192x192" href="/static/touch-icon.png" /> */}

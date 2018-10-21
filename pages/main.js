@@ -12,6 +12,7 @@ import {
   Center,
   Information
 } from 'components';
+import Head from 'next/head'
 
 const lang = 'ru';
 
@@ -41,7 +42,9 @@ export default class extends React.Component {
 
     return (
       <span>
-        {/* <Head/> */}
+        <Head>
+          <title>Rockstat | Open Source Customer Data Platform</title>
+        </Head>
         <Wrapper activeSection={'main'} {...this.props} lang={lang} headerBgActive={false} linkMenuPosition={linksMenuPosition}>
           <Everything linksMenuPositionChange={this._changeLinkMenuPosition} linksMenuPosition={linksMenuPosition} />
           <Analytic />
