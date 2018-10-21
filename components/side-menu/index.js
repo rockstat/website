@@ -16,12 +16,30 @@ export class SideMenu extends React.Component {
     const { activeMenuItem } = this.state;
     let newActvieMenuItem = [...activeMenuItem];
     let activeShowDetect = activeMenuItem.indexOf(key);
-
+    
     activeShowDetect >= 0 ? newActvieMenuItem.splice(activeShowDetect, 1) : newActvieMenuItem.push(key)
-
     this.setState({
       activeMenuItem: newActvieMenuItem
     })
+  }
+
+  componentWillMount() {
+    const { menuData, pathname } = this.props;
+    const activeMenuItem = [];
+
+    const iter = (items) => {
+      for (const item of items) {
+        const active = item.href === pathname || (item.hrefs || []).indexOf(pathname) >= 0;
+        if (active) {
+          activeMenuItem.push(item.path);
+        }
+        if (item.items) {
+          iter(item.items);
+        }
+      }
+    }
+    this.setState({ activeMenuItem })
+    iter(menuData)
   }
 
   changeMenu = () => {
@@ -33,16 +51,15 @@ export class SideMenu extends React.Component {
   renderItemStatus(enabled, pathname, href) {
     return cls({
       [style['disabled-link']]: !enabled,
-      [style.active]: pathname === href
+      [style.active]: Array.isArray(href) ? href.indexOf(pathname) >= 0 : pathname === href
     })
   }
 
-  renderItem({ name, href, enabled, items }, [i1, i2]) {
+  renderItem({ name, href, hrefs, enabled, items, path }) {
     const { lang, pathname } = this.props;
     const { activeMenuItem } = this.state;
-    const key = `${i1}-${i2}`;
     return (
-      <div className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(key) >= 0 })} key={`side-menu-${key}`}>
+      <div className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(path) >= 0 })} key={path}>
         <ShowIf condition={href}>
           <Link route={href} params={{ lang }}>
             <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
@@ -50,16 +67,16 @@ export class SideMenu extends React.Component {
         </ShowIf>
         <ShowIf condition={!href}>
           <span
-            onClick={() => this.setActiveMenuItem(`${key}`)}
-            className={this.renderItemStatus(enabled, pathname, href)}
+            onClick={() => this.setActiveMenuItem(path)}
+            className={this.renderItemStatus(enabled, pathname, hrefs)}
           >
             <ShowMenuIcon /> {name}
           </span>
         </ShowIf>
         {/* 3rd level */}
         <div className={style.childItemTreeContainer}>
-          {items && items.map(({ name, href, enabled }, i3) => (
-            <div className={style.childItemTree} key={`side-menu-${key}-${i3}`}>
+          {items && items.map(({ name, href, enabled, path }) => (
+            <div className={style.childItemTree} key={path}>
               <span>
                 <Link route={href} params={{ lang }}>
                   <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
@@ -72,11 +89,11 @@ export class SideMenu extends React.Component {
     )
   }
 
-  renderCategory({ name, items }, i1) {
+  renderCategory({ name, items, path }) {
     return (
-      <div className={style.mainItem} key={`side-menu-${i1}`}>
+      <div className={style.mainItem} key={path}>
         <span className={style.title}>{name}</span>
-        {items && items.map((item, i2) => this.renderItem(item, [i1, i2]))}
+        {items && items.map((item) => this.renderItem(item))}
       </div>
     )
   }
@@ -86,15 +103,15 @@ export class SideMenu extends React.Component {
     const { showMenu } = this.state;
 
     return [
-      <div key={0} className={cls(style.sideBar, { [style.show]: showMenu })}>
+      <div key={100} className={cls(style.sideBar, { [style.show]: showMenu })}>
         <div className={style.floatLogo}>
           <Logo />
         </div>
-        {menuData.map((category, i1) => this.renderCategory(category, i1))}
+        {menuData.map((category) => this.renderCategory(category))}
       </div>,
-      <div key={1} className={cls(style.closebtn, { [style.show]: showMenu })} onClick={this.changeMenu}>X</div>,
+      <div key={101} className={cls(style.closebtn, { [style.show]: showMenu })} onClick={this.changeMenu}>X</div>,
       <div
-        key={2}
+        key={102}
         onClick={this.changeMenu}
         className={cls(style.mobileShowMenu, { [style.show]: showMenu })}
       >

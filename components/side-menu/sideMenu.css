@@ -118,13 +118,6 @@
           }
         }
 
-        &.active {
-          color: #f00;
-          .childItemTreeContainer {
-            display: block;
-          }
-        }
-
         span {
           color: #fff;
           opacity: 1;
@@ -137,6 +130,15 @@
             width: rem(12px);
             height: rem(12px);
             margin-right: rem(5px);
+          }
+        }
+
+        
+
+        &.active {
+          color: #00F0FF;
+          .childItemTreeContainer {
+            display: block;
           }
         }
       }
