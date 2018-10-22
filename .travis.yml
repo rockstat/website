@@ -1,0 +1,11 @@
+dist: trusty
+language: node_js
+node_js:
+  - "8"
+cache: yarn
+env:
+  global:
+  - PROJECT_NAME=rockstat-web
+  - ORG=rockstat
+script: yarn build:export
+

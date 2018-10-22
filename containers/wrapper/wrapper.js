@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Footer, Header } from 'app/components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router'
-import { pageview } from 'app/lib/gtm';
 import Router from 'next/router'
 
 import 'styles/reset.css';
@@ -18,19 +17,10 @@ class WrapperClass extends React.Component {
   }
 
   componentDidMount() {
-    const { asPath } = this.props.router;
-    const dataLayerVar = 'dataLayer';
-    if (window[dataLayerVar]) {
-      window[dataLayerVar].push({ 'event': 'page' , 'path': asPath});
+    // const { asPath } = this.props.router;
+    if (window['rstat']) {
+      window['rstat']('page');
     }
-  }
-
-  trackPageView = () => {
-
-  }
-
-  componentWillUnmount() {
-    // this.props.router.events.off('routeChangeComplete', this.trackPageview);
   }
 
   render() {

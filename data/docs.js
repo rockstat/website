@@ -9,23 +9,23 @@ export default [
       {
         "name": "О платформе",
         "href": "/docs/intro/about",
-        "level": 2,
+        "path": "0-0",
         "enabled": true
       },
       {
         "name": "Быстрый старт",
         "href": "/docs/intro/getting-started",
-        "level": 2,
+        "path": "0-1",
         "enabled": true
       },
       {
         "name": "Что нового",
         "href": "/docs/what-s-new",
-        "level": 2,
+        "path": "0-2",
         "enabled": true
       }
     ],
-    "level": 1,
+    "path": "0",
     "enabled": true
   },
   {
@@ -34,7 +34,7 @@ export default [
       {
         "name": "Основные компоненты",
         "href": "/docs/architecture/overview",
-        "level": 2,
+        "path": "1-0",
         "enabled": true
       },
       {
@@ -43,26 +43,26 @@ export default [
           {
             "name": "Жизненный цикл и адресация",
             "href": "/docs/architecture/request-lifecycle",
-            "level": 3,
+            "path": "1-1-0",
             "enabled": true
           },
           {
             "name": "Обогащение данных",
             "href": "/docs/architecture/enrichers",
-            "level": 3
+            "path": "1-1-1"
           },
           {
             "name": "Обработчики",
             "href": "/docs/architecture/handlers",
-            "level": 3
+            "path": "1-1-2"
           },
           {
             "name": "Слушатели",
             "href": "/docs/architecture/listeners",
-            "level": 3
+            "path": "1-1-3"
           }
         ],
-        "level": 2,
+        "path": "1-1",
         "hrefs": [
           "/docs/architecture/request-lifecycle",
           "/docs/architecture/enrichers",
@@ -74,15 +74,15 @@ export default [
       {
         "name": "Коммуникация сервисов",
         "href": "/docs/architecture/services-commnication",
-        "level": 2
+        "path": "1-2"
       },
       {
         "name": "Сетевая инфраструктура",
         "href": "/docs/architecture/network",
-        "level": 2
+        "path": "1-3"
       }
     ],
-    "level": 1,
+    "path": "1",
     "enabled": true
   },
   {
@@ -94,40 +94,40 @@ export default [
           {
             "name": "Сниппет и конфигурация",
             "href": "/docs/reference/web-sdk/snippet-and-configuration",
-            "level": 3,
+            "path": "2-0-0",
             "enabled": true
           },
           {
             "name": "Базовая структура событий",
             "href": "/docs/reference/web-sdk/event-struct",
-            "level": 3,
+            "path": "2-0-1",
             "enabled": true
           },
           {
             "name": "Автоматичексие события",
             "href": "/docs/reference/web-sdk/auto-track",
-            "level": 3,
+            "path": "2-0-2",
             "enabled": true
           },
           {
             "name": "Процессинг сессий",
             "href": "/docs/reference/web-sdk/sessions",
-            "level": 3,
+            "path": "2-0-3",
             "enabled": true
           },
           {
             "name": "JavaScript API",
             "href": "/docs/reference/web-sdk/js-api",
-            "level": 3,
+            "path": "2-0-4",
             "enabled": true
           },
           {
             "name": "Используемый транспорт",
             "href": "/docs/reference/web-sdk/transport",
-            "level": 3
+            "path": "2-0-5"
           }
         ],
-        "level": 2,
+        "path": "2-0",
         "hrefs": [
           "/docs/reference/web-sdk/snippet-and-configuration",
           "/docs/reference/web-sdk/event-struct",
@@ -144,32 +144,32 @@ export default [
           {
             "name": "GET,POST (webhook/postback)",
             "href": "/docs/reference/collecting/webhooks",
-            "level": 3,
+            "path": "2-1-0",
             "enabled": true
           },
           {
             "name": "Pixel (1x1 gif)",
             "href": "/docs/reference/collecting/pixel",
-            "level": 3,
+            "path": "2-1-1",
             "enabled": true
           },
           {
             "name": "Redirect",
             "href": "/docs/reference/collecting/redirect",
-            "level": 3
+            "path": "2-1-2"
           },
           {
             "name": "Websocket",
             "href": "/docs/reference/collecting/websocket",
-            "level": 3
+            "path": "2-1-3"
           },
           {
             "name": "Загрузка больших файлов",
             "href": "/docs/reference/collecting/large-files",
-            "level": 3
+            "path": "2-1-4"
           }
         ],
-        "level": 2,
+        "path": "2-1",
         "hrefs": [
           "/docs/reference/collecting/webhooks",
           "/docs/reference/collecting/pixel",
@@ -185,15 +185,15 @@ export default [
           {
             "name": "Переменные окружения",
             "href": "/docs/reference/environment",
-            "level": 3
+            "path": "2-2-0"
           },
           {
             "name": "Карта путей",
             "href": "/docs/reference/directories",
-            "level": 3
+            "path": "2-2-1"
           }
         ],
-        "level": 2,
+        "path": "2-2",
         "hrefs": [
           "/docs/reference/environment",
           "/docs/reference/directories"
@@ -205,16 +205,16 @@ export default [
           {
             "name": "Синхронная версия",
             "href": "/docs/reference/simplech/sync",
-            "level": 3,
+            "path": "2-3-0",
             "enabled": true
           },
           {
             "name": "Асинхронная ASimpleCH",
             "href": "/docs/reference/simplech/async",
-            "level": 3
+            "path": "2-3-1"
           }
         ],
-        "level": 2,
+        "path": "2-3",
         "hrefs": [
           "/docs/reference/simplech/sync",
           "/docs/reference/simplech/async"
@@ -224,35 +224,35 @@ export default [
       {
         "name": "JSON-RPC 2.0 RST",
         "href": "/docs/reference/json-rpc-rst",
-        "level": 2
+        "path": "2-4"
       },
       {
         "name": "Director API",
         "href": "/docs/reference/director-service/api",
-        "level": 2
+        "path": "2-5"
       },
       {
         "name": "Front API",
         "href": "/docs/reference/font-service/api",
-        "level": 2
+        "path": "2-6"
       },
       {
         "name": "API band framework",
         "href": "/docs/reference/band-framework/api",
-        "level": 2
+        "path": "2-7"
       },
       {
         "name": "API rockme.ts",
         "href": "/docs/reference/rockme-framework/api",
-        "level": 2
+        "path": "2-8"
       },
       {
         "name": "Схема хранилища ClickHouse",
         "href": "/docs/reference/clickhouse/schema",
-        "level": 2
+        "path": "2-9"
       }
     ],
-    "level": 1,
+    "path": "2",
     "enabled": true
   },
   {
@@ -261,37 +261,37 @@ export default [
       {
         "name": "Установка платформы",
         "href": "/docs/guides/setup/main",
-        "level": 2
+        "path": "3-0"
       },
       {
         "name": "Отслеживание событий на сайте",
         "href": "/docs/guides/web-sdk/setup",
-        "level": 2
+        "path": "3-1"
       },
       {
         "name": "Сбор данных других данных",
         "href": "/docs/guides/data-sources",
-        "level": 2
+        "path": "3-2"
       },
       {
         "name": "Использование Панели управления",
         "href": "/docs/guides/dashboard/using",
-        "level": 2
+        "path": "3-3"
       },
       {
         "name": "Работа с Jupyter",
         "href": "/docs/guides/jupyter/using",
-        "level": 2
+        "path": "3-4"
       },
       {
         "name": "Работа с Theia",
         "href": "/docs/guides/theia/using",
-        "level": 2
+        "path": "3-5"
       },
       {
         "name": "Мониторинг Netdata",
         "href": "/docs/guides/netdata/using",
-        "level": 2
+        "path": "3-6"
       },
       {
         "name": "Работа с ClickHouse",
@@ -299,15 +299,15 @@ export default [
           {
             "name": "Основные принципы",
             "href": "/docs/guides/clickhouse/base",
-            "level": 3
+            "path": "3-7-0"
           },
           {
             "name": "Модификация схемы",
             "href": "/docs/guides/clickhouse/schema-modify",
-            "level": 3
+            "path": "3-7-1"
           }
         ],
-        "level": 2,
+        "path": "3-7",
         "hrefs": [
           "/docs/guides/clickhouse/base",
           "/docs/guides/clickhouse/schema-modify"
@@ -316,16 +316,16 @@ export default [
       {
         "name": "Подключение к VPN",
         "href": "/docs/guides/connect-vpn",
-        "level": 2
+        "path": "3-8"
       },
       {
         "name": "Хитрости конфигурации",
         "href": "/docs/guides/configuration-tricks",
-        "level": 2,
+        "path": "3-9",
         "enabled": true
       }
     ],
-    "level": 1,
+    "path": "3",
     "enabled": true
   },
   {
@@ -337,40 +337,40 @@ export default [
           {
             "name": "Организация сервиса",
             "href": "/docs/build-service-band/stucture",
-            "level": 3
+            "path": "4-0-0"
           },
           {
             "name": "Коммуникация с другими сервисами",
             "href": "/docs/build-service-band/call-other-method",
-            "level": 3
+            "path": "4-0-1"
           },
           {
             "name": "Создание обработчиков",
             "href": "/docs/build-service-band/handlers",
-            "level": 3
+            "path": "4-0-2"
           },
           {
             "name": "Создание воркеров",
             "href": "/docs/build-service-band/workers",
-            "level": 3
+            "path": "4-0-3"
           },
           {
             "name": "Создание обогатителей",
             "href": "/docs/build-service-band/enrichers",
-            "level": 3
+            "path": "4-0-4"
           },
           {
             "name": "Работа с ClickHouse",
             "href": "/docs/build-service-band/clickhouse",
-            "level": 3
+            "path": "4-0-5"
           },
           {
             "name": "Другие возможности",
             "href": "/docs/build-service-band/other-functions",
-            "level": 3
+            "path": "4-0-6"
           }
         ],
-        "level": 2,
+        "path": "4-0",
         "hrefs": [
           "/docs/build-service-band/stucture",
           "/docs/build-service-band/call-other-method",
@@ -387,16 +387,16 @@ export default [
           {
             "name": "Организация сервиса",
             "href": "/docs/build-service-rockme/stucture",
-            "level": 3
+            "path": "4-1-0"
           }
         ],
-        "level": 2,
+        "path": "4-1",
         "hrefs": [
           "/docs/build-service-rockme/stucture"
         ]
       }
     ],
-    "level": 1
+    "path": "4"
   },
   {
     "name": "Туториалы",
@@ -404,46 +404,46 @@ export default [
       {
         "name": "Собственный формат событий",
         "href": "/docs/tutorials/custom-event-table",
-        "level": 2,
+        "path": "5-0",
         "enabled": true
       },
       {
         "name": "Построение истории отдельного пользователя",
         "href": "/docs/tutorials/user-history",
-        "level": 2
+        "path": "5-1"
       },
       {
         "name": "Классические модели атрибуции",
         "href": "/docs/tutorials/attribution/classic",
-        "level": 2
+        "path": "5-2"
       },
       {
         "name": "Вероятностное прохождение воронки",
         "href": "/docs/tutorials/attribution/funnel",
-        "level": 2
+        "path": "5-3"
       },
       {
         "name": "Атрибуция по индексу активности",
         "href": "/docs/tutorials/attribution/activity",
-        "level": 2
+        "path": "5-4"
       },
       {
         "name": "Воронки",
         "href": "/docs/tutorials/funnel",
-        "level": 2
+        "path": "5-5"
       },
       {
         "name": "Реализация Cookie-Sync",
         "href": "/docs/tutorials/cookie-sync",
-        "level": 2
+        "path": "5-6"
       },
       {
         "name": "Сегментация пользователей",
         "href": "/docs/tutorials/segmentation",
-        "level": 2
+        "path": "5-7"
       }
     ],
-    "level": 1,
+    "path": "5",
     "enabled": true
   },
   {
@@ -452,11 +452,11 @@ export default [
       {
         "name": "Markdown typo",
         "href": "/docs/debug/markdown-typo",
-        "level": 2,
+        "path": "6-0",
         "enabled": true
       }
     ],
-    "level": 1,
+    "path": "6",
     "enabled": true
   }
 ]

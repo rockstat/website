@@ -7,4 +7,4 @@ RUN yarn
 
 COPY . .
 
-RUN yarn build && yarn build:toc && yarn export:zeit
+RUN yarn build && yarn export:zeit
