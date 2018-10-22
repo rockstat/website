@@ -50,7 +50,7 @@
         - name: Базовая структура событий
           href: /docs/reference/web-sdk/event-struct
 
-        - name: Автоматичексие события
+        - name: Автоматические события
           href: /docs/reference/web-sdk/auto-track
 
         - name: Процессинг сессий
@@ -66,7 +66,7 @@
     - name: Каналы получения данных
       items:
 
-        - name: GET,POST (webhook/postback)
+        - name: GET, POST (webhook/postback)
           href: /docs/reference/collecting/webhooks
 
         - name: Pixel (1x1 gif)
@@ -190,7 +190,7 @@
         - name: Организация сервиса
           href: /docs/build-service-rockme/stucture
 
-- name: Туториалы
+- name: Инструкции
   items:
 
     - name: Собственный формат событий

@@ -104,7 +104,7 @@ export default [
             "enabled": true
           },
           {
-            "name": "Автоматичексие события",
+            "name": "Автоматические события",
             "href": "/docs/reference/web-sdk/auto-track",
             "level": 3,
             "enabled": true
@@ -142,7 +142,7 @@ export default [
         "name": "Каналы получения данных",
         "items": [
           {
-            "name": "GET,POST (webhook/postback)",
+            "name": "GET, POST (webhook/postback)",
             "href": "/docs/reference/collecting/webhooks",
             "level": 3,
             "enabled": true
@@ -399,7 +399,7 @@ export default [
     "level": 1
   },
   {
-    "name": "Туториалы",
+    "name": "Инструкции",
     "items": [
       {
         "name": "Собственный формат событий",
