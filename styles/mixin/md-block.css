@@ -3,33 +3,53 @@
 
   .markdown-body .custom-block {
     margin: 0.67em 0;
-    &.$(name)-block .custom-block-body {
-      background-color: $color1;
-      padding: 1.6rem 3rem;
-      /* margin: 1rem 12rem; */
-      position: relative;
-      &:before {
-        content: '';
-        background-color: $color2;
-        width: 20px;
-        height: 1.2rem;
-        position: absolute;
-        left: 0;
-        top: 0;
+
+    &.$(name)-block  {
+      
+      .custom-block-heading, .custom-block-body {
+        background-color: $color1;
+        position: relative;
+        padding: 1.2rem 3rem 1.2rem 3rem;
+        /* margin: 1rem 12rem; */
       }
-      &:after {
-        content: '';
-        background-color: $color2;
-        width: 20px;
-        height: 3.5rem;
-        position: absolute;
-        left: 0;
-        bottom: 0;
+      div:first-child {
+        &:before {
+          content: '';
+          background-color: $color2;
+          width: 20px;
+          height: 1.2rem;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
       }
-      p {
-        margin: 0;
+
+      .custom-block-heading {
+        font-weight: 500;
+        padding-bottom: 0.5rem;
       }
-      @mixin-content;
+
+      .custom-block-body {
+        /* min-height: 3.5rem; */
+        &:after {
+          content: '';
+          background-color: $color2;
+          width: 20px;
+          height: 3.5rem;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+
+      .custom-block-heading + .custom-block-body {
+        padding-top: 0;
+      }
     }
+    
+    /* &.$(name)-block  */
   }
 }
