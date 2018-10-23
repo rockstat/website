@@ -15,11 +15,10 @@ class Heading extends React.Component {
   }
 }
 
-export default props => {
+export default (props) => {
   const { offsetTop } = props
   const component = props.children
   const children = component.props.children || ''
-
   let id = props.id
   let text = children
 

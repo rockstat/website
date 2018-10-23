@@ -24,10 +24,7 @@ export default class extends React.Component {
         <div dangerouslySetInnerHTML={{ __html: `<script>window.location.href="${redirectTo}"</script>` }} />
         Attempting to redirect to <a href={redirectTo}>{redirectTo}</a>
         <style jsx>
-          {`.redirectMsg {
-            color: #000;
-            background-color: #fff;
-          }`}
+          {`.redirectMsg { color: #000; background-color: #fff; }`}
         </style>
       </div>
 

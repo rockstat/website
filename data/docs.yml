@@ -44,7 +44,7 @@
     - name: Web-SDK
       items:
 
-        - name: Сниппет и конфигурация
+        - name: Устновка и настройка
           href: /docs/reference/web-sdk/snippet-and-configuration
 
         - name: Базовая структура событий
@@ -122,13 +122,23 @@
   items:
 
     - name: Установка платформы
-      href: /docs/guides/setup/main
+      items:
+
+        - name: Подготовка сервера и dns
+          href: /docs/guides/setup/server_and_domain
+
+        - name: Запуск инсталлятора
+          href: /docs/guides/setup/installation
 
     - name: Отслеживание событий на сайте
       href: /docs/guides/web-sdk/setup
 
-    - name: Сбор данных других данных
-      href: /docs/guides/data-sources
+    - name: Получение данных из сервисов
+      items: 
+
+        - name: Yandex AppMetrika
+          href: /docs/guides/collecting/appmetrika
+
 
     - name: Использование Панели управления
       href: /docs/guides/dashboard/using
@@ -168,15 +178,6 @@
 
         - name: Коммуникация с другими сервисами
           href: /docs/build-service-band/call-other-method
-
-        - name: Создание обработчиков
-          href: /docs/build-service-band/handlers
-
-        - name: Создание воркеров
-          href: /docs/build-service-band/workers
-
-        - name: Создание обогатителей
-          href: /docs/build-service-band/enrichers
 
         - name: Работа с ClickHouse
           href: /docs/build-service-band/clickhouse

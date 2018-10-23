@@ -15,13 +15,6 @@ export const PDIV = ({ children }) => (
 const B = ({ children }) => (
   <span>
     {children}
-    <style jsx>
-      {`
-        span {
-          font-weight: 500;
-        }
-      `}
-    </style>
   </span>
 )
 

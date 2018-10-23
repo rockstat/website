@@ -92,7 +92,7 @@ export default [
         "name": "Web-SDK",
         "items": [
           {
-            "name": "Сниппет и конфигурация",
+            "name": "Устновка и настройка",
             "href": "/docs/reference/web-sdk/snippet-and-configuration",
             "path": "2-0-0",
             "enabled": true
@@ -260,8 +260,26 @@ export default [
     "items": [
       {
         "name": "Установка платформы",
-        "href": "/docs/guides/setup/main",
-        "path": "3-0"
+        "items": [
+          {
+            "name": "Подготовка сервера и dns",
+            "href": "/docs/guides/setup/server_and_domain",
+            "path": "3-0-0",
+            "enabled": true
+          },
+          {
+            "name": "Запуск инсталлятора",
+            "href": "/docs/guides/setup/installation",
+            "path": "3-0-1",
+            "enabled": true
+          }
+        ],
+        "path": "3-0",
+        "hrefs": [
+          "/docs/guides/setup/server_and_domain",
+          "/docs/guides/setup/installation"
+        ],
+        "enabled": true
       },
       {
         "name": "Отслеживание событий на сайте",
@@ -269,9 +287,20 @@ export default [
         "path": "3-1"
       },
       {
-        "name": "Сбор данных других данных",
-        "href": "/docs/guides/data-sources",
-        "path": "3-2"
+        "name": "Получение данных из сервисов",
+        "items": [
+          {
+            "name": "Yandex AppMetrika",
+            "href": "/docs/guides/collecting/appmetrika",
+            "path": "3-2-0",
+            "enabled": true
+          }
+        ],
+        "path": "3-2",
+        "hrefs": [
+          "/docs/guides/collecting/appmetrika"
+        ],
+        "enabled": true
       },
       {
         "name": "Использование Панели управления",
@@ -345,38 +374,20 @@ export default [
             "path": "4-0-1"
           },
           {
-            "name": "Создание обработчиков",
-            "href": "/docs/build-service-band/handlers",
-            "path": "4-0-2"
-          },
-          {
-            "name": "Создание воркеров",
-            "href": "/docs/build-service-band/workers",
-            "path": "4-0-3"
-          },
-          {
-            "name": "Создание обогатителей",
-            "href": "/docs/build-service-band/enrichers",
-            "path": "4-0-4"
-          },
-          {
             "name": "Работа с ClickHouse",
             "href": "/docs/build-service-band/clickhouse",
-            "path": "4-0-5"
+            "path": "4-0-2"
           },
           {
             "name": "Другие возможности",
             "href": "/docs/build-service-band/other-functions",
-            "path": "4-0-6"
+            "path": "4-0-3"
           }
         ],
         "path": "4-0",
         "hrefs": [
           "/docs/build-service-band/stucture",
           "/docs/build-service-band/call-other-method",
-          "/docs/build-service-band/handlers",
-          "/docs/build-service-band/workers",
-          "/docs/build-service-band/enrichers",
           "/docs/build-service-band/clickhouse",
           "/docs/build-service-band/other-functions"
         ]

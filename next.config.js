@@ -1,5 +1,12 @@
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
+const remarkCollapse = require('remark-collapse')
+const remarkRemarkFrontmatter = require('remark-frontmatter')
+const remarkEmoji = require('remark-emoji')
+const remarkHeadings = require('remark-autolink-headings')
+const remarkToc = require('remark-toc')
+const remarkStringify = require('remark-stringify')
+const remarkSlug = require('remark-slug')
 const path = require('path')
 
 const TOCBuilder = require('./lib/scripts/table_of_contents')
@@ -11,13 +18,29 @@ const withMDX = require('@zeit/next-mdx')({
         tip: { classes: 'tip-block', title: 'optional' },
         info: { classes: 'info-block', title: 'optional' },
         success: { classes: 'success-block', title: 'optional' },
-        alert: { classes: 'alert-block', title: 'optional' }
-      }]
+        alert: { classes: 'alert-block', title: 'optional' },
+        chapter: { classes: 'chapter-block', title: 'optional' }
+      }],
+      // [remarkCollapse, {
+      //   test: 'tango.*',
+      //   summary: (str) => 'Give yourself away!'
+      // }],
+      // [remarkStringify],
+      [remarkRemarkFrontmatter, ['yaml', 'toml']],
+      // () => console.dir,
+      // [remarkSlug],
+      // () => console.dir,
+      // [remarkToc],
+      // [remarkHeadings, {}],
+      [remarkEmoji],
+    ],
+    hastPlugins: [
+
     ]
   }
 })
 
-module.exports = withMDX(withCSS({
+module.exports = withCSS(withMDX({
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
