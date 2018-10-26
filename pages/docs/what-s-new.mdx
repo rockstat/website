@@ -17,6 +17,7 @@ export const meta = {
   - Fixed bug with reconnection after connection drop
   - New service template using cookiecutter. More at https://github.com/rockstat/band-skeleton-py
   - Band-framework config param `redis_params` renamed to `rpc_params`
+  - Custom timeout on handler registration. `@expose.handler(timeout=18000)` for 18 sec
 - **Director**
   - Ability to log stat requests to ClickHouse
 - **Front**
@@ -24,6 +25,7 @@ export const meta = {
   - Flag which turns on internal request representation for responses
   - Experimental implementation of websocket server with rpc-style purpose
   - Transport data in WebSocket messages
+  - Handlers info RPC method `handlers`. Try it `curl http://host:10000/call/front/handlers`
 
 - **WebSDK**
   - better uid checking
