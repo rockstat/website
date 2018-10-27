@@ -18,27 +18,27 @@ export const meta = {
   - New service template using cookiecutter. More at https://github.com/rockstat/band-skeleton-py
   - Band-framework config param `redis_params` renamed to `rpc_params`
   - Custom timeout on handler registration. `@expose.handler(timeout=18000)` for 18 sec
-- **Director**
-  - Log dashboard statistic requests
 - **Front**
   - Incoming uid format checking
   - Flag which turns on internal request representation for responses
   - Experimental implementation of websocket server with rpc-style purpose
   - Transport data in WebSocket messages
   - Handlers info RPC method `handlers`. Try it `curl http://host:10000/call/front/handlers`
-
+- **CHWriter**
+  - Migrations support with custom user folder
 - **WebSDK**
   - better uid checking
   - new SDK method request
   - Promise-based calls to server
   - Improve WS support
-
+  - Fixed internal session absence
+  - Betterr SPA support: clean internal counters (avtivity, etc..) on page event
 - **Docs**
   - Getting started splitted to guides
   - Handling active item element in nested cetegories
 - **Other**
   - Initial R support in Jupyter
-  - getting
+  - Log dashboard statistic requests
 
 
 
