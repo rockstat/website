@@ -84,14 +84,15 @@ rstat('page', {
 
 ### Идентификация пользователя
 
-```javascript
-rstat('identify', userId, {traits})
+```typescript
+rstat('identify', userId?:string, traits?:{[key:string]: string})
 ```
 
 | Property          |Type       |Default    |Description
 |-------------------|-----------|-----------|------------------
 | userId            | String    |           | Идентификатор пользователя из вашей базы данных.
 | traits            | Object    | { }       | Набор характеристик пользователя, вроде email, возраста, сегмента и тд
+
 
 #### Примеры
 
@@ -110,35 +111,43 @@ rstat('identify', {
 })
 ```
 
+### Получение Rockstat User ID
+
+```javascript
+rstat('getUid')
+```
+
+Но получить его можно только после загрузки трекера, поэтому следует оборачивать в коллбек успешной загрузки (см ниже)
+
+
+### Call custom service
+
+```javascript
+rstat('request', service, name, params = {}): Promise<any>
+```
+
+Обращение к сервису платформы. Сервис должен быть объявлен как `handler`.
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| service           | String    |           | Название сервиса
+| name              | String    |           | Метод сервиса
+| params            | Object    | { }       | Параметры которые будут переданы сервису
+
 ## Коллбеки
 
 ### Успешная загрузка SDK
 
 ```javascript
 rstat('onReady', function(){
-  console.log('rstat ready callback! uid:', rstat('getUid'));
-});
-
-//> rstat ready callback! uid: 4752253616879771366
-```
-Если трекер уже загружен, коллбек будет выполнен сразу
-
-### Получение rstat User ID
-
-```javascript
-rstat('getUid')
-```
-
-Но получить его можно только после загрузки трекера, поэтому следует оборачивать в коллбек успешной загрузки
-
-```javascript
-rstat('onReady', function(){
   const id = rstat('getUid');
   console.log(id)
 });
+```
 
-Так можно передать его в dataLayer
+Если трекер уже загружен, коллбек будет выполнен сразу. Можно передать его в dataLayer.
 
+```javascript
 rstat('onReady', function(){
   dataLayer.push({
     'rstatUserId': rstat('getUid')
@@ -151,14 +160,13 @@ rstat('onReady', function(){
 При необходимости дополнительно обрабатывать собираемые данные или передавать их в сторонний сервис непосредственно из браузера
 
 ```typescript
-('onEvent', eventName) => (eventName:string, eventData:object):void { }
+rstat('onEvent', (eventName:string, eventData:object) => void)
 ```
 
 Аргументы
 
 | Property          |Type       |Default    |Description
 |-------------------|-----------|-----------|------------------
-| =>                |           |           |
 | eventName         | String    |           | Имя события
 | eventData         | Object    | { }       | Произвольные данные, добавленные к событию при его создании
 
@@ -188,26 +196,28 @@ rstat('onEvent', function(name, data){
 
 
 ```typescript
-('onServerMessage', eventName) => (eventName:string, eventData:object):void { }
+rstat('onServerMessage', (eventName:string, eventData:object) => void)
 ```
 
 | Property          |Type       |Default    |Description
 |-------------------|-----------|-----------|------------------
-| eventName         | String    |           | Имя события, на которое нужно подписаться
-| =>                |           |           |
 | eventName         | String    |           | Имя события, пришедшего с сервера
 | eventData         | Object    | { }       | Произвольные данные, указанные серверной частью при создании события
 
 
 ```javascript
-rstat('onServerMessage', 'my-message', function(name, data){
+rstat('onServerMessage', function(name, data){
   console.log('server message:', name, data);
 });
 ```
 
+или с самостоятельной фильтрацией
+
 ```javascript
-rstat('onServerMessage', 'show-discount-dialog', function(name, data){
-  console.log('onServerMessage', name, data);
+rstat('onServerMessage', function(name, data){
+  if (name === 'show-discount-dialog'){
+    console.log('onServerMessage', name, data);
+  }
 });
 ```
 

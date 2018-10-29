@@ -14,10 +14,10 @@ export const meta = {
 В некоторых сервисах может называться HTTP нотификацией, как в случае с CoMagic.
 Поддерживаются повсеместно:
 
-  * CRM системы: AmoCRM, PipeDrive и др.
-  * Коллтрекинги: CoMagic, CallTouch и др.
-  * CPA-трекеры: Affise, HasOffers и др.
-  * Мобильные трекеры: Yandex Metrika, AppsFlyer и др.
+  * CRM системы: AmoCRM, PipeDrive...
+  * Коллтрекинги: CoMagic, CallTouch...
+  * CPA-трекеры: Affise, HasOffers...
+  * Мобильные трекеры: Yandex Metrika, AppsFlyer...
   * И множество других
 
 
@@ -32,13 +32,20 @@ GET  https://yourdomain/<service>/<event_name>/<project_id>?param=values&...
 
 ```shell
 POST https://yourdomain/<service>/<event_name>
+```
+
+часть значений могут быть переданы GET параметрами, в т.ч. имя события и id проекта
+
+```shell
 GET  https://yourdomain/<service>/<event_name>?param=values&...
+GET  https://yourdomain/<service>/<event_name>?projectId=<project_id>&...
+GET  https://yourdomain/<service>?name=<event_name>&projectId=<project_id>&...
 ```
 
-Пример:
+даже при POST запросе
 
-```
-GET  https://yourdomain/wh/secret-action?param1=pamparam&pam=pam
+```shell
+POST https://yourdomain/<service>?name=<event_name>&projectId=<project_id> <<< {data: "mydaa"}
 ```
 
 ## Формат входящих данных
@@ -49,10 +56,53 @@ GET  https://yourdomain/wh/secret-action?param1=pamparam&pam=pam
 
 ## Пример с использованием Curl
 
+Обычный GET запрос
+
 ```shell
-$ curl --request POST --url https://yourdomain/calltrack/call/99 --data '{"phone":"79990109999"}'
+$ curl https://test.rstat.org/calltrack/call/99?param=myparamvalue
+{"key":"in.gen.calltrack.call","id":"6462462774336290816"}
 ```
 
+Значения `name` и `projectId` можно передать GET параметрами
 
+```shell
+$ curl https://test.rstat.org/calltrack?name=call
+{"key":"in.gen.calltrack.call","id":"6462463595723620353"}
+```
+
+POST запрос с передачей данных в виде JSON
+
+```shell
+$ curl -X POST -H "Content-Type: application/json" https://yourdomain/calltrack/call \\
+    -d '{"key1":"value1", "key2":"value2"}'
+{"key":"in.gen.calltrack.call","id":"6462462774336290816"}
+```
+POST запрос с передачей данных в виде `urlencoded`
+
+```shell
+$ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" https://yourdomain/calltrack/call \\
+    -d "param1=value1&param2=value26"
+{"key":"in.gen.calltrack.call","id":"6462462774336290816"}
+```
+
+В сервисы попадет сообщение
+
+```js
+{ 
+  "key": "in.gen.calltrack.call", 
+  "channel": "http", 
+  "service": "calltrack", 
+  "name": "call", 
+  "projectId": 0, 
+  "uid": "6462464730849083392", 
+  "td": { "ip": "109.252.93.158", "ua": "curl/7.60.0" }, 
+  "data": { 
+    "param1": "value1", 
+    "param2": "value26" 
+  }, 
+  "id": "6462464730849083393", 
+  "time": 1540771658623 
+}
+```
 
 export default withDoc({...meta})(({children}) => <>{children}</>)

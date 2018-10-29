@@ -23,28 +23,39 @@
         - name: Жизненный цикл и адресация
           href: /docs/architecture/request-lifecycle
 
-        - name: Обогащение данных
-          href: /docs/architecture/enrichers
+        - name: Роли сервисов
+          href: /docs/architecture/roles
 
-        - name: Обработчики
-          href: /docs/architecture/handlers
-
-        - name: Слушатели
-          href: /docs/architecture/listeners
 
     - name: Коммуникация сервисов
       href: /docs/architecture/services-commnication
 
-    - name: Сетевая инфраструктура
-      href: /docs/architecture/network
 
 - name: Справочная информация
   items:
 
+    - name: Каналы получения данных
+      items:
+
+        - name: HTTP Webhooks/Postbacks
+          href: /docs/reference/collecting/webhooks
+
+        - name: HTTP Pixel (1x1 gif)
+          href: /docs/reference/collecting/pixel
+
+        - name: HTTP Redirect
+          href: /docs/reference/collecting/redirect
+
+        - name: WebSocket
+          href: /docs/reference/collecting/websocket
+
+        - name: Загрузка больших файлов
+          href: /docs/reference/collecting/large-files
+
     - name: Web-SDK
       items:
 
-        - name: Устновка и настройка
+        - name: Установка и настройка
           href: /docs/reference/web-sdk/snippet-and-configuration
 
         - name: Базовая структура событий
@@ -59,60 +70,47 @@
         - name: JavaScript API
           href: /docs/reference/web-sdk/js-api
 
+        - name: Перехват пикселей
+          href: /docs/reference/web-sdk/catch-pixel
+
         - name: Используемый транспорт
           href: /docs/reference/web-sdk/transport
 
-
-    - name: Каналы получения данных
-      items:
-
-        - name: GET,POST (webhook/postback)
-          href: /docs/reference/collecting/webhooks
-
-        - name: Pixel (1x1 gif)
-          href: /docs/reference/collecting/pixel
-
-        - name: Redirect
-          href: /docs/reference/collecting/redirect
-
-        - name: Websocket
-          href: /docs/reference/collecting/websocket
-
-        - name: Загрузка больших файлов
-          href: /docs/reference/collecting/large-files
-
-    - name: Обзор конфигурации
-      items:
-
-        - name: Переменные окружения
-          href: /docs/reference/environment
-
-        - name: Карта путей
-          href: /docs/reference/directories
-
-    - name: Simple ClickHouse
-      items:
-
-        - name: Синхронная версия
-          href: /docs/reference/simplech/sync
-
-        - name: Асинхронная ASimpleCH
-          href: /docs/reference/simplech/async
+    # - name: Обзор конфигурации
+    #   items:
 
     - name: JSON-RPC 2.0 RST
       href: /docs/reference/json-rpc-rst
 
-    - name: Director API
-      href: /docs/reference/director-service/api
+    - name: API сервисов
+      items:
 
-    - name: Front API
-      href: /docs/reference/font-service/api
+        - name: Director API
+          href: /docs/reference/director-service/api
+
+        - name: Front API
+          href: /docs/reference/font-service/api
 
     - name: API band framework
-      href: /docs/reference/band-framework/api
+      items:
+      
+        - name: Python Band-py API
+          href: /docs/reference/band-framework/api-python
 
-    - name: API rockme.ts
-      href: /docs/reference/rockme-framework/api
+        - name: TypeSctipt rockme.ts API
+          href: /docs/reference/rockme-framework/api
+
+    - name: Simple ClickHouse API
+      href: /docs/reference/simplech
+
+    - name: Переменные окружения
+      href: /docs/reference/environment
+
+    - name: Маппинг путей
+      href: /docs/reference/directories
+
+    - name: Сетевая инфраструктура
+      href: /docs/reference/network
 
     - name: Схема хранилища ClickHouse
       href: /docs/reference/clickhouse/schema

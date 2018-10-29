@@ -13,9 +13,9 @@ export const PDIV = ({ children }) => (
 )
 
 const B = ({ children }) => (
-  <span>
+  <strong>
     {children}
-  </span>
+  </strong>
 )
 
 export const HR = () => (
