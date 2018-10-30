@@ -16,13 +16,82 @@ from band import settings, logger, expose, worker, cleanup, response, rpc, sched
 
 ## band.response
 
-`return response.redirect(location)`
+### redirect
 
-`return response.data(data)`
+`response.redirect(location, statusCode=302, data={})`
 
-`return response.error(message)`
+Вернуть HTTP редирект
 
-`return response.pixel()`
+Arguments:
+- **location**: полный адрес, куда необходимо совершить перенаправление (c http/https)
+- **statusCode**: код перенаправлениея 301, 302, 303, etc...
+- **data**: произвольные данные, будут доступны сервису `front` или при отключенной обработке, 
+    например при подключении по websocket
+
+```python
+@expose.handler(name='*')
+async def go(name, **params):
+    return response.redirect(f'https://www.yandex.ru/search/?lr=213&text={name}')
+```
+
+### pixel
+
+`response.pixel()`
+
+Вернуть прозрачный пиксель.
+
+Arguments:
+- **data**: произвольные данные, будут доступны сервису `front` или при отключенной обработке, 
+    например при подключении по websocket
+
+```py
+@expose.handler()
+async def pix(**params):
+    state.counter += 1
+    return response.pixel()
+```
+
+### error
+
+`response.error(message="", statusCode=500, data={})`
+
+Вернуть ошибку.
+
+- **message**: Сообщение об ошибки. Если не указать, будет подставлено на основе кода ошибки
+- **statusCode**: Код ошибки 400, 404, 500, etc...
+- **data**: Произвольные данные, будут доступны сервису `front` или при отключенной обработке, 
+    например при подключении по websocket
+
+```py
+@expose.handler()
+async def error(**params):
+    return response.error('Some F*cking error')
+```
+
+### data
+
+`response.data(data, statusCode=200)` или просто `response(data)`
+
+- **statusCode**: Код ответа: 200, 204, etc.
+- **data**: Произвольные данные, которые будут отданы сервисом front. Можно отдавать строки.
+
+```py
+@expose.handler()
+async def get_state(**params):
+    return response.data(state)
+
+# short version
+@expose.handler()
+async def long_method(**params):
+    await asyncio.sleep(15)
+    return response(params)
+
+# or without response
+@expose.handler()
+async def alias(**params):
+    return {'message': 'you are catch me!'}
+```
+
 
 <Tip>
   Work in progress
@@ -278,6 +347,17 @@ print(settings.extra)
 
 ['74994041156']
 ```
+
+## redis_factory
+
+```py
+from band import redis_factory
+```
+
+
+<Tip>
+  Work in progress
+</Tip>
 
 
 
