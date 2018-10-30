@@ -57,7 +57,7 @@ module.exports = withCSS(withMDX({
     };
     if (dev) {
       console.log('generating Table of contents');
-      const builder = new TOCBuilder(dir, 'data/docs.yml', `data/docs.js`);
+      const builder = new TOCBuilder(dir, 'pages/docs/docs.yml', `data/docs.js`);
       builder.convert()
     }
 

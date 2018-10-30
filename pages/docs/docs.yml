@@ -23,8 +23,8 @@
         - name: Жизненный цикл и адресация
           href: /docs/architecture/request-lifecycle
 
-        - name: Роли сервисов
-          href: /docs/architecture/roles
+        - name: Обнаружение сервисов
+          href: /docs/architecture/service-discovery
 
 
     - name: Коммуникация сервисов

@@ -47,15 +47,15 @@ export default [
             "enabled": true
           },
           {
-            "name": "Роли сервисов",
-            "href": "/docs/architecture/roles",
+            "name": "Обнаружение сервисов",
+            "href": "/docs/architecture/service-discovery",
             "path": "1-1-1"
           }
         ],
         "path": "1-1",
         "hrefs": [
           "/docs/architecture/request-lifecycle",
-          "/docs/architecture/roles"
+          "/docs/architecture/service-discovery"
         ],
         "enabled": true
       },
