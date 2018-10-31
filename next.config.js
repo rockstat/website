@@ -15,9 +15,7 @@ const withMDX = require('@zeit/next-mdx')({
   options: {
     mdPlugins: [
       [remarkRemarkFrontmatter, ['yaml', 'toml']],
-      [remarkMermaid, {
-        mode: 'simple'
-      }],
+      [remarkMermaid, {}],
       [remarkCustomBlocks, {
         tip: { classes: 'tip-block', title: 'optional' },
         info: { classes: 'info-block', title: 'optional' },
@@ -71,7 +69,7 @@ module.exports = withCSS(withMDX({
   pageExtensions: ['js', 'jsx', 'mdx'],
   // useFileSystemPublicRoutes: false,
   webpack: (config) => {
-    config.node = {fs: "empty"};
+    config.node = { fs: "empty" };
     config.resolve.modules = ['node_modules', '.'];
     config.resolve.alias = {
       'app': path.resolve(__dirname),
