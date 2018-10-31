@@ -11,6 +11,7 @@
 /.next
 /out
 /public
+/static/build
 # misc
 .DS_Store
 .env
