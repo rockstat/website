@@ -195,52 +195,51 @@ export default [
         ]
       },
       {
-        "name": "API band framework",
+        "name": "Band Framework (Python)",
         "items": [
           {
-            "name": "Python Band-py API",
+            "name": "Module API",
             "href": "/docs/reference/band-framework/api-python",
             "path": "2-4-0",
             "enabled": true
-          },
-          {
-            "name": "TypeSctipt rockme.ts API",
-            "href": "/docs/reference/rockme-framework/api",
-            "path": "2-4-1"
           }
         ],
         "path": "2-4",
         "hrefs": [
-          "/docs/reference/band-framework/api-python",
-          "/docs/reference/rockme-framework/api"
+          "/docs/reference/band-framework/api-python"
         ],
         "enabled": true
       },
       {
+        "name": "RockMe Framework (TypeScript)",
+        "href": "/docs/reference/rockme-framework/api",
+        "path": "2-5"
+      },
+      {
         "name": "Simple ClickHouse API",
         "href": "/docs/reference/simplech",
-        "path": "2-5",
+        "path": "2-6",
         "enabled": true
       },
       {
         "name": "Переменные окружения",
         "href": "/docs/reference/environment",
-        "path": "2-6"
+        "path": "2-7"
       },
       {
         "name": "Маппинг путей",
         "href": "/docs/reference/directories",
-        "path": "2-7"
+        "path": "2-8"
       },
       {
         "name": "Сетевая инфраструктура",
         "href": "/docs/reference/network",
-        "path": "2-8"
+        "path": "2-9"
       },
       {
         "name": "Схема хранилища ClickHouse",
         "href": "/docs/reference/clickhouse/schema",
-        "path": "2-9"
+        "path": "2-10"
       }
     ],
     "path": "2",

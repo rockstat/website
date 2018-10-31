@@ -1,5 +1,5 @@
 import React from 'react'
-import PermalinkIcon from './permalink-icon'
+import PermalinkIcon from './icons/permalink-icon'
 
 class Heading extends React.Component {
   render() {

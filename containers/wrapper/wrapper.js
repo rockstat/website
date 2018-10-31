@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Footer, Header } from 'app/components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router'
-import Router from 'next/router'
+import { Footer, Header } from 'app/components';
 
 import 'styles/reset.css';
 import 'styles/index.css';
@@ -17,7 +16,6 @@ class WrapperClass extends React.Component {
   }
 
   componentDidMount() {
-    // const { asPath } = this.props.router;
     if (window['rstat']) {
       window['rstat']('page');
     }

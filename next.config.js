@@ -1,19 +1,20 @@
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
-const remarkCollapse = require('remark-collapse')
+// const remarkCollapse = require('remark-collapse')
 const remarkRemarkFrontmatter = require('remark-frontmatter')
 const remarkEmoji = require('remark-emoji')
-const remarkHeadings = require('remark-autolink-headings')
-const remarkToc = require('remark-toc')
-const remarkStringify = require('remark-stringify')
-const remarkSlug = require('remark-slug')
+// const remarkHeadings = require('remark-autolink-headings')
+// const remarkToc = require('remark-toc')
+// const remarkStringify = require('remark-stringify')
+// const remarkSlug = require('remark-slug')
+const remarkMermaid = require('./lib/remark-mermaid');
 const path = require('path')
-
 const TOCBuilder = require('./lib/scripts/table_of_contents')
 
 const withMDX = require('@zeit/next-mdx')({
   options: {
     mdPlugins: [
+      [remarkMermaid],
       [remarkCustomBlocks, {
         tip: { classes: 'tip-block', title: 'optional' },
         info: { classes: 'info-block', title: 'optional' },
@@ -57,7 +58,7 @@ module.exports = withCSS(withMDX({
     };
     if (dev) {
       console.log('generating Table of contents');
-      const builder = new TOCBuilder(dir, 'pages/docs/docs.yml', `data/docs.js`);
+      const builder = new TOCBuilder(dir, 'pages/docs/docs.yml', `constants/docs.js`);
       builder.convert()
     }
 
@@ -67,9 +68,11 @@ module.exports = withCSS(withMDX({
   pageExtensions: ['js', 'jsx', 'mdx'],
   // useFileSystemPublicRoutes: false,
   webpack: (config) => {
-    config.resolve.modules = ['node_modules', '.']
+    config.node = {fs: "empty"};
+    config.resolve.modules = ['node_modules', '.'];
     config.resolve.alias = {
-      'app': path.resolve(__dirname)
+      'app': path.resolve(__dirname),
+      '@app': path.resolve(__dirname)
     }
 
     config.module.rules.push(
@@ -93,10 +96,10 @@ module.exports = withCSS(withMDX({
         test: /\.(woff2|woff?|otf|ttf|eot)$/,
         loader: 'file-loader?name=[path][name].[ext]'
       },
-      {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
-      },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'svg-inline-loader'
+      // },
       {
         test: /\.csv$/,
         use: [{
@@ -105,7 +108,30 @@ module.exports = withCSS(withMDX({
             delimiter: ';'
           }
         }]
-      }
+      },
+      {
+        test: /\.mmd$/,
+        use: [{
+          loader: 'mermaid-loader',
+          options: {
+            delimiter: ';'
+          }
+        }]
+      },
+      // {
+      //   test: /\.svg$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'svg-react-loader',
+      //     options: {
+      //       tag: 'symbol',
+      //       // attrs: {
+      //       //     title: 'example',
+      //       // },
+      //       // name: 'MyIcon',
+      //     },
+      //   },
+      // }
       // {
       //   test: /\.(png|jpg|gif)$/,
       //   exclude: /node_modules/,

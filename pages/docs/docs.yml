@@ -90,15 +90,15 @@
 
         - name: Front API
           href: /docs/reference/font-service/api
-
-    - name: API band framework
-      items:
       
-        - name: Python Band-py API
+    - name: Band Framework (Python)
+      items:
+
+        - name: Module API
           href: /docs/reference/band-framework/api-python
 
-        - name: TypeSctipt rockme.ts API
-          href: /docs/reference/rockme-framework/api
+    - name: RockMe Framework (TypeScript)
+      href: /docs/reference/rockme-framework/api
 
     - name: Simple ClickHouse API
       href: /docs/reference/simplech
