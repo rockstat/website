@@ -47,6 +47,106 @@ export const meta = {
 | like alert block content like alert block content like alert block content like alert block content like alert
 
 
+## Mermaid
+
+```mermaid
+gantt
+  dateFormat  YYYY-MM-DD
+  title Adding GANTT diagram functionality to mermaid
+  section A section
+  Completed task            :done,    des1, 2014-01-06,2014-01-08
+  Active task               :active,  des2, 2014-01-09, 3d
+  Future task               :         des3, after des2, 5d
+  Future task2               :         des4, after des3, 5d
+  section Critical tasks
+  Completed task in the critical line :crit, done, 2014-01-06,24h
+  Implement parser and jison          :crit, done, after des1, 2d
+  Create tests for parser             :crit, active, 3d
+  Future task in critical line        :crit, 5d
+  Create tests for renderer           :2d
+  Add to mermaid                      :1d
+```
+
+
+```mermaid
+graph LR
+    Start --> Stop
+```
+
+
+```mermaid
+graph LR
+    id1[This is the text in the box]
+
+```
+
+
+```mermaid
+graph LR
+    A---|This is the text|B
+```
+
+
+```mermaid
+graph LR
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+```
+
+
+```mermaid
+graph TD
+    B["fa:fa-twitter for peace"]
+    B-->C[fa:fa-ban forbidden]
+    B-->D(fa:fa-spinner);
+    B-->E(A fa:fa-camera-retro perhaps?);
+```
+
+
+```mermaid
+graph TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+```
+
+sequence
+
+
+
+```mermaid
+graph LR
+    A[Square Rect] -- Link text --> B((Circle))
+    A --> C(Round Rect)
+    B --> D{Rhombus}
+    C --> D
+```
+
+
+```mermaid
+sequenceDiagram
+    Alice->>Bob: Hello Bob, how are you?
+    alt is sick
+        Bob->>Alice: Not so good :(
+    else is well
+        Bob->>Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        Bob->>Alice: Thanks for asking
+    end
+```
+
+
+
 ## Short py code
 
 ```python
@@ -84,9 +184,7 @@ inline
 
 This is `inline code` element
 
-
 block
-
 
 ```html
 <script type="text/javascript">
@@ -274,103 +372,6 @@ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstar
 </Expand>
 
 
-
-
-```mermaid
-gantt
-  dateFormat  YYYY-MM-DD
-  title Adding GANTT diagram functionality to mermaid
-  section A section
-  Completed task            :done,    des1, 2014-01-06,2014-01-08
-  Active task               :active,  des2, 2014-01-09, 3d
-  Future task               :         des3, after des2, 5d
-  Future task2               :         des4, after des3, 5d
-  section Critical tasks
-  Completed task in the critical line :crit, done, 2014-01-06,24h
-  Implement parser and jison          :crit, done, after des1, 2d
-  Create tests for parser             :crit, active, 3d
-  Future task in critical line        :crit, 5d
-  Create tests for renderer           :2d
-  Add to mermaid                      :1d
-```
-
-
-```mermaid
-graph LR
-    Start --> Stop
-```
-
-
-```mermaid
-graph LR
-    id1[This is the text in the box]
-
-```
-
-
-```mermaid
-graph LR
-    A---|This is the text|B
-```
-
-
-```mermaid
-graph LR
-    A[Hard edge] -->|Link text| B(Round edge)
-    B --> C{Decision}
-    C -->|One| D[Result one]
-    C -->|Two| E[Result two]
-```
-
-
-```mermaid
-graph TD
-    B["fa:fa-twitter for peace"]
-    B-->C[fa:fa-ban forbidden]
-    B-->D(fa:fa-spinner);
-    B-->E(A fa:fa-camera-retro perhaps?);
-```
-
-
-```mermaid
-graph TB
-    c1-->a2
-    subgraph one
-    a1-->a2
-    end
-    subgraph two
-    b1-->b2
-    end
-    subgraph three
-    c1-->c2
-    end
-```
-
-sequence
-
-
-
-```mermaid
-graph LR
-    A[Square Rect] -- Link text --> B((Circle))
-    A --> C(Round Rect)
-    B --> D{Rhombus}
-    C --> D
-```
-
-
-```mermaid
-sequenceDiagram
-    Alice->>Bob: Hello Bob, how are you?
-    alt is sick
-        Bob->>Alice: Not so good :(
-    else is well
-        Bob->>Alice: Feeling fresh like a daisy
-    end
-    opt Extra response
-        Bob->>Alice: Thanks for asking
-    end
-```
 
 
 export default withDoc({...meta})(({children}) => <>{children}</>)

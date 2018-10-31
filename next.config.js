@@ -14,7 +14,10 @@ const TOCBuilder = require('./lib/scripts/table_of_contents')
 const withMDX = require('@zeit/next-mdx')({
   options: {
     mdPlugins: [
-      [remarkMermaid],
+      [remarkRemarkFrontmatter, ['yaml', 'toml']],
+      [remarkMermaid, {
+        mode: 'simple'
+      }],
       [remarkCustomBlocks, {
         tip: { classes: 'tip-block', title: 'optional' },
         info: { classes: 'info-block', title: 'optional' },
@@ -27,7 +30,7 @@ const withMDX = require('@zeit/next-mdx')({
       //   summary: (str) => 'Give yourself away!'
       // }],
       // [remarkStringify],
-      [remarkRemarkFrontmatter, ['yaml', 'toml']],
+
       // () => console.dir,
       // [remarkSlug],
       // () => console.dir,
