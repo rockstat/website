@@ -4,6 +4,12 @@
 
 Доки уехали в другой репозиторий! Тут они будут в `.tmp/...` как суб репозиторий
 
+Make symlinks
+```
+ln -s ../../.tmp/static/images/docs static/images/docs
+ln -s ../.tmp/pages/docs pages/docs
+```
+
 ## Работа с меню
 
 Управление меню происходит в файле `data/docs.yml`.
