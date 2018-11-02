@@ -3,7 +3,7 @@ import cl from 'classnames';
 
 import style from './platform.css';
 
-import { Docker, Js, Golang, Python, Ts, Clickhouse } from 'components/icons/technologies';
+import { Docker, Js, Golang, Python, Ts, Clickhouse } from '@app/components/icons/technologies';
 
 export class Platform extends React.Component {
 

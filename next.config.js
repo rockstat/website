@@ -1,21 +1,24 @@
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkCollapse = require('remark-collapse')
-const remarkRemarkFrontmatter = require('remark-frontmatter')
-const remarkEmoji = require('remark-emoji')
+// const remarkRemarkFrontmatter = require('remark-frontmatter')
+// const remarkEmoji = require('remark-emoji')
 // const remarkHeadings = require('remark-autolink-headings')
 // const remarkToc = require('remark-toc')
 // const remarkStringify = require('remark-stringify')
 // const remarkSlug = require('remark-slug')
-const remarkMermaid = require('./lib/remark-mermaid');
+const remarkMermaid = require('./lib/remark/mermaid');
 const path = require('path')
 const TOCBuilder = require('./lib/scripts/table_of_contents')
 
 const withMDX = require('@zeit/next-mdx')({
   options: {
+    extension: /\.mdx?$/,
     mdPlugins: [
-      [remarkRemarkFrontmatter, ['yaml', 'toml']],
-      [remarkMermaid, {}],
+      // [remarkRemarkFrontmatter, ['yaml', 'toml']],
+      [remarkMermaid, { 
+        // mode: 'simple' 
+      }],
       [remarkCustomBlocks, {
         tip: { classes: 'tip-block', title: 'optional' },
         info: { classes: 'info-block', title: 'optional' },
@@ -34,7 +37,7 @@ const withMDX = require('@zeit/next-mdx')({
       // () => console.dir,
       // [remarkToc],
       // [remarkHeadings, {}],
-      [remarkEmoji],
+      // [remarkEmoji],
     ],
     hastPlugins: [
 
@@ -42,7 +45,7 @@ const withMDX = require('@zeit/next-mdx')({
   }
 })
 
-module.exports = withCSS(withMDX({
+module.exports = withMDX(withCSS({
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
@@ -68,9 +71,9 @@ module.exports = withCSS(withMDX({
   },
   pageExtensions: ['js', 'jsx', 'mdx'],
   // useFileSystemPublicRoutes: false,
-  webpack: (config) => {
-    config.node = { fs: "empty" };
-    config.resolve.modules = ['node_modules', '.'];
+  webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
+    // config.node = { };
+    // config.resolve.modules = ['node_modules'];
     config.resolve.alias = {
       'app': path.resolve(__dirname),
       '@app': path.resolve(__dirname)
@@ -110,15 +113,15 @@ module.exports = withCSS(withMDX({
           }
         }]
       },
-      {
-        test: /\.mmd$/,
-        use: [{
-          loader: 'mermaid-loader',
-          options: {
-            delimiter: ';'
-          }
-        }]
-      },
+      // {
+      //   test: /\.mmd$/,
+      //   use: [{
+      //     loader: 'mermaid-loader',
+      //     options: {
+      //       delimiter: ';'
+      //     }
+      //   }]
+      // },
       // {
       //   test: /\.svg$/,
       //   exclude: /node_modules/,

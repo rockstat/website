@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'next/router'
 import { Footer, Header } from 'app/components';
 
-import 'styles/reset.css';
-import 'styles/index.css';
-import 'styles/hljs/tomorrow-night-bright.css';
+import '@app/styles/reset.css';
+import '@app/styles/index.css';
+import '@app/styles/hljs/tomorrow-night-bright.css';
 
 class WrapperClass extends React.Component {
   static propTypes = {

@@ -1,16 +1,15 @@
 import React from 'react';
 import cl from 'classnames';
 import PropTypes from 'prop-types';
-import * as d3 from 'd3';
 import style from './first-screen.css';
 
 // import Vivus from 'vivus';
 
 import VisibilitySensor from "react-visibility-sensor";
 
-import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from 'components/icons/intro';
-import { LogoIcon } from 'components/icons';
-import { linksMenu } from 'constants/index';
+import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '@app/components/icons/intro';
+import { LogoIcon } from '@app/components/icons';
+import { linksMenu } from '@app/constants/index';
 
 
 class CircleComponent extends React.PureComponent {

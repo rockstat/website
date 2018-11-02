@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Wrapper
-} from 'containers'
+} from '@app/containers'
 import {
   Everything,
   Analytic,
@@ -11,7 +11,7 @@ import {
   Platform,
   Center,
   Information
-} from 'components';
+} from '@app/components';
 import Head from 'next/head'
 
 const lang = 'ru';

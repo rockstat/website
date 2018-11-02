@@ -11,7 +11,7 @@ import {
   OneCircleMobile, 
   BgChartMobile, 
   ContainerMobile 
-} from 'components/icons/dashboard';
+} from '@app/components/icons/dashboard';
 
 export class Center extends React.Component {
   informData = ['Kernel', 'Band director', 'Audience interest...', 'Web IDE Theia', 'Clickhouse upload'];

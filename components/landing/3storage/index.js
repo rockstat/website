@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 import Waypoint from 'react-waypoint';
 import style from './repository.css';
-import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from 'components/icons/storage';
+import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '@app/components/icons/storage';
 
 export class Repository extends React.Component {
   state = {
