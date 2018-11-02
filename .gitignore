@@ -5,8 +5,8 @@
 /node_modules
 # testing
 /coverage
-/pages/docs
-/static/images/docs
+# /pages/docs
+# /static/images/docs
 /constants/docs.js
 # production
 /build

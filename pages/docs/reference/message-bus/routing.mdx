@@ -1,0 +1,18 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+
+export const meta = {
+  title: 'Маршрутизация сообщений',
+}
+
+
+# Маршрутизация сообщений
+
+## Тут что-то будет
+
+Полный список параметров можно найти в дефолтах ролей в `roles/*/defaults/*`
+Не изменяйте основной файл `group_vars/all`, создайте отдельный файл, совпадающий с названием группы хостов.
+Пример: делаете копию `inventory/all` под названием `inventory/private`, создаете файл конфигурации `group_vars/private`,
+все указанные настройки перезапишут аналоги из `all`.
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

@@ -1,0 +1,21 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Обзор WebSDK Rockstat',
+}
+
+## Особенности
+
+### Использование LocalStorage
+
+### Процессинг сессий в браузере
+
+### Работа без SSL по умолчанию недоступна
+
+### Двусторонняя связь через WebSocket
+
+## Сниппет для сайта
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

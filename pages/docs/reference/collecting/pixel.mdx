@@ -1,0 +1,86 @@
+
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+
+export const meta = {
+  title: 'Сбор данных при помощи пикселя',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+
+Используется для:
+
+1. Установка на сторонние сайты, установка в креативы.
+1. Выполнения cookie-sync стандартным подходом, т.е. при помощи редиректа пикселя
+
+## Endpoint
+
+```
+GET  https://домен/img/:name/:projectId
+```
+
+можно без projectId
+
+```
+GET  https://домен/pixel/:name
+```
+
+Праметры могут быть преданы POST запросом или GET.
+
+```
+GET  https://домен/pixel/:name?param1=value1&param2=value2
+```
+
+помимо `pixel` еще работают `gif`. Можно настроить самостоятельно в конфиге сервиса `front`.
+
+## Пример с curl
+
+Обычный GET запрос
+
+```shell
+$ curl https://test.rstat.org/pixel/test?param=myparamvalue --output -
+
+GIF89a...
+```
+
+POST запрос с передачей данных в виде JSON
+
+```shell
+$ curl -X POST -H "Content-Type: application/json" https://test.rstat.org/pixel/test111 \\
+  -d '{"key1":"value1", "key2":"value2"}' --output -
+
+GIF89a...
+```
+POST запрос с передачей данных в виде `urlencoded`
+
+```shell
+$ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" https://test.rstat.org/pixel/test111 \\
+  -d "param1=value1&param2=value26" --output -
+
+GIF89a...
+```
+
+В сервисы попадет сообщение
+
+```js
+{
+  "key": "in.gen.pixel.test111", 
+  "channel": "http", 
+  "service": "pixel", 
+  "name": "test111", 
+  "projectId": 0, 
+  "uid": "6462460091445542912", 
+  "td": { "ip": "109.252.93.158", "ua": "curl/7.60.0" }, 
+  "data": {
+    "param1": "value1", 
+    "param2": "value26" 
+  },
+  "id": "6462460091445542913", 
+  "time": 1540770552503 
+}, 
+```
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

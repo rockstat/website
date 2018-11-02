@@ -1,0 +1,44 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+import Footer from './footer.mdx'
+
+export const meta = {
+  title: 'Запуск сервера в VScale',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+Регистрируемся в [Digital Ocean](https://try.digitalocean.com/performance/), 
+пролучаем 100$ на 2 месяца. В процессе регистрации создается первый проект. 
+Откройте раздел создания Droplet (Виртуального сервера)
+
+![vscale start server](/static/images/docs/setup/do_droplets.jpg)
+
+Требуется операционная система Ubuntu 16.04 x64. Подойдет конфигурация сервера с 8 GB оперативной памяти.
+
+![vscale start server](/static/images/docs/setup/do_os_size.jpg)
+
+К России ближе всего Франкфурт и Амстердам, можно выбрать любой.
+
+![vscale start server](/static/images/docs/setup/do_location_and_options.jpg)
+
+Укажите короткое имя сервера и запустите процесс создания.
+
+![vscale start server](/static/images/docs/setup/do_name_create.jpg)
+
+После того, как сервер готов к работе, откройте его параметры
+
+![vscale start server](/static/images/docs/setup/do_list_to_instance.jpg)
+
+Скопируйте IP адрес кликом и сохраните его, вместе с логином и паролем, которые были отправлены вам на почту.
+
+![vscale start server](/static/images/docs/setup/do_instance_nav.jpg)
+
+На этом процедура запуска сервера завершена. 
+
+<Footer/>
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

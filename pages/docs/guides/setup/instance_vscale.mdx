@@ -1,0 +1,38 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+import Footer from './footer.mdx'
+
+export const meta = {
+  title: 'Запуск сервера в VScale',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+Создайте учетную запись на сайте провайдера [Vscale](https://vscale.io/?utm_source=rock.st).
+После регистрации переходим к созданию сервера.
+На стартовом экране нажимаем **Создать сервер** и выбираем операционную систему **Ubuntu 16.04** 64bit.
+
+![vscale start server](/static/images/docs/setup/vscale_select_os.jpg)
+
+Размер сервера:
+
+![vscale choose size](/static/images/docs/setup/vscale_select_size.jpg)
+
+Выбирается локация, имя сервера, после чего можно запустить процесс создания:
+
+![vscale start server](/static/images/docs/setup/vscale_select_loc_name_create.jpg)
+
+Обязательно запишите имя пользователя и пароль.
+
+![vscale start server](/static/images/docs/setup/vscale_credentials.jpg)
+
+Несколько секунд и сервер готов! Запишите IP-адрес сервера.
+
+![vscale start server](/static/images/docs/setup/vscale_created.jpg)
+
+<Footer/>
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

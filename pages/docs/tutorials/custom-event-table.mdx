@@ -1,0 +1,152 @@
+import asset from 'next/asset'
+import {withDoc} from 'app/lib'
+
+export const meta = {
+  title: 'Создание собственного формата событий',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+В этой инструкции мы рассмотрим создание собственного формата событий на примере событий почтовой службы.
+
+По умолчанию, все дополнительные параметры события в Rockstat сохраняются в поле extra. 
+Однако это не всегда удобно и эффективно, если вам необходимо делать выборки по этим параметрам.
+
+На этот случай в Rockstat рассмотрено описание собственных таблиц. 
+
+## Описание таблицы
+
+Например, для почтовой службы нам необходимо добавить следующие параметры:
+
+1. Тип события (отправка, открытие, клик, etc.).
+1. Email пользователя.
+1. ID сообщения.
+1. ID списка рассылки.
+1. ID задачи.
+1. ID ссылки (для события клика).
+1. Дополнительное сообщение (напр, ответ от внешней почтовой службы при отправке).
+
+При этом мы хотим сохранить все возможности стандартных веб-хуков, поэтому будем наследовать нашу табличку от стандартной `webhooks`.
+
+В итоге мы получим следующее описание таблицы в формате YML:
+
+```YML
+    mail_statistics:
+        event: String
+        email: String
+        message_id: String
+        list_id: String
+        task_id: String
+        link_id: String
+        detailed: String
+        _options:
+            extend: webhooks
+```
+
+Наша табличка будет называться `mail_statistics`.
+Наследоваться она будет от `webhooks`, что необходимо прописать в параметре `_options.extend`.
+Все остальные параметры – это новые колонки. В нашем случае они все имеют тип `String`, но Вы можете использовать любой тип ClickHouse.
+
+## Описание маршрутов
+
+Чтобы определенные события начали записываться в эту табличку, нам необходимо определить новые маршруты.
+
+В нашем случае нам потребуется 3 маршрута:
+
+1. Веб-хук `wh/mail`. 
+1. Пиксель `pixel/mail`. 
+1. Редирект `redir/mail`.
+
+### Веб-хук `wh/mail`
+
+Именно сюда мы будем отправлять статус отправки с наших серверов для отправки писем.
+
+Например, мы можем это делать следующим Python-скриптом:
+
+```Python
+import json
+import requests
+
+requests.post(
+    'https://your_rockstat_domain/wh/mail', 
+    headers={
+        'Content-type': 'application/json'
+    },
+    data=json.dumps({
+        {
+          'event': 'sent',
+          'email': email,
+          'message_id': message_id,
+          'task_id': task_id,
+          'list_id': list_id,
+          'detailed': detailed
+        }
+    }))
+```
+
+### Пиксель `pixel/mail`
+
+Ссылку на этот пиксель мы будем вставлять картинкой в тело письма, чтобы он подгружался при открытии письма получателем.
+
+Например, этот пиксель может быть вставлен так:
+
+```HTML
+<img src="https://your_rockstat_domain/pixel/mail?event=open&task_id=QWERTY&message_id=QWERTY_ASDFGH&email=bob@example.com&list_id=12345"/>
+```
+
+### Редирект `redir/mail`
+
+На этот редирект мы будем заменять все ссылки в письме, чтобы отслеживать клики. 
+В параметре `to` необходимо указывать целевую страницу, на которую будет совершен переход.
+
+Например,
+
+```HTML
+<a href="https://your_rockstat_domain/redir/mail?event=click&task_id=QWERTY&message_id=QWERTY_ASDFGH&email=bob@example.com&list_id=12345&link_id=1&to=https%3A%2F%2Fya.ru">Click me!</a>
+```
+
+Чтобы эти маршруты начали действовать, необходимо сформировать вот такую структуру:
+
+```YML
+    destinations:
+        wh/mail: mail_statistics
+        pixel/mail: mail_statistics
+        redir/mail: mail_statistics
+```
+
+## Собираем все вместе
+
+Описание новой таблички с маршрутов необходимо положить в YML-файл в директории `/srv/platform/data/chwriter_custom_config`.
+
+В нашем случае это будет файл `/srv/platform/data/chwriter_custom_config/05_mail.yml`. Полный листинг ниже.
+
+```YML
+---
+clickhouse:
+    destinations:
+        wh/mail: mail_statistics
+        pixel/mail: mail_statistics
+        redir/mail: mail_statistics
+    mail_statistics:
+        event: String
+        email: String
+        message_id: String
+        list_id: String
+        task_id: String
+        link_id: String
+        detailed: String
+        _options:
+            extend: webhooks
+```
+
+Для того, чтобы Rockstat внес изменения в таблички согласно файлу, необходимо перезапустить контейнер chwriter:
+
+    docker restart chwriter
+
+Rockstat автоматически накатит необходимые изменения для таблицы и настроит маршруты. 
+Мы можем спокойно отправлять наши события по описанным URL.
+А для удобства сбора статистики можно реализовать собственные API-сервисы, но об этом мы расскажем в другой инструкции.
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

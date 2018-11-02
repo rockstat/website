@@ -1,0 +1,105 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info, RenderTable, Expand } from 'app/components'
+import * as eventStruct from '../../structs/event-struct.csv'
+
+export const meta = {
+  title: 'Базовая структура событий WebSDK',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+События, генерируемые SDK, имеют следующий вид
+
+```json
+{
+  "service": "track",
+  "name": "page",
+  "projectId": 1617632140,
+  "uid": "6410748586712844288",
+  "data": {},
+  "user": {
+    "gaId": "2039255293.1537236640",
+    "ymId": "1537242943246737376",
+    "hybridPid": "59943dc57bc79f20d8fa53c5",
+    "ts": 1537243840171,
+    "tz": "Moscow Standard Time",
+    "tzo": 180000
+  },
+  "page": {
+    "title": "Rockstat platform",
+    "ref": "",
+    "url": "https://rock.st/docs/reference/web-sdk/auto-track"
+  },
+  "sess": {
+    "pageNum": 14,
+    "eventNum": 90,
+    "type": "direct",
+    "marks": {},
+    "hasMarks": false,
+    "num": 2,
+    "start": 1537242940499
+  },
+  "char": {
+    "ls": true,
+    "ae": true,
+    "pr": true,
+    "sb": true,
+    "ab": true,
+    "wp": true
+  },
+  "browser": {
+    "if1": 0,
+    "if2": 0,
+    "w": 1440,
+    "h": 415,
+    "tw": 1440,
+    "th": 900,
+    "aw": 1440,
+    "ah": 836,
+    "sopr": 2000,
+    "soa": -1,
+    "sot": "landscape-primary",
+    "plt": "MacIntel",
+    "prd": "Gecko"
+  },
+  "lib": {
+    "id": "rst-sdk-web",
+    "v": "3.14.4",
+    "sv": "3.14.0"
+  },
+  "perf": {
+    "cs": 0,
+    "ce": 0,
+    "scs": -1,
+    "rqs": 211,
+    "rss": 1549,
+    "rse": 1560,
+    "dl": 1581,
+    "di": 1812,
+    "dc": -1
+  },
+  "scroll": {
+    "dh": 1148,
+    "ch": 326,
+    "to": 479,
+    "cs": 100,
+    "ms": 100
+  }
+}
+```
+
+### Полная схема событий
+
+Точками в ключах помечен переход на следующий уровень вложености `page.title: abc` означают `{..., page { title: abc, ....`.
+Тип данных `{[string]:string}` означает обычный JavaScript объект, ключами и значениями которого являются строки.
+Обратите внимание, что у некоторых значений указан список событий, в которых они присутствуют.
+
+<Expand>
+  <RenderTable data={eventStruct} colFilter={v=>v!="ClickHouse"} rowFilter={v=>v["JavaScript"]}/>
+</Expand>
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

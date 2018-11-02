@@ -1,0 +1,25 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Хитрости конфигурации Rockstat',
+}
+
+# Хитрости конфигурации Rockstat
+
+## Theia IDE
+
+#### Длина строки pycodestyle
+
+Добавить в корень проекта файл `config.cfg` c содержимым:
+
+```ini
+[pycodestyle]
+max-line-length = 250
+```
+
+*— Andrew Romm*
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

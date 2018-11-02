@@ -1,0 +1,224 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Web-SDK JavaScript API',
+}
+
+# Web-SDK JavaScript API
+
+<Alert>
+  Статья еще не закончена. Информация частично заимствована из предыдущей версии и может не соответствовать действительности.
+</Alert>
+
+
+## Методы
+
+### Отправка произвольного события на сервер
+
+Вы самостоятельно придумываете название и список данных, которые хотите передать.
+
+```javascript
+rstat('event', eventName, {eventData})
+```
+
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| eventName         | String*   |           | Произвольное название события, должно характеризовать что произошло
+| eventData         | Object    | { }       | Произвольные данные события. Может быть любое количество параметров.
+
+
+##### Примеры
+
+```javascript
+rstat('event', 'Added to Cart', {
+  id: '1231223',
+  name:'Шторка для ванны',
+  categoryName: 'Товары для дома',
+  listing: 'best_seller',
+});
+```
+
+```javascript
+rstat('event', 'Popup Displayed', {
+  type: 'Discount Offer',
+  offer:'Personal_24h',
+  category: 'Нижнее белье для кошек'
+});
+```
+
+```javascript
+rstat('event', 'User Subscribed', {
+  form:'Subscription',
+  formPostiton: 'Bottom'
+});
+```
+
+### Отправка просмотра страницы
+
+```javascript
+rstat('page', {eventData})
+```
+
+По аналогии с обычными событиями, в `eventData` можно передавать любую доступную информацию,
+связанную с просмотром страницы, например, тип страницы, название категории сайта и тп.
+
+```javascript
+rstat('page', {
+  type: 'content',
+  name: 'Контакты'
+})
+```
+
+или событие просмотра страницы товарной категории
+
+```javascript
+rstat('page', {
+  type: 'category',
+  id: '2342344',
+  name: 'Товары для дома'
+})
+```
+
+### Идентификация пользователя
+
+```typescript
+rstat('identify', userId?:string, traits?:{[key:string]: string})
+```
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| userId            | String    |           | Идентификатор пользователя из вашей базы данных.
+| traits            | Object    | { }       | Набор характеристик пользователя, вроде email, возраста, сегмента и тд
+
+
+#### Примеры
+
+```javascript
+rstat('identify', 'wusahshaet0Quae8oa', {
+  email: 'user@example.com'
+})
+```
+Или без userId
+
+```javascript
+rstat('identify', {
+  age: '18',
+  sex: 'male',
+  segment: ['vip']
+})
+```
+
+### Получение Rockstat User ID
+
+```javascript
+rstat('getUid')
+```
+
+Но получить его можно только после загрузки трекера, поэтому следует оборачивать в коллбек успешной загрузки (см ниже)
+
+
+### Call custom service
+
+```javascript
+rstat('request', service, name, params = {}): Promise<any>
+```
+
+Обращение к сервису платформы. Сервис должен быть объявлен как `handler`.
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| service           | String    |           | Название сервиса
+| name              | String    |           | Метод сервиса
+| params            | Object    | { }       | Параметры которые будут переданы сервису
+
+## Коллбеки
+
+### Успешная загрузка SDK
+
+```javascript
+rstat('onReady', function(){
+  const id = rstat('getUid');
+  console.log(id)
+});
+```
+
+Если трекер уже загружен, коллбек будет выполнен сразу. Можно передать его в dataLayer.
+
+```javascript
+rstat('onReady', function(){
+  dataLayer.push({
+    'rstatUserId': rstat('getUid')
+  });
+});
+```
+
+### Подписка на все события
+
+При необходимости дополнительно обрабатывать собираемые данные или передавать их в сторонний сервис непосредственно из браузера
+
+```typescript
+rstat('onEvent', (eventName:string, eventData:object) => void)
+```
+
+Аргументы
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| eventName         | String    |           | Имя события
+| eventData         | Object    | { }       | Произвольные данные, добавленные к событию при его создании
+
+##### Пример обработки события
+
+Некорректно заполненная форма приведет к открытию чата с поддержкой
+
+```javascript
+rstat('onEvent', function(name, data){
+  // Ловим событие ошибки при заполнении адреса доставки
+  if (name === 'form_invalid' && data.fname === 'delivery') {
+    // Ждем 5 секунд
+    setTimeout(function(){
+      // Открываем окно чата, передаем пометку оператору
+      SomeChat.openChat({info: 'Проблемы с заполнением формы доставки'});
+      // Передаем событие открытия чата в Rockstat, чтобы можно было оценить эффективность
+      rstat('event', 'Chat Opened', {reason: 'Invalid delivery details'})
+    }), 5*1000);
+  }
+});
+```
+
+### Подписка на сообщения с сервера
+
+При включении WebSocket в настройках связь становится двусторонней
+и сервисы, работающие на сервере, могут в любой момент передавать сообщения в браузер.
+
+
+```typescript
+rstat('onServerMessage', (eventName:string, eventData:object) => void)
+```
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| eventName         | String    |           | Имя события, пришедшего с сервера
+| eventData         | Object    | { }       | Произвольные данные, указанные серверной частью при создании события
+
+
+```javascript
+rstat('onServerMessage', function(name, data){
+  console.log('server message:', name, data);
+});
+```
+
+или с самостоятельной фильтрацией
+
+```javascript
+rstat('onServerMessage', function(name, data){
+  if (name === 'show-discount-dialog'){
+    console.log('onServerMessage', name, data);
+  }
+});
+```
+
+export default withDoc({...meta})(({children}) => <>{children}</>)
