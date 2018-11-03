@@ -12,8 +12,9 @@
     "prepare": "yarn clean && rstgen docs",
     "build:dev": "yarn prepare && next build",
     "build": "yarn prepare && NODE_ENV=production next build",
-    "build:export": "yarn prepare && next build && next export -o ./public",
-    "export:zeit": "next export -o /public"
+    "build:export": "yarn build && yarn export",
+    "export": "next export -o ./public",
+    "export:zeit": "MAIN=1 next export -o /public"
   },
   "license": "Apache-2.0",
   "dependencies": {

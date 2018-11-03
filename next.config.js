@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const fse = require('fs-extra');
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkCollapse = require('remark-collapse')
@@ -12,7 +13,7 @@ const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyze
 
 const remarkMermaid = require('./lib/remark/mermaid');
 const { generateDocsTOC } = require('./bin/rstgen');
-const { ANALYZE } = process.env
+const { ANALYZE, MAIN } = process.env
 
 // const TOCBuilder = require('./lib/table_of_contents')
 // const tocBuilder = new TOCBuilder(dir, 'pages/docs/docs.yml', `constants/docs.js`);
@@ -62,6 +63,10 @@ module.exports = withMDX(withCSS({
     localIdentName: '[name]__[local]__[hash:base64:5]',
   },
   exportPathMap: async (defaultPathMap, { dev, dir, outDir, distDir, buildId }) => {
+    if (!MAIN){
+      console.log(`robots outDir:${outDir}`)
+      fse.copySync('static/robots.txt', `${outDir}/robots.txt`)
+    }
     console.log(`>>> exportPathMap dev=${dev}`);
     const paths = {
       '/': { page: '/index' },
