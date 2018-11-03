@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "yarn build:export"
+command = "yarn link && yarn build:export"
 
 [context.production.environment]
 REPOSITORY_URL = "https://github.com/madiedinro/rockstat-web"
