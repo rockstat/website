@@ -8,7 +8,6 @@ CONTEXT = "production"
 NODE_VERSION= "8.12.0"
 WEBHOOK_TITLE = "rstat.org build"
 WEBHOOK_URL = "https://bolt.rstat.org/netlify/build/1"
-PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [[redirects]]
 from = "/"
