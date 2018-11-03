@@ -51,6 +51,8 @@
     "js-yaml": "^3.12.0",
     "json-loader": "^0.5.7",
     "markdown-in-js": "^1.1.4",
+    "mermaid": "^8.0.0-rc.8",
+    "mermaid.cli": "^0.5.1",
     "npm-which": "^3.0.1",
     "postcss-advanced-variables": "^2.3.3",
     "postcss-atroot": "^0.1.3",
