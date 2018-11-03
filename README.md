@@ -1,63 +1,42 @@
 # Rockstat landing
 
-## Danger!
+## Contributing guide
 
-Доки уехали в другой репозиторий! Тут они будут в `.tmp/...` как суб репозиторий
-
-Make symlinks
-```
-ln -s ../../.tmp/static/images/docs static/images/docs
-ln -s ../.tmp/pages/docs pages/docs
-```
+1. Создаете бранч
+2. Вносите правки
+3. Присылаете pull-request
+4. Ждете результатов сборки и фидбека
+5. Администратор мерджит pull-request в основную ветку
 
 ## Работа с меню
 
 Управление меню происходит в файле `data/docs.yml`.
 
-
 ## Добавление страниц документации
 
 Документация расположена в `pages/docs`. Новую страницу можно создать, скопировав `template.mdx`. 
 
-## Запуск dev версии
+## Отладка Mermaid
 
-### Установка NVM (node version manager) для node.js
+Проще всего воспользоваться визивиг https://mdp.tylingsoft.com/ 
+или любым другим из "Downstream projects" https://mermaidjs.github.io/
 
-```bash
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-
-```
-
-### Установка node.js и yarn
-
-```bash
-nvm install 8
-
-npm -g install yarn
-```
-
-### обновление зависимостей проекта
+### local dev
 
 выполняется в папке с проектом
 
 ```bash
 yarn
-```
-
-### Запуск dev версии
-
-произоводится мониторинг измений и частичная пересборка
-
-```bash
 yarn start:dev
+# or
+yarn build:export
+yarn run serve
 ```
-
 
 ## License
 
 - Content (pages/** ) licensed under CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/legalcode
 - Source code and others licensed under Apache-2.0
-
 
 ```
    Copyright 2018 Dmitry Rodin
