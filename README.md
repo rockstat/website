@@ -23,10 +23,16 @@
 
 ### local dev
 
-выполняется в папке с проектом
+Подготовка
 
 ```bash
 yarn
+yarn link
+```
+
+Запуск
+
+```bash
 yarn start:dev
 # or
 yarn build:export

@@ -7,7 +7,7 @@
 /coverage
 # /pages/docs
 # /static/images/docs
-/constants/docs.js
+# /constants/docs.js
 # production
 /build
 /dist

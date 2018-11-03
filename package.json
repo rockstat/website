@@ -1,14 +1,18 @@
 {
-  "name": "rockstat",
+  "name": "rockstat-website",
+  "bin": {
+    "rstgen": "./bin/rstgen.js"
+  },
   "scripts": {
+    "analyze": "cross-env ANALYZE=1 next build && cat .next/stats.txt",
     "start:dev": "node server.js",
     "start:serve": "serve",
     "start": "NODE_ENV=production node server.js",
     "clean": "rimraf public && rimraf .next",
-    "build:dev": "next build",
-    "build": "NODE_ENV=production next build",
-    "build:toc": "node scripts/toc-to-js",
-    "build:export": "next build && next export -o ./public",
+    "prepare": "yarn clean && rstgen docs",
+    "build:dev": "yarn prepare && next build",
+    "build": "yarn prepare && NODE_ENV=production next build",
+    "build:export": "yarn prepare && next build && next export -o ./public",
     "export:zeit": "next export -o /public"
   },
   "license": "Apache-2.0",
@@ -33,7 +37,8 @@
     "react-on-visible": "^1.5.0",
     "react-svg-morph": "^0.2.1",
     "react-visibility-sensor": "4.1.3",
-    "react-waypoint": "^8.0.3"
+    "react-waypoint": "^8.0.3",
+    "yargs": "^12.0.2"
   },
   "devDependencies": {
     "@mdx-js/loader": "^0.15.0",
@@ -44,6 +49,7 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
     "ansi-html": "0.0.7",
+    "cross-env": "^5.2.0",
     "dsv-loader": "^2.0.0",
     "globby": "^8.0.1",
     "highlight.js": "^9.12.0",
@@ -53,6 +59,7 @@
     "markdown-in-js": "^1.1.4",
     "mermaid": "^8.0.0-rc.8",
     "mermaid.cli": "^0.5.1",
+    "npm-run": "^5.0.1",
     "npm-which": "^3.0.1",
     "postcss-advanced-variables": "^2.3.3",
     "postcss-atroot": "^0.1.3",
@@ -79,6 +86,7 @@
     "svg-inline-loader": "^0.8.0",
     "svg-react-loader": "^0.4.6",
     "svgo": "^1.0.5",
+    "webpack-bundle-size-analyzer": "^2.7.0",
     "yaml-loader": "^0.5.0",
     "yarn-upgrade-all": "^0.5.0"
   }

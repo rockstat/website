@@ -1,3 +1,4 @@
+const path = require('path')
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkCollapse = require('remark-collapse')
@@ -7,17 +8,24 @@ const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkToc = require('remark-toc')
 // const remarkStringify = require('remark-stringify')
 // const remarkSlug = require('remark-slug')
+const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
+
 const remarkMermaid = require('./lib/remark/mermaid');
-const path = require('path')
-const TOCBuilder = require('./lib/scripts/table_of_contents')
+const { generateDocsTOC } = require('./bin/rstgen');
+const { ANALYZE } = process.env
+
+// const TOCBuilder = require('./lib/table_of_contents')
+// const tocBuilder = new TOCBuilder(dir, 'pages/docs/docs.yml', `constants/docs.js`);
 
 const withMDX = require('@zeit/next-mdx')({
   options: {
     extension: /\.mdx?$/,
     mdPlugins: [
       // [remarkRemarkFrontmatter, ['yaml', 'toml']],
-      [remarkMermaid, { 
-        // mode: 'simple' 
+      [remarkMermaid, {
+        // mode: 'simple',
+        destinationDir: `${__dirname}/static/build/mmd`,
+        pubDir: 'static/build/mmd'
       }],
       [remarkCustomBlocks, {
         tip: { classes: 'tip-block', title: 'optional' },
@@ -54,6 +62,7 @@ module.exports = withMDX(withCSS({
     localIdentName: '[name]__[local]__[hash:base64:5]',
   },
   exportPathMap: async (defaultPathMap, { dev, dir, outDir, distDir, buildId }) => {
+    console.log(`>>> exportPathMap dev=${dev}`);
     const paths = {
       '/': { page: '/index' },
       '/ru': { page: '/main' },
@@ -61,9 +70,8 @@ module.exports = withMDX(withCSS({
       ...defaultPathMap
     };
     if (dev) {
-      console.log('generating Table of contents');
-      const builder = new TOCBuilder(dir, 'pages/docs/docs.yml', `constants/docs.js`);
-      builder.convert()
+      // console.log('generating Table of contents');
+      generateDocsTOC()
     }
 
     return paths;
@@ -72,38 +80,22 @@ module.exports = withMDX(withCSS({
   pageExtensions: ['js', 'jsx', 'mdx'],
   // useFileSystemPublicRoutes: false,
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
-    // config.node = { };
-    // config.resolve.modules = ['node_modules'];
     config.resolve.alias = {
       'app': path.resolve(__dirname),
       '@app': path.resolve(__dirname)
+    };
+
+    if (ANALYZE) {
+      config.plugins.push(
+        new WebpackBundleSizeAnalyzerPlugin('stats.txt')
+      )
     }
 
     config.module.rules.push(
-      // {
-      //   test: /\.(scss)$/,
-      //   use: extarctSCSS,
-      //   exclude: /node_modules/,
-      // },
-      // {
-      //   test: /\.(css)$/,
-      //   use: extarctCSS,
-      //   exclude: /node_modules/,
-      // },
-      // {
-      //   test: /\.(yml|yaml)$/,
-      //   loader: 'yaml',
-      //   include: path.resolve('lib'),
-      //   exclude: /node_modules/,
-      // },
       {
         test: /\.(woff2|woff?|otf|ttf|eot)$/,
         loader: 'file-loader?name=[path][name].[ext]'
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'svg-inline-loader'
-      // },
       {
         test: /\.csv$/,
         use: [{
@@ -135,7 +127,7 @@ module.exports = withMDX(withCSS({
       //       // name: 'MyIcon',
       //     },
       //   },
-      // }
+      // },
       // {
       //   test: /\.(png|jpg|gif)$/,
       //   exclude: /node_modules/,
@@ -148,9 +140,24 @@ module.exports = withMDX(withCSS({
       //         fallback: 'file-loader?name=[path][name].[ext]'
       //       }
       //     }]
-      // }
+      // },
+      // {
+      //   test: /\.(scss)$/,
+      //   use: extarctSCSS,
+      //   exclude: /node_modules/,
+      // },
+      // {
+      //   test: /\.(css)$/,
+      //   use: extarctCSS,
+      //   exclude: /node_modules/,
+      // },
+      // {
+      //   test: /\.(yml|yaml)$/,
+      //   loader: 'yaml',
+      //   include: path.resolve('lib'),
+      //   exclude: /node_modules/,
+      // },
     );
-
     return config;
   }
 }));
