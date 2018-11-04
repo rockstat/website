@@ -5,4 +5,5 @@ node_modules
 makefile
 netlify.toml
 yarn-error.log
-
+/node_modules
+.git

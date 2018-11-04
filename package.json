@@ -9,9 +9,9 @@
     "start:serve": "serve",
     "start": "NODE_ENV=production node server.js",
     "clean": "rimraf public && rimraf .next",
-    "prepare": "yarn clean && ./bin/rstgen.js docs",
-    "build:dev": "yarn prepare && next build",
-    "build": "yarn prepare && NODE_ENV=production next build",
+    "build:prepare": "yarn clean && rstgen docs",
+    "build:dev": "yarn build:prepare && next build",
+    "build": "yarn build:prepare && NODE_ENV=production next build",
     "build:export": "yarn build && yarn export",
     "export": "next export -o ./public",
     "export:zeit": "MAIN=1 next export -o /public"

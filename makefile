@@ -9,12 +9,13 @@ to_master:
 	@echo $(BR)
 	git checkout master && git merge $(BR) && git checkout $(BR)
 
-push:
-	git push origin master --tags
-
 clean:
 	now rm rockstat --safe
 
 deploy:
 	now --public && now alias
-  # set $(pbpaste) rock.st
+
+
+build:
+	docker build -t website .
+
