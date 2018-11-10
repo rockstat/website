@@ -51,9 +51,9 @@ export class Everything extends React.PureComponent {
             Сила в данных
           </div>
           <div className={style.text}>
-            <span>Открытая платформа для создания</span>
-            <span>аналитической системы и управления</span>
-            <span>жизненным циклом пользователей</span>
+            <span>Открытая платформа для автоматизации</span>
+            <span>маркетинга и построения собственной</span>
+            <span>аналитической системы</span>
           </div>
         </div>
         <div className={style.bgContainer}>
