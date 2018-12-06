@@ -120,7 +120,7 @@ rstat('getUid')
 Но получить его можно только после загрузки трекера, поэтому следует оборачивать в коллбек успешной загрузки (см ниже)
 
 
-### Call custom service
+### Call service method
 
 ```javascript
 rstat('request', service, name, params = {}): Promise<any>
@@ -133,6 +133,49 @@ rstat('request', service, name, params = {}): Promise<any>
 | service           | String    |           | Название сервиса
 | name              | String    |           | Метод сервиса
 | params            | Object    | { }       | Параметры которые будут переданы сервису
+
+
+### Notify service
+
+```javascript
+rstat('notify', service, name, params = {}): void
+```
+
+Отравка нотификации (без ответа).
+
+| Property          |Type       |Default    |Description
+|-------------------|-----------|-----------|------------------
+| service           | String    |           | Название сервиса
+| name              | String    |           | Метод сервиса
+| params            | Object    | { }       | Параметры которые будут переданы сервису
+
+
+
+### Library and snippet info
+
+```javascript
+rstat('getLibInfo'): LibInfo
+
+type LibInfo = {
+  // Library name
+  id: string;
+  // Packed snippet semantic version
+  sv: number;
+  // Packed library semantic version
+  v: number;
+}
+```
+
+
+### Generate project id based on domain
+
+```javascript
+rstat('buildProjectId', 'www.mydomain.xz'): [string, number]
+```
+
+returns: `[final_domain: string, project_id: number]`
+
+From domains removing `www.` and `m.` or first segments id > 3
 
 ## Коллбеки
 
