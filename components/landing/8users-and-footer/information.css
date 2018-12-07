@@ -50,10 +50,11 @@
       width: 45%;
       .title {
         color: #F2F2F2;
-        @mixin raleway-medium 18px;
+        @mixin raleway-regular 18px;
         line-height: rem(27px);
       }
       .text {
+        margin-top: 10px;
         color: #BDBDBD;
         @mixin raleway-regular 16px;
         line-height: rem(24px);

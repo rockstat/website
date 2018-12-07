@@ -56,7 +56,7 @@ export class Repository extends React.Component {
             <div className={style.leftTextBottom}>
               <div className={style.title}>Адаптивная запись</div>
               <div className={style.description}>
-                Механизм автоматической подстройки стурктуры записываемых данных под схему СУБД ClickHouse.
+                Механизм автоматической подстройки структуры записываемых данных под схему СУБД ClickHouse.
               </div>
 
 

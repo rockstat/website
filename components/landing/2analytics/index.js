@@ -52,7 +52,7 @@ export class Analytic extends React.Component {
             <div className={style.title}>Сбор данных</div>
               <div className={style.description}>
                 Можно отслеживать Web, Mobile apps, Мессенджеры. 
-                Автоматитеское отслживание поведения пользователей.
+                Автоматитеское отслеживание поведения пользователей.
               </div>
             </div>
           </div>

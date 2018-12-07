@@ -70,18 +70,18 @@ export class Information extends React.Component {
         <div className={style.reviewsContainer}>
           <div className={style.item}>
             <div className={style.title}>
-              RethinkDB has the best query language of all new databased i’ve seen.
+            Мы используем Рокстат как основной инструмент веб-аналитики - собираем события в свою базу, замеряем результаты экспериментов, настраиваем оповещения.
             </div>
             <div className={style.text}>
-              — Guillermo Rauch, Cloudup CTO, creator of Mongroose
+              — Артем Шевченко, Utair
             </div>
           </div>
           <div className={style.item}>
             <div className={style.title}>
-              RethinkDB has the best query language of all new databased i’ve seen.
+              Мы реализовали сквозную аналитику и свою междоменную модель атрибуции. Благодаря этому мы успешно перераспреляем бюджеты между каналами.
             </div>
             <div className={style.text}>
-              — Guillermo Rauch, Cloudup CTO, creator of Mongroose
+              — Константин Подъяков, pride.marketing
             </div>
           </div>
         </div>

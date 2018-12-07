@@ -1,15 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 
-const TOCBuilder = require('../lib/table_of_contents')
+const { TOCGenerator } = require('../lib/table_of_contents')
 const cwd = process.cwd();
 
-function docTOCGen() {
-  const tocBuilder = new TOCBuilder(cwd, 'pages/docs/docs.yml', `constants/docs.js`);
-  console.log(`cwd "${cwd}"`)
-  console.log('generating docs TOC...')
-  return tocBuilder
-
+function getTOCGenerator() {
+  console.log(`docTOCGen: cwd "${cwd}"`)
+  return new TOCGenerator(cwd, 'pages/docs/docs.yml', `constants/docs.js`);
 }
 
 
@@ -22,7 +19,7 @@ require('yargs')
     //   describe: 'the name to say hello to'
     // })
   }, function (argv) {
-    docTOCGen();
+    getTOCGenerator().convert();
   })
   .help()
   .argv
@@ -30,5 +27,5 @@ require('yargs')
 
 
 module.exports = {
-  docTOCGen
+  getTOCGenerator
 } 

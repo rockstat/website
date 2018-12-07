@@ -11,10 +11,8 @@ const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkStringify = require('remark-stringify')
 // const remarkSlug = require('remark-slug')
 const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
-const sm = require('sitemap')
-
 const remarkMermaid = require('./lib/remark/mermaid');
-const { docTOCGen } = require('./bin/rstgen');
+const { getTOCGenerator } = require('./bin/rstgen');
 const { ANALYZE, MAIN } = process.env
 
 // const TOCBuilder = require('./lib/table_of_contents')
@@ -73,24 +71,31 @@ module.exports = withMDX(withCSS({
       ...defaultPathMap
     };
 
-    const gen = docTOCGen()
-    data = gen.convert()
-    forMap = [{
-      "name": "",
-      "href": "/ru/",
-      "enabled": true,
-      "modified": new Date(fs.statSync('./pages/main.js').mtime).toISOString().substr(0, 10)
-    }, ...data]
-    map = gen.sitemap(forMap)
+    let map;
+    try{
+      console.log('call convert')
+      gen = getTOCGenerator()
+      data = gen.convert()
+      console.log('converted')
+      forMap = [{
+        "name": "",
+        "href": "/ru/",
+        "enabled": true,
+        "modified": new Date(fs.statSync('./pages/main.js').mtime).toISOString().substr(0, 10)
+      }, ...data]
+      map = gen.sitemap(forMap)
+        
+    }catch(e){
+      console.error(e)
+    }
 
-    if (dev) {
+    // if (dev) {
       // console.log(map)
       if (!MAIN && outDir) {
         console.log(`robots outDir:${outDir}`)
         fse.copySync('static/robots.txt', `${outDir}/robots.txt`)
       }
-
-    }
+    // }
     if (!dev && outDir) {
       console.log('writing ${outDir}/sitemap.xml')
       fse.outputFileSync(`${outDir}/sitemap.xml`, map)
