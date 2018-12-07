@@ -3,64 +3,64 @@ import PropTypes from 'prop-types';
 import style from './style.css';
 
 export class CenterRounds extends React.Component {
-  static propTypes = {
-    startAnimation: PropTypes.bool
-  }
-  state = {
-    actualRound: 10,
-    count: 10,
-    animated: false
-  }
-  componentWillReceiveProps(nextProps) {
-    const { animated } = this.state;
-    let paths = this.circleContainer.children;
-    !nextProps.startInterval &&
-      Object.keys(paths).map(item => {
-        paths[item].style.transform = 'scale(0)';
-      });
-    nextProps.startAnimation && !animated ? this.startInterval() : this.stopInterval();
-  }
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+  // static propTypes = {
+  //   startAnimation: PropTypes.bool
+  // }
+  // state = {
+  //   actualRound: 10,
+  //   count: 10,
+  //   animated: false
+  // }
+  // componentWillReceiveProps(nextProps) {
+  //   const { animated } = this.state;
+  //   let paths = this.circleContainer.children;
+  //   !nextProps.startInterval &&
+  //     Object.keys(paths).map(item => {
+  //       paths[item].style.transform = 'scale(0)';
+  //     });
+  //   nextProps.startAnimation && !animated ? this.startInterval() : this.stopInterval();
+  // }
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
 
-  circleContainer = null;
-  interval = null;
+  // circleContainer = null;
+  // interval = null;
 
-  startInterval = () => {
-    let paths = this.circleContainer.children;
-    let length = Object.keys(paths).length;
+  // startInterval = () => {
+  //   let paths = this.circleContainer.children;
+  //   let length = Object.keys(paths).length;
 
-    this.setState({
-      count: length,
-      actualRound: length - 1,
-      animated: true
-    });
-    this.interval = setInterval(this.renderAnimation, 300);
-  }
+  //   this.setState({
+  //     count: length,
+  //     actualRound: length - 1,
+  //     animated: true
+  //   });
+  //   this.interval = setInterval(this.renderAnimation, 300);
+  // }
 
-  stopInterval = () => {
-    let paths = this.circleContainer.children;
-    let length = Object.keys(paths).length;
+  // stopInterval = () => {
+    // let paths = this.circleContainer.children;
+    // let length = Object.keys(paths).length;
 
-    this.setState({
-      count: length,
-      actualRound: length - 1,
-      animated: false
-    });
-    clearInterval(this.interval);
-  }
+    // this.setState({
+    //   count: length,
+    //   actualRound: length - 1,
+    //   animated: false
+    // });
+    // clearInterval(this.interval);
+  // }
 
-  renderAnimation = () => {
-    let paths = this.circleContainer.children;
-    let { actualRound } = this.state;
+  // renderAnimation = () => {
+  //   let paths = this.circleContainer.children;
+  //   let { actualRound } = this.state;
 
-    paths[actualRound].style.transform = 'scale(1)';
-    this.setState({
-      actualRound: actualRound - 1
-    });
-    if (actualRound === 0) this.stopInterval();
-  }
+  //   paths[actualRound].style.transform = 'scale(1)';
+  //   this.setState({
+  //     actualRound: actualRound - 1
+  //   });
+  //   if (actualRound === 0) this.stopInterval();
+  // }
 
   render() {
     return (

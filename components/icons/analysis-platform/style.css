@@ -1,5 +1,5 @@
 .centerContainer {
-  animation-duration: 170s;
+  /* animation-duration: 170s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   transform-origin: center;
@@ -9,11 +9,11 @@
   &.active {
     animation-name: CenterAnimation;
     opacity: 1;
-  }
+  } */
 }
 
 .twoContainer {
-  animation-duration: 450s;
+  /* animation-duration: 450s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   transform-origin: center;
@@ -23,32 +23,32 @@
   &.active {
     animation-name: TwoAnimation;
     opacity: 1;
-  }
+  } */
 }
 
 .treeContainer {
-  transform-origin: center;
+  /* transform-origin: center;
   transform: scale(0.8);
   transition: transform 1s ease;
   &.active {
     transform: scale(1);
-  }
+  } */
 }
 
-@keyframes CenterAnimation {
-  0% {
+/* @keyframes CenterAnimation { */
+  /* 0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(-360deg);
-  }
-}
+  } */
+/* } */
 
-@keyframes TwoAnimation {
-  0% {
+/* @keyframes TwoAnimation { */
+  /* 0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
-  }
-}
+  } */
+/* } */
