@@ -1,5 +1,6 @@
 const path = require('path');
 const fse = require('fs-extra');
+const fs = require('fs');
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkCollapse = require('remark-collapse')
@@ -10,9 +11,10 @@ const remarkCustomBlocks = require('remark-custom-blocks')
 // const remarkStringify = require('remark-stringify')
 // const remarkSlug = require('remark-slug')
 const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
+const sm = require('sitemap')
 
 const remarkMermaid = require('./lib/remark/mermaid');
-const { generateDocsTOC } = require('./bin/rstgen');
+const { docTOCGen } = require('./bin/rstgen');
 const { ANALYZE, MAIN } = process.env
 
 // const TOCBuilder = require('./lib/table_of_contents')
@@ -63,20 +65,35 @@ module.exports = withMDX(withCSS({
     localIdentName: '[name]__[local]__[hash:base64:5]',
   },
   exportPathMap: async (defaultPathMap, { dev, dir, outDir, distDir, buildId }) => {
-    if (!MAIN){
-      console.log(`robots outDir:${outDir}`)
-      fse.copySync('static/robots.txt', `${outDir}/robots.txt`)
-    }
-    console.log(`>>> exportPathMap dev=${dev}`);
+    console.log(`>>> exportPathMap dev=${dev} ${dev}, ${dir}, outDir:${outDir}, distDir:${distDir}, ${buildId} `);
     const paths = {
       '/': { page: '/index' },
       '/ru': { page: '/main' },
       '/en': { page: '/main' },
       ...defaultPathMap
     };
+
+    const gen = docTOCGen()
+    data = gen.convert()
+    forMap = [{
+      "name": "",
+      "href": "/ru/",
+      "enabled": true,
+      "modified": new Date(fs.statSync('./pages/main.js').mtime).toISOString().substr(0, 10)
+    }, ...data]
+    map = gen.sitemap(forMap)
+
     if (dev) {
-      // console.log('generating Table of contents');
-      generateDocsTOC()
+      // console.log(map)
+      if (!MAIN && outDir) {
+        console.log(`robots outDir:${outDir}`)
+        fse.copySync('static/robots.txt', `${outDir}/robots.txt`)
+      }
+
+    }
+    if (!dev && outDir) {
+      console.log('writing ${outDir}/sitemap.xml')
+      fse.outputFileSync(`${outDir}/sitemap.xml`, map)
     }
 
     return paths;

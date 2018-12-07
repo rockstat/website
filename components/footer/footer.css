@@ -119,10 +119,10 @@
       color: #ddd;
     }
     span {
-      @mixin raleway-regular 12px;
+      @mixin raleway-regular 11px;
       color: #BDBDBD;
-      // display: block;
-      // max-width: 500px;
+      /* // display: block; */
+      /* // max-width: 500px; */
     }
     .footerTextMobile {
       display: none;

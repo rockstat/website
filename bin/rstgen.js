@@ -4,11 +4,11 @@
 const TOCBuilder = require('../lib/table_of_contents')
 const cwd = process.cwd();
 
-function generateDocsTOC() {
+function docTOCGen() {
   const tocBuilder = new TOCBuilder(cwd, 'pages/docs/docs.yml', `constants/docs.js`);
   console.log(`cwd "${cwd}"`)
   console.log('generating docs TOC...')
-  tocBuilder.convert()
+  return tocBuilder
 
 }
 
@@ -22,14 +22,13 @@ require('yargs')
     //   describe: 'the name to say hello to'
     // })
   }, function (argv) {
-    generateDocsTOC();
+    docTOCGen();
   })
   .help()
   .argv
 
 
 
-
 module.exports = {
-  generateDocsTOC
+  docTOCGen
 } 

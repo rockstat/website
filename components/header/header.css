@@ -9,6 +9,7 @@
   align-items: baseline;
   padding: rem(31px 50px);
   background-color: rgba(0, 0, 0, 0);
+
   &.activeBg {
     background-color: rgba(0, 0, 0, 0.5);
   }
@@ -35,6 +36,7 @@
         overflow: hidden;
         color: #fff;
         text-decoration: none;
+        letter-spacing: 0.04em;
         transition: color .1s linear;
         @mixin raleway-medium 14px;
 

@@ -10,11 +10,15 @@ module.exports = {
     'postcss-rem': {
       baseline: 14,
       precision: 6,
-      fallback: false
+      fallback: true
     },
     'postcss-preset-env': {}, // precss
     'postcss-atroot': {}, // precss
     'postcss-property-lookup': {}, // precss
-    'postcss-cssnext': {},
+    'postcss-cssnext': {
+      features: {
+        rem: false
+      }
+    },
   }
 }

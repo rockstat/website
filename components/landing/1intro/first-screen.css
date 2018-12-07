@@ -134,6 +134,7 @@
     .socialMenu {
       display: flex;
       @mixin raleway-medium 14px;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       transition: transform .3s ease;
       will-change: transform;
