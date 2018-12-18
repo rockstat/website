@@ -1,6 +1,5 @@
 import React from 'react';
 import cl from 'classnames';
-import Waypoint from 'react-waypoint';
 import style from './repository.css';
 import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '@app/components/icons/storage';
 
@@ -62,22 +61,20 @@ export class Repository extends React.Component {
 
             </div>
           </div>
-          <Waypoint onEnter={this.changeAnimationStart} onLeave={this.changeAnimationEnd}>
-            <div className={style.centerBg}>
-              <div className={cl(style.dots, 'rockstat-svg-container')}>
-                <CenterDots startAnimation={startAnimation} />
-              </div>
-              <div className={cl(style.outer, 'rockstat-svg-container')}>
-                <CenterOuter startAnimation={startAnimation} />
-              </div>
-              <div className={cl(style.rounds, 'rockstat-svg-container')}>
-                <CenterRounds startAnimation={startAnimation} />
-              </div>
-              <div className={cl(style.center, 'rockstat-svg-container')}>
-                <Center startAnimation={startAnimation} />
-              </div>
+          <div className={style.centerBg}>
+            <div className={cl(style.dots, 'rockstat-svg-container')}>
+              <CenterDots startAnimation={startAnimation} />
             </div>
-          </Waypoint>
+            <div className={cl(style.outer, 'rockstat-svg-container')}>
+              <CenterOuter startAnimation={startAnimation} />
+            </div>
+            <div className={cl(style.rounds, 'rockstat-svg-container')}>
+              <CenterRounds startAnimation={startAnimation} />
+            </div>
+            <div className={cl(style.center, 'rockstat-svg-container')}>
+              <Center startAnimation={startAnimation} />
+            </div>
+          </div>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>

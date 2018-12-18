@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import style from './first-screen.css';
 
 // import Vivus from 'vivus';
-
-import VisibilitySensor from "react-visibility-sensor";
+// import VisibilitySensor from "react-visibility-sensor";
 
 import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '@app/components/icons/intro';
 import { LogoIcon } from '@app/components/icons';
@@ -37,7 +36,7 @@ export class Everything extends React.PureComponent {
 
   linksMenuPositionDetect = (isVisible) => {
     const pos = isVisible ? 'bottom' : 'top'
-    console.log('main pos, vis', pos, isVisible)
+    // console.log('main pos, vis', pos, isVisible)
     this.props.linksMenuPositionChange(pos);
   }
 
@@ -85,12 +84,12 @@ export class Everything extends React.PureComponent {
           </div>
           <div className={cl(style.demoContainer, { [style.top]: linksMenuPosition === 'top' })}>
             <div className={style.btn}> <a href={'/'}> Demo </a> </div>
-            <VisibilitySensor onChange={this.linksMenuPositionDetect} >
+            {/* <VisibilitySensor onChange={this.linksMenuPositionDetect} > */}
               <div className={style.description}>
                 <div>Open Source</div>
                 <div>Apache 2.0</div>
               </div>
-            </VisibilitySensor>
+            {/* </VisibilitySensor> */}
           </div>
         </div>
       </div>

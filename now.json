@@ -11,7 +11,8 @@
   "static": {
     "public": "public",
     "redirects": [
-      { "source": "/", "destination": "/ru", "type": 303 }
+      { "source": "/", "destination": "/ru/", "type": 301 },
+      { "source": "/docs/", "destination": "/docs/intro/about/", "type": 301 }
     ],
     "directoryListing": false,
     "trailingSlash": true

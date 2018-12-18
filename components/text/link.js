@@ -3,12 +3,22 @@ import NativeLink from 'next/link';
 import PropTypes from 'prop-types';
 import { Link } from 'app/next-routes';
 
+/**
+ * 
+ * @param {String} str 
+ * @param {String} val 
+ */
+const startsWith = (str, val) => {
+  return str.substr(0, val.length) === val;
+}
+
+
 export const GenericLink = props => {
-  if (props.href.startsWith('/docs') || props.href.startsWith('/api')) {
+  if (startsWith(props.href, '/docs')) {
     return <InternalLink {...props} />
   }
 
-  if (props.href.includes('@') || props.href.startsWith('#')) {
+  if (props.href.indexOf('@') >= 0 || startsWith(props.href, '#')) {
     return <AnchorLink {...props} />
   }
 
@@ -16,7 +26,7 @@ export const GenericLink = props => {
 }
 //prefetch
 export const InternalLink = ({ href, children, darkBg, ...rest }) => (
-  <Link route={href}>
+  <Link href={href}>
     <a className={darkBg ? 'dark' : ''}>
       {children}
     </a>

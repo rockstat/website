@@ -2,7 +2,7 @@
   items:
 
     - name: О платформе
-      href: /docs/intro/about
+      href: /docs
 
     - name: Быстрый старт
       href: /docs/intro/getting-started

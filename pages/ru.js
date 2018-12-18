@@ -30,7 +30,6 @@ export default class extends React.Component {
   }
 
   _changeLinkMenuPosition = (e) => {
-    console.log(e)
     this.setState({
       linksMenuPosition: e
     })

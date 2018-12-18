@@ -22,6 +22,7 @@ export default class MyDocument extends Document {
           <meta charSet="UTF-8" />
           {/* <meta name="description" content={props.description || defaultDescription} /> */}
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="google-site-verification" content="wr0zLRd7fmllQM2f5RoEqAf4JaBoO7xwey546hutiQw" />
           {/* <link rel="icon" sizes="192x192" href="/static/touch-icon.png" /> */}
           {/* <link rel="apple-touch-icon" href="/static/touch-icon.png" /> */}
           {/* <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" /> */}

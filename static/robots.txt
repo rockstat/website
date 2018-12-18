@@ -1,2 +1,7 @@
-User-agent: *
-Disallow: /
+User-Agent: *
+Disallow: /docs/debug/markdown-typo/
+Disallow: /en/
+Disallow: /$
+# Clean-param: labels&utm_campaign&utm_term&utm_medium&utm_source&utm_content
+Host: https://rock.st
+Sitemap: https://rock.st/sitemap.xml

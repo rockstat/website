@@ -87,7 +87,7 @@ export class Information extends React.Component {
         </div>
 
         <div className={style.btn}>
-          <Link route={'/docs'}>
+          <Link href={'/docs'}>
             <a>
               Установить Rockstat
 

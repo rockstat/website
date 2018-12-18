@@ -15,8 +15,9 @@ const remarkMermaid = require('./lib/remark/mermaid');
 const { getTOCGenerator } = require('./bin/rstgen');
 const { ANALYZE, MAIN } = process.env
 
-// const TOCBuilder = require('./lib/table_of_contents')
-// const tocBuilder = new TOCBuilder(dir, 'pages/docs/docs.yml', `constants/docs.js`);
+const getMDate = (fn) => {
+  return new Date(fs.statSync(fn).mtime).toISOString().substr(0, 10)
+}
 
 const withMDX = require('@zeit/next-mdx')({
   options: {
@@ -65,38 +66,34 @@ module.exports = withMDX(withCSS({
   exportPathMap: async (defaultPathMap, { dev, dir, outDir, distDir, buildId }) => {
     console.log(`>>> exportPathMap dev=${dev} ${dev}, ${dir}, outDir:${outDir}, distDir:${distDir}, ${buildId} `);
     const paths = {
-      '/': { page: '/index' },
-      '/ru': { page: '/main' },
-      '/en': { page: '/main' },
+      '/ru': { page: '/ru' },
       ...defaultPathMap
     };
 
     let map;
-    try{
+    try {
       console.log('call convert')
       gen = getTOCGenerator()
       data = gen.convert()
-      console.log('converted')
-      forMap = [{
-        "name": "",
-        "href": "/ru/",
-        "enabled": true,
-        "modified": new Date(fs.statSync('./pages/main.js').mtime).toISOString().substr(0, 10)
-      }, ...data]
+      forMap = [
+        { "name": "", "href": "/ru/", "enabled": true, "modified": getMDate('./pages/ru.js') },
+        // { "name": "", "href": "/docs/", "enabled": true, "modified": getMDate('./pages/docs/intro/about.mdx') },
+        ...data
+      ];
+      console.log(forMap)
       map = gen.sitemap(forMap)
-        
-    }catch(e){
+
+    } catch (e) {
       console.error(e)
     }
 
-    // if (dev) {
-      // console.log(map)
-      if (!MAIN && outDir) {
-        console.log(`robots outDir:${outDir}`)
+    if (!dev && outDir) {
+      console.log(`Copying robots.txt outDir:${outDir}`)
+      if (!MAIN) {
+        fse.copySync('static/robots_test.txt', `${outDir}/robots.txt`)
+      } else {
         fse.copySync('static/robots.txt', `${outDir}/robots.txt`)
       }
-    // }
-    if (!dev && outDir) {
       console.log('writing ${outDir}/sitemap.xml')
       fse.outputFileSync(`${outDir}/sitemap.xml`, map)
     }

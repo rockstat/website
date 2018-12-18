@@ -26,7 +26,7 @@ export class Footer extends React.Component {
               footerMenu.map((item, index) => {
                 return (
                   <div key={index} className={style.item} >
-                    <Link route={linkTo(item.path)} >
+                    <Link href={linkTo(item.path)} >
                       <a className={cl(style.itemMain, { [style.notClick]: item.event !== undefined })} target={itemTarget(item)} > {item.name} </a>
                     </Link>
 
@@ -37,7 +37,7 @@ export class Footer extends React.Component {
                         item.children.map((child, key) => {
                           return (
                             <div key={key} className={style.children}>
-                              <Link route={linkTo(child.path)} >
+                              <Link href={linkTo(child.path)} >
                                 <a
                                   className={cl({ [style.notActive]: !child.active })}
                                   target={itemTarget(child)}
@@ -58,7 +58,7 @@ export class Footer extends React.Component {
               footerRightMenu.map((item, index) => {
                 return (
                   <div key={index} className={style.item} >
-                    <Link route={linkTo(item.path)} >
+                    <Link href={linkTo(item.path)} >
                       <a className={cl(style.itemMain, { [style.notActive]: !item.active })} target={itemTarget(item)} > {item.name} </a>
                     </Link>
                   </div>

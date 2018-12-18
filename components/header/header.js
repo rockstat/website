@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from '../../next-routes';
+import Link from 'next/link';
 
 import cl from 'classnames';
 import PropTypes from 'prop-types';
@@ -51,14 +51,14 @@ export class Header extends React.Component {
           <span></span>
         </div>
 
-        <Logo/>
+        <Logo url={'/ru/'} />
 
         <div className={style.menu}>
           {
             linksMenu.map((item, index) => {
               return (
                 <div key={index} className={cl(style.menuItem, style.linksMenu)} >
-                  <Link route={linkTo(item.path)}>
+                  <Link href={linkTo(item.path)}>
                     <a target={itemTarget(item)} className={cl({ [style.active]: activeSection === item.name })}> {item.name} </a>
                   </Link>
                 </div>
@@ -69,7 +69,7 @@ export class Header extends React.Component {
             headerMenu.map((item, index) => {
               return (
                 <div key={index} className={style.menuItem} >
-                  <Link route={linkTo(item.path)}>
+                  <Link href={linkTo(item.path)}>
                     <a target={itemTarget(item)} className={cl({ [style.active]: activeSection === item.name })}> {item.title} </a>
                   </Link>
                 </div>
@@ -78,12 +78,12 @@ export class Header extends React.Component {
           }
           <div className={style.menuItemLg}>
             <div className={style.menuItemLgItem} >
-              <Link route="/" >
+              <Link href="/ru" >
                 <a className={style.active}> ru </a>
               </Link>
             </div>
             <div className={style.menuItemLgItem} >
-              <Link route="/en" >
+              <Link href="/en" >
                 <a className={style.noClick}> en </a>
               </Link>
             </div>

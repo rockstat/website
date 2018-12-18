@@ -1,6 +1,5 @@
 import React from 'react';
 import cl from 'classnames';
-import Waypoint from 'react-waypoint';
 import style from './analytic.css';
 
 import { Center2, Two, Three, Wawe } from 'app/components/icons/analysis-platform';
@@ -58,7 +57,6 @@ export class Analytic extends React.Component {
           </div>
 
 
-          <Waypoint onEnter={this.changeAnimationStart} onLeave={this.changeAnimationEnd}>
             <div className={style.centerBg}>
               <div className={cl(style.center, 'rockstat-svg-container')}>
                 <Center2 animationChange={animationChange} />
@@ -72,7 +70,6 @@ export class Analytic extends React.Component {
                 <Three animationChange={animationChange} />
               </div>
             </div>
-          </Waypoint>
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>

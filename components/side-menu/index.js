@@ -16,7 +16,7 @@ export class SideMenu extends React.Component {
     const { activeMenuItem } = this.state;
     let newActvieMenuItem = [...activeMenuItem];
     let activeShowDetect = activeMenuItem.indexOf(key);
-    
+
     activeShowDetect >= 0 ? newActvieMenuItem.splice(activeShowDetect, 1) : newActvieMenuItem.push(key)
     this.setState({
       activeMenuItem: newActvieMenuItem
@@ -60,17 +60,20 @@ export class SideMenu extends React.Component {
     const { activeMenuItem } = this.state;
     return (
       <div className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(path) >= 0 })} key={path}>
-        <ShowIf condition={href}>
-          <Link route={href} params={{ lang }}>
+        <ShowIf condition={href && enabled}>
+          <Link href={href}>
             <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
           </Link>
         </ShowIf>
-        <ShowIf condition={!href}>
+        <ShowIf condition={!href || !enabled}>
           <span
             onClick={() => this.setActiveMenuItem(path)}
             className={this.renderItemStatus(enabled, pathname, hrefs)}
           >
-            <ShowMenuIcon /> {name}
+            <ShowIf condition={!href}>
+              <ShowMenuIcon />{' '}
+            </ShowIf>
+            {name}
           </span>
         </ShowIf>
         {/* 3rd level */}
@@ -78,9 +81,16 @@ export class SideMenu extends React.Component {
           {items && items.map(({ name, href, enabled, path }) => (
             <div className={style.childItemTree} key={path}>
               <span>
-                <Link route={href} params={{ lang }}>
-                  <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
-                </Link>
+                <ShowIf condition={href && enabled}>
+                  <Link href={href}>
+                    <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
+                  </Link>
+                </ShowIf>
+                <ShowIf condition={!href || !enabled}>
+                  <span
+                    className={this.renderItemStatus(enabled, pathname, hrefs)}
+                  >{name}</span>
+                </ShowIf>
               </span>
             </div>
           ))}
@@ -105,7 +115,7 @@ export class SideMenu extends React.Component {
     return [
       <div key={100} className={cls(style.sideBar, { [style.show]: showMenu })}>
         <div className={style.floatLogo}>
-          <Logo />
+          <Logo url='/ru/' />
         </div>
         {menuData.map((category) => this.renderCategory(category))}
       </div>,
