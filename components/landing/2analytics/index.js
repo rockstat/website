@@ -2,7 +2,7 @@ import React from 'react';
 import cl from 'classnames';
 import style from './analytic.css';
 
-import { Center2, Two, Three, Wawe } from 'app/components/icons/analysis-platform';
+import { Center3, Two, Three, Wawe } from 'app/components/icons/analysis-platform';
 
 export class Analytic extends React.Component {
   state = {
@@ -59,15 +59,16 @@ export class Analytic extends React.Component {
 
             <div className={style.centerBg}>
               <div className={cl(style.center, 'rockstat-svg-container')}>
-                <Center2 animationChange={animationChange} />
+                <Center3 />
               </div>
 
               <div className={cl(style.two, 'rockstat-svg-container')}>
-                <Two animationChange={animationChange} />
+                <Two />
               </div>
 
               <div className={cl(style.tree, 'rockstat-svg-container')}>
-                <Three animationChange={animationChange} />
+                <Three />
+
               </div>
             </div>
 

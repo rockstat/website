@@ -33,6 +33,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
     svg {
       opacity: 0.5;
     }

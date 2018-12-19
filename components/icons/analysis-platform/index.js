@@ -1,5 +1,6 @@
 export * from './Center';
 export * from './center2';
+export * from './Center3';
 export * from './Two';
 export * from './Three';
 export * from './outer';

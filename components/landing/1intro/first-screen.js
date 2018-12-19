@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import style from './first-screen.css';
 
 // import Vivus from 'vivus';
-// import VisibilitySensor from "react-visibility-sensor";
+import VisibilitySensor from "react-visibility-sensor";
 
-import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon } from '@app/components/icons/intro';
+import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon, RockFig } from '@app/components/icons/intro';
 import { LogoIcon } from '@app/components/icons';
 import { linksMenu } from '@app/constants/index';
 
@@ -58,7 +58,7 @@ export class Everything extends React.PureComponent {
         <div className={style.bgContainer}>
           <div className={style.logoMobile}><LogoIcon /></div>
           <div className={cl(style.centerBg, 'rockstat-svg-container', style.mounted)}>
-            <EverythingRhimbusIcon />
+            <RockFig />
           </div>
           <div className={cl(style.circleTransparentBg, 'rockstat-svg-container')}>
             <Circletransparent />
@@ -84,12 +84,17 @@ export class Everything extends React.PureComponent {
           </div>
           <div className={cl(style.demoContainer, { [style.top]: linksMenuPosition === 'top' })}>
             <div className={style.btn}> <a href={'/'}> Demo </a> </div>
-            {/* <VisibilitySensor onChange={this.linksMenuPositionDetect} > */}
+            <VisibilitySensor
+              scrollCheck
+              scrollThrottle={100}
+              intervalDelay={8000}
+              onChange={this.linksMenuPositionDetect}
+            >
               <div className={style.description}>
                 <div>Open Source</div>
                 <div>Apache 2.0</div>
               </div>
-            {/* </VisibilitySensor> */}
+            </VisibilitySensor>
           </div>
         </div>
       </div>
