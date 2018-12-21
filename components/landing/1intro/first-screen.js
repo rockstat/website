@@ -47,7 +47,7 @@ export class Everything extends React.PureComponent {
       <div className={style.everythingContainer}>
         <div className={style.textContainer}>
           <div className={style.title}>
-            Сила в данных
+            It's Your Data<br/>Platform
           </div>
           <div className={style.text}>
             <span>Открытая платформа для автоматизации</span>
@@ -83,7 +83,7 @@ export class Everything extends React.PureComponent {
             }
           </div>
           <div className={cl(style.demoContainer, { [style.top]: linksMenuPosition === 'top' })}>
-            <div className={style.btn}> <a href={'/'}> Demo </a> </div>
+            {/* <div className={style.btn}> <a href={'/'}> Demo </a> </div> */}
             <VisibilitySensor
               scrollCheck
               scrollThrottle={100}

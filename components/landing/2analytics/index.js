@@ -84,7 +84,7 @@ export class Analytic extends React.Component {
               <div className={style.title}>Сквозная аналитика</div>
               <div className={style.description}>
                 Есть все для совмещения данных из разных источников. Кросс-доменное отслеживание web,
-                возможно кросс-канальное сопоставленине.
+                возможно кросс-канальное сопоставление.
               </div>
             </div>
           </div>

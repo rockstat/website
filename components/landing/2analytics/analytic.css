@@ -23,7 +23,6 @@
       opacity: 0.8;
       margin-top: rem(2px);
     }
-
   }
 
   .linesBg {
@@ -37,7 +36,7 @@
     svg {
       opacity: 0.5;
     }
-    
+
     .left {
       width: 50%;
       position: relative;
@@ -104,8 +103,8 @@
       margin: auto;
       position: relative;
       /* svg, img {
-      //   width: 100%;
-      // }*/
+         width: 100%;
+      } */
       .center {
         position: absolute;
         left: 0;
@@ -218,7 +217,7 @@
         left: 0;
         .center {
           top: 30vw;
-          height: auto;
+          height: 40%;
           width: 40%;
         }
         .two {

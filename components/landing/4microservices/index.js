@@ -19,10 +19,9 @@ export class Microservices extends React.Component {
           </div>
         </div>
         <div className={style.textContainer}>
-          <div className={style.title}>Открытые возможности</div>
+          <div className={style.title}>Микросервисная архитектура</div>
           <div className={style.description}>
-            Вся сила в простоте создания собственных решений оптимально подходящих под задачи.
-          
+            Вся сила в простоте создания собственных решений, оптимально подходящих под задачи. Все это легко реализовать с помощью микросервисного подхода.
           </div>
         </div>
         <div className={cl(style.leftBg, 'rockstat-svg-container')}>
@@ -53,9 +52,10 @@ export class Microservices extends React.Component {
 
           <div className={style.rightText}>
             <div className={style.rightTextTop}>
-              <div className={style.title}>Готовая основа</div>
+              <div className={style.title}>Framework-и</div>
               <div className={style.description}>
-                Frameworks для Python и TypeScript/JavaScript и набор библиотек делают процесс разработки действительно простым.
+                Framework для Python и TypeScript/JavaScript упрощают и ускоряют процесс разработки. 
+                Реализуется только бизнес-логика.
               </div>
             </div>
             <div className={style.rightTextBottom}>

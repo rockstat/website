@@ -81,7 +81,7 @@ export class Repository extends React.Component {
               <div className={style.title}>Работа с данными</div>
               <div className={style.description}>
                 Grafana и Jupyter для дашбордов и отчетов.
-                Для безопасного доступа при использовании других инструментов, встроен VPN сервер.
+                Для безопасного доступа при использовании других инструментов встроен VPN сервер.
               </div>
             </div>
             <div className={style.rightTextBottom}>
