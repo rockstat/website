@@ -218,7 +218,10 @@ async def broadcast(**params):
     pass
 ```
 
-## band.worker / выполнение фоновых задач
+## band.worker / Startup handler decorator
+
+Mark function as startup handler, which will be executed when application starts.
+Otherside can be user for periodicaly operations like flushes, counters, etc.
 
 `@worker()`
 
@@ -263,7 +266,9 @@ async def service_worker():
 ```
 
 
-## band.cleanup / обработка остановки
+## band.cleanup / Shotdown handler decorator
+
+Mark function as shutdown handler which will be executed on stop.
 
 `@cleanup()`
 
@@ -278,6 +283,33 @@ async def service_cleanup():
     # Операции, которые будут выполнены при остановке сервиса
     state.loaded = False
 ```
+
+## band.blocking - Decorator that wrap function in thread executor
+
+Function `blocking_sync_code` will be executed in separated thread when you call them 
+and your async code running in main executor thead will no block.
+
+```python
+from band import blocking
+
+@blocking()
+def blocking_sync_code(param1, param2):
+    executing_long_time_code()
+
+@expose()
+async def yor_fast_async_func():
+    await blocking_sync_code(10, 30)
+```
+
+Remember! Thread execution should not access data outside executed function! 
+All data must be passed as function arguments!
+
+Blocking (CPU-bound) code should not be called directly. 
+For example, if a function performs a CPU-intensive calculation for 1 second, 
+all concurrent asyncio Tasks and IO operations would be delayed by 1 second.
+More information 
+[https://docs.python.org/3/library/asyncio-dev.html#running-blocking-code](Running Blocking Code)
+
 
 ## band.rpc / взимодействие с другими сервисами
 
@@ -348,7 +380,7 @@ print(settings.extra)
 ['74994041156']
 ```
 
-## redis_factory
+## band.redis_factory / Redis client factory
 
 ```py
 from band import redis_factory
@@ -358,7 +390,6 @@ from band import redis_factory
 <Tip>
   Work in progress
 </Tip>
-
 
 
 export default withDoc({...meta})(({children}) => <>{children}</>)
