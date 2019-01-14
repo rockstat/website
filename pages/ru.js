@@ -40,7 +40,7 @@ export default class extends React.Component {
     const { asPath, query } = this.props;
 
     return (
-      <span>
+      <div>
         <Head>
           <title>Rockstat | Open Source Customer Data Platform</title>
         </Head>
@@ -54,7 +54,7 @@ export default class extends React.Component {
           <Center />
           <Information />
         </Wrapper>
-      </span>
+      </div>
     )
   }
 }

@@ -22,12 +22,41 @@ max-line-length = 250
 *— Andrew Romm*
 
 
-#### Длина строки pycodestyle
-
-Запомнить пароль от гита на сутки
+#### Запомнить пароль от гита на сутки
 
 ```sh
 git config --global credential.helper "cache --timeout=86400"
+```
+
+*— Dmitry Rodin*
+
+
+
+#### Скрипт инициализации Theia
+
+В корне `project` создать файл `bootstrap.sh`. 
+Будет выполняться каждый каждый раз при старте.
+
+Пример содержимого:
+
+```sh
+pip install -U git+https://github.com/rockstat/band-framework.git@dev
+pip install -U git+https://github.com/madiedinro/simple-clickhouse.git
+pip install -U httpie
+pip install -U aioauth-client
+pip install -U aiocron
+sudo apk --no-cache add jq
+git config --global credential.helper "cache --timeout=172800"
+
+for d in my_libraries/*/; do
+    curr_dir=$(pwd)
+    echo $d
+    if [[ -f "${d}setup.py" ]]; then
+        cd $d
+        python setup.py develop
+    fi
+    cd $curr_dir
+done
 ```
 
 *— Dmitry Rodin*

@@ -1,0 +1,30 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'HTTP Debug service для отладки входящих запросов',
+}
+
+# HTTP Debug service для отладки входящих запросов
+
+HTTP Debug service can be started from the server terminal and listen requests on any port of any interface.
+Usable for debugging issues caused with 3rd party services for example SSL validation troubles.
+
+To start service you need to manually execute configuration script bult on ansible
+
+```shell
+cd /srv/platform/bootstrap
+ansible-playbook platform.yml --connection=local --tags=httpdebug -e bind=0.0.0.0:80
+```
+
+To remove
+
+```shell
+ansible-playbook platform.yml --connection=local --tags=httpdebug -e bind=absent
+```
+
+Enjoi
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

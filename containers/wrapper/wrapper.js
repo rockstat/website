@@ -15,12 +15,6 @@ class WrapperClass extends React.Component {
     documentation: PropTypes.bool
   }
 
-  componentDidMount() {
-    if (window['rstat']) {
-      window['rstat']('page');
-    }
-  }
-
   render() {
     const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
     return (

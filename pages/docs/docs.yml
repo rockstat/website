@@ -94,17 +94,20 @@
     - name: Band Framework (Python)
       items:
 
+        - name: Слекет сервиса
+          href: /docs/reference/band-framework/skeleton
+
         - name: Программное API
           href: /docs/reference/band-framework/python-api
 
-        - name: Конфиги
+        - name: Файл конфигурации
           href: /docs/reference/band-framework/configs
+
+    - name: Simple ClickHouse (Python)
+      href: /docs/reference/simplech
 
     - name: RockMe Framework (TypeScript)
       href: /docs/reference/rockme-framework/api
-
-    - name: Simple ClickHouse API
-      href: /docs/reference/simplech
 
     - name: Переменные окружения
       href: /docs/reference/environment
@@ -125,7 +128,7 @@
     - name: Установка платформы
       items:
 
-        - name: Подготовка сервера и dns
+        - name: Выбор, подготовка сервера и DNS
           href: /docs/guides/setup/server_and_domain
 
         - name: Запуск инсталлятора
@@ -144,14 +147,20 @@
     - name: Использование Панели управления
       href: /docs/guides/dashboard/using
 
-    - name: Работа с Jupyter
-      href: /docs/guides/jupyter/using
+    - name: Создание сервисов
+      href: /docs/guides/services/create-service-using-skeleton
 
-    - name: Работа с Theia
-      href: /docs/guides/theia/using
+    - name: Использование инструментов из комплекта
+      items:
 
-    - name: Мониторинг Netdata
-      href: /docs/guides/netdata/using
+        - name: Работа с Theia
+          href: /docs/guides/theia/using
+
+        - name: Мониторинг Netdata
+          href: /docs/guides/netdata/using
+        
+        - name: Работа с Jupyter
+          href: /docs/guides/jupyter/using
 
     - name: Работа с ClickHouse
       items:
@@ -162,8 +171,15 @@
         - name: Модификация схемы
           href: /docs/guides/clickhouse/schema-modify
 
+
     - name: Подключение к VPN
       href: /docs/guides/connect-vpn
+
+    - name: Отладка
+      items: 
+
+        - name: Отладка HTTP запров
+          href: /docs/guides/debug/http-debug-service
 
     - name: Хитрости конфигурации
       href: /docs/guides/configuration-tricks
@@ -195,8 +211,26 @@
 - name: Туториалы
   items:
 
+    - name: Получение данных из Google Adwords
+      href: /docs/tutorials/sources/adwords
+
+    - name: Получение данных из других сервисов
+      items: 
+
+        - name: Yandex AppMetrika
+          href: /docs/tutorials/sources/appmetrika
+
+
+    - name: Сбор сырых данных Google Analytics
+      href: /docs/tutorials/google-analytics-raw-data
+
+    - name: Создание динамического Calltracking
+      href: /docs/tutorials/dynamic-calltracking
+
+
     - name: Собственный формат событий
       href: /docs/tutorials/custom-event-table
+
 
     - name: Построение истории отдельного пользователя
       href: /docs/tutorials/user-history

@@ -1,0 +1,184 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Заголовок раздела',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+Google App Script to periodically upload adwords stats remote endpoint
+
+
+
+```javascript
+var CONFIG = {
+  DEFAULT_DATE_RANGE: 'YESTERDAY',
+  SECRET_KEY: 'mysecret',
+  ENDPOINT: 'https://YOUR_ROCKSTAT_DOMAIN/google_apis/upload',
+  REPORTS: [
+    {
+      NAME: 'FINAL_URL_REPORT',
+      CONDITIONS: 'WHERE Impressions > 0',
+      FIELDS: {
+        'AccountDescriptiveName': 'String',
+        'AdGroupId': 'UInt64',
+        'AdGroupName': 'String',
+        'Date': 'String',
+        'CriteriaParameters': 'String',
+        'AdNetworkType2': 'String',
+        'CampaignId': 'UInt64',
+        'EffectiveTrackingUrlTemplate': 'String',
+        'CampaignName': 'String',
+        'EffectiveFinalUrl': 'String',
+        'AveragePosition': 'Float64',
+        'Cost': 'Float64',
+        'Impressions': 'UInt64',
+        'Clicks': 'UInt64',
+      }
+    },
+  ],
+};
+
+ // 50 kb tracker packet limit. Use only 40
+var MAX_INSERT_SIZE = 40 * 1024;
+
+function main() {
+  for (var i = 0; i < CONFIG.REPORTS.length; i++) {
+    var reportConfig = CONFIG.REPORTS[i];
+    var csvData = retrieveAdwordsReport(reportConfig);
+    for (var j = 0; j < csvData.length; j++) {
+      Logger.log("report data length %s", csvData[j].length)
+      send(csvData[j])
+    }
+  }
+}
+
+function send(chunk) {
+  Logger.log("Sending chunk");
+  var options = {
+    'method' : 'post',
+    'contentType': 'application/json',
+    'payload' :  JSON.stringify({
+      'secret': CONFIG.SECRET_KEY,
+      'report': chunk
+    })
+  };
+  var response = UrlFetchApp.fetch(CONFIG.ENDPOINT, options);
+  Logger.log("Responce %s", response.getContentText());
+}
+
+
+function retrieveAdwordsReport(reportConfig) {
+  var fieldNames = Object.keys(reportConfig.FIELDS);
+  var report = AdWordsApp.report(
+    'SELECT ' + fieldNames.join(',') +
+    ' FROM ' + reportConfig.NAME + ' ' + reportConfig.CONDITIONS +
+    ' DURING ' + CONFIG.DEFAULT_DATE_RANGE);
+  var rows = report.rows();
+  var chunks = [];
+  var chunkLen = 0;
+  var csvRows = [];
+  var totalRows = 0;
+  // Header row
+  var header = fieldNames.join(',');
+  csvRows.push(header);
+  chunkLen += Utilities.newBlob(header).getBytes().length + 1;
+
+  // Iterate over each row.
+  while (rows.hasNext()) {
+    var row = rows.next();
+    if (chunkLen > MAX_INSERT_SIZE) {
+      chunks.push(csvRows.join('\\n'));
+      totalRows += csvRows.length;
+      chunkLen = 0;
+      csvRows = [];
+    }
+    var csvRow = [];
+    var createTable = 'CREATE TABLE adwords IF NOT EXISTS (\\n';
+    for (var i = 0; i < fieldNames.length; i++) {
+      var fieldName = fieldNames[i];
+      var fieldValue = row[fieldName].toString();
+      var fieldType = reportConfig.FIELDS[fieldName];
+      createTable += '`' + fieldName + '` ' + fieldType + ',\\n'
+      // Strip off % and perform any other formatting here.
+      if (fieldType.indexOf('Float') == 0 || fieldType.indexOf('Int') >= 0) {
+        if (fieldValue.charAt(fieldValue.length - 1) == '%') {
+          fieldValue = fieldValue.substring(0, fieldValue.length - 1);
+        }
+        fieldValue = fieldValue.replace(/,/g, '');
+      }
+      // Add double quotes to any string values.
+      if (fieldType == 'String') {
+        fieldValue = fieldValue.replace(/"/g, '""');
+        fieldValue = '"' + fieldValue + '"';
+      }
+      csvRow.push(fieldValue);
+    }
+    createTable += ') ENGINE= WRITE WHAT YOU NEED\\n'
+    var rowString = csvRow.join(',');
+    csvRows.push(rowString);
+    chunkLen += Utilities.newBlob(rowString).getBytes().length + 1;
+  }
+  if (csvRows) {
+    totalRows += csvRows.length;
+    chunks.push(csvRows.join('\\n'));
+  }
+  Logger.log('Fields SQL for ClickHouse table:\\n%s', createTable )
+  Logger.log('Downloaded ' + reportConfig.NAME + ' with ' + totalRows +
+    ' rows, in ' + chunks.length + ' chunks.');
+  return chunks;
+}
+
+```
+
+Code will generate sql table structure
+
+```
+-- Fields SQL for ClickHouse table:
+CREATE TABLE adwords IF NOT EXISTS (
+`AccountDescriptiveName` String,
+`AdGroupId` UInt64,
+`AdGroupName` String,
+`Date` String,
+`CriteriaParameters` String,
+`AdNetworkType2` String,
+`CampaignId` UInt64,
+`EffectiveTrackingUrlTemplate` String,
+`CampaignName` String,
+`EffectiveFinalUrl` String,
+`AveragePosition` Float64,
+`Cost` Float64,
+`Impressions` UInt64,
+`Clicks` UInt64,
+) ENGINE= WRITE WHAT YOU NEED
+```
+
+
+
+Rockstat receiver
+
+
+```
+ch = AsyncClickHouse()
+
+@expose.handler()
+async def adwords(data, **params):
+    report = data.pop('report', None)
+    key = data.pop('secret', None)
+    logger.debug('report')
+    if key == 'mysecret':
+        if report:
+            buff = io.StringIO(report)
+            reader = DictReader(buff, delimiter=',')
+            for row in reader:
+                row = dict(row)
+                ch.push('adwords', row)
+
+```
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

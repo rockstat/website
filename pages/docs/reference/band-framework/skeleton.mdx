@@ -1,0 +1,48 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Band Framework skeleton',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+
+## Skeleton structure
+
+Band service skeleton directory structure
+
+```yaml
+# Directory for source code
+servicename/
+    # Main Python module file. Required by python
+    __init__.py
+    # Python module file required for module execution
+    __main__.py
+    # File contains your code. You can choose name, but include it in __init__.py
+    main.py
+# File contains build helpers like `make start-dev`
+makefile
+# Docker service build instructions
+Dockerfile
+# Default README file. You should full it your service description
+README.md
+# Main configuration file
+config.yaml
+# Filt contains list of python requirements which will be installed on service build
+requirements.txt
+```
+
+
+## Ccылки по теме
+
+[[chapter]]
+| [Band framework programmatic API](/docs/reference/band-framework/python-api)
+[[chapter]]
+| [Band service configuration files ](/docs/reference/band-framework/configs)
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

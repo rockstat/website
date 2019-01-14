@@ -1,0 +1,7 @@
+FROM mhart/alpine-node:8
+
+WORKDIR /usr/src
+ENV HOST=0.0.0.0
+
+CMD yarn && yarn start:dev
+

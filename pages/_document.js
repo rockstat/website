@@ -13,12 +13,18 @@ const defaultOGImage = `${defaultOGURL}/static/images/social/electric-star.png`
 
 
 export default class MyDocument extends Document {
+  
+  static async getInitialProps (ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
 
   render() {
     const { props } = this;
     return (
       <html>
         <Head>
+          
           <meta charSet="UTF-8" />
           {/* <meta name="description" content={props.description || defaultDescription} /> */}
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,6 +43,7 @@ export default class MyDocument extends Document {
           <meta property="og:image:height" content="630" />
           <meta property="og:description" content={defaultDescription} />
           <script type="text/javascript" src="https://bolt.rstat.org/public/box-rst.js" async />
+          <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
         </Head>
         <body>
           <Main />

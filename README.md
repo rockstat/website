@@ -39,6 +39,9 @@ yarn build:export
 yarn run serve
 ```
 
+### Using docker
+
+
 ## License
 
 - Content (pages/** ) licensed under CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/legalcode

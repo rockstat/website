@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import Router from 'next/router';
 
-export {Link, Router}
+
+export { Link, Router }
+
 
 
 // routes.add([name], pattern = /name, page = name)

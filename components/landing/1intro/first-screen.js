@@ -47,12 +47,17 @@ export class Everything extends React.PureComponent {
       <div className={style.everythingContainer}>
         <div className={style.textContainer}>
           <div className={style.title}>
-            It's Your Data<br/>Platform
+            {/* Почувствуйте<br/>полный контроль<br/>и свободу действий */}
+            Анализируй<br /> автоматизируй
           </div>
           <div className={style.text}>
-            <span>Открытая платформа для автоматизации</span>
-            <span>маркетинга и построения собственной</span>
-            <span>аналитической системы</span>
+          {/* Открытое программное обеспечение для автомаризации маркетинга и аналитики*/}
+            {/* <span>Открытая платформа для автоматизации</span> */}
+            {/* <span>маркетинга и построения собственной</span> */}
+            {/* <span>аналитической системы</span> */}
+            <span>Открытое программное обеспечение </span>
+            <span>для автомаризации маркетинга и</span>
+            <span>построения аналитики</span>
           </div>
         </div>
         <div className={style.bgContainer}>

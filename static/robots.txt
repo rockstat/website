@@ -3,5 +3,10 @@ Disallow: /docs/debug/markdown-typo/
 Disallow: /docs/intro/about/
 Disallow: /en/
 Disallow: /$
+Disallow: /docs/guides/$
+Disallow: /docs/guides/setup/$
+Disallow: /docs/guides/collecting/$
+Disallow: /docs/guides/setup/footer/$
+Disallow: /docs/guides/web-sdk/$
 Host: https://rock.st
 Sitemap: https://rock.st/sitemap.xml

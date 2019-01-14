@@ -1,0 +1,62 @@
+
+
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Create service using skeleton',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+
+## Build own service
+
+### Usign theia
+
+Theia IDE was adopted to easy creating of new services. 
+Press `cmd`(mac)/`ctr`(win) + `shift` + `P` for commands menu, then type `task` ans choose `Run Task`, follow instructions. 
+Generated service will be located `~/projects/my_images/SERVICE_NAME`.
+
+__\*TODO: Add Screenshot\* __
+
+#### Install Cookiecutter
+
+If you don't use Theia for service generation look at Cookiecutter. It's a Python module that can generate new project usign template. 
+New Band service template is located at https://github.com/rockstat/band-skeleton-py and called "Skeleton".
+
+```bash
+pip install -U cookiecutter
+```
+
+Go to your images directory
+
+```bash
+cd my_images
+```
+
+Then run generator with the latest template
+
+```shell
+cookiecutter git+https://github.com/rockstat/band-skeleton-py
+```
+
+Now yout can locate genetated template of new service at current dicrectory
+
+## Ccылки по теме
+
+
+[[chapter]]
+| [Band service template](/docs/reference/band-framework/skeleton)
+
+[[chapter]]
+| [Band service configuration files ](/docs/reference/band-framework/configs)
+
+[[chapter]]
+| [Band framework programmatic API](/docs/reference/band-framework/python-api)
+
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

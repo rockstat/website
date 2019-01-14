@@ -1,0 +1,65 @@
+import asset from 'next/asset'
+import { withDoc } from 'app/lib'
+import { Alert, Tip, Info } from 'app/components'
+
+export const meta = {
+  title: 'Файлы конфигурации Band Framework',
+}
+
+<h1 id="doc-h1">
+  {meta.title}
+</h1>
+
+
+
+#### .env
+
+Файл `.env` внесен в список игнорируемых git и в нем можно размещать приватные значения
+ключей и паролей, которые затем будут подставлены в файлы конфигурации `config.yaml` и `custom.yaml`.
+
+```shell
+SECRET_KEY=4u43u59834u98u5934u98
+OTHER_SECRET=dsfsdffsfd
+```
+
+#### config.yaml
+
+Основной файл конфигурации. Содержит как системные параметры, так и пользовательские.
+
+```yaml
+# Имя, который представится сервис при регистрации
+name: mmgeo
+# Название оружения сервиса
+env: {{ ENV }}
+# Адрес хоста и порт, на которых производить прослушивание HTTP запросов
+listen: "{{HOST|default('0.0.0.0')}}:{{PORT}}"
+# Расположение redis.
+redis_dsn: "{{REDIS_DSN|default('redis://redis:6379')}}"
+# Параметры поключения к redis
+rpc_params:
+  # Получать запросы на обогащение данных
+  listen_enrich: yes
+  # Получать все сообщения для слушателей
+  listen_all: yes
+
+### Любые собственные параметры
+# Постоянное значение конфига
+your_param: param_value
+# Значение конфига с подстановкой из .env
+your_secret: {{SECRET_KEY}}
+```
+
+
+#### custom.yaml
+
+Файл `custom.yaml` внесен в список игнорируемых git и в нем можно размещать приватные значения
+ключей и паролей.
+
+```yaml
+# Значение которым не нужно делиться с другими
+secret_param: secret_val
+# Поддерживается подстановка переменных окружения
+other_secret: {{OTHER_SECRET}}
+```
+
+export default withDoc({...meta})(({children}) => <>{children}</>)

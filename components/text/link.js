@@ -1,6 +1,4 @@
 // Packages
-import NativeLink from 'next/link';
-import PropTypes from 'prop-types';
 import { Link } from 'app/next-routes';
 
 /**
@@ -12,8 +10,7 @@ const startsWith = (str, val) => {
   return str.substr(0, val.length) === val;
 }
 
-
-export const GenericLink = props => {
+export const GenericLink = (props) => {
   if (startsWith(props.href, '/docs')) {
     return <InternalLink {...props} />
   }
@@ -24,36 +21,29 @@ export const GenericLink = props => {
 
   return <ExternalLink {...props} />
 }
+
 //prefetch
-export const InternalLink = ({ href, children, darkBg, ...rest }) => (
-  <Link href={href}>
-    <a className={darkBg ? 'dark' : ''}>
+export const InternalLink = ({href, children, ...props}) => {
+  return (<Link href={href}>
+    <a {...props}>
       {children}
     </a>
   </Link>
-)
+)}
 
-InternalLink.contextTypes = {
-  darkBg: PropTypes.bool
-}
-
-export const AnchorLink = ({ href, onClick, children }) => (
-  <a href={href} onClick={onClick}>
+export const AnchorLink = ({children, ...props}) => (
+  <a {...props}>
     {children}
   </a>
 )
 
-export const ExternalLink = ({ href, children }, { darkBg } = {}) => (
+export const ExternalLink = ({ href, children, ...props }) => (
   <a
-    className={darkBg ? 'dark' : ''}
-    href={href}
     target="_blank"
+    href={href}
     rel="noopener noreferrer"
+    {...props}
   >
     {children}
   </a>
 )
-
-ExternalLink.contextTypes = {
-  darkBg: PropTypes.bool
-}

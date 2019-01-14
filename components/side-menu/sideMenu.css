@@ -125,6 +125,15 @@
           align-items: center;
           pointer-events: auto;
           cursor: pointer;
+          span.open_close:before {
+            content: '';
+            display: block;
+            height: 12px;
+            width: 12px;
+            position: absolute;
+            margin-left: -16px;
+            background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22%23fff%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M19%2C19V5H5V19H19M19%2C3A2%2C2%200%200%2C1%2021%2C5V19A2%2C2%200%200%2C1%2019%2C21H5A2%2C2%200%200%2C1%203%2C19V5C3%2C3.89%203.9%2C3%205%2C3H19M11%2C7H13V11H17V13H13V17H11V13H7V11H11V7Z%22%20%2F%3E%3C%2Fsvg%3E);
+          }
           svg {
             fill: #fff;
             width: rem(12px);

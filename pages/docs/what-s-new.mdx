@@ -13,20 +13,56 @@ export const meta = {
 
 ### Coming
 
+- **Web-SDK**
+  - Request limit up to 100kb
+  - trackActivity{scrollEvents:true/false, domEvents:true/false}
+
+- **Heavyload**
+  - Completely re-written
+  - Support files up to 500mb
+
+- **Band framework**
+  - Support for http streaming responses
+  - Response wrappers: pixel, redirect, error, data
+
+- **Bootstrap**
+  - Custom configuraton support
+
+- **Director**
+  - Tail logs from docker and assess it by websocker (ebaloger functionality)
+
+- **Dashboard**
+  - Logs commands: auto-follow, pause
+  - Swithed to director source
+
+
+### 2 jan 2019
+
+- **Services**
+  - Event repeater service 'again'
+  - New service template using cookiecutter. More at https://github.com/rockstat/band-skeleton-py
+
+- **Grafana**
+  - New demo dashboard
+
 - **Band**
   - Fixed bug with reconnection after connection drop
   - New service template using cookiecutter. More at https://github.com/rockstat/band-skeleton-py
   - Band-framework config param `redis_params` renamed to `rpc_params`
   - Custom timeout on handler registration. `@expose.handler(timeout=18000)` for 18 sec
   - Wildcard handlers registration. Use `name='*'` to receive all requests.
+
 - **Front**
   - Incoming uid format checking
   - Flag which turns on internal request representation for responses
   - Experimental implementation of websocket server with rpc-style purpose
   - Transport data in WebSocket messages
   - Handlers info RPC method `handlers`. Try it `curl http://host:10000/call/front/handlers`
+
 - **CHWriter**
   - Migrations support with custom user folder
+  - New record to table map algo
+
 - **WebSDK**
   - Improved uid checking.
   - New SDK method `request`.
@@ -37,18 +73,18 @@ export const meta = {
   - Activity tracking option `zeroEvents` enables sending all events event if no activity happen.
   - Implemented `pixelSync`. Use `pixelSync` to configure criteria.
     Possible values: false/object, details at [corresponding page](/docs/reference/web-sdk/catch-pixel)
+
 - **Docs**
   - Getting started splitted to guides
   - Handling active item element in nested cetegories
+
 - **Other**
   - Initial R support in Jupyter
   - Log dashboard statistic requests
+
 - **Theia**
   - Cmd+Shift+P -> Tasks: Run -> Genrate bans service
-
-
-
-
+  - Initialize script support (bootstrap.sh)
 
 
 ### 19 oct 2018

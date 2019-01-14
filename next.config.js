@@ -19,23 +19,34 @@ const getMDate = (fn) => {
   return new Date(fs.statSync(fn).mtime).toISOString().substr(0, 10)
 }
 
+const mdPlugins = [
+  require('remark-autolink-headings'),
+  require('remark-emoji'),
+  require('remark-images'),
+  require('remark-slug'),
+  // require('remark-unwrap-images'),
+  [remarkCustomBlocks, {
+    tip: { classes: 'tip-block', title: 'optional' },
+    info: { classes: 'info-block', title: 'optional' },
+    success: { classes: 'success-block', title: 'optional' },
+    alert: { classes: 'alert-block', title: 'optional' },
+    chapter: { classes: 'chapter-block', title: 'optional' }
+  }],
+  [remarkMermaid, {
+    // mode: 'simple',
+    destinationDir: `${__dirname}/static/build/mmd`,
+    pubDir: 'static/build/mmd'
+  }],
+]
+
+
 const withMDX = require('@zeit/next-mdx')({
   options: {
     extension: /\.mdx?$/,
-    mdPlugins: [
+    mdPlugins: mdPlugins
+    // [
       // [remarkRemarkFrontmatter, ['yaml', 'toml']],
-      [remarkMermaid, {
-        // mode: 'simple',
-        destinationDir: `${__dirname}/static/build/mmd`,
-        pubDir: 'static/build/mmd'
-      }],
-      [remarkCustomBlocks, {
-        tip: { classes: 'tip-block', title: 'optional' },
-        info: { classes: 'info-block', title: 'optional' },
-        success: { classes: 'success-block', title: 'optional' },
-        alert: { classes: 'alert-block', title: 'optional' },
-        chapter: { classes: 'chapter-block', title: 'optional' }
-      }],
+      // ,
       // [remarkCollapse, {
       //   test: 'tango.*',
       //   summary: (str) => 'Give yourself away!'
@@ -48,10 +59,8 @@ const withMDX = require('@zeit/next-mdx')({
       // [remarkToc],
       // [remarkHeadings, {}],
       // [remarkEmoji],
-    ],
-    hastPlugins: [
-
-    ]
+    // ],
+    // hastPlugins: []
   }
 })
 
@@ -129,6 +138,18 @@ module.exports = withMDX(withCSS({
           }
         }]
       },
+      // {
+      //   test: /\.mdx?$/,
+      //   use: [
+      //     defaultLoaders.babel,
+      //     {
+      //       loader: '@mdx-js/loader',
+      //       options: {
+      //         mdPlugins
+      //       }
+      //     }
+      //   ]
+      // }
       // {
       //   test: /\.mmd$/,
       //   use: [{

@@ -2,7 +2,7 @@ import * as React from 'react';
 import style from './sideMenu.css';
 import cls from 'classnames';
 import { Link } from '../../next-routes'
-import { ShowIf } from '..'
+import { ShowIf, ShowIfElse, GenericLink } from '..'
 import { ShowMenuIcon } from '../icons';
 import { Logo } from '../logo';
 
@@ -60,37 +60,30 @@ export class SideMenu extends React.Component {
     const { activeMenuItem } = this.state;
     return (
       <div className={cls(style.childItem, { [style.active]: activeMenuItem.indexOf(path) >= 0 })} key={path}>
-        <ShowIf condition={href && enabled}>
-          <Link href={href}>
-            <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
-          </Link>
-        </ShowIf>
-        <ShowIf condition={!href || !enabled}>
+        <ShowIfElse condition={href && enabled}>
+          <GenericLink href={href} className={this.renderItemStatus(enabled, pathname, href)}>
+            {name}
+          </GenericLink>
           <span
             onClick={() => this.setActiveMenuItem(path)}
             className={this.renderItemStatus(enabled, pathname, hrefs)}
           >
-            <ShowIf condition={!href}>
-              <ShowMenuIcon />{' '}
-            </ShowIf>
-            {name}
+            <span className={cls({ [style.open_close]: items && items.length })}>{name}</span>
           </span>
-        </ShowIf>
+        </ShowIfElse>
         {/* 3rd level */}
         <div className={style.childItemTreeContainer}>
           {items && items.map(({ name, href, enabled, path }) => (
             <div className={style.childItemTree} key={path}>
               <span>
-                <ShowIf condition={href && enabled}>
-                  <Link href={href}>
-                    <a className={this.renderItemStatus(enabled, pathname, href)}>{name}</a>
-                  </Link>
-                </ShowIf>
-                <ShowIf condition={!href || !enabled}>
+                <ShowIfElse condition={href && enabled}>
+                  <GenericLink href={href} className={this.renderItemStatus(enabled, pathname, href)}>
+                    {name}
+                  </GenericLink>
                   <span
                     className={this.renderItemStatus(enabled, pathname, hrefs)}
                   >{name}</span>
-                </ShowIf>
+                </ShowIfElse>
               </span>
             </div>
           ))}
