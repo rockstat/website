@@ -16,7 +16,6 @@ app.prepare()
   .then(() => {
     const server = micro((req, res) => {
       const parsedUrl = parse(req.url, true)
-      console.log(parsedUrl.path)
       handle(req, res, parsedUrl)
     })
     server.listen(port, host, (err) => {

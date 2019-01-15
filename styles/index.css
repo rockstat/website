@@ -194,6 +194,10 @@
       font-size: rem(14px);
       font-weight: 700;
     }
+
+    p {
+      padding-top: 16px;
+    }
   
     /* p, blockquote, ul, ol, dl, table, pre, img {
 

@@ -28,13 +28,15 @@
     "nprogress": "^0.2.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-highlight": "^0.12.0",
-    "react-visibility-sensor": "^5.0.2"
+    "react-visibility-sensor": "^5.0.2",
+    "refractor": "^2.6.2",
+    "rehype": "^7.0.0"
   },
   "devDependencies": {
     "@mdx-js/loader": "^0.16.6",
     "@mdx-js/mdx": "^0.16.6",
     "@mdx-js/tag": "^0.16.6",
+    "@mapbox/rehype-prism": "^0.3.0",
     "@svgr/cli": "^4.1.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
@@ -42,7 +44,6 @@
     "cross-env": "^5.2.0",
     "dsv-loader": "^2.0.0",
     "globby": "^8.0.1",
-    "highlight.js": "^9.12.0",
     "js-yaml": "^3.12.0",
     "mermaid": "^8.0.0-rc.8",
     "mermaid.cli": "^0.5.1",

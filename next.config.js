@@ -3,6 +3,7 @@ const fse = require('fs-extra');
 const fs = require('fs');
 const withCSS = require('@zeit/next-css');
 const remarkCustomBlocks = require('remark-custom-blocks')
+const rehypePrism = require('@mapbox/rehype-prism')
 // const remarkCollapse = require('remark-collapse')
 // const remarkRemarkFrontmatter = require('remark-frontmatter')
 // const remarkEmoji = require('remark-emoji')
@@ -43,7 +44,8 @@ const mdPlugins = [
 const withMDX = require('@zeit/next-mdx')({
   options: {
     extension: /\.mdx?$/,
-    mdPlugins: mdPlugins
+    mdPlugins: mdPlugins,
+    hastPlugins: [rehypePrism]
     // [
       // [remarkRemarkFrontmatter, ['yaml', 'toml']],
       // ,
