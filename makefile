@@ -19,3 +19,10 @@ deploy:
 build:
 	docker build -t website .
 
+start-dev:
+	docker build \
+		-f Dockerfile.dev \
+		-t rockstatweb .
+	docker run --rm -it --name rockstatweb \
+		-v "$$PWD:/usr/src" \
+		-p 10080:10080 rockstatweb
