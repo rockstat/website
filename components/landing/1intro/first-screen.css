@@ -133,7 +133,7 @@
 
     .socialMenu {
       display: flex;
-      @mixin raleway-medium 14px;
+      @mixin raleway-regular 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       transition: transform .3s ease;
@@ -189,7 +189,7 @@
         top: 0.6vw;
         left: 0;
         /* z-index: 11; */
-        padding: rem(31px 50px);
+        padding: rem(20px 50px 27px 50px);
         transform: translateX(45%);
         z-index: 99;
       }

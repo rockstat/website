@@ -36,14 +36,15 @@ export class Header extends React.Component {
     const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
     const { menuActive } = this.state;
     const linkTo = createLinker(lang);
-
+    console.log(activeSection)
     return (
       <header
         className={cl(
           style.rockstatHeader,
           { [style.activeBg]: headerBgActive || linkMenuPosition === 'top' },
-          { [style.documentation]: documentation },
-          { [style.menuActive]: menuActive }
+          { [style.documentation]: activeSection == 'docs' },
+          { [style.menuActive]: menuActive },
+          { [style.blog]: activeSection == 'blog' }
         )}>
         <div onClick={this.changeMenu} className={cl(style.gamburger, { [style.active]: menuActive })}>
           <span></span>
@@ -77,12 +78,12 @@ export class Header extends React.Component {
             })
           }
           <div className={style.menuItemLg}>
-            <div className={style.menuItemLgItem} >
+            <div className={cl(style.menuItemLgItem, style.menuLng)} >
               <Link href="/ru" >
                 <a className={style.active}> ru </a>
               </Link>
             </div>
-            <div className={style.menuItemLgItem} >
+            <div className={cl(style.menuItemLgItem, style.menuLng)} >
               <Link href="/en" >
                 <a className={style.noClick}> en </a>
               </Link>

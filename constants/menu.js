@@ -13,6 +13,7 @@ export const langsMenu = [
 
 export const headerMenu = [
   { name: 'main', title: 'Интро', path: '/ru' },
+  { name: 'blog', title: 'Блог', path: '/blog' }, 
   { name: 'edu', title: 'Обучение', path: digitalGodWeb, newTab: true }, // path: '/edu' 
   { name: 'docs', title: 'Документация', path: '/docs' }
 ];

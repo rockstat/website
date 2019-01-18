@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: rem(31px 50px);
+  padding: rem(20px 50px 27px 50px);
   background-color: rgba(0, 0, 0, 0);
 
   &.activeBg {
@@ -27,8 +27,9 @@
   .menu {
     display: flex;
     justify-content: space-between;
+
     .menuItem, .menuItemLgItem {
-      margin-left: rem(10px);
+      margin-left: rem(16px);
       a {
         position: relative;
         display: block;
@@ -38,7 +39,7 @@
         text-decoration: none;
         letter-spacing: 0.04em;
         transition: color .1s linear;
-        @mixin raleway-medium 14px;
+        @mixin raleway-regular 13px;
 
         &:after {
           content: "";
@@ -65,6 +66,11 @@
       display: flex;
       justify-content: space-between;
     }
+    .menuLng {
+      margin-left: rem(10px);
+      display: flex;
+      justify-content: space-between;
+    }
   }
   &.documentation {
     background-color: rgba(255, 255, 255, 0.7);
@@ -80,6 +86,23 @@
             display: none;
           }
         }
+      }
+    }
+  }
+  &.blog {
+    background-color: rgba(0, 0, 0, 1);
+    border-bottom: 1px solid rgba(224, 244, 224, 0.7);
+     .menu {
+      .menuItemLgItem, .menuItem {
+        /* a {
+          color: #000;
+          &:hover, &.active {
+            color: #00F0FF;
+          }
+          &:after {
+            display: none;
+          }
+        } */
       }
     }
   }
