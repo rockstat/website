@@ -264,4 +264,14 @@ rstat('onServerMessage', function(name, data){
 });
 ```
 
+
+### Listening system events
+
+Web-SDK internally use event system for 
+
+```typescript
+rstat('onInternalEvent', (eventName:string, eventData:object) => void)
+```
+
+
 export default withDoc({...meta})(({children}) => <>{children}</>)

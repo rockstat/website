@@ -32,7 +32,7 @@ export const meta = {
 
 В итоге мы получим следующее описание таблицы в формате YML:
 
-```YML
+```yaml
     mail_statistics:
         event: String
         email: String
@@ -65,7 +65,7 @@ export const meta = {
 
 Например, мы можем это делать следующим Python-скриптом:
 
-```Python
+```python
 import json
 import requests
 
@@ -109,7 +109,7 @@ requests.post(
 
 Чтобы эти маршруты начали действовать, необходимо сформировать вот такую структуру:
 
-```YML
+```yaml
     destinations:
         wh/mail: mail_statistics
         pixel/mail: mail_statistics
@@ -122,7 +122,7 @@ requests.post(
 
 В нашем случае это будет файл `/srv/platform/data/chwriter_custom_config/05_mail.yml`. Полный листинг ниже.
 
-```YML
+```yaml
 ---
 clickhouse:
     destinations:

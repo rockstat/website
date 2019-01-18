@@ -12,7 +12,7 @@ const rehypePrism = require('@mapbox/rehype-prism')
 // const remarkStringify = require('remark-stringify')
 // const remarkSlug = require('remark-slug')
 const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
-const remarkMermaid = require('./lib/remark/mermaid');
+// const remarkMermaid = require('./lib/remark/mermaid');
 const { getTOCGenerator } = require('./bin/rstgen');
 const { ANALYZE, MAIN } = process.env
 
@@ -33,11 +33,11 @@ const mdPlugins = [
     alert: { classes: 'alert-block', title: 'optional' },
     chapter: { classes: 'chapter-block', title: 'optional' }
   }],
-  [remarkMermaid, {
-    // mode: 'simple',
-    destinationDir: `${__dirname}/static/build/mmd`,
-    pubDir: 'static/build/mmd'
-  }],
+  // [remarkMermaid, {
+  //   // mode: 'simple',
+  //   destinationDir: `${__dirname}/static/build/mmd`,
+  //   pubDir: 'static/build/mmd'
+  // }],
 ]
 
 
