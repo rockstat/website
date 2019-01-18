@@ -7,3 +7,5 @@ export * from './blocks/notifications';
 export * from './blocks/expand';
 export * from './landing';
 export * from './text/link';
+export * from './postslist/postslist';
+export * from './blogsidebar/blogsitebar';
