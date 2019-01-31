@@ -2,6 +2,7 @@ User-Agent: *
 Disallow: /docs/debug/markdown-typo/
 Disallow: /docs/intro/about/
 Disallow: /en/
+Disallow: /blog
 Disallow: /$
 Disallow: /docs/guides/$
 Disallow: /docs/guides/setup/$

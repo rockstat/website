@@ -1,6 +1,6 @@
 import React from 'react';
-import style from '../../static/base/blog.css';
-import { Wrapper } from '../../containers'
+import style from '../../static/styles/blog.css';
+import { Wrapper } from '@app/components'
 import { PostList, BlogSideBar } from '../../components';
 
 const lang = 'ru';

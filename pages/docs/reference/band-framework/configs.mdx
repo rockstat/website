@@ -6,11 +6,6 @@ export const meta = {
   title: 'Файлы конфигурации Band Framework',
 }
 
-<h1 id="doc-h1">
-  {meta.title}
-</h1>
-
-
 
 #### .env
 
@@ -35,6 +30,8 @@ env: {{ ENV }}
 listen: "{{HOST|default('0.0.0.0')}}:{{PORT}}"
 # Расположение redis.
 redis_dsn: "{{REDIS_DSN|default('redis://redis:6379')}}"
+# Active async jobs limit
+jobs_limit: 300
 # Параметры поключения к redis
 rpc_params:
   # Получать запросы на обогащение данных

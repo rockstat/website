@@ -1,0 +1,53 @@
+.rockstatBlogContainer {
+    color: #000;
+    margin: rem(0 0 0 0) !important;
+    /* padding: rem(180px 0 21px 0) !important; */
+    padding: rem(140px 192px 21px 42px) !important;
+    background-color: #fff;
+    display: flex;
+    align-content: flex-start;
+    .content {
+        /* width: 70%;
+        /* padding: rem(70px 0 40px); */
+        /* background-color: #fff; */
+        /* @media(max-width: 720px) { */
+        /* width: 100%; */
+        /* } */
+    }
+    .pstslist {
+        width: 70%;
+        @media(max-width: 720px) {
+            width: 100%;
+        }
+    }
+    .sidebar {
+        width: 35%;
+        /* margin-left: rem(104px); */
+        max-width: 250px;
+        @media(max-width: 720px) {
+            width: 100%;
+            margin-left: 0;
+            margin-bottom: rem(40px)
+        }
+    }
+    /* :global {
+    .markdown-body {
+        &>div>* {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding-left: 42px;
+            padding-right: 192px;
+            @media(max-width: 720px) {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    } */
+    /* } */
+    @media(max-width: 720px) {
+        margin: 0 !important;
+        padding: rem(70px 10px) !important;
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+}

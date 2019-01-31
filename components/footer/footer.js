@@ -5,7 +5,7 @@ import { Link } from '../../next-routes';
 import { createLinker } from '../../lib/url-maker'
 import { itemTarget } from '../../lib/menu'
 import { LogoIcon } from '../icons';
-import { footerMenu, footerRightMenu, linksMenu } from '../../constants';
+import { footerMenu, footerRightMenu, linksMenu } from '@app/lib/constants';
 
 import style from './footer.css';
 
@@ -29,9 +29,7 @@ export class Footer extends React.Component {
                     <Link href={linkTo(item.path)} >
                       <a className={cl(style.itemMain, { [style.notClick]: item.event !== undefined })} target={itemTarget(item)} > {item.name} </a>
                     </Link>
-
                     <div className={style.itemChildren}>
-
                       {
                         item.children !== undefined &&
                         item.children.map((child, key) => {
@@ -53,7 +51,7 @@ export class Footer extends React.Component {
               })
             }
           </div>
-          <div className={style.menuRight}>
+          {/* <div className={style.menuRight}>
             {
               footerRightMenu.map((item, index) => {
                 return (
@@ -65,7 +63,7 @@ export class Footer extends React.Component {
                 )
               })
             }
-          </div>
+          </div> */}
         </div>
 
         {/* <div className={style.socialMenu}>

@@ -3,14 +3,12 @@ import { withDoc } from 'app/lib'
 import { Alert, Tip, Info } from 'app/components'
 
 export const meta = {
-  title: 'Хитрости конфигурации Rockstat',
+  title: 'Хитрости конфигурации',
 }
-
-# Хитрости конфигурации Rockstat
 
 ## Theia IDE
 
-#### Длина строки pycodestyle
+### Длина строки pycodestyle
 
 Добавить в корень проекта файл `config.cfg` c содержимым:
 
@@ -22,9 +20,9 @@ max-line-length = 250
 *— Andrew Romm*
 
 
-#### Запомнить пароль от гита на сутки
+### Запомнить пароль от гита на сутки
 
-```sh
+```shell
 git config --global credential.helper "cache --timeout=86400"
 ```
 
@@ -32,14 +30,14 @@ git config --global credential.helper "cache --timeout=86400"
 
 
 
-#### Скрипт инициализации Theia
+### Скрипт инициализации Theia
 
 В корне `project` создать файл `bootstrap.sh`. 
 Будет выполняться каждый каждый раз при старте.
 
 Пример содержимого:
 
-```sh
+```shell
 pip install -U git+https://github.com/rockstat/band-framework.git@dev
 pip install -U git+https://github.com/madiedinro/simple-clickhouse.git
 pip install -U httpie

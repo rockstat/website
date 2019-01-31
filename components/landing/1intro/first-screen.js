@@ -8,7 +8,7 @@ import VisibilitySensor from "react-visibility-sensor";
 
 import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon, RockFig } from '@app/components/icons/intro';
 import { LogoIcon } from '@app/components/icons';
-import { linksMenu } from '@app/constants/index';
+import { linksMenu } from '@app/lib/constants';
 
 
 class CircleComponent extends React.PureComponent {
@@ -48,7 +48,7 @@ export class Everything extends React.PureComponent {
         <div className={style.textContainer}>
           <div className={style.title}>
             {/* Почувствуйте<br/>полный контроль<br/>и свободу действий */}
-            Придавая<br />данным силу
+            Откройте<br />силу данных
           </div>
           <div className={style.text}>
             {/* Открытое программное обеспечение для автомаризации маркетинга и аналитики*/}
@@ -56,7 +56,7 @@ export class Everything extends React.PureComponent {
             {/* <span>маркетинга и построения собственной</span> */}
             {/* <span>аналитической системы</span> */}
             <span>Открытое программное обеспечение для</span>
-            <span>создания аналитической платформы</span>
+            <span>построения аналитической системы</span>
             <span>и автоматизации маркетинга</span>
           </div>
         </div>

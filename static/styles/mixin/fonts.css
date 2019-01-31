@@ -1,0 +1,55 @@
+
+
+@define-mixin raleway-light $size {
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: rem($size);
+}
+
+@define-mixin raleway-regular $size: blue {
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: rem($size);
+}
+
+@define-mixin raleway-medium $size {
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: rem($size);
+}
+
+@define-mixin raleway-bold $size {
+  font-family: 'Raleway', Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: rem($size);
+}
+
+
+
+
+@define-mixin mainfont-light $size {
+  font-family: 'rawline', Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: rem($size);
+}
+
+@define-mixin mainfont-regular $size: blue {
+  font-family: 'rawline', Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: rem($size);
+}
+
+@define-mixin mainfont-medium $size {
+  font-family: 'rawline', Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: rem($size);
+}
+
+@define-mixin mainfont-bold $size {
+  font-family: 'rawline', Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: rem($size);
+}
+
+
+/* font-family: "SFMono-Regar", Consolas, "Liberation Mono", Menlo, Courier, monospace; */

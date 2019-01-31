@@ -1,0 +1,35 @@
+:global {
+    $rawline-font-path: /static/fonts/rawline/;
+    @font-face {
+        font-family: 'rawline';
+        src: url('#{$rawline-font-path}rawline-300-.eot');
+        src: url('#{$rawline-font-path}rawline-300-.eot?#iefix') format('embedded-opentype'), url('#{$rawline-font-path}rawline-300.woff2') format('woff2'), url('#{$rawline-font-path}rawline-300.woff') format('woff'), url('#{$rawline-font-path}rawline-300.ttf') format('truetype'), url('#{$rawline-font-path}rawline-300.svg') format('svg');
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'rawline';
+        src: url('#{$rawline-font-path}rawline-400.eot');
+        src: url('#{$rawline-font-path}rawline-400.eot?#iefix') format('embedded-opentype'), url('#{$rawline-font-path}rawline-400.woff2') format('woff2'), url('#{$rawline-font-path}rawline-400.woff') format('woff'), url('#{$rawline-font-path}rawline-400.ttf') format('truetype'), url('#{$rawline-font-path}rawline-400.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'rawline';
+        src: url('#{$rawline-font-path}rawline-500.eot');
+        src: url('#{$rawline-font-path}rawline-500.eot?#iefix') format('embedded-opentype'), url('#{$rawline-font-path}rawline-500.woff2') format('woff2'), url('#{$rawline-font-path}rawline-500.woff') format('woff'), url('#{$rawline-font-path}rawline-.ttf') format('truetype'), url('#{$rawline-font-path}rawline-500.svg') format('svg');
+        font-weight: 500;
+        font-style: normal;
+    }
+ 
+    @font-face {
+        font-family: 'rawline';
+        src: url('#{$rawline-font-path}rawline-700.eot');
+        src: url('#{$rawline-font-path}rawline-700.eot?#iefix') format('embedded-opentype'), url('#{$rawline-font-path}rawline-700.woff2') format('woff2'), url('#{$rawline-font-path}rawline-700.woff') format('woff'), url('#{$rawline-font-path}rawline-700.ttf') format('truetype'), url('#{$rawline-font-path}rawline-700.svg') format('svg');
+        font-weight: 700;
+        font-style: normal;
+    }
+    
+}

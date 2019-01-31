@@ -1,4 +1,4 @@
-@import '../../../styles/variables.css';
+@import '../../../static/styles/variables.css';
 
 .everythingContainer {
   width: 100vw;
@@ -19,14 +19,14 @@
     margin: auto;
     text-align: center;
     .title {
-      @mixin raleway-light 36px;
+      @mixin mainfont-light 36px;
       /* // filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)); */
       text-shadow: 0px 0px 9px white;
       text-transform: uppercase;
       line-height: rem(49px);
     }
     .text {
-      @mixin raleway-light 18px;
+      @mixin mainfont-light 18px;
       opacity: 0.8;
       line-height: rem(32px);
       width: 80%;
@@ -111,7 +111,7 @@
         padding: rem(10px, 25px);
         border: 1px solid #00F0FF;
         border-radius: 10px;
-        @mixin raleway-medium 14px;
+        @mixin mainfont-medium 14px;
         text-transform: uppercase;
         text-align: center;
         transition: opacity .3s ease;
@@ -122,7 +122,7 @@
         }
       }
       .description {
-        @mixin raleway-medium 12px;
+        @mixin mainfont-medium 12px;
         text-align: right;
         margin-top: rem(17px);
       }
@@ -133,7 +133,7 @@
 
     .socialMenu {
       display: flex;
-      @mixin raleway-regular 13px;
+      @mixin mainfont-regular 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       transition: transform .3s ease;
@@ -173,7 +173,7 @@
           top: 0;
           content: '|';
           color: #00F0FF;
-          @mixin raleway-bold 14px;
+          @mixin mainfont-bold 14px;
           width: rem(2px);
           height: rem(14px);
         }

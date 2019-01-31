@@ -5,8 +5,7 @@ import cl from 'classnames';
 import PropTypes from 'prop-types';
 
 import style from './header.css';
-import { headerMenu, linksMenu } from '../../constants';
-
+import { headerMenu, linksMenu } from '../../lib/constants';
 import { createLinker } from '../../lib/url-maker'
 import { itemTarget } from '../../lib/menu'
 import { Logo } from '../logo';

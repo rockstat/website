@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Wrapper
-} from '@app/containers'
+} from '@app/components'
 import {
   Everything,
   Analytic,

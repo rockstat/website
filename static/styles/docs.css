@@ -1,0 +1,36 @@
+.documentationContainer {
+    color: #000;
+    display: flex;
+    margin: rem(0 0 0 0) !important;
+    padding: rem(40px 0 0 0) !important;
+    background-color: #fff;
+    @media(max-width: 720px) {
+        margin: 0 !important;
+    }
+    .content {
+        width: 75%;
+        padding: rem(40px 0 40px);
+        background-color: #fff;
+        @media(max-width: 720px) {
+            width: 100%;
+        }
+    }
+    :global {
+        .markdown-body {
+            &>div>*, &>h1 {
+                /* margin-top: 8px; */
+                /* margin-bottom: 8px; */
+                padding-left: 192px;
+                padding-right: 192px;
+                @media(max-width: 720px) {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+.rockstat-container {
+    width: 100%;
+}

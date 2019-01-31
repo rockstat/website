@@ -68,7 +68,6 @@ export class Analytic extends React.Component {
 
               <div className={cl(style.tree, 'rockstat-svg-container')}>
                 <Three />
-
               </div>
             </div>
 

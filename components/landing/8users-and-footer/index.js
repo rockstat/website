@@ -103,7 +103,6 @@ export class Information extends React.Component {
             </a>
           </Link>
         </div>
-
       </div>
     )
   }

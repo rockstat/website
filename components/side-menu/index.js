@@ -1,10 +1,11 @@
 import * as React from 'react';
-import style from './sideMenu.css';
 import cls from 'classnames';
 import { Link } from '../../next-routes'
 import { ShowIf, ShowIfElse, GenericLink } from '..'
 import { ShowMenuIcon } from '../icons';
 import { Logo } from '../logo';
+
+import style from './sideMenu.css';
 
 export class SideMenu extends React.Component {
   state = {

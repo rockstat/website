@@ -1,3 +1,4 @@
+export * from './wrapper/wrapper';
 export * from './header/header';
 export * from './footer/footer';
 export * from './showif/showif';
@@ -6,6 +7,7 @@ export * from './blocks/table';
 export * from './blocks/notifications';
 export * from './blocks/expand';
 export * from './landing';
+export * from './youtube';
 export * from './text/link';
 export * from './postslist/postslist';
 export * from './blogsidebar/blogsitebar';

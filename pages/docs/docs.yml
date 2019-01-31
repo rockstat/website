@@ -23,28 +23,90 @@
         - name: Жизненный цикл и адресация
           href: /docs/architecture/request-lifecycle
 
-        - name: Обнаружение сервисов
-          href: /docs/architecture/service-discovery
+        - name: Коммуникация сервисов
+          href: /docs/architecture/services-commnication
 
 
-    - name: Коммуникация сервисов
-      href: /docs/architecture/services-commnication
+
+
+- name: Руководство пользователя
+  items:
+
+    - name: Установка платформы
+      items:
+
+        - name: Выбор, подготовка сервера и DNS
+          href: /docs/guides/setup/server_and_domain
+
+        - name: Запуск инсталлятора
+          href: /docs/guides/setup/installation
+
+    - name: События на сайте - Web-SDK 
+      href: /docs/guides/web-sdk/setup
+
+    - name: Использование пикселя 1x1.gif
+      href: /docs/guides/collecting/pixel
+
+    - name: Получение данных из сервисов
+      items: 
+
+        - name: Yandex AppMetrika
+          href: /docs/guides/collecting/appmetrika
+
+
+    - name: Использование Панели управления
+      href: /docs/guides/dashboard/using
+
+    - name: Создание сервисов
+      href: /docs/guides/services/create-service-using-skeleton
+
+    - name: Использование инструментов из комплекта
+      items:
+
+        - name: Работа с Theia
+          href: /docs/guides/theia/using
+
+        - name: Мониторинг Netdata
+          href: /docs/guides/netdata/using
+        
+        - name: Работа с Jupyter
+          href: /docs/guides/jupyter/using
+
+    - name: Работа с ClickHouse
+      items:
+
+        - name: Основные принципы
+          href: /docs/guides/clickhouse/base
+
+        - name: Модификация схемы
+          href: /docs/guides/clickhouse/schema-modify
+
+
+    - name: Подключение к VPN
+      href: /docs/guides/connect-vpn
+
+    - name: Отладка
+      items: 
+
+        - name: Отладка HTTP запров
+          href: /docs/guides/debug/http-debug-service
+
+    - name: Хитрости конфигурации
+      href: /docs/guides/configuration-tricks
+
 
 
 - name: Справочная информация
   items:
 
+    - name: HTTP Redirect 
+      href: /docs/reference/collecting/redirect
+
+    - name: HTTP Webhook/Postback
+      href: /docs/reference/collecting/webhooks
+
     - name: Каналы получения данных
       items:
-
-        - name: HTTP Webhooks/Postbacks
-          href: /docs/reference/collecting/webhooks
-
-        - name: HTTP Pixel (1x1 gif)
-          href: /docs/reference/collecting/pixel
-
-        - name: HTTP Redirect
-          href: /docs/reference/collecting/redirect
 
         - name: WebSocket
           href: /docs/reference/collecting/websocket
@@ -55,7 +117,7 @@
     - name: Web-SDK
       items:
 
-        - name: Установка и настройка
+        - name: Сниппет и параметры конфигурации
           href: /docs/reference/web-sdk/snippet-and-configuration
 
         - name: Базовая структура событий
@@ -122,67 +184,6 @@
       href: /docs/reference/clickhouse/schema
 
 
-- name: Руководство пользователя
-  items:
-
-    - name: Установка платформы
-      items:
-
-        - name: Выбор, подготовка сервера и DNS
-          href: /docs/guides/setup/server_and_domain
-
-        - name: Запуск инсталлятора
-          href: /docs/guides/setup/installation
-
-    - name: Отслеживание событий на сайте
-      href: /docs/guides/web-sdk/setup
-
-    - name: Получение данных из сервисов
-      items: 
-
-        - name: Yandex AppMetrika
-          href: /docs/guides/collecting/appmetrika
-
-
-    - name: Использование Панели управления
-      href: /docs/guides/dashboard/using
-
-    - name: Создание сервисов
-      href: /docs/guides/services/create-service-using-skeleton
-
-    - name: Использование инструментов из комплекта
-      items:
-
-        - name: Работа с Theia
-          href: /docs/guides/theia/using
-
-        - name: Мониторинг Netdata
-          href: /docs/guides/netdata/using
-        
-        - name: Работа с Jupyter
-          href: /docs/guides/jupyter/using
-
-    - name: Работа с ClickHouse
-      items:
-
-        - name: Основные принципы
-          href: /docs/guides/clickhouse/base
-
-        - name: Модификация схемы
-          href: /docs/guides/clickhouse/schema-modify
-
-
-    - name: Подключение к VPN
-      href: /docs/guides/connect-vpn
-
-    - name: Отладка
-      items: 
-
-        - name: Отладка HTTP запров
-          href: /docs/guides/debug/http-debug-service
-
-    - name: Хитрости конфигурации
-      href: /docs/guides/configuration-tricks
 
 - name: Создание сервисов
   items:

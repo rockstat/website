@@ -1,0 +1,1590 @@
+
+import asset from 'next/asset'
+import { withPost } from 'app/lib'
+import { Alert, Tip, Info, YouTube } from 'app/components'
+
+export const meta = {
+  title: 'Kiss My Stat - Part 1 AmoCRM',
+}
+
+Несколько сплов про Kiss My Stat. 
+Это серия руководств, рассказывающих, как самостоятельно построить сквозную аналитику для себя, располагая минимальными знаниями программирования на Python. 
+
+
+
+[[alert | Обратите внимание! ]]
+| Версия Rockstat на вашем сервере могла устареть, запустите процесс полного обновления перед началом работы. 
+| Для этого зайдите в консоль сервер, выполните `rockstat` и в меню выберите пункт 'Full install/upgrade'.
+
+
+#### Установка необходимых зависимостей
+
+Первым делом потребуется загрузить набор полезных функций для вывода данных. 
+Содержимое файла можно просмотреть пройдя по ссылке.
+
+```python
+# Rodin helpers - личый набор хелперов
+!wget -q https://gist.githubusercontent.com/madiedinro/c9be2acbba7693d73651c7c5b52c6dfc/raw/jupyter_helpers.py -O rh.py
+import rh
+```
+
+Теперь необходимые библиотеки. Некоторые из них являются стандартными, 
+другие уже предустановлены в Rockstat. Если вы выполняете упражнение не в Rockstat, 
+вам нужно самостоятельно установить все необходимые зависимости.
+
+```python
+# Стандатные классы даты и времени
+from datetime import datetime
+# Модуль для с методами для итеративной обработки данных
+from itertools import count
+# Вывод данные в структурированном виде
+from pprint import pprint
+# Стандартный пакет для работы с json
+import json
+
+# альтернативный пакет для работы с данными
+import arrow
+
+# библиотека для работы с http
+import requests
+```
+
+---
+
+### Установка констант
+
+Записываем необходимые сведения в переменные:
+
+- `amo_key` в настройках AmoCRM, домен и юзера вы знаете.
+- `amo_domain` и `amo_user` вам известны
+
+Подготовим словарь, в котором будет храниться статус.Словарь используется т.к. из функции нелья установить переменную за ее границами. Редактировать словарь можно.
+
+Берем в настройках ключ API, указывает другиме данные которые нам уже известны
+
+
+```python
+amo_key = '46484f4b9705243e36a924f6af8e3c865b7b1b41'
+amo_domain = 'https://wevdiw.amocrm.ru'
+amo_user = 'wevdiw@expirebox.email'
+
+today = arrow.now().format('YYYY-MM-DD')
+state = {'cookies': None}
+```
+
+### Поехали! Авторизация в AmoCRM
+
+Подготовим функцию, которая принмает в аргументах логин и ключ. Дока по авторизации https://www.amocrm.ru/developers/content/api/auth
+
+
+```python
+def auth(user, user_hash):
+    url = amo_domain + '/private/api/auth.php'
+    data = {
+        'USER_LOGIN': user, 
+        'USER_HASH': user_hash
+    }
+    res = requests.post(url, data=data, params={'type':'json'})
+
+    if res.status_code == 200:
+        state['cookies'] = res.cookies
+
+    print(res.status_code, res.json())
+
+    
+auth(amo_user, amo_key)
+```
+
+    200 {'response': {'auth': True, 'accounts': [{'id': '23668636', 'name': 'wevdiw', 'subdomain': 'wevdiw', 'language': 'ru', 'timezone': 'Europe/Moscow'}], 'user': {'id': '3037510', 'language': 'ru'}, 'server_time': 1548618503}}
+
+
+Если 200 то все супер. Если нет - ищем ошибку
+
+---
+
+Запросим параметры аккаунта, где находится информация о номерах статусов. Дока по API аккаунта https://www.amocrm.ru/developers/content/api/account
+
+
+```python
+res = requests.get(amo_domain + '/api/v2/account', params={'with': 'pipelines,groups,note_types,task_types'}, cookies=state['cookies'])
+if res.status_code == 200:
+    data = res.json()
+
+print(res.json())
+```
+
+    {'_links': {'self': {'href': '/api/v2/account?with=pipelines,groups,note_types,task_types', 'method': 'get'}}, 'id': 23668636, 'name': 'wevdiw', 'subdomain': 'wevdiw', 'currency': 'RUB', 'timezone': 'Europe/Moscow', 'timezone_offset': '+03:00', 'language': 'ru', 'date_pattern': {'date': 'd.m.Y', 'time': 'H:i', 'date_time': 'd.m.Y H:i', 'time_full': 'H:i:s'}, 'current_user': 3037510, '_embedded': {'note_types': {'1': {'id': 1, 'code': 'DEAL_CREATED', 'is_editable': False}, '2': {'id': 2, 'code': 'CONTACT_CREATED', 'is_editable': False}, '3': {'id': 3, 'code': 'DEAL_STATUS_CHANGED', 'is_editable': False}, '4': {'id': 4, 'code': 'COMMON', 'is_editable': True}, '5': {'id': 5, 'code': 'ATTACHEMENT', 'is_editable': False}, '6': {'id': 6, 'code': 'CALL', 'is_editable': False}, '7': {'id': 7, 'code': 'MAIL_MESSAGE', 'is_editable': False}, '8': {'id': 8, 'code': 'MAIL_MESSAGE_ATTACHMENT', 'is_editable': False}, '9': {'id': 9, 'code': 'EXTERNAL_ATTACH', 'is_editable': False}, '10': {'id': 10, 'code': 'CALL_IN', 'is_editable': False}, '11': {'id': 11, 'code': 'CALL_OUT', 'is_editable': False}, '12': {'id': 12, 'code': 'COMPANY_CREATED', 'is_editable': False}, '13': {'id': 13, 'code': 'TASK_RESULT', 'is_editable': False}, '17': {'id': 17, 'code': 'CHAT', 'is_editable': False}, '99': {'id': 99, 'code': 'MAX_SYSTEM', 'is_editable': False}, '101': {'id': 101, 'code': 'DROPBOX', 'is_editable': False}, '102': {'id': 102, 'code': 'SMS_IN', 'is_editable': False}, '103': {'id': 103, 'code': 'SMS_OUT', 'is_editable': False}}, 'groups': [{'id': 0, 'name': 'Отдел продаж'}], 'task_types': {'1': {'id': 1, 'name': 'Звонок'}, '2': {'id': 2, 'name': 'Встреча'}, '3': {'id': 3, 'name': 'Письмо'}}, 'pipelines': {'1543696': {'id': 1543696, 'name': 'Воронка', 'sort': 1, 'is_main': True, 'statuses': {'23668642': {'id': 23668642, 'name': 'Первичный контакт', 'color': '#99ccff', 'sort': 10, 'is_editable': True}, '23668645': {'id': 23668645, 'name': 'Переговоры', 'color': '#ffff99', 'sort': 20, 'is_editable': True}, '23668648': {'id': 23668648, 'name': 'Принимают решение', 'color': '#ffcc66', 'sort': 30, 'is_editable': True}, '23668651': {'id': 23668651, 'name': 'Согласование договора', 'color': '#ffcccc', 'sort': 40, 'is_editable': True}, '142': {'id': 142, 'name': 'Успешно реализовано', 'color': '#CCFF66', 'sort': 10000, 'is_editable': False}, '143': {'id': 143, 'name': 'Закрыто и не реализовано', 'color': '#D5D8DB', 'sort': 11000, 'is_editable': False}}, '_links': {'self': {'href': '/api/v2/pipelines?id=1543696', 'method': 'get'}}}}}}
+
+
+Ничего не понятно. Попробуем воспользоваться встроенным модулем `pprint`
+
+
+```python
+pprint(data)
+```
+
+    {'_embedded': {'groups': [{'id': 0, 'name': 'Отдел продаж'}],
+                   'note_types': {'1': {'code': 'DEAL_CREATED',
+                                        'id': 1,
+                                        'is_editable': False},
+                                  '10': {'code': 'CALL_IN',
+                                         'id': 10,
+                                         'is_editable': False},
+                                  '101': {'code': 'DROPBOX',
+                                          'id': 101,
+                                          'is_editable': False},
+                                  '102': {'code': 'SMS_IN',
+                                          'id': 102,
+                                          'is_editable': False},
+                                  '103': {'code': 'SMS_OUT',
+                                          'id': 103,
+                                          'is_editable': False},
+                                  '11': {'code': 'CALL_OUT',
+                                         'id': 11,
+                                         'is_editable': False},
+                                  '12': {'code': 'COMPANY_CREATED',
+                                         'id': 12,
+                                         'is_editable': False},
+                                  '13': {'code': 'TASK_RESULT',
+                                         'id': 13,
+                                         'is_editable': False},
+                                  '17': {'code': 'CHAT',
+                                         'id': 17,
+                                         'is_editable': False},
+                                  '2': {'code': 'CONTACT_CREATED',
+                                        'id': 2,
+                                        'is_editable': False},
+                                  '3': {'code': 'DEAL_STATUS_CHANGED',
+                                        'id': 3,
+                                        'is_editable': False},
+                                  '4': {'code': 'COMMON',
+                                        'id': 4,
+                                        'is_editable': True},
+                                  '5': {'code': 'ATTACHEMENT',
+                                        'id': 5,
+                                        'is_editable': False},
+                                  '6': {'code': 'CALL',
+                                        'id': 6,
+                                        'is_editable': False},
+                                  '7': {'code': 'MAIL_MESSAGE',
+                                        'id': 7,
+                                        'is_editable': False},
+                                  '8': {'code': 'MAIL_MESSAGE_ATTACHMENT',
+                                        'id': 8,
+                                        'is_editable': False},
+                                  '9': {'code': 'EXTERNAL_ATTACH',
+                                        'id': 9,
+                                        'is_editable': False},
+                                  '99': {'code': 'MAX_SYSTEM',
+                                         'id': 99,
+                                         'is_editable': False}},
+                   'pipelines': {'1543696': {'_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+                                                                 'method': 'get'}},
+                                             'id': 1543696,
+                                             'is_main': True,
+                                             'name': 'Воронка',
+                                             'sort': 1,
+                                             'statuses': {'142': {'color': '#CCFF66',
+                                                                  'id': 142,
+                                                                  'is_editable': False,
+                                                                  'name': 'Успешно '
+                                                                          'реализовано',
+                                                                  'sort': 10000},
+                                                          '143': {'color': '#D5D8DB',
+                                                                  'id': 143,
+                                                                  'is_editable': False,
+                                                                  'name': 'Закрыто '
+                                                                          'и не '
+                                                                          'реализовано',
+                                                                  'sort': 11000},
+                                                          '23668642': {'color': '#99ccff',
+                                                                       'id': 23668642,
+                                                                       'is_editable': True,
+                                                                       'name': 'Первичный '
+                                                                               'контакт',
+                                                                       'sort': 10},
+                                                          '23668645': {'color': '#ffff99',
+                                                                       'id': 23668645,
+                                                                       'is_editable': True,
+                                                                       'name': 'Переговоры',
+                                                                       'sort': 20},
+                                                          '23668648': {'color': '#ffcc66',
+                                                                       'id': 23668648,
+                                                                       'is_editable': True,
+                                                                       'name': 'Принимают '
+                                                                               'решение',
+                                                                       'sort': 30},
+                                                          '23668651': {'color': '#ffcccc',
+                                                                       'id': 23668651,
+                                                                       'is_editable': True,
+                                                                       'name': 'Согласование '
+                                                                               'договора',
+                                                                       'sort': 40}}}},
+                   'task_types': {'1': {'id': 1, 'name': 'Звонок'},
+                                  '2': {'id': 2, 'name': 'Встреча'},
+                                  '3': {'id': 3, 'name': 'Письмо'}}},
+     '_links': {'self': {'href': '/api/v2/account?with=pipelines,groups,note_types,task_types',
+                         'method': 'get'}},
+     'currency': 'RUB',
+     'current_user': 3037510,
+     'date_pattern': {'date': 'd.m.Y',
+                      'date_time': 'd.m.Y H:i',
+                      'time': 'H:i',
+                      'time_full': 'H:i:s'},
+     'id': 23668636,
+     'language': 'ru',
+     'name': 'wevdiw',
+     'subdomain': 'wevdiw',
+     'timezone': 'Europe/Moscow',
+     'timezone_offset': '+03:00'}
+
+
+---
+Уже лучше но все равно каша. А теперь попрбуем простейшую и хитрую (так кажется лишь новичкам) функцию из серии "не вникать".
+
+
+```python
+rh.walk(data)
+```
+
+    [dict  
+    [dict  _links
+    [dict  _links > self
+    |      _links > self > href=/api/v2/account?with=pipelines,groups,note_types,task_types
+    |      _links > self > method=get
+    |      id=23668636
+    |      name=wevdiw
+    |      subdomain=wevdiw
+    |      currency=RUB
+    |      timezone=Europe/Moscow
+    |      timezone_offset=+03:00
+    |      language=ru
+    [dict  date_pattern
+    |      date_pattern > date=d.m.Y
+    |      date_pattern > time=H:i
+    |      date_pattern > date_time=d.m.Y H:i
+    |      date_pattern > time_full=H:i:s
+    |      current_user=3037510
+    [dict  _embedded
+    [dict  _embedded > note_types
+    [dict  _embedded > note_types > 1
+    |      _embedded > note_types > 1 > id=1
+    |      _embedded > note_types > 1 > code=DEAL_CREATED
+    |      _embedded > note_types > 1 > is_editable=False
+    [dict  _embedded > note_types > 2
+    |      _embedded > note_types > 2 > id=2
+    |      _embedded > note_types > 2 > code=CONTACT_CREATED
+    |      _embedded > note_types > 2 > is_editable=False
+    [dict  _embedded > note_types > 3
+    |      _embedded > note_types > 3 > id=3
+    |      _embedded > note_types > 3 > code=DEAL_STATUS_CHANGED
+    |      _embedded > note_types > 3 > is_editable=False
+    [dict  _embedded > note_types > 4
+    |      _embedded > note_types > 4 > id=4
+    |      _embedded > note_types > 4 > code=COMMON
+    |      _embedded > note_types > 4 > is_editable=True
+    [dict  _embedded > note_types > 5
+    |      _embedded > note_types > 5 > id=5
+    |      _embedded > note_types > 5 > code=ATTACHEMENT
+    |      _embedded > note_types > 5 > is_editable=False
+    [dict  _embedded > note_types > 6
+    |      _embedded > note_types > 6 > id=6
+    |      _embedded > note_types > 6 > code=CALL
+    |      _embedded > note_types > 6 > is_editable=False
+    [dict  _embedded > note_types > 7
+    |      _embedded > note_types > 7 > id=7
+    |      _embedded > note_types > 7 > code=MAIL_MESSAGE
+    |      _embedded > note_types > 7 > is_editable=False
+    [dict  _embedded > note_types > 8
+    |      _embedded > note_types > 8 > id=8
+    |      _embedded > note_types > 8 > code=MAIL_MESSAGE_ATTACHMENT
+    |      _embedded > note_types > 8 > is_editable=False
+    [dict  _embedded > note_types > 9
+    |      _embedded > note_types > 9 > id=9
+    |      _embedded > note_types > 9 > code=EXTERNAL_ATTACH
+    |      _embedded > note_types > 9 > is_editable=False
+    [dict  _embedded > note_types > 10
+    |      _embedded > note_types > 10 > id=10
+    |      _embedded > note_types > 10 > code=CALL_IN
+    |      _embedded > note_types > 10 > is_editable=False
+    [dict  _embedded > note_types > 11
+    |      _embedded > note_types > 11 > id=11
+    |      _embedded > note_types > 11 > code=CALL_OUT
+    |      _embedded > note_types > 11 > is_editable=False
+    [dict  _embedded > note_types > 12
+    |      _embedded > note_types > 12 > id=12
+    |      _embedded > note_types > 12 > code=COMPANY_CREATED
+    |      _embedded > note_types > 12 > is_editable=False
+    [dict  _embedded > note_types > 13
+    |      _embedded > note_types > 13 > id=13
+    |      _embedded > note_types > 13 > code=TASK_RESULT
+    |      _embedded > note_types > 13 > is_editable=False
+    [dict  _embedded > note_types > 17
+    |      _embedded > note_types > 17 > id=17
+    |      _embedded > note_types > 17 > code=CHAT
+    |      _embedded > note_types > 17 > is_editable=False
+    [dict  _embedded > note_types > 99
+    |      _embedded > note_types > 99 > id=99
+    |      _embedded > note_types > 99 > code=MAX_SYSTEM
+    |      _embedded > note_types > 99 > is_editable=False
+    [dict  _embedded > note_types > 101
+    |      _embedded > note_types > 101 > id=101
+    |      _embedded > note_types > 101 > code=DROPBOX
+    |      _embedded > note_types > 101 > is_editable=False
+    [dict  _embedded > note_types > 102
+    |      _embedded > note_types > 102 > id=102
+    |      _embedded > note_types > 102 > code=SMS_IN
+    |      _embedded > note_types > 102 > is_editable=False
+    [dict  _embedded > note_types > 103
+    |      _embedded > note_types > 103 > id=103
+    |      _embedded > note_types > 103 > code=SMS_OUT
+    |      _embedded > note_types > 103 > is_editable=False
+    [list  _embedded > groups
+    [dict  _embedded > groups > 0
+    |      _embedded > groups > 0 > id=0
+    |      _embedded > groups > 0 > name=Отдел продаж
+    [dict  _embedded > task_types
+    [dict  _embedded > task_types > 1
+    |      _embedded > task_types > 1 > id=1
+    |      _embedded > task_types > 1 > name=Звонок
+    [dict  _embedded > task_types > 2
+    |      _embedded > task_types > 2 > id=2
+    |      _embedded > task_types > 2 > name=Встреча
+    [dict  _embedded > task_types > 3
+    |      _embedded > task_types > 3 > id=3
+    |      _embedded > task_types > 3 > name=Письмо
+    [dict  _embedded > pipelines
+    [dict  _embedded > pipelines > 1543696
+    |      _embedded > pipelines > 1543696 > id=1543696
+    |      _embedded > pipelines > 1543696 > name=Воронка
+    |      _embedded > pipelines > 1543696 > sort=1
+    |      _embedded > pipelines > 1543696 > is_main=True
+    [dict  _embedded > pipelines > 1543696 > statuses
+    [dict  _embedded > pipelines > 1543696 > statuses > 23668642
+    |      _embedded > pipelines > 1543696 > statuses > 23668642 > id=23668642
+    |      _embedded > pipelines > 1543696 > statuses > 23668642 > name=Первичный контакт
+    |      _embedded > pipelines > 1543696 > statuses > 23668642 > color=#99ccff
+    |      _embedded > pipelines > 1543696 > statuses > 23668642 > sort=10
+    |      _embedded > pipelines > 1543696 > statuses > 23668642 > is_editable=True
+    [dict  _embedded > pipelines > 1543696 > statuses > 23668645
+    |      _embedded > pipelines > 1543696 > statuses > 23668645 > id=23668645
+    |      _embedded > pipelines > 1543696 > statuses > 23668645 > name=Переговоры
+    |      _embedded > pipelines > 1543696 > statuses > 23668645 > color=#ffff99
+    |      _embedded > pipelines > 1543696 > statuses > 23668645 > sort=20
+    |      _embedded > pipelines > 1543696 > statuses > 23668645 > is_editable=True
+    [dict  _embedded > pipelines > 1543696 > statuses > 23668648
+    |      _embedded > pipelines > 1543696 > statuses > 23668648 > id=23668648
+    |      _embedded > pipelines > 1543696 > statuses > 23668648 > name=Принимают решение
+    |      _embedded > pipelines > 1543696 > statuses > 23668648 > color=#ffcc66
+    |      _embedded > pipelines > 1543696 > statuses > 23668648 > sort=30
+    |      _embedded > pipelines > 1543696 > statuses > 23668648 > is_editable=True
+    [dict  _embedded > pipelines > 1543696 > statuses > 23668651
+    |      _embedded > pipelines > 1543696 > statuses > 23668651 > id=23668651
+    |      _embedded > pipelines > 1543696 > statuses > 23668651 > name=Согласование договора
+    |      _embedded > pipelines > 1543696 > statuses > 23668651 > color=#ffcccc
+    |      _embedded > pipelines > 1543696 > statuses > 23668651 > sort=40
+    |      _embedded > pipelines > 1543696 > statuses > 23668651 > is_editable=True
+    [dict  _embedded > pipelines > 1543696 > statuses > 142
+    |      _embedded > pipelines > 1543696 > statuses > 142 > id=142
+    |      _embedded > pipelines > 1543696 > statuses > 142 > name=Успешно реализовано
+    |      _embedded > pipelines > 1543696 > statuses > 142 > color=#CCFF66
+    |      _embedded > pipelines > 1543696 > statuses > 142 > sort=10000
+    |      _embedded > pipelines > 1543696 > statuses > 142 > is_editable=False
+    [dict  _embedded > pipelines > 1543696 > statuses > 143
+    |      _embedded > pipelines > 1543696 > statuses > 143 > id=143
+    |      _embedded > pipelines > 1543696 > statuses > 143 > name=Закрыто и не реализовано
+    |      _embedded > pipelines > 1543696 > statuses > 143 > color=#D5D8DB
+    |      _embedded > pipelines > 1543696 > statuses > 143 > sort=11000
+    |      _embedded > pipelines > 1543696 > statuses > 143 > is_editable=False
+    [dict  _embedded > pipelines > 1543696 > _links
+    [dict  _embedded > pipelines > 1543696 > _links > self
+    |      _embedded > pipelines > 1543696 > _links > self > href=/api/v2/pipelines?id=1543696
+    |      _embedded > pipelines > 1543696 > _links > self > method=get
+
+
+---
+Не знаю как вам, а мне куда нагляднее. У меня номер статуса "Успешно реализовано" = 142
+
+
+```python
+success_num = 142
+```
+
+---
+Черед за информацией о лидах
+
+
+```python
+res = requests.get(amo_domain + '/api/v2/leads',  cookies=state['cookies'],params={'status':success_num})
+data=res.json()
+rh.walk(data)
+```
+
+    [dict  
+    [dict  _links
+    [dict  _links > self
+    |      _links > self > href=/api/v2/leads?status=142
+    |      _links > self > method=get
+    [dict  _embedded
+    [list  _embedded > items
+    [dict  _embedded > items > 0
+    |      _embedded > items > 0 > id=1795469
+    |      _embedded > items > 0 > name=Lead from: https://digitalgod.be/page4500864.html?utm_referrer=
+    |      _embedded > items > 0 > responsible_user_id=3037510
+    |      _embedded > items > 0 > created_by=3037510
+    |      _embedded > items > 0 > created_at=1547106499
+    |      _embedded > items > 0 > updated_at=1547107344
+    |      _embedded > items > 0 > account_id=23668636
+    |      _embedded > items > 0 > is_deleted=False
+    [dict  _embedded > items > 0 > main_contact
+    |      _embedded > items > 0 > main_contact > id=10118771
+    [dict  _embedded > items > 0 > main_contact > _links
+    [dict  _embedded > items > 0 > main_contact > _links > self
+    |      _embedded > items > 0 > main_contact > _links > self > href=/api/v2/contacts?id=10118771
+    |      _embedded > items > 0 > main_contact > _links > self > method=get
+    |      _embedded > items > 0 > group_id=0
+    [dict  _embedded > items > 0 > company
+    |      _embedded > items > 0 > closed_at=1547107243
+    |      _embedded > items > 0 > closest_task_at=0
+    [list  _embedded > items > 0 > tags
+    [dict  _embedded > items > 0 > tags > 0
+    |      _embedded > items > 0 > tags > 0 > id=30577
+    |      _embedded > items > 0 > tags > 0 > name=tilda
+    [list  _embedded > items > 0 > custom_fields
+    [dict  _embedded > items > 0 > custom_fields > 0
+    |      _embedded > items > 0 > custom_fields > 0 > id=128813
+    |      _embedded > items > 0 > custom_fields > 0 > name=COMMENTS
+    [list  _embedded > items > 0 > custom_fields > 0 > values
+    [dict  _embedded > items > 0 > custom_fields > 0 > values > 0
+    |      _embedded > items > 0 > custom_fields > 0 > values > 0 > value=sdfdsf
+    |      _embedded > items > 0 > custom_fields > 0 > is_system=False
+    [dict  _embedded > items > 0 > custom_fields > 1
+    |      _embedded > items > 0 > custom_fields > 1 > id=129773
+    |      _embedded > items > 0 > custom_fields > 1 > name=CID
+    [list  _embedded > items > 0 > custom_fields > 1 > values
+    [dict  _embedded > items > 0 > custom_fields > 1 > values > 0
+    |      _embedded > items > 0 > custom_fields > 1 > values > 0 > value=69296758.1544679970
+    |      _embedded > items > 0 > custom_fields > 1 > is_system=False
+    [dict  _embedded > items > 0 > custom_fields > 2
+    |      _embedded > items > 0 > custom_fields > 2 > id=129775
+    |      _embedded > items > 0 > custom_fields > 2 > name=UID
+    [list  _embedded > items > 0 > custom_fields > 2 > values
+    [dict  _embedded > items > 0 > custom_fields > 2 > values > 0
+    |      _embedded > items > 0 > custom_fields > 2 > values > 0 > value=6450101900745375744
+    |      _embedded > items > 0 > custom_fields > 2 > is_system=False
+    [dict  _embedded > items > 0 > custom_fields > 3
+    |      _embedded > items > 0 > custom_fields > 3 > id=128815
+    |      _embedded > items > 0 > custom_fields > 3 > name=TRANID
+    [list  _embedded > items > 0 > custom_fields > 3 > values
+    [dict  _embedded > items > 0 > custom_fields > 3 > values > 0
+    |      _embedded > items > 0 > custom_fields > 3 > values > 0 > value=681808:125327642
+    |      _embedded > items > 0 > custom_fields > 3 > is_system=False
+    [dict  _embedded > items > 0 > custom_fields > 4
+    |      _embedded > items > 0 > custom_fields > 4 > id=128819
+    |      _embedded > items > 0 > custom_fields > 4 > name=FORMID
+    [list  _embedded > items > 0 > custom_fields > 4 > values
+    [dict  _embedded > items > 0 > custom_fields > 4 > values > 0
+    |      _embedded > items > 0 > custom_fields > 4 > values > 0 > value=form82325525
+    |      _embedded > items > 0 > custom_fields > 4 > is_system=False
+    [dict  _embedded > items > 0 > custom_fields > 5
+    |      _embedded > items > 0 > custom_fields > 5 > id=128821
+    |      _embedded > items > 0 > custom_fields > 5 > name=REFERER
+    [list  _embedded > items > 0 > custom_fields > 5 > values
+    [dict  _embedded > items > 0 > custom_fields > 5 > values > 0
+    |      _embedded > items > 0 > custom_fields > 5 > values > 0 > value=https://digitalgod.be/page4500864.html?utm_referrer=
+    |      _embedded > items > 0 > custom_fields > 5 > is_system=False
+    [dict  _embedded > items > 0 > contacts
+    [list  _embedded > items > 0 > contacts > id
+    |      _embedded > items > 0 > contacts > id > 0=10118771
+    |      _embedded > items > 0 > contacts > id > 1=10120393
+    [dict  _embedded > items > 0 > contacts > _links
+    [dict  _embedded > items > 0 > contacts > _links > self
+    |      _embedded > items > 0 > contacts > _links > self > href=/api/v2/contacts?id=10118771,10120393
+    |      _embedded > items > 0 > contacts > _links > self > method=get
+    |      _embedded > items > 0 > status_id=142
+    |      _embedded > items > 0 > sale=70000
+    |      _embedded > items > 0 > loss_reason_id=0
+    [dict  _embedded > items > 0 > pipeline
+    |      _embedded > items > 0 > pipeline > id=1543696
+    [dict  _embedded > items > 0 > pipeline > _links
+    [dict  _embedded > items > 0 > pipeline > _links > self
+    |      _embedded > items > 0 > pipeline > _links > self > href=/api/v2/pipelines?id=1543696
+    |      _embedded > items > 0 > pipeline > _links > self > method=get
+    [dict  _embedded > items > 0 > _links
+    [dict  _embedded > items > 0 > _links > self
+    |      _embedded > items > 0 > _links > self > href=/api/v2/leads?id=1795469
+    |      _embedded > items > 0 > _links > self > method=get
+
+
+---
+Слишком много информации. Создадим функцию которая будет превращать здоровенный объект сделки в небольшой и подходящий нам полезный объектик
+
+
+```python
+def format_deal(deal):
+    fields = {f['name'].lower(): f['values'][0].get('value') for f in deal['custom_fields']}
+    date = datetime.fromtimestamp(deal['closed_at'],)
+    return {
+        'id': deal['id'],
+        'uid': fields.get('uid'),
+        'cid': fields.get('cid'),
+        'sale': deal['sale'],
+        'date': date.strftime('%Y-%m-%d'),
+        'date_time': date.strftime('%Y-%m-%d %H:%M:%S'),
+        'account_id': deal['account_id']
+    }
+```
+
+
+```python
+deals = [format_deal(d) for d in data['_embedded']['items']]
+deals
+```
+
+
+
+
+    [{'id': 1795469,
+      'uid': '6450101900745375744',
+      'cid': '69296758.1544679970',
+      'sale': 70000,
+      'date': '2019-01-10',
+      'date_time': '2019-01-10 08:00:43',
+      'account_id': 23668636}]
+
+
+
+Да, так куда лучше!
+
+#### Создадим табличку в ClickHouse
+
+#### Вариант 1. Воспользовавшись магическими возможностями SimpleCH
+
+Они очень новые и экспериментальные, могут работать не во всех случаях. Но страшно удобные!
+
+
+```python
+from simplech import ClickHouse
+```
+
+Создание экземпляра класса для работы с ClickHouse
+
+
+```python
+ch = ClickHouse()
+```
+
+вызов ch.discovery создаст экземпляр TableDiscovery, где сразу будет произведена обработка имеющихся данных и подобрана схема хранения
+
+
+```python
+td = ch.discover('deals', deals)
+td
+```
+
+
+
+
+    <Instance of TableDiscovery class, value=TableDescription table=None date_field=None index_granularity=8192 columns={'id': <class 'simplech.types.Int64'>, 'uid': <class 'simplech.types.Int64'>, '… idx=None metrics_set=set() metrics={} dimensions_set={'id', 'sale', 'cid', 'date', 'account_id', 'uid', 'date_time'} dimensions={'id': <class 'simplech.types.Int64'>, 'sale': <class 'simplech.types.Int64'>, …>
+
+
+
+Видно, что все поля записались в dimensions. Надо только отметить какие из них метрики и выделить дату и первичный ключ
+
+
+```python
+td.date('date').idx('account_id', 'date').metrics('sale')
+```
+
+
+
+
+    <Instance of TableDiscovery class, value=TableDescription table=None date_field='date' index_granularity=8192 columns={'id': <class 'simplech.types.Int64'>, 'uid': <class 'simplech.types.Int64'>, '… idx=['account_id', 'date'] metrics_set={'sale'} metrics={'sale': <class 'simplech.types.Int64'>} dimensions_set={'id', 'cid', 'date', 'account_id', 'uid', 'date_time'} dimensions={'id': <class 'simplech.types.Int64'>, 'cid': <class 'simplech.types.String'>, …>
+
+
+
+Посмотреть какая схема хранения данных получилась
+
+
+```python
+schema = td.merge_tree()
+print(schema)
+```
+
+    CREATE TABLE IF NOT EXISTS `deals` (
+      `id`  Int64,
+      `uid`  Int64,
+      `cid`  String,
+      `sale`  Int64,
+      `date`  Date,
+      `date_time`  DateTime,
+      `account_id`  Int64
+    ) ENGINE MergeTree() PARTITION BY toYYYYMM(`date`) ORDER BY (`account_id`, `date`) SETTINGS index_granularity=8192
+    
+
+
+То что нужно!
+
+---
+
+Удалим таблицу, если требуется ее пересоздать
+
+
+```python
+td.drop(execute=True)
+```
+
+---
+
+Выполнить запрос на создание таблицы можно, подставив аргумент execute = True
+
+
+```python
+td.merge_tree(execute=True)
+```
+
+А что если там уже есть данные? На этот случай есть специальный метод анализирующий содержимое таблицы и выдающий только отличающиеся значения. Он предусмотрен для работы со данными статистики, но подойдет и тут. На вход принимает 2 даты. Это даты за которые будет подниматься информация из базы данных и сравнивать с поученной из API
+
+
+```python
+today = arrow.now().format('YYYY-MM-DD')
+
+with td.difference('2019-01-01', today, deals) as delta:
+    for row in delta:
+        delta.push(row)
+```
+
+Проверим что данные записались в таблицу, запросив их обратно
+
+
+```python
+rh.print_rows([*ch.objects_stream('SELECT * FROM deals')])
+```
+
+
+id|sale|cid|date|account_id|uid|date_time
+---|---|---|---|---|---|---
+1795469|70000|69296758.1544679970|2019-01-10|23668636|6450101900745375744|2019-01-10 08:00:43
+
+
+
+### Классический способ создания таблицы и записи данных
+
+
+```python
+ch.run("""
+CREATE TABLE IF NOT EXISTS deals (
+  date Date,
+  date_time DateTime,
+  id UInt64,
+  uid String,
+  cid String,
+  sale Int64
+) ENGINE = MergeTree() PARTITION BY toYYYYMM(date) ORDER BY (id, date) SETTINGS index_granularity=8192
+""")
+```
+
+Тишина, значит все окей!
+
+#### Запишем наши данные в таблицу ClickHouse
+
+Продобнее о библиотеке https://github.com/madiedinro/simple-clickhouse
+
+
+```python
+from simplech import ClickHouse
+ch = ClickHouse()
+
+with ch.table('deals') as c:
+    for deal in deals:
+        c.push(deal)
+```
+
+#### Проверим что у нас вышло
+
+
+```python
+rh.print_rows([*ch.objects_stream('SELECT * FROM deals')])
+```
+
+
+id|sale|cid|date|account_id|uid|date_time
+---|---|---|---|---|---|---
+1795469|70000|69296758.1544679970|2019-01-10|23668636|6450101900745375744|2019-01-10 08:00:43
+1795469|70000|69296758.1544679970|2019-01-10|23668636|6450101900745375744|2019-01-10 08:00:43
+
+
+
+
+```python
+print(ch.select('SHOW TABLES'))
+```
+
+    activity
+    amocrm_deals
+    bot_feedback
+    cookiesync
+    crossstat
+    deals
+    events
+    ga
+    ga_stat
+    ga_visits
+    logs
+    migrations
+    raw_ga
+    shortcuts
+    telegram
+    test_stat
+    test_write
+    vk_stat
+    webhooks
+    wh_zadarma
+    wh_ztrack
+    ym_visits
+    
+
+
+Если дубликадов не удается избежать. Иструкция DISTINCT как раз этим занимается,но будте аккуратны, не должно попасть ни одна колонка где данные могут отличаться!
+
+
+```python
+query = """
+SELECT DISTINCT id, uid, cid, date
+FROM deals
+"""
+
+data = [*ch.objects_stream(query)]
+
+rh.print_rows(data)
+```
+
+
+date|uid|id|cid
+---|---|---|---
+2019-01-10|6450101900745375744|1795469|69296758.1544679970
+
+
+
+#### Вариант 3. Управление БД через сервис CHWriter
+
+Самый простой способ описать ее в конфиге chwriter, он создаст ее и в дальнейшем расширит, при необходимости. Для этого в Theia создайте файл `config/custom/chwriter/amocrm.yml` с содержимым:
+
+```yaml
+clickhouse:
+  tables:
+    amocrm_deals:
+      date: Date
+      date_time: DateTime
+      id: UInt64
+      uid: String
+      cid: String
+      sale: Int64
+      account_id: Int64
+      _options:
+        engine: MergeTree() PARTITION BY toYYYYMM(date) ORDER BY (id, date) SETTINGS index_granularity=8192
+
+```
+
+В дальнейшем можно будет просто добавить необходимые колонки и они будут автоматически созданы при перезагрузке chwriter.
+
+
+```python
+print(ch.select('SHOW TABLES'))
+```
+
+    activity
+    amocrm_deals
+    bot_feedback
+    cookiesync
+    crossstat
+    deals
+    events
+    ga
+    ga_stat
+    ga_visits
+    logs
+    migrations
+    raw_ga
+    shortcuts
+    telegram
+    test_stat
+    test_write
+    vk_stat
+    webhooks
+    wh_zadarma
+    wh_ztrack
+    ym_visits
+    
+
+
+**Самостоятельно**
+
+Это только начало пути. Многое можно сделать лучше, но перед этим надо озаботиться обработкой по датам. Поэтому вот вам задачка, поработать самостоятельно:
+
+- Продумать как за какие даты получать данные
+- Сделать передачу дат в запрос сделок
+- Мы специально воспользовались самым обычным движком MergeTree, для других еще рановато. Поэтому можете попробовать сделать чтение данных из БД перед тем как писать. Писать только те сделки, которых нет.
+
+### Дашборд в Grafana
+
+В дополнение содадим простенький дашборд в Grafana, показывающий кол-во завершившихся сделок по дням. 
+Но чтобы было, что показывать давайте сгененрируем немного фейковых данных.
+Для этого нам потребуется генератор случайных чисел, импортируем его и сгенерируем необходимое кол-во сделок.
+
+
+```python
+# Импортируем модуль генерации случайных чисел
+from random import randint
+# Сегодня
+today = arrow.now()
+# Сколько дней назад будем смещаться
+use_days = 7
+# Сколько сделок хоти
+deals_amount = 15
+# Список фэйков сделок
+fake_deals = []
+
+
+for i in range(deals_amount):
+    # придумываем дату
+    rand_day = randint(0, use_days) * -1
+    rand_date = today.shift(days=rand_day)
+    d = rand_date.format('YYYY-MM-DD')
+    dtime = rand_date.format('YYYY-MM-DD HH:mm:ss')
+    # придумываем всю структуру
+    deal = {'id': randint(1795469, 11795469),
+      'uid': f'645010190074{randint(1375744, 8375744)}',
+      'cid': f'69296758.154{randint(1375744, 8375744)}',
+      'sale': randint(5000, 70000),
+      'date': d,
+      'date_time': dtime,
+      'account_id': 23668636}
+    # Дописываем в список
+    fake_deals.append(deal)
+```
+
+Посмотрим что у нас получилось в итоге. Срезав первые 2 элемента списка
+
+
+```python
+# при помощи среза (slice) берем только несколько записей для вывода, чтобы не засорять горизонт
+fake_deals[:3]
+```
+
+
+
+
+    [{'id': 8965844,
+      'uid': '6450101900747435069',
+      'cid': '69296758.1546344288',
+      'sale': 42729,
+      'date': '2019-01-21',
+      'date_time': '2019-01-21 19:48:24',
+      'account_id': 23668636},
+     {'id': 11754234,
+      'uid': '6450101900746776087',
+      'cid': '69296758.1543070335',
+      'sale': 55200,
+      'date': '2019-01-20',
+      'date_time': '2019-01-20 19:48:24',
+      'account_id': 23668636},
+     {'id': 6251379,
+      'uid': '6450101900744330699',
+      'cid': '69296758.1546976726',
+      'sale': 49845,
+      'date': '2019-01-20',
+      'date_time': '2019-01-20 19:48:24',
+      'account_id': 23668636}]
+
+
+
+
+```python
+# Пишем в кх
+with ch.table('deals') as b:
+    for d in fake_deals:
+        b.push(d)
+```
+
+
+```python
+rh.print_rows([*ch.objects_stream('SELECT * FROM deals')], limit=10)
+```
+
+
+id|sale|cid|date|account_id|uid|date_time
+---|---|---|---|---|---|---
+1795469|70000|69296758.1544679970|2019-01-10|23668636|6450101900745375744|2019-01-10 08:00:43
+1795469|70000|69296758.1544679970|2019-01-10|23668636|6450101900745375744|2019-01-10 08:00:43
+11754234|55200|69296758.1543070335|2019-01-20|23668636|6450101900746776087|2019-01-20 19:48:24
+6251379|49845|69296758.1546976726|2019-01-20|23668636|6450101900744330699|2019-01-20 19:48:24
+10705861|19052|69296758.1543075274|2019-01-20|23668636|6450101900746159411|2019-01-20 19:48:24
+11476559|54763|69296758.1545634293|2019-01-20|23668636|6450101900747227180|2019-01-20 19:48:24
+8965844|42729|69296758.1546344288|2019-01-21|23668636|6450101900747435069|2019-01-21 19:48:24
+7585468|46665|69296758.1541656833|2019-01-21|23668636|6450101900745929934|2019-01-21 19:48:24
+7471747|37637|69296758.1541400699|2019-01-22|23668636|6450101900743301307|2019-01-22 19:48:24
+2732932|16475|69296758.1547250878|2019-01-22|23668636|6450101900747962349|2019-01-22 19:48:24
+5889677|9970|69296758.1543100070|2019-01-23|23668636|6450101900742187552|2019-01-23 19:48:24
+
+
+
+## Теперь графана
+
+
+
+```python
+rh.video('03EPLqwKOK8')
+```
+
+
+
+
+
+        <iframe
+            width="700"
+            height="400"
+            src="https://www.youtube.com/embed/03EPLqwKOK8"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+
+
+
+
+### Автоматизация сбора статистики, сервисы
+
+Jupyter - это замечательный инструмент для написания кусочкой кода и отладки, но нам надо сделать инструмент, собираюзий данные по расписанию, а не блокнот. Поэтому превратим наш код в код сервиса.
+
+#### Rockstat, как площадка для экспериментов и запуска микросервисов
+
+Как зарегистрировать сервер и развернуть на нем Rockstat в части Zero
+
+#### aiohttp - асинхронный http сервер и клиентв
+
+https://aiohttp.readthedocs.io/en/stable/client_quickstart.html
+
+#### Асинхронное программирование
+
+Пара статей и курс на эту тему.
+Асинхронность является специфической областью занинй для большинства python программиств
+
+- https://medium.com/devschacht/node-hero-chapter-3-cae7333c7f3d
+- https://proglib.io/p/asynchrony/
+- https://ru.coursera.org/lecture/diving-in-python/piervyie-shaghi-s-asyncio-8XNAV
+
+
+
+### 
+
+
+
+Через некоторое время запросы перестанут работать и будут выдавать
+
+```python
+
+{'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1547687325}}
+```
+
+Почему-то серверы АМО забывают сессию, и нужно опять опять авторизоваться. 
+
+Следует доработать функцию выполнения запросов, чтобы она обрабатывала ошибки авторизации и производила повторный запрос. Этот же алгоритм обработает ситуацию, когда нужно авторизоваться после перезапуска (потеряны значения переменных)
+
+
+```python
+state = {'cookies': None}
+today = arrow.now().format('YYYY-MM-DD')
+```
+
+Далее функция, которая собрана из всего, что было ранее
+
+
+```python
+amo_key = '46484f4b9705243e36a924f6af8e3c865b7b1b41'
+amo_domain = 'https://wevdiw.amocrm.ru'
+amo_user = 'wevdiw@expirebox.email'
+
+
+def amo_query(path, params=None, data=None, json=None, method='get', attemps=2, auth_request=False):
+    # По-умолчанию высталено 2 прохождения цикла.
+    # На первом может произойти ошибка авторизации,
+    # за ней последует процесс авторизации.
+    # На втором проходе запрос будет выполнен с корретными привелегиями
+    for i in range(attemps):
+        # Стоим урл запроса и записываем в переменную
+        url = amo_domain + path
+        # базовые параметры, которые дописываются ко всем запросам
+        base_params = {'type':'json'}
+        # Выполнение запроса
+        res = requests.request(method, url, data=data, json=json, cookies=state['cookies'], params={**base_params, **(params or {})})
+        # если сервер вернул ответ что все ок
+        if res.status_code == 200:
+            # Сохраняем куки после успешной авторизации
+            if auth_request:
+                state['cookies'] = res.cookies
+            return res.json()
+        # В случае ошибки авторизации
+        elif res.status_code == 401:
+            # Если это не авторизационный запрос
+            if auth_request == False:
+                req_data = { 'USER_LOGIN': amo_user,  'USER_HASH': amo_key }
+                # Вызываем запрос авторизации
+                auth_result = amo_query('/private/api/auth.php', data=req_data, auth_request=True, method='post')
+        print(res.status_code, res.json())
+        
+        
+amo_query('/api/v2/leads')
+```
+
+    401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618505}}
+
+
+
+
+
+    {'_links': {'self': {'href': '/api/v2/leads?type=json', 'method': 'get'}},
+     '_embedded': {'items': [{'id': 1735241,
+        'name': 'Lead from: https://digitalgod.be/page4500864.html',
+        'responsible_user_id': 3037510,
+        'created_by': 3037510,
+        'created_at': 1547099814,
+        'updated_at': 1547099814,
+        'account_id': 23668636,
+        'is_deleted': False,
+        'main_contact': {'id': 10015551,
+         '_links': {'self': {'href': '/api/v2/contacts?id=10015551',
+           'method': 'get'}}},
+        'group_id': 0,
+        'company': {},
+        'closed_at': 0,
+        'closest_task_at': 0,
+        'tags': [{'id': 30577, 'name': 'tilda'}],
+        'custom_fields': [{'id': 128813,
+          'name': 'COMMENTS',
+          'values': [{'value': 'wdfsf'}],
+          'is_system': False},
+         {'id': 128815,
+          'name': 'TRANID',
+          'values': [{'value': '681808:125260852'}],
+          'is_system': False},
+         {'id': 128817,
+          'name': 'UTM_KEYWORD',
+          'values': [{'value': 'digital god'}],
+          'is_system': False},
+         {'id': 128819,
+          'name': 'FORMID',
+          'values': [{'value': 'form82325525'}],
+          'is_system': False},
+         {'id': 128821,
+          'name': 'REFERER',
+          'values': [{'value': 'https://digitalgod.be/page4500864.html'}],
+          'is_system': False}],
+        'contacts': {'id': [10015551],
+         '_links': {'self': {'href': '/api/v2/contacts?id=10015551',
+           'method': 'get'}}},
+        'status_id': 23668642,
+        'sale': 0,
+        'loss_reason_id': 0,
+        'pipeline': {'id': 1543696,
+         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+           'method': 'get'}}},
+        '_links': {'self': {'href': '/api/v2/leads?id=1735241', 'method': 'get'}}},
+       {'id': 1795469,
+        'name': 'Lead from: https://digitalgod.be/page4500864.html?utm_referrer=',
+        'responsible_user_id': 3037510,
+        'created_by': 3037510,
+        'created_at': 1547106499,
+        'updated_at': 1547107344,
+        'account_id': 23668636,
+        'is_deleted': False,
+        'main_contact': {'id': 10118771,
+         '_links': {'self': {'href': '/api/v2/contacts?id=10118771',
+           'method': 'get'}}},
+        'group_id': 0,
+        'company': {},
+        'closed_at': 1547107243,
+        'closest_task_at': 0,
+        'tags': [{'id': 30577, 'name': 'tilda'}],
+        'custom_fields': [{'id': 128813,
+          'name': 'COMMENTS',
+          'values': [{'value': 'sdfdsf'}],
+          'is_system': False},
+         {'id': 129773,
+          'name': 'CID',
+          'values': [{'value': '69296758.1544679970'}],
+          'is_system': False},
+         {'id': 129775,
+          'name': 'UID',
+          'values': [{'value': '6450101900745375744'}],
+          'is_system': False},
+         {'id': 128815,
+          'name': 'TRANID',
+          'values': [{'value': '681808:125327642'}],
+          'is_system': False},
+         {'id': 128819,
+          'name': 'FORMID',
+          'values': [{'value': 'form82325525'}],
+          'is_system': False},
+         {'id': 128821,
+          'name': 'REFERER',
+          'values': [{'value': 'https://digitalgod.be/page4500864.html?utm_referrer='}],
+          'is_system': False}],
+        'contacts': {'id': [10118771, 10120393],
+         '_links': {'self': {'href': '/api/v2/contacts?id=10118771,10120393',
+           'method': 'get'}}},
+        'status_id': 142,
+        'sale': 70000,
+        'loss_reason_id': 0,
+        'pipeline': {'id': 1543696,
+         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+           'method': 'get'}}},
+        '_links': {'self': {'href': '/api/v2/leads?id=1795469', 'method': 'get'}}},
+       {'id': 1800929,
+        'name': 'sdfsdf',
+        'responsible_user_id': 3037510,
+        'created_by': 3037510,
+        'created_at': 1547109921,
+        'updated_at': 1547109921,
+        'account_id': 23668636,
+        'is_deleted': False,
+        'main_contact': {},
+        'group_id': 0,
+        'company': {},
+        'closed_at': 0,
+        'closest_task_at': 0,
+        'tags': {},
+        'custom_fields': {},
+        'status_id': 23668642,
+        'sale': 0,
+        'loss_reason_id': 0,
+        'contacts': {},
+        'pipeline': {'id': 1543696,
+         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+           'method': 'get'}}},
+        '_links': {'self': {'href': '/api/v2/leads?id=1800929',
+          'method': 'get'}}}]}}
+
+
+
+Все работает. А теперь заменим библиотеку для выполнения запросов на aiohttp, она требуется для асинхронной работы (об этом потом).
+Метод помечен `async`. Для вызовы анинхронных методов используется слово `await`.
+В requests и aiohttp немного отличается работа с cookies, остальные параметры совпадают.
+
+### Немного асинхронного программирования
+
+Возможно для кого-то сразу станте понятно, когда я скажу, что у asyncio точно такой же смысл, как и у node.js.
+В питоне есть несколько реализаций асинхронности, но самая быстрая (возможно и популярная в продакшн) это uvloop,
+которая кстати построена на той же самай библиотеке, что и node.js [libuv](http://docs.libuv.org/en/v1.x/)
+Попробую показать наглядно в чем отличие. 
+
+
+```python
+import asyncio
+# Примочка, чтобы asyncio корректно работал jupyter
+import nest_asyncio
+nest_asyncio.apply()
+```
+
+
+```python
+async def tick01():
+    for i in range(5):
+        await asyncio.sleep(0.1)
+        print(0.1)
+    return {'a': 111}
+
+async def tick02():
+    for i in range(5):
+        await asyncio.sleep(0.2)
+        print(0.2)
+    return {'b': 222}
+
+```
+
+
+```python
+# Loop - корневой внутренний цикл, выполняющий поочередно все функции
+loop = asyncio.get_event_loop()
+# Все, что там выполняется это задачи
+task = asyncio.gather(tick01(), tick02())
+# Запускаем его до тех пор, пока задачи на закончатся
+loop.run_until_complete(task)
+```
+
+    0.1
+    0.2
+    0.1
+    0.1
+    0.2
+    0.1
+    0.1
+    0.2
+    0.2
+    0.2
+
+
+
+
+
+    [{'a': 111}, {'b': 222}]
+
+
+
+Если присмотреться, то можно заметить что функции выполнялись параллельно, и потом вместе вернули результат. Но самое главное, это не многопоточность и нет проблема возникающих при использовании потоков. Асинхронность это когда в одном потоке функции выполнябтся частями. Переключение происзодит в момент ожидания `await`. А учитывая что большую часть времени программы стоят в ожидании это открыло огромные возможности. Например Node.js это целиком асинхнорнный код, там крайне проблематично писать что-то синхронное, при этом один процесс может обработкать несколько тысяч запросов в секунду. 
+
+#### Отличия в записи и выполнении функций
+
+обычная функция выглядит так
+```python
+def myfunc(a):
+    print(a)
+```
+
+и выполнять ее вот так
+
+```python
+myfunc(1)
+```
+
+асинхронная функция
+
+```python
+async def myfunc(a):
+    print(a)
+```
+
+и выполнять ее вот так
+
+```python
+await myfunc(1)
+```
+
+В случае использования операторов контекста и/или генараторов вместо `await` используеться `async with` / `async for`. Не забивайте голову просто дописывайте и ориентируйтесь по примерам, сейчас не время в этом разбираться
+
+#### Отличия в работе с http
+
+В асинхронной стороне питоне не используюьт `requests`, а используют `aiohttp`. Аргументы практически идентичны, только появляется дополнительный слой сессии. Рассмотрим пример
+
+
+```python
+res = requests.get(url, data=data, json=json, cookies=state['cookies'])
+res.json()
+```
+
+Эквивалентом этого запроса будет
+
+```python
+async with aiohttp.ClientSession(cookie_jar=state['cookies']) as sess:
+    async with sess.get(url, data=data, json=json) as res:
+        res = await res.json()
+```
+
+Да, запись получается немного шире, но 
+
+
+```python
+state = {'cookies': None}
+```
+
+
+```python
+import aiohttp
+
+async def amo_query(path, params=None, data=None, json=None, method='get', attemps=2, auth_request=False):
+    # По-умолчанию высталено 2 прохождения цикла.
+    # На первом может произойти ошибка авторизации,
+    # за ней последует процесс авторизации.
+    # На втором проходе запрос будет выполнен с корретными привелегиями
+    for i in range(attemps):
+        # Стоим урл запроса и записываем в переменную
+        url = amo_domain + path
+        # базовые параметры, которые дописываются ко всем запросам
+        base_params = {'type':'json'}
+        # Выполнение запроса
+        async with aiohttp.ClientSession(cookie_jar=state['cookies']) as session:
+            async with session.request(method, url, data=data, json=json, params={**base_params, **(params or {})}) as res:
+                #res = requests.request()
+                # если сервер вернул ответ что все ок
+                if res.status == 200:
+                    # Сохраняем куки после успешной авторизации
+                    if auth_request:
+                        state['cookies'] = session.cookie_jar
+                    return await res.json()
+                # В случае ошибки авторизации
+                elif res.status == 401:
+                    # Если это не авторизационный запрос
+                    if auth_request == False:
+                        req_data = { 'USER_LOGIN': amo_user,  'USER_HASH': amo_key }
+                        # Вызываем запрос авторизации
+                        auth_result = await amo_query('/private/api/auth.php', data=req_data, auth_request=True, method='post')
+                print(res.status, await res.json())
+
+```
+
+
+```python
+
+# Протестируем функцию
+await amo_query('/api/v2/leads', params={'status':success_num})
+```
+
+---
+
+Преренесем код в сервис Rockstat, чтобы он выполнялся по расписанию. Но предварительно подготовим здесь небходимые функции.
+
+#### Конфигурация таблицы
+
+Чтобы использовать систему презаписи надо сделать фиксированную конфигурацию, не зависящую от пришедших данных. Воспользуемся еще одним крайне полезным методом SimpleCH
+
+
+```python
+code = td.pycode()
+print(code)
+```
+
+    td_deals = ch.discover('deals', columns={
+            'id': 'Int64', 
+            'uid': 'Int64', 
+            'cid': 'String', 
+            'sale': 'Int64', 
+            'date': 'Date', 
+            'date_time': 'DateTime', 
+            'account_id': 'Int64'})\
+        .metrics('sale')\
+        .dimensions('id', 'cid', 'date', 'account_id', 'uid', 'date_time')\
+        .date('date')\
+        .idx('account_id', 'date')
+    
+
+
+Отлично, все работает! Теперь сделаем полноценный обработчик записи данных (точнее дозаписи - библиотека сравнивает что есть в БД с тем, что передается на обработку)
+
+
+```python
+async def write_deals(deals):
+    
+    td = ch.discover('deals', columns={'id': 'Int64', 'uid': 'Int64', 'cid': 'String', 'sale': 'Int64', 'date': 'Date', 'date_time': 'DateTime', 'account_id': 'Int64'}).metrics(*['sale']).dimensions(*['date_time', 'account_id', 'cid', 'uid', 'id', 'date']).date(*['date']).idx(*['account_id', 'date'])
+    today = arrow.now().format('YYYY-MM-DD')
+
+    async with td.difference('2019-01-01', today, deals) as d:
+        async for row in d:
+            td.push(row)
+```
+
+Соберем в одном месте конфигурацию и необходимые функции.
+
+
+```python
+import arrow
+from simplech import AsyncClickHouse
+from datetime import datetime
+
+# --- Параметря подключения к Amo
+amo_key = '46484f4b9705243e36a924f6af8e3c865b7b1b41'
+amo_domain = 'https://wevdiw.amocrm.ru'
+amo_user = 'wevdiw@expirebox.email'
+success_num = 142
+state = {'cookies': None}
+
+# Обатите внимание, вместо ClickHouse мы используем асинхронная AsyncClickHouse (неблокирующая версия) модуля
+ch = AsyncClickHouse()
+
+# Структура таблицы
+td_deals = ch.discover('deals', columns={
+    'id': 'Int64', 
+    'uid': 'Int64', 
+    'cid': 'String', 
+    'sale': 'Int64', 
+    'date': 'Date', 
+    'date_time': 'DateTime', 
+    'account_id': 'Int64'
+}).metrics(
+    'sale'
+).date('date').idx('account_id', 'date')
+
+
+def format_deal(deal):
+    fields = {f['name'].lower(): f['values'][0].get('value') for f in deal['custom_fields']}
+    date = datetime.fromtimestamp(deal['closed_at'],)
+    return {
+        'id': deal['id'],
+        'uid': fields.get('uid'),
+        'cid': fields.get('cid'),
+        'sale': deal['sale'],
+        'date': date.strftime('%Y-%m-%d'),
+        'date_time': date.strftime('%Y-%m-%d %H:%M:%S'),
+        'account_id': deal['account_id']
+    }
+
+
+async def write_deals(deals, d1, d2):
+    # Создание таблицы
+    await td_deals.merge_tree(execute=True)
+    # Подсчет дельты записей
+    async with td_deals.difference(d1, d2, deals) as d:
+        async for row in d:
+            td_deals.push(row)
+
+# Создадим функцию, которая будет производить весь цикл сбора данных, вызывая другие ф-ции
+async def update_data():
+    d1 = '2019-01-01'
+    d2 = arrow.now().format('YYYY-MM-DD')
+    # TODO: Не забудьте сделать обработку дат при получении из апи и записи в БД!
+    deals_response = await amo_query('/api/v2/leads', params={'status': success_num})
+    deals = [format_deal(d) for d in deals_response['_embedded']['items']]
+    await write_deals(deals, d1, d2)
+```
+
+Проверим работоспособность кода
+
+
+```python
+# Для теста удалим таблицу со всем данными
+await td_deals.drop(execute=True)
+```
+
+Не забудьте самостоятельно сделать обработку дат
+
+
+```python
+# Произведем полный получения и сохранения данных
+await update_data()
+```
+
+
+```python
+rh.print_rows([rec async for rec in ch.objects_stream('SELECT * FROM deals')], limit=10)
+```
+
+Все записалось, а также не записываются дубликаты при повторной обработке. Переносим все это в сервис
+
+## Создаем сервис в Theia 
+
+
+
+```python
+rh.video('5rL96O2GmW0')
+```
+
+
+
+
+
+        <iframe
+            width="700"
+            height="400"
+            src="https://www.youtube.com/embed/5rL96O2GmW0"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+
+
+
+    ERROR! Session/line number was not unique in database. History logging moved to new session 22
+
+
+    2019-01-27 19:48:27,447 ERROR wrong http code 404 Code: 60, e.displayText() = DB::Exception: Table stats.deals doesn't exist., e.what() = DB::Exception
+    
+
+
+    ERROR! Session/line number was not unique in database. History logging moved to new session 23
+    ERROR! Session/line number was not unique in database. History logging moved to new session 24
+
+
+
+
+
+
+
+
+    401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618507}}
+    401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618507}}
+
+
+
+
+
+    {'_links': {'self': {'href': '/api/v2/leads?type=json&status=142',
+       'method': 'get'}},
+     '_embedded': {'items': [{'id': 1795469,
+        'name': 'Lead from: https://digitalgod.be/page4500864.html?utm_referrer=',
+        'responsible_user_id': 3037510,
+        'created_by': 3037510,
+        'created_at': 1547106499,
+        'updated_at': 1547107344,
+        'account_id': 23668636,
+        'is_deleted': False,
+        'main_contact': {'id': 10118771,
+         '_links': {'self': {'href': '/api/v2/contacts?id=10118771',
+           'method': 'get'}}},
+        'group_id': 0,
+        'company': {},
+        'closed_at': 1547107243,
+        'closest_task_at': 0,
+        'tags': [{'id': 30577, 'name': 'tilda'}],
+        'custom_fields': [{'id': 128813,
+          'name': 'COMMENTS',
+          'values': [{'value': 'sdfdsf'}],
+          'is_system': False},
+         {'id': 129773,
+          'name': 'CID',
+          'values': [{'value': '69296758.1544679970'}],
+          'is_system': False},
+         {'id': 129775,
+          'name': 'UID',
+          'values': [{'value': '6450101900745375744'}],
+          'is_system': False},
+         {'id': 128815,
+          'name': 'TRANID',
+          'values': [{'value': '681808:125327642'}],
+          'is_system': False},
+         {'id': 128819,
+          'name': 'FORMID',
+          'values': [{'value': 'form82325525'}],
+          'is_system': False},
+         {'id': 128821,
+          'name': 'REFERER',
+          'values': [{'value': 'https://digitalgod.be/page4500864.html?utm_referrer='}],
+          'is_system': False}],
+        'contacts': {'id': [10118771, 10120393],
+         '_links': {'self': {'href': '/api/v2/contacts?id=10118771,10120393',
+           'method': 'get'}}},
+        'status_id': 142,
+        'sale': 70000,
+        'loss_reason_id': 0,
+        'pipeline': {'id': 1543696,
+         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+           'method': 'get'}}},
+        '_links': {'self': {'href': '/api/v2/leads?id=1795469',
+          'method': 'get'}}}]}}
+
+
+
+Ну все, сервис запущен, радуемся постоянно поступающему потоку данных. 
+
+На этом все. Ждите новых серий :)
+
+---
+
+- В https://digitalgod.be учат автоматизировать работу и строить рекламные инструменты
+- Анонсы курсов и мероприятий https://www.facebook.com/digitalgod.be
+- Больше о Rockstat на https://rock.st/ru/
+- Чат Kiss My Stat в Telegram https://t.me/kissmystat
+- Сообщество Rockstat в Telegram https://t.me/rockstats
+
+
+
+```python
+
+```
+
+
+---
+
+Преренесем код в сервис Rockstat, чтобы он выполнялся по расписанию
+
+
+
+export default withPost({...meta})(({children}) => <>{children}</>)

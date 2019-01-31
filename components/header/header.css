@@ -39,7 +39,7 @@
         text-decoration: none;
         letter-spacing: 0.04em;
         transition: color .1s linear;
-        @mixin raleway-regular 13px;
+        @mixin mainfont-regular 13px;
 
         &:after {
           content: "";

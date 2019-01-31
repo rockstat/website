@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   plugins: {
     'postcss-mixins': {
-      mixinsDir: path.join(__dirname, 'styles', 'mixin')
+      mixinsDir: path.join(__dirname,'static', 'styles', 'mixin')
     },
     'postcss-advanced-variables': {}, // precss
     'postcss-nested': {}, // precss

@@ -1,9 +1,3 @@
-/*
-In production the stylesheet is compiled to .next/static/style.css.
-The file will be served from /_next/static/style.css
-You could include it into the page using either next/head or a custom _document.js.
-*/
-
 import Document, { Head, Main, NextScript } from 'next/document'
 
 const domain = 'rock.st'
@@ -11,6 +5,10 @@ const defaultDescription = 'Открытая платформа для созд�
 const defaultOGURL = `https://${domain}`
 const defaultOGImage = `${defaultOGURL}/static/images/social/electric-star.png`
 
+
+/**
+ * External JS & CSS at the bottom
+ */
 
 export default class MyDocument extends Document {
   
@@ -43,7 +41,7 @@ export default class MyDocument extends Document {
           <meta property="og:image:height" content="630" />
           <meta property="og:description" content={defaultDescription} />
           <script type="text/javascript" src="https://bolt.rstat.org/public/box-rst.js" async />
-          <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
+          <link rel='stylesheet' type='text/css' href='/static/nprogress/nprogress.css' />
         </Head>
         <body>
           <Main />

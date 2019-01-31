@@ -7,24 +7,8 @@ export const meta = {
   title: 'Сниппет и конфигурация Web-SDK',
 }
 
-<h1 id="doc-h1">
-  {meta.title}
-</h1>
 
-<!-- ## Table of Contents -->
-
-После установки сниппета на сайт, начинается автоматический сбор данных о действиях
-пользователей: просмотры страниц, клики, взаимодействия с формами и полями,
-активность, перемещение видимой зоны и др.
-
-Объединяет события в сессии, классифицирует на рекламные, органические (поиск), 
-социальные, прямые, внутренние и реферальные. [Подробнее о сессиях](/docs/reference/web-sdk/sessions). 
-Можно добавить сколько угодно произвольных событий с произвольным набором параметров.
-Работает на персональных компьютерах и в мобильных браузерах.
-
-## Установка сниппета
-
-Код устанавливается на все страницы сайтов.
+Актуальная версия сниппета в репозитории [github.com/rockstat/web-sdk/snippet](https://github.com/rockstat/web-sdk/blob/master/snippet/snippet.html)
 
 ```html
 <script type="text/javascript">
@@ -41,58 +25,20 @@ export const meta = {
       rst._host = conf.server; rst._prefix = conf.pathPrefix || '';
       rst._host && rst._jsl(hs+rst._host+rst._prefix+lj); }
   }(window, document, 'script', 'configure', 'https://', '/lib.js');
-  // Configuration
+  // Конфигурация, подробности ниже
   rstat('configure', {
-    server: 'поддомен.вашдомен' // TODO: <<< Укажите ваш домен трекера!
+    server: 'DOMAIN' //<<< Укажите ваш домен трекера, например "stat.digitalgod.be"
   });
-  rstat('page'); // <<< отправка просмотра страницы, после загрузки. Убирается на SPA.
+  // Добавляем в очередь событие загрузки страницы. Как только трекер загрузится, оно будет отправлено.
+  rstat('page');
 </script>
 ```
 
- 
-[[tip]]
-| получить актуальну версию сниппета можно тут: 
-| [github.com/rockstat/web-sdk/snippet](https://github.com/rockstat/web-sdk/tree/master/snippet)
-
-
-### Параметры Web-SDK
+## Параметры Web-SDK
 
 <Expand>
   <RenderTable data={webSdkParams} />
 </Expand>
-
-### Установка через GTM
-
-Загрузчик можно устанавливать через GTM, но рекомендуется, устанавливать напрямую в код сайта,
-по нескольким причинам:
-
-1. Загрузится первым, что позволит перехватить синхронизации кук с другими
-  сервисами и сохранить у себя себя соответствия для дальнейшего использования.
-2. Поймается больше "отказников"
-3. Не сработает adblock, ведь платформа расположена на вашем домене, и он не будет блокироваться, в отличии от GTM
-
-
-#### Получение событий из Data Layer
-
-В GTM создаем новый тег типа "Пользовательский HTML" со следующим содержимым:
-
-```html
-<script type="text/javascript">
-  var name = ({{category}} || '') + '-' + ({{action}} || '');
-  var data = {};
-  if({{category}}) data.category = {{category}};
-  if({{action}}) data.action = {{action}};
-  if({{label}}) data.label = {{label}};
-  if({{value}}) data.value = {{value}};
-  rstat('event', name, data)
-</script>
-```
-вместо category, action, label, value подставьте пользовательские переменные, используемые у вас для передачи этих данных в GA.
-
-### Формирование ProjectId
-
-- **TODO:** описать алгоритм чистки домена и генерации номера
-- **TODO:** встроить генератор айдишек
 
 
 export default withDoc({...meta})(({children}) => <>{children}</>)

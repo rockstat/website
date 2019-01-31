@@ -1,0 +1,51 @@
+@define-mixin md-block $name,
+$color1,
+$color2 {
+    .markdown-body .custom-block {
+        margin: rem(30px 0 10px);
+        &.$(name)-block {
+            .custom-block-heading,
+            .custom-block-body {
+                background-color: $color1;
+                position: relative;
+                padding: 1.2rem 3rem 1.2rem 3rem;
+                /* margin: 1rem 12rem; */
+            }
+            div:first-child {
+                &:before {
+                    content: '';
+                    background-color: $color2;
+                    width: 20px;
+                    height: 1.2rem;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+            }
+            .custom-block-heading {
+                font-weight: 500;
+                padding-bottom: 0.5rem;
+            }
+            .custom-block-body {
+                /* min-height: 3.5rem; */
+                p {
+                    margin: 0;
+                    padding: 0;
+                }
+                &:after {
+                    content: '';
+                    background-color: $color2;
+                    width: 20px;
+                    height: 3.5rem;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+            }
+            .custom-block-heading+.custom-block-body {
+                padding-top: 0;
+            }
+        }
+        /* &.$(name)-block  */
+    }
+}

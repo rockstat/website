@@ -23,8 +23,8 @@ export const Code = ({ children, lang }, { darkBg } = { darkBg: true }) => (
       {`
         pre {
           // border: 1px solid #eaeaea;
-          padding: 20px;
-          margin: 24px 0 40px;
+          padding: 10px;
+          margin: 0;
           white-space: pre;
           overflow: auto;
           -webkit-overflow-scrolling: touch;

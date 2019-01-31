@@ -1,4 +1,4 @@
-@import '../../styles/common.css';
+@import '../../static/styles/common.css';
 
 .mobileShowMenu {
   display: none;
@@ -91,7 +91,7 @@
       }
       
       .childItem {
-        @mixin raleway-medium 14px;
+        @mixin mainfont-medium 14px;
         line-height: rem(16px);
         color: #fff;
         margin: rem(14px 0);

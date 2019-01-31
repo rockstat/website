@@ -1,4 +1,4 @@
-@import '../../../styles/variables.css';
+@import '../../../static/styles/variables.css';
 
 .analyticContainer {
   width: 100vw;
@@ -8,13 +8,13 @@
   .textContainer {
     text-align: center;
     .title {
-      @mixin raleway-light 36px;
+      @mixin mainfont-light 36px;
       text-transform: uppercase;
       line-height: rem(42px);
       padding-top: rem(80px);
     }
     .description {
-      @mixin raleway-medium 18px;
+      @mixin mainfont-medium 18px;
       line-height: rem(25px);
       opacity: 0.8;
       margin-top: rem(2px);

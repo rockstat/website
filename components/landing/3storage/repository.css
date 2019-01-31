@@ -1,4 +1,4 @@
-@import '../../../styles/variables.css';
+@import '../../../static/styles/variables.css';
 
 .analyticContainer {
   width: 100vw;
@@ -79,6 +79,7 @@
     display: flex;
     justify-content: space-between;
     padding: rem(31px 50px);
+    z-index: 999;
     height: 81%;
     .leftText {
       display: flex;
@@ -286,6 +287,7 @@
     }
 
     .leftBgBottom {
+      z-index: 0;
       display: none;
     }
 

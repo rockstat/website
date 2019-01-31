@@ -13,7 +13,7 @@ const rehypePrism = require('@mapbox/rehype-prism')
 // const remarkSlug = require('remark-slug')
 const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
 // const remarkMermaid = require('./lib/remark/mermaid');
-const { getTOCGenerator } = require('./bin/rstgen');
+const { getTOCGenerator } = require('./lib/table_of_contents');
 const { ANALYZE, MAIN } = process.env
 
 const getMDate = (fn) => {
@@ -45,7 +45,9 @@ const withMDX = require('@zeit/next-mdx')({
   options: {
     extension: /\.mdx?$/,
     mdPlugins: mdPlugins,
-    hastPlugins: [rehypePrism]
+    hastPlugins: [
+      [rehypePrism, {ignoreMissing: true}]
+    ]
     // [
       // [remarkRemarkFrontmatter, ['yaml', 'toml']],
       // ,

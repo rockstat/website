@@ -7,3 +7,4 @@ netlify.toml
 yarn-error.log
 /node_modules
 .git
+package-lock.json

@@ -1,4 +1,10 @@
 BR := $(shell git branch | grep \* | cut -d ' ' -f2-)
+
+DEVIMG := "rockstatweb"
+DEVNAME := "rstdev"
+
+.PHONY: start-dev
+
 bump-patch:
 	bumpversion patch
 
@@ -19,10 +25,11 @@ deploy:
 build:
 	docker build -t website .
 
-start-dev:
+build-dev:
 	docker build \
 		-f Dockerfile.dev \
-		-t rockstatweb .
-	docker run --rm -it --name rockstatweb \
-		-v "$$PWD:/usr/src" \
-		-p 10080:10080 rockstatweb
+		-t $(DEVIMG) .
+
+start-dev: 
+	docker run --rm -it --name $(DEVNAME) \
+		-v "$$PWD:/usr/src" -p 10080:10080 $(DEVIMG) $(cmd)

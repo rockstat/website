@@ -1,7 +1,7 @@
 {
   "name": "rockstat-website",
   "bin": {
-    "rstgen": "./bin/rstgen.js"
+    "rockstat": "./rockstat"
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=1 next build && cat .next/stats.txt",
@@ -9,12 +9,14 @@
     "start:serve": "serve",
     "start": "NODE_ENV=production node server.js",
     "clean": "rimraf public && rimraf .next",
-    "build:prepare": "yarn clean && rstgen docs",
+    "build:prepare": "yarn clean && rockstat build-toc",
     "build:dev": "yarn build:prepare && next build",
     "build": "yarn build:prepare && NODE_ENV=production next build",
     "build:export": "yarn build && yarn export",
     "export": "next export -o ./public",
-    "export:zeit": "MAIN=1 next export -o /public"
+    "export:zeit": "MAIN=1 next export -o /public",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -29,22 +31,26 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-visibility-sensor": "^5.0.2",
+    "react-youtube": "^7.9.0",
     "refractor": "^2.6.2",
     "rehype": "^7.0.0"
   },
   "devDependencies": {
+    "@mapbox/rehype-prism": "^0.3.0",
     "@mdx-js/loader": "^0.16.6",
     "@mdx-js/mdx": "^0.16.6",
     "@mdx-js/tag": "^0.16.6",
-    "@mapbox/rehype-prism": "^0.3.0",
     "@svgr/cli": "^4.1.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
     "ansi-html": "0.0.7",
     "cross-env": "^5.2.0",
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
     "dsv-loader": "^2.0.0",
     "globby": "^8.0.1",
     "js-yaml": "^3.12.0",
+    "mdx-deck": "^1.8.2",
     "mermaid": "^8.0.0-rc.8",
     "mermaid.cli": "^0.5.1",
     "npm-which": "^3.0.1",

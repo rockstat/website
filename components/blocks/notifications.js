@@ -10,6 +10,13 @@ export const Tip = ({ children }) => {
 }
 
 
+const B = ({ children }) => (
+  <strong>
+    {children}
+  </strong>
+)
+
+
 export const Alert = ({ children }) => {
   return (
     <div className={"custom-block alert-block"}>
@@ -19,6 +26,8 @@ export const Alert = ({ children }) => {
     </div>
   )
 }
+
+Alert.B = B
 
 export const Success = ({ children }) => {
   return (

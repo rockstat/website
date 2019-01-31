@@ -5,27 +5,27 @@
     display: flex;
     padding: rem(0 0 59px);
     .logo {
-      width: rem(111px);
-      svg {
-        width: 100%;
-      }
+      width: 25%;
+      /* svg { */
+        /* width: 50%; */
+      /* } */
 
       span {
-        @mixin raleway-medium 12px;
+        @mixin mainfont-medium 12px;
         color: #828282;
       }
     }
     .menu {
       display: flex;
       flex-wrap: no-wrap;
-      margin-left: rem(223px);
-      width: 40rem;
+      width: 37.5%;
       .item {
+        width: 33.3%;
         overflow: hidden;
-        margin-left: 3.8rem;
+        /* margin-left: 3.8rem; */
         .itemMain {
           /* headers */
-          @mixin raleway-medium 14px;
+          @mixin mainfont-medium 14px;
           &.notClick {
             pointer-events: none;
           }
@@ -33,7 +33,7 @@
         a {
           color: #fff;
           text-decoration: none;
-          @mixin raleway-regular 14px;
+          @mixin mainfont-regular 14px;
           position: relative;
           transition: color .1s linear;
 
@@ -58,12 +58,15 @@
         }
         .itemChildren {
           .children {
+            margin: rem(7px 0);
+            /* padding: rem(7px 0); */
             a {
+              /* line-height: 14px; */
               position: relative;
               transition: color .1s linear;
-
+              
               &.notActive {
-                opacity: 0.5;
+                color: #4F4F4F;
                 pointer-events: none;
               }
             }
@@ -71,14 +74,14 @@
         }
       }
     }
-    .menuRight {
+    /* .menuRight {
       .item {
         margin-left: 1rem;
         overflow: hidden;
         a {
           color: #fff;
           text-decoration: none;
-          @mixin raleway-medium 14px;
+          @mixin mainfont-medium 14px;
           position: relative;
           transition: color .1s linear;
 
@@ -107,7 +110,7 @@
           }
         }
       }
-    }
+    } */
   }
   /*.socialMenu {
     display: none;
@@ -119,7 +122,7 @@
       color: #ddd;
     }
     span {
-      @mixin raleway-regular 11px;
+      @mixin mainfont-regular 11px;
       color: #BDBDBD;
       /* // display: block; */
       /* // max-width: 500px; */
@@ -171,7 +174,7 @@
 
     /*.socialMenu {
       display: flex;
-      @mixin raleway-regular 14px;
+      @mixin mainfont-regular 14px;
       text-transform: uppercase;
       transition: transform .3s ease;
       will-change: transform;
@@ -216,7 +219,7 @@
           top: 0;
           content: '|';
           color: #4F4F4F;
-          @mixin raleway-bold 14px;
+          @mixin mainfont-bold 14px;
           width: rem(2px);
           height: rem(14px);
         }

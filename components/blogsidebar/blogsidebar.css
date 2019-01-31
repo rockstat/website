@@ -1,4 +1,4 @@
-@import '../../styles/common.css';
+@import '../../static/styles/common.css';
 
 .sideBarContainer {
   width: 100%;
@@ -7,7 +7,7 @@
     padding: rem(38px 10px 32px 40px);
     .item {
       a {
-        @mixin raleway-regular 16px;
+        @mixin mainfont-regular 16px;
         line-height: rem(34px);
         color: #17D8E4;
         display: block;
@@ -22,7 +22,7 @@
     display: block;
     padding: rem(37px 40px);
     a, span {
-      @mixin raleway-regular 16px;
+      @mixin mainfont-regular 16px;
       line-height: rem(28px);
     }
     a {
