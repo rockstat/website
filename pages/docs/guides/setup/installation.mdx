@@ -69,19 +69,32 @@ user@front:~$ █
 
 Таким образом сервер предлагает вам ввести команду.
 
-## Запуск установщика
+## Донастройка системы
 
-Установите минимальный набора зависимостей, требующихся для запуска установщика.
+### Дополнительный диск в Google Compute Engine
 
 ```shell
-sudo apt -qqy update && sudo apt -qqy install curl
+curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/gcloud_sdb | sudo bash -
 ```
+
+### Дополнительный диск в Google Compute Engine
+
+```shell
+curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/ycloud_vdb | sudo bash -
+```
+
+## Запуск установщика
 
 Команда загрузки и запуска установщика:
 
 ```bash
 curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
 
+Если окажется, что нет приложения `curl`, установите при помощи.
+
+```shell
+sudo apt -qqy update && sudo apt -qqy install curl
+```
 
 ##
 ## Rockstat Bootstrap
