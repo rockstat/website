@@ -212,6 +212,9 @@
 - name: Туториалы
   items:
 
+    - name: Установка и настройка Metabase
+      href: /docs/tutorials/metabase
+
     - name: Получение данных из Google Adwords
       href: /docs/tutorials/sources/adwords
 
@@ -231,7 +234,6 @@
 
     - name: Собственный формат событий
       href: /docs/tutorials/custom-event-table
-
 
     - name: Построение истории отдельного пользователя
       href: /docs/tutorials/user-history

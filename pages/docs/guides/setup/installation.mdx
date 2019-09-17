@@ -77,7 +77,7 @@ user@front:~$ █
 curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/gcloud_sdb | sudo bash -
 ```
 
-### Дополнительный диск в Google Compute Engine
+### Дополнительный диск в Yandex Cloud
 
 ```shell
 curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/ycloud_vdb | sudo bash -
@@ -87,8 +87,9 @@ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/ycloud_v
 
 Команда загрузки и запуска установщика:
 
-```bash
+```shell
 curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
+```
 
 Если окажется, что нет приложения `curl`, установите при помощи.
 
@@ -105,7 +106,6 @@ sudo apt -qqy update && sudo apt -qqy install curl
 ##
 ##...
 
-```
 
 Через несколько минут вам потребуется ввести домен, на котором расположен сервер, 
 придумать пароль, а также указать свое имя и email (будет использовано в git).

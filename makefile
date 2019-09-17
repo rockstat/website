@@ -21,7 +21,6 @@ clean:
 deploy:
 	now --public && now alias
 
-
 build:
 	docker build -t website .
 
