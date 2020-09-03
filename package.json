@@ -70,7 +70,7 @@
     "remark-slug": "^5.1.1",
     "remark-unwrap-images": "^0.1.0",
     "rimraf": "^2.6.2",
-    "serve": "^10.0.2",
+    "serve": "^10.1.2",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-declaration-use-variable": "^1.7.0",
     "webpack-bundle-size-analyzer": "^3.0.0",
