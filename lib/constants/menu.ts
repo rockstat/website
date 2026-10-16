@@ -1,11 +1,9 @@
 import type { NavLink } from '../menu';
 
 const digitalGodWeb = 'https://digitalgod.be';
-const RST_FB = 'https://fb.com/rockstat.pub';
 const RST_TG = 'https://t.me/rockstats';
 const RST_GH = 'https://github.com/rockstat';
 const TG_TITLE = 'Telegram'
-const FB_TITLE = 'Facebook'
 const GH_TITLE = 'GitHub'
 
 export const langsMenu: NavLink[] = [
@@ -20,7 +18,6 @@ export const headerMenu: NavLink[] = [
 ];
 
 export const linksMenu: NavLink[] = [
-  { name: FB_TITLE, path: RST_FB, newTab: true },
   { name: TG_TITLE, path: RST_TG, newTab: true },
   { name: GH_TITLE, path: RST_GH, newTab: true }
 ];
@@ -46,7 +43,6 @@ export const footerMenu: NavLink[] = [
   {
     name: 'Сообщество', path: '#', event: false,
     children: [
-      { name: FB_TITLE, path: RST_FB, active: true, newTab: true },
       { name: TG_TITLE, path: RST_TG, active: true, newTab: true },
       { name: GH_TITLE, path: RST_GH, active: true, newTab: true }
     ]
