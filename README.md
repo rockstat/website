@@ -36,7 +36,7 @@ description: "Коротко о чём страница"
 
 ### Стек
 
-- Next.js 16 (Pages Router, Turbopack), React 19
+- Next.js 16 (Pages Router, Turbopack), React 19, TypeScript
 - MDX 3 (`@next/mdx`) — документация и блог в `pages/**/*.mdx`
 - PostCSS (mixins, variables, nested, `rem()`), CSS Modules (`*.module.css`), styled-jsx
 - Node.js 24, pnpm
@@ -71,6 +71,22 @@ pnpm lint         # eslint + stylelint
 - Меню `data/docs.yml` импортируется напрямую (`import menu from '@app/data/docs.yml'`), лоадер
   `lib/loaders/docs-menu-loader.js` сам проверяет наличие страниц.
 - Отступ в 4 пробела больше **не** является блоком кода — используйте ограждения ```.
+
+### Деплой
+
+Сайт деплоится на Vercel (`vercel.json`): пуш в `master` — production, остальные ветки и PR — preview.
+Локально: `vercel` (preview) или `vercel --prod`; то же через `make deploy-preview` / `make deploy`.
+Production-версия `robots.txt` подставляется автоматически при `VERCEL_ENV=production` (или `MAIN=1`).
+
+CI (GitHub Actions, `.github/workflows/ci.yml`) на каждый пуш и PR запускает `pnpm lint` и `pnpm build`.
+
+### Код
+
+Прикладной код (`components/`, `lib/`, `pages/`) на TypeScript в режиме `strict`; проверка типов
+входит в `next build`, отдельно: `npx tsc --noEmit`. Инструменты сборки (`next.config.js`,
+`postcss.config.js`, `lib/loaders`, `lib/postcss`, `lib/remark`, `lib/recma`, `lib/docs-menu.js`, `rockstat`)
+остаются на JavaScript: webpack/Turbopack и PostCSS подключают их напрямую через `require`.
+Декларации для нестандартных импортов (`*.csv`, `*.yml`, `*.mdx`) лежат в `types/`.
 
 ### Docker
 

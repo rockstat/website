@@ -70,6 +70,10 @@
       margin-left: rem(10px);
       display: flex;
       justify-content: space-between;
+      /* language switcher is bold (the shared link mixin sets weight 400) */
+      a, span {
+        font-weight: 700;
+      }
     }
   }
   &.documentation {

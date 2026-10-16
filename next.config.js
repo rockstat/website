@@ -47,7 +47,7 @@ const docsMenuLoader = path.join(__dirname, 'lib/loaders/docs-menu-loader.js');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
   trailingSlash: true,
   output: isExport ? 'export' : undefined,
   images: { unoptimized: true },

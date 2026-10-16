@@ -3,7 +3,6 @@
 node_modules
 .editorconfig
 makefile
-netlify.toml
 yarn-error.log
 /node_modules
 .git

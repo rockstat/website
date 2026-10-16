@@ -15,11 +15,11 @@ to_master:
 	@echo $(BR)
 	git checkout master && git merge $(BR) && git checkout $(BR)
 
-clean:
-	now rm rockstat --safe
+deploy-preview:
+	vercel
 
 deploy:
-	now --public && now alias
+	vercel --prod
 
 
 build:
