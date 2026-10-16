@@ -117,13 +117,16 @@
     - name: Web-SDK
       items:
 
+        - name: Обзор
+          href: /docs/reference/web-sdk/overview
+
         - name: Сниппет и параметры конфигурации
           href: /docs/reference/web-sdk/snippet-and-configuration
 
         - name: Базовая структура событий
           href: /docs/reference/web-sdk/event-struct
 
-        - name: Автоматичексие события
+        - name: Автоматические события
           href: /docs/reference/web-sdk/auto-track
 
         - name: Процессинг сессий
@@ -132,7 +135,7 @@
         - name: JavaScript API
           href: /docs/reference/web-sdk/js-api
 
-        - name: Перехват пикселей
+        - name: Синхронизация идентификаторов
           href: /docs/reference/web-sdk/catch-pixel
 
         - name: Используемый транспорт

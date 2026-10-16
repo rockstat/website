@@ -1,96 +1,114 @@
 Property;JavaScript;ClickHouse;Description
-id;string;UInt64;unique event id
-uid;string;UInt64;rockstat user id
-projectId;number;UInt32;rockstat project id (receives from with event)
+id;;UInt64;unique event id (server)
+uid;string;UInt64;rockstat visitor id, stored in cookie and localStorage
+projectId;number;UInt32;rockstat project id (received with event)
 name;string;String;event name
-service;string;String;event dependend service
+service;string;String;target service, always "track" for events
 channel;;String;received via
 date;;Date;event date (UTC, server time)
 dateTime;;DateTime;event datetime (UTC, server time)
 timestamp;;UInt64;event timestamp (server time)
+data;{[string]:any};;event payload, depends on event
+data.extra.key;;Array(String);extra data fields keys
+data.extra.value;;Array(String);extra data fields values
 page.url;string;String;page full url
+page.path;string;;page path (pathname)
 page.ref;string;String;page referrer
 page.title;string;String;page title
-page.domain;;String;domain/hostname of browsed page
-page.scheme;;String;http/https/etc
-page.query;{[string]:string};;query params
+page.domain;string;String;domain/hostname of browsed page
+page.scheme;string;String;http/https
+page.query;{[string]:string};;parsed query params, including utm_*, gclid, yclid
 page.query.utm_source;string;String;marketing marks source
 page.query.utm_campaign;string;String;marketing marks campaign
 page.query.utm_medium;string;String;marketing marks channel
 page.query.utm_content;string;String;marketing marks ad content
 page.query.utm_term;string;String;marketing marks ad show criteria
-page.query.gclid;string;String;marketing marks has google click id
-page.query.yclid;string;String;marketing marks has yandex click id
+page.query.gclid;string;String;google click id
+page.query.yclid;string;String;yandex click id
 page.query.extra.key;;Array(String);extra query params keys
 page.query.extra.value;;Array(String);extra query params values
-sess.type;string;String;session type: campaign/organic/referral/direct/internal/social
-sess.engine;string;String;engine: yandex/google/fb/vk/etc
-sess.num;number;UInt16;user session number
+sess.type;string;String;session type: campaign/organic/social/partner/referral/internal/direct/webview
+sess.engine;string;String;search engine or social network: google/yandex/fb/vk/tiktok/telegram/etc
+sess.num;number;UInt16;visitor session number
+sess.start;number;UInt64;session start timestamp
 sess.hasMarks;boolean;UInt8;marks flag
 sess.pageNum;number;UInt16;page number in current session
 sess.eventNum;number;UInt16;event number in current session
+sess.refhost;string;String;referrer hostname (without www)
+sess.keyword;string;;search keyword when the engine passes it in the referrer
 sess.marks;{[string]:string};;session marks
 sess.marks.utm_source;string;String;marketing marks source
 sess.marks.utm_campaign;string;String;marketing marks campaign
 sess.marks.utm_medium;string;String;marketing marks channel
 sess.marks.utm_content;string;String;marketing marks ad content
 sess.marks.utm_term;string;String;marketing marks ad show criteria
-sess.marks.has_gclid;string;Int8 DEFAULT -1;marketing marks has google click id
-sess.marks.has_yclid;string;Int8 DEFAULT -1;marketing marks has yandex click id
+sess.marks.has_gclid;number;Int8 DEFAULT -1;google click id present
+sess.marks.has_yclid;number;Int8 DEFAULT -1;yandex click id present
+sess.marks.has_fbclid;number;;facebook click id present (does not force campaign type)
+sess.marks.pid, cid, sub1…sub5;string;;partner marks, force the "partner" session type
 sess.marks.extra.key;;Array(String);extra marks keys
 sess.marks.extra.value;;Array(String);extra marks values
-sess.start;number;UInt64;session start timestamp
-sess.refhost;string;String;referrer hostname (without www)
-lib.id;string;String;library indentificator
-lib.v;string;Float32;library version
-lib.sv;string;Float32;library snippet version
-scroll;{[string]:string};;"Browser visible zone position. On all events, except ""session"", ""page"", ""page_loaded"", ""user_params"", ""identify"""
-scroll.dh;number;UInt16;Document height
-scroll.ch;number;UInt16;Client (browser) height
-scroll.to;number;Int32;Top offset, pixels
-scroll.cs;number;UInt16;Current scroll, persents
-scroll.ms;number;UInt16;Max scroll on current page, persents
-browser.if1;boolean;Int8;iframe detect #1
-browser.if2;boolean;Int8;iframe detect #2
-browser.w;number;Int16;browser width
-browser.h;number;Int16;browser height
-browser.tw;number;Int16;browser total width
-browser.th;number;Int16;browser total height
-browser.aw;number;Int16;browser available width
-browser.ah;number;Int16;browser available height
-browser.sopr;number;Int16;screen.orientation.devicePixelRatio
-browser.soa;number;Int16;screen.orientation.angle
-browser.sot;string;String;screen.orientation.type
-browser.plt;number;String;navigator.platform
-browser.prd;number;String;navigator.product
-user;{[string]:string};;custom user traits
+sess.marksHash;number;;hash of campaign or partner marks set, used to detect a new campaign
+user;{[string]:string};;user id, traits and synced ids
+user.id;string;String;user id assigned by your website via identify
+user.td;number;;clock skew between client and server, ms
+user.ts;number;UInt64;client timestamp
 user.tz;string;String;timezone name
-user.ts;number;UInt64;timestamp
-user.tzo;number;Int32;timezone offset * 1000
-user.id;string;String;user id assigned by your website
-user.gaId;string;String;google analytics client id
-user.ymId;string;String;yandex metrika client id
+user.tzo;number;Int32;timezone offset, ms
+user.ga4ClientId;string;;google analytics 4 client id (synced automatically)
+user.ymId;string;String;yandex metrika client id (synced automatically)
 user.extra.key;;Array(String);custom user traits keys
 user.extra.value;;Array(String);custom user traits values
-data;{[string]:string};;extra data fields
-data.extra.key;;Array(String);Extra data fields keys
-data.extra.value;;Array(String);Extra data fields values
-char.ls;boolean;Int16 DEFAULT -1;Browser LocalStorage support
-char.ae;boolean;Int16 DEFAULT -1;Browser document.addEventListener support
-char.pr;boolean;Int16 DEFAULT -1;Browser Promise support
-char.sb;boolean;Int16 DEFAULT -1;Browser sendBeacon support
-char.ab;boolean;Int16 DEFAULT -1;Browser atob support
-char.wp;boolean;Int16 DEFAULT -1;Browser web-push support
-perf;{[string]:string};;"Browser performance timings. Available only on ""page"" and ""page_loaded"" events. More info at https://goo.gl/c9Dbnr"
+char.ls;boolean;Int16 DEFAULT -1;browser localStorage support
+char.ae;boolean;Int16 DEFAULT -1;browser addEventListener support
+char.pr;boolean;Int16 DEFAULT -1;browser Promise support
+char.sb;boolean;Int16 DEFAULT -1;browser sendBeacon support
+char.ab;boolean;Int16 DEFAULT -1;browser atob/btoa support
+char.wp;boolean;Int16 DEFAULT -1;browser web push support
+browser.if1;number;Int8;iframe detect #1 (window !== top)
+browser.if2;number;Int8;iframe detect #2 (parent has frames)
+browser.w;number;Int16;viewport width
+browser.h;number;Int16;viewport height
+browser.tw;number;Int16;screen width
+browser.th;number;Int16;screen height
+browser.aw;number;Int16;screen available width
+browser.ah;number;Int16;screen available height
+browser.sopr;number;Int16;devicePixelRatio * 1000
+browser.soa;number;Int16;screen.orientation.angle
+browser.sot;string;String;screen.orientation.type
+browser.plt;string;String;navigator.platform
+browser.prd;string;String;navigator.product
+browser.uad;{[string]:string};;User-Agent Client Hints: architecture, bitness, mobile, model, platform, platformVersion, uaFullVersion
+browser.nc;{[string]:string};;network: type, effectiveType, downlinkMax, rtt (navigator.connection)
+browser.ne.hc;number;;CPU cores (hardwareConcurrency)
+browser.ne.dm;number;;RAM in GB (deviceMemory)
+browser.ne.sq;number;;origin storage quota, bytes (navigator.storage.estimate)
+browser.ne.su;number;;origin storage usage, bytes
+browser.nb.a;number;;battery API available
+browser.nb.ch;number;;battery charging (0/1)
+browser.nb.l;number;;battery level, percent
+browser.nb.ct;number;;seconds until fully charged, -1 when unknown
+browser.nb.dt;number;;seconds until fully discharged, -1 when unknown
+perf;{[string]:number};;"Navigation Timing, only on ""page"" and ""page_loaded"""
 perf.cs;number;Int16;timing.connectStart (reference point, always 0)
+perf.ce;number;Int16;timing.connectEnd
 perf.scs;number;Int16;timing.secureConnectionStart (num / -1)
-perf.dl;number;Int16;timing.domLoading
-perf.dc;number;Int16;timing.domComplete (num / -1)
-perf.di;number;Int16;timing.domInteractive
 perf.rqs;number;Int16;timing.requestStart
 perf.rss;number;Int16;timing.responseStart
 perf.rse;number;Int16;timing.responseEnd
-perf.ce;number;Int16;timing.connectEnd
+perf.dl;number;Int16;timing.domLoading
+perf.di;number;Int16;timing.domInteractive
+perf.dc;number;Int16;timing.domComplete (num / -1)
+scroll;{[string]:number};;"Viewport position. On all events except ""session"", ""page"", ""page_loaded"", ""user_params"", ""rec_start"", ""rec_batch"""
+scroll.dh;number;UInt16;document height
+scroll.ch;number;UInt16;viewport height
+scroll.to;number;Int32;top offset, pixels
+scroll.cs;number;UInt16;current scroll, percent
+scroll.ms;number;UInt16;max scroll on current page, percent
+lib.id;string;String;library identifier: "web-sdk"
+lib.v;number;Float32;library version packed as number: major*1e6 + minor*1e3 + patch (5.2.1 → 5002001)
+lib.sv;number;Float32;snippet version, packed the same way
+lib.st;number;;library start timestamp
 sxgeo.country.iso;;String;sypex geo country
 sxgeo.country.ru;;String;sypex geo country
 sxgeo.country.en;;String;sypex geo country

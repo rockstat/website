@@ -2,255 +2,242 @@
 title: "Web-SDK JavaScript API"
 ---
 
- 
-[[alert|Завершение статьи]]
-| Статья не завершена, будет здорово, если вы сможете [внести свой вклад в нее](https://github.com/rockstat/website/blob/master/pages/docs/reference/web-sdk/js-api.mdx). 
+import { Tip, Info } from '@app/components'
 
-## Методы
-
-### Отправка произвольного события на сервер
-
-Вы самостоятельно придумываете название и список данных, которые хотите передать.
+Весь API — одна глобальная функция `rstat4`. Первый аргумент — имя метода, остальные — его
+параметры. До загрузки библиотеки вызовы ставятся в очередь и возвращают `0`; после загрузки
+выполняются сразу и возвращают результат метода.
 
 ```javascript
-rstat('event', eventName, {eventData})
+rstat4('<метод>', ...аргументы)
 ```
 
-| Property          |Type       |Default    |Description
-|-------------------|-----------|-----------|------------------
-| eventName         | String*   |           | Произвольное название события, должно характеризовать что произошло
-| eventData         | Object    | { }       | Произвольные данные события. Может быть любое количество параметров.
+## Отправка данных
 
-##### Примеры
+### page — просмотр страницы
 
 ```javascript
-rstat('event', 'Added to Cart', {
-  id: '1231223',
-  name:'Шторка для ванны',
-  categoryName: 'Товары для дома',
-  listing: 'best_seller',
+rstat4('page', [data], [options])
+```
+
+Отправляет событие `page` с данными производительности в блоке `perf` и сбрасывает счётчики
+трекеров (максимальная прокрутка и т.п.). Библиотека не отправляет его сама: вызывайте после
+`configure`, а в SPA — при каждой смене маршрута.
+
+| Параметр | Тип | По умолчанию | Описание |
+|---|---|---|---|
+| `data` | Object | `{}` | Любые данные о странице: тип, категория, идентификатор товара |
+| `options` | Object | `{}` | [Опции доставки](#опции-доставки) |
+
+```javascript
+rstat4('page', { type: 'content', name: 'Контакты' });
+rstat4('page', { type: 'category', id: '2342344', name: 'Товары для дома' });
+```
+
+### event — произвольное событие
+
+```javascript
+rstat4('event', name, [data], [options])
+```
+
+| Параметр | Тип | По умолчанию | Описание |
+|---|---|---|---|
+| `name` | String | | Название события, характеризует что произошло |
+| `data` | Object | `{}` | Произвольные данные события |
+| `options` | Object | `{}` | [Опции доставки](#опции-доставки) |
+
+```javascript
+rstat4('event', 'add_to_cart', {
+  sku: 'A-100',
+  name: 'Шторка для ванны',
+  category: 'Товары для дома',
+  qty: 2
 });
+
+rstat4('event', 'popup_displayed', { type: 'discount', offer: 'personal_24h' });
 ```
+
+### identify — идентификация пользователя
 
 ```javascript
-rstat('event', 'Popup Displayed', {
-  type: 'Discount Offer',
-  offer:'Personal_24h',
-  category: 'Нижнее белье для кошек'
-});
+rstat4('identify', userId, [traits])
+rstat4('identify', traits)
 ```
+
+| Параметр | Тип | Описание |
+|---|---|---|
+| `userId` | String, Number | Идентификатор пользователя из вашей базы |
+| `traits` | Object | Характеристики пользователя: тариф, сегмент, хеш email и т.п. |
+
+`userId` и трейты сохраняются в хранилище браузера и добавляются в блок `user` каждого
+последующего сообщения: `user.id` плюс ключи трейтов. Отдельное событие на сервер не уходит,
+поэтому вызывать `identify` имеет смысл до `page` или сразу после логина.
 
 ```javascript
-rstat('event', 'User Subscribed', {
-  form:'Subscription',
-  formPostiton: 'Bottom'
-});
+rstat4('identify', 42, { plan: 'pro', email_hash: 'c8d1...' });
+rstat4('identify', { segment: 'vip' }); // только трейты
 ```
 
-### Отправка просмотра страницы
+### request — запрос к сервису с ответом
 
 ```javascript
-rstat('page', {eventData})
+rstat4('request', service, name, [data]) → Promise<response>
 ```
 
-По аналогии с обычными событиями, в `eventData` можно передавать любую доступную информацию,
-связанную с просмотром страницы, например, тип страницы, название категории сайта и тп.
+| Параметр | Тип | Описание |
+|---|---|---|
+| `service` | String | Название сервиса платформы |
+| `name` | String | Метод сервиса |
+| `data` | Object | Параметры, передаваемые сервису |
+
+Всегда идёт через `fetch`, ответ разбирается как JSON. Промис отклоняется при сетевой ошибке
+или тайм-ауте в 10 секунд. Повторных попыток нет, чтобы не дублировать побочные эффекты на сервере.
 
 ```javascript
-rstat('page', {
-  type: 'content',
-  name: 'Контакты'
-})
+const offer = await rstat4('request', 'offers', 'get', { slot: 'hero' });
 ```
 
-или событие просмотра страницы товарной категории
+### notify — уведомление сервиса без ответа
 
 ```javascript
-rstat('page', {
-  type: 'category',
-  id: '2342344',
-  name: 'Товары для дома'
-})
+rstat4('notify', service, name, [data])
 ```
 
-### Идентификация пользователя
+То же, что `request`, но без ожидания ответа: уходит через `sendBeacon`.
 
-```typescript
-rstat('identify', userId?:string, traits?:{[key:string]: string})
-```
-
-| Property          |Type       |Default    |Description
-|-------------------|-----------|-----------|------------------
-| userId            | String    |           | Идентификатор пользователя из вашей базы данных.
-| traits            | Object    | { }       | Набор характеристик пользователя, вроде email, возраста, сегмента и тд
-
-#### Примеры
+### sessionEvent — принудительное событие сессии
 
 ```javascript
-rstat('identify', 'wusahshaet0Quae8oa', {
-  email: 'user@example.com'
-})
+rstat4('sessionEvent')
 ```
-Или без userId
+
+Отправляет событие `session` с текущими данными сессии.
+
+### Опции доставки
+
+Третий аргумент `event` и `page` — объект опций доставки:
+
+| Опция | Описание |
+|---|---|
+| `request: true` | Отправить через `fetch` и вернуть промис с ответом сервера |
+| `transport_img: true` | Отправить через пиксель-изображение |
+| `outbound: true` | Пометка клика по внешней ссылке, ставится автоматически в `link_click` |
+
+## Запись сессии
+
+### record
 
 ```javascript
-rstat('identify', {
-  age: '18',
-  sex: 'male',
-  segment: ['vip']
-})
+rstat4('record', [options])
 ```
 
-### Получение Rockstat User ID
+Запускает запись сессии. Бандл `rrweb-record.js` загружается с сервера трекера только в этот момент.
+`options` переопределяют `trackRecord` из конфигурации. Повторный вызов во время активной записи
+игнорируется, вызов до инициализации откладывается до неё.
+
+### stopRecord
 
 ```javascript
-rstat('getUid')
+rstat4('stopRecord')
+rstat4('record', false)
 ```
 
-Но получить его можно только после загрузки трекера, поэтому следует оборачивать в коллбек успешной загрузки (см ниже)
-
-### Call service method
+Останавливает запись и отправляет остаток буфера. После остановки запись можно начать снова.
 
 ```javascript
-rstat('request', service, name, params = {}): Promise<any>
+rstat4('record');                         // старт
+rstat4('record', { recordCanvas: true }); // старт с опциями
+rstat4('stopRecord');                     // стоп
 ```
 
-Обращение к сервису платформы. Сервис должен быть объявлен как `handler`.
-
-| Property          |Type       |Default    |Description
-|-------------------|-----------|-----------|------------------
-| service           | String    |           | Название сервиса
-| name              | String    |           | Метод сервиса
-| params            | Object    | { }       | Параметры которые будут переданы сервису
-
-### Notify service
-
-```javascript
-rstat('notify', service, name, params = {}): void
-```
-
-Отравка нотификации (без ответа).
-
-| Property          |Type       |Default    |Description
-|-------------------|-----------|-----------|------------------
-| service           | String    |           | Название сервиса
-| name              | String    |           | Метод сервиса
-| params            | Object    | { }       | Параметры которые будут переданы сервису
-
-### Library and snippet info
-
-```javascript
-rstat('getLibInfo'): LibInfo
-
-type LibInfo = {
-  // Library name
-  id: string;
-  // Packed snippet semantic version
-  sv: number;
-  // Packed library semantic version
-  v: number;
-}
-```
-
-### Generate project id based on domain
-
-```javascript
-rstat('buildProjectId', 'www.mydomain.xz'): [string, number]
-```
-
-returns: `[final_domain: string, project_id: number]`
-
-From domains removing `www.` and `m.` or first segments id > 3
+Настройки маскирования описаны в
+[конфигурации trackRecord](/docs/reference/web-sdk/snippet-and-configuration#trackrecord).
 
 ## Коллбеки
 
-### Успешная загрузка SDK
+### onReady — библиотека инициализирована
 
 ```javascript
-rstat('onReady', function(){
-  const id = rstat('getUid');
-  console.log(id)
+rstat4('onReady', function () {
+  const uid = rstat4('getUid');
+  dataLayer.push({ rstatUid: uid });
 });
 ```
 
-Если трекер уже загружен, коллбек будет выполнен сразу. Можно передать его в dataLayer.
+Если библиотека уже инициализирована, коллбек выполняется сразу.
+
+### onEvent — каждое событие до отправки
 
 ```javascript
-rstat('onReady', function(){
-  dataLayer.push({
-    'rstatUserId': rstat('getUid')
-  });
-});
+rstat4('onEvent', function (name, data, options) { /* ... */ })
 ```
 
-### Подписка на все события
+| Аргумент | Описание |
+|---|---|
+| `name` | Имя события |
+| `data` | Данные события, переданные при создании |
+| `options` | Опции доставки |
 
-При необходимости дополнительно обрабатывать собираемые данные или передавать их в сторонний сервис непосредственно из браузера
-
-```typescript
-rstat('onEvent', (eventName:string, eventData:object) => void)
-```
-
-Аргументы
-
-| Property          |Type       |Default    |Description
-|-------------------|-----------|-----------|------------------
-| eventName         | String    |           | Имя события
-| eventData         | Object    | { }       | Произвольные данные, добавленные к событию при его создании
-
-##### Пример обработки события
-
-Некорректно заполненная форма приведет к открытию чата с поддержкой
+Пример: некорректно заполненная форма доставки открывает чат с поддержкой.
 
 ```javascript
-rstat('onEvent', function(name, data){
-  // Ловим событие ошибки при заполнении адреса доставки
-  if (name === 'form_invalid' && data.fname === 'delivery') {
-    // Ждем 5 секунд
-    setTimeout(function(){
-      // Открываем окно чата, передаем пометку оператору
-      SomeChat.openChat({info: 'Проблемы с заполнением формы доставки'});
-      // Передаем событие открытия чата в Rockstat, чтобы можно было оценить эффективность
-      rstat('event', 'Chat Opened', {reason: 'Invalid delivery details'})
-    }), 5*1000);
+rstat4('onEvent', function (name, data) {
+  if (name === 'field_invalid' && data.fname === 'delivery') {
+    setTimeout(function () {
+      SomeChat.open({ info: 'Проблемы с заполнением формы доставки' });
+      rstat4('event', 'chat_opened', { reason: 'invalid_delivery_form' });
+    }, 5000);
   }
 });
 ```
 
-### Подписка на сообщения с сервера
-
-При включении WebSocket в настройках связь становится двусторонней
-и сервисы, работающие на сервере, могут в любой момент передавать сообщения в браузер.
-
-```typescript
-rstat('onServerMessage', (eventName:string, eventData:object) => void)
-```
-
-| Property          |Type       |Default    |Description
-|-------------------|-----------|-----------|------------------
-| eventName         | String    |           | Имя события, пришедшего с сервера
-| eventData         | Object    | { }       | Произвольные данные, указанные серверной частью при создании события
+### onMessage — полное сообщение в том виде, как оно уходит на сервер
 
 ```javascript
-rstat('onServerMessage', function(name, data){
-  console.log('server message:', name, data);
-});
+rstat4('onMessage', function (msg) {
+  console.log(msg.name, msg.sess, msg.page);
+})
 ```
 
-или с самостоятельной фильтрацией
+`msg` содержит все блоки из [структуры события](/docs/reference/web-sdk/event-struct).
+Подходит для отладки и собственных интеграций.
+
+### onInternalEvent — внутренние события библиотеки
 
 ```javascript
-rstat('onServerMessage', function(name, data){
-  if (name === 'show-discount-dialog'){
-    console.log('onServerMessage', name, data);
-  }
-});
+rstat4('onInternalEvent', function (name, data) { /* ... */ })
 ```
 
-### Listening system events
+Имена: `dom_loaded`, `before_unload`, `visibility_change`.
 
-Web-SDK internally use event system for 
+### onServerMessage — сообщения с сервера
 
-```typescript
-rstat('onInternalEvent', (eventName:string, eventData:object) => void)
+```javascript
+rstat4('onServerMessage', function (name, data) { /* ... */ })
+```
+
+<Info>
+  Канал сервер → браузер (WebSocket) зарезервирован и в текущей версии не активен. Коллбек
+  регистрируется, но вызовов не будет.
+</Info>
+
+## Утилиты
+
+| Метод | Описание |
+|---|---|
+| `rstat4('getUid')` | Текущий `uid` посетителя. До инициализации — предупреждение и `undefined`, используйте внутри `onReady` |
+| `rstat4('getSessNum')` | Номер текущей сессии посетителя |
+| `rstat4('getLibInfo')` | `{ id: 'web-sdk', v, sv, st }` — версия библиотеки числом (`5.2.1 → 5002001`), версия сниппета, время старта |
+| `rstat4('isInitialized')` | `true` после инициализации |
+| `rstat4('buildProjectId', domain)` | `[domain, projectId]` — нормализованный домен и его хеш, который используется как `projectId` по умолчанию |
+| `rstat4('setCustomConfig', config)` | Сохранить персональные переопределения конфигурации в хранилище браузера. Применяются при следующих загрузках |
+| `rstat4('enableLogger')` | Подробный лог в консоли. До загрузки библиотеки можно включить через `window._rst4_logger = true` |
+| `rstat4('set', name, obj)` | Положить объект в реестр библиотеки |
+
+```javascript
+rstat4('buildProjectId', 'www.shop.example.com')
+// → ['example.com', 1617632140]
+
+rstat4('getLibInfo')
+// → { id: 'web-sdk', v: 5002001, sv: 5002001, st: 1757960000000 }
 ```

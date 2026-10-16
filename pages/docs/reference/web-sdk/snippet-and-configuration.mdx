@@ -2,19 +2,23 @@
 title: "Сниппет и конфигурация Web-SDK"
 ---
 
-import { RenderTable, Expand } from '@app/components'
+import { RenderTable, Expand, Tip, Info } from '@app/components'
 import webSdkParams from '../../structs/web-sdk-params.csv';
 
-Актуальная версия сниппета в репозитории [github.com/rockstat/web-sdk/snippet](https://github.com/rockstat/web-sdk/blob/master/snippet/snippet.html)
+## Сниппет
+
+Актуальная версия в репозитории:
+[github.com/rockstat/web-sdk/snippet](https://github.com/rockstat/web-sdk/blob/master/snippet/snippet.html).
+Пошаговая установка описана в [руководстве](/docs/guides/web-sdk/setup).
 
 ```html
-<script type="text/javascript">
+<script>
   !function (w, d, st, cn, hs, lj, rst, se, he) {
-    if(w.rstat) return; rst = w.rstat = function () {
+    if(w.rstat4) return; rst = w.rstat4 = function () {
       var a = Array.prototype.slice.call(arguments);
       a.length && a[0] === cn && rst._a(Object(a[1]));
       return rst.doCall ? rst.doCall.call(rst, a) : rst._q.push(a) && 0; };
-    rst.push = rst; rst._sv = 1.3; rst._q = [];
+    rst.push = rst; rst._sv = '5.2.1'; rst._q = [];
     rst._jsl = function (src) {
       se = d.createElement(st); se.async = !0; se.src = src;
       he = d.getElementsByTagName(st)[0]; he.parentNode.insertBefore(se, he); };
@@ -22,17 +26,201 @@ import webSdkParams from '../../structs/web-sdk-params.csv';
       rst._host = conf.server; rst._prefix = conf.pathPrefix || '';
       rst._host && rst._jsl(hs+rst._host+rst._prefix+lj); }
   }(window, document, 'script', 'configure', 'https://', '/lib.js');
-  // Конфигурация, подробности ниже
-  rstat('configure', {
-    server: 'DOMAIN' //<<< Укажите ваш домен трекера, например "stat.digitalgod.be"
+
+  rstat4('configure', {
+    server: 'stat.example.com'
   });
-  // Добавляем в очередь событие загрузки страницы. Как только трекер загрузится, оно будет отправлено.
-  rstat('page');
+  rstat4('page');
 </script>
 ```
 
-## Параметры Web-SDK
+### Как работает загрузчик
+
+1. Создаёт глобальную функцию `rstat4` с очередью `_q`. Повторная вставка сниппета безопасна: если
+   `window.rstat4` уже есть, загрузчик ничего не делает.
+2. Каждый вызов `rstat4(...)` до загрузки библиотеки попадает в очередь и возвращает `0`.
+3. Вызов `rstat4('configure', { server })` запускает асинхронную загрузку
+   `https://<server><pathPrefix>/lib.js`.
+4. Библиотека забирает очередь, инициализируется на `DOMContentLoaded` и выполняет накопленные вызовы.
+   После этого `rstat4(...)` работает напрямую и возвращает результат метода.
+
+В `rst._sv` записана версия сниппета. Она уходит на сервер в блоке `lib.sv` каждого события,
+по ней видно, на каких сайтах сниппет устарел.
+
+## configure
+
+```javascript
+rstat4('configure', { /* параметры */ });
+```
+
+Можно вызывать несколько раз: параметры объединяются. После инициализации библиотеки вызов
+игнорируется с предупреждением в консоли, поэтому вся конфигурация должна быть передана до
+`DOMContentLoaded`, то есть в сниппете.
+
+## Основные параметры
 
 <Expand>
   <RenderTable data={webSdkParams} />
 </Expand>
+
+## Трекеры
+
+Каждый трекер включается объектом его настроек или `true`; `false` выключает. Ключи, которых нет
+в объекте, берут значения по умолчанию.
+
+### trackActivity
+
+Измеряет вовлечённость: считает DOM-события пользователя (движение мыши, клики, клавиатура,
+касания, прокрутка) и раз в `flushInterval` секунд отправляет событие `activity` со счётчиками
+за период. Периоды без действий не отправляются, но нумеруются, поэтому по `iteration` и `active`
+видно, сколько времени посетитель реально взаимодействовал со страницей. Отдельно трекер следит
+за прокруткой: когда она останавливается, уходит событие `scroll`, а ко всем пользовательским
+событиям добавляется блок `scroll` с текущей и максимальной позицией.
+
+```javascript
+trackActivity: { flushInterval: 10 }   // реже отправлять activity
+trackActivity: { scrollEvents: false } // без отдельных событий scroll
+trackActivity: false                   // выключить целиком
+```
+
+| Ключ | По умолчанию | Описание |
+|---|---|---|
+| `flushInterval` | `5` | Период отправки события `activity`, секунды |
+| `zeroEvents` | `false` | Отправлять `activity` даже без действий пользователя |
+| `scrollEvents` | `true` | Отправлять событие `scroll`, когда прокрутка остановилась |
+| `domEvents` | `true` | Считать DOM-события (клики, клавиатура, движение мыши, касания) для `activity` |
+
+### trackClicks
+
+Перехватывает клики по странице. По умолчанию отправляет только `link_click`: от элемента под
+курсором вверх ищется ближайший `<a>`, в событие попадают `href`, текст ссылки, признак `outbound`
+(ведёт на другой хост) и описание элемента, на который пришёлся клик. С `allClicks: true` клики по
+любым другим элементам уходят как `element_click` с тегом, классом, `id`, `name` и placeholder
+элемента; клики по ссылкам при этом по-прежнему остаются `link_click`. Элементы с классом
+`ignoreClass` и их потомки не отслеживаются: так удобно исключить, например, кнопки открытия
+меню или виджеты чата.
+
+```javascript
+trackClicks: { allClicks: true, ignoreClass: 'no-track' }
+```
+
+| Ключ | По умолчанию | Описание |
+|---|---|---|
+| `allClicks` | `false` | `false` — только клики по ссылкам (`link_click`), `true` — ещё и клики по любым элементам (`element_click`) |
+| `ignoreClass` | `'rst-ignore'` | CSS-класс элементов, клики по которым не отслеживаются |
+
+### trackForms
+
+Отслеживает взаимодействие с формами и полями: `field_focus`, `field_change`, `field_blur`,
+`field_invalid` на уровне поля и `form_submit` на уровне формы. В событие попадают атрибуты поля
+(`tag`, `type`, `name`, `placeholder`, `class`, `id`) и формы (`method`, `action`, `name`,
+`class`, `id`), поэтому воронку заполнения можно построить без разметки сайта. Значения полей по
+умолчанию не собираются: `trackValues: true` включает отправку открытым текстом, а
+`encryptionKey` — шифрование в браузере публичным RSA-ключом, при котором открытый текст не
+покидает страницу. Если задан ключ, но WebCrypto недоступен (например, страница не в secure
+context), значение отбрасывается, а не отправляется как есть.
+
+```javascript
+trackForms: { encryptionKey: 'MIIBIjANBgkq...' } // значения уходят зашифрованными, eenc: 1
+trackForms: { trackValues: true }                 // значения открытым текстом
+trackForms: {}                                    // только факты взаимодействия, без значений
+```
+
+| Ключ | По умолчанию | Описание |
+|---|---|---|
+| `trackValues` | `false` | Отправлять значения полей открытым текстом в `evalue` |
+| `encryptionKey` | `null` | Публичный RSA-ключ (base64 SPKI). Если задан, значения полей шифруются в браузере (WebCrypto RSA-OAEP) и уходят с `eenc: 1`. Открытый текст не покидает браузер; если шифрование недоступно, значение отбрасывается |
+
+<Tip>
+  Шифрование требует secure context: https или `localhost`. Расшифровать значения может только
+  сервер с приватным ключом.
+</Tip>
+
+### trackRecord
+
+Запись сессии: rrweb снимает DOM и все изменения на странице, SDK упаковывает их fflate и
+отправляет батчами `rec_batch`, по которым сервер восстанавливает видеоподобную запись действий
+посетителя. Сам rrweb не входит в `lib.js`: отдельный бандл `rrweb-record.js` подгружается с
+сервера трекера (или с `scriptUrl`) только в момент старта записи, поэтому для сайтов без записи
+он ничего не весит. По умолчанию запись не стартует: её включает `autostart: true` в конфигурации
+либо вызов `rstat4('record')` в нужный момент, например при входе в оформление заказа.
+
+Все поля ввода маскируются. Для тонкой настройки есть три CSS-класса: `rst-block` целиком убирает
+элемент из записи, `rst-mask` заменяет его текст звёздочками, `rst-ignore` отключает запись ввода
+в поле. Периодический полный снимок DOM (`checkoutEveryNms`) позволяет воспроизводить запись с
+произвольного момента.
+
+```javascript
+trackRecord: { autostart: true }                         // писать все сессии с загрузки
+trackRecord: { autostart: false, recordCanvas: true }    // старт по rstat4('record'), с canvas
+```
+
+| Ключ | По умолчанию | Описание |
+|---|---|---|
+| `autostart` | `false` | `true` — запись начинается при инициализации, иначе только по вызову `rstat4('record')` |
+| `scriptUrl` | `null` | Полный URL бандла записи, если он лежит не на сервере трекера |
+| `maskAllInputs` | `true` | Значения полей ввода не записываются |
+| `blockClass` | `'rst-block'` | Элементы с этим классом полностью исключаются из записи |
+| `maskTextClass` | `'rst-mask'` | Текст элемента заменяется звёздочками |
+| `ignoreClass` | `'rst-ignore'` | События ввода в элементе не записываются |
+| `recordCanvas` | `false` | Записывать canvas |
+| `checkoutEveryNms` | `120000` | Период полного снимка DOM, мс |
+| `flushInterval` | `5` | Период сброса буфера, секунды |
+| `maxBatchBytes` | `40000` | Размер части батча. Вместе с конвертом сообщения должен укладываться в лимит beacon 64 КБ |
+
+### browserEvents
+
+Жизненный цикл страницы. На `beforeunload` отправляется `page_unload` — посетитель ушёл со
+страницы или закрыл вкладку; на `visibilitychange` — `page_visibility` с признаком скрытия и
+длительностью предыдущего состояния, по нему считается реальное время на странице с учётом
+переключений вкладок и сворачивания браузера. Оба события уходят через `sendBeacon`, который
+не блокирует страницу и доставляет данные при выгрузке. В мобильных браузерах `beforeunload`
+срабатывает не всегда, поэтому для времени на странице надёжнее опираться на `page_visibility`
+и `activity`.
+
+```javascript
+browserEvents: { unloadHandlers: false } // не отправлять page_unload
+```
+
+| Ключ | По умолчанию | Описание |
+|---|---|---|
+| `unloadHandlers` | `true` | Отправлять `page_unload` на `beforeunload` |
+| `visibilityHandlers` | `true` | Отправлять `page_visibility` при переключении вкладки |
+
+## Пример полной конфигурации
+
+```javascript
+rstat4('configure', {
+  server: 'stat.example.com',
+  projectId: 42,
+  sessionTimeout: 1800,
+  trackActivity: { flushInterval: 10 },
+  trackClicks: { allClicks: true, ignoreClass: 'no-track' },
+  trackForms: { encryptionKey: 'MIIBIjANBgkq...' },
+  trackRecord: { autostart: false, maskAllInputs: true },
+  browserEvents: { visibilityHandlers: true }
+});
+rstat4('page');
+```
+
+## Персональные переопределения
+
+`rstat4('setCustomConfig', config)` сохраняет переопределения конфигурации в хранилище браузера.
+Они применяются при следующих загрузках поверх параметров сниппета. Удобно, чтобы, например,
+включить себе подробный лог или запись сессии на боевом сайте, не трогая код.
+
+```javascript
+rstat4('setCustomConfig', { trackRecord: { autostart: true } });
+```
+
+## Хранилище
+
+SDK использует cookie с префиксом `cookiePrefix` (`rst4-`) и localStorage с префиксом `lcPrefix`
+(`rst4:`). В них лежат идентификатор посетителя `uid`, данные текущей сессии и счётчики, последняя
+рекламная кампания, `userId` и трейты из `identify`. Cookie ставятся на `cookieDomain` с
+`SameSite=Lax` и флагом `Secure` на https.
+
+<Info>
+  Параметры `activateWs`, `wsServer`, `wsPath` и `pixelSync` зарезервированы и в текущей версии
+  не используются.
+</Info>

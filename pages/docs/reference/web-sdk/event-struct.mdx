@@ -1,95 +1,98 @@
 ---
-title: "Базовая структура событий WebSDK"
+title: "Базовая структура событий Web-SDK"
 ---
 
-import { RenderTable, Expand } from '@app/components'
+import { RenderTable, Expand, Info } from '@app/components'
 import eventStruct from '../../structs/event-struct.csv'
 
-События, генерируемые SDK, имеют следующий вид
+Каждое событие уходит на сервер POST-запросом на `https://<server><pathPrefix>/<urlMark>/t4k.json`
+с телом в JSON. Блоки `page`, `sess`, `user`, `char`, `browser`, `lib` одинаковы для всех событий,
+`data` зависит от события, `perf` и `scroll` добавляются не ко всем.
 
 ```json
 {
   "service": "track",
   "name": "page",
+  "data": { "type": "content", "name": "Контакты" },
   "projectId": 1617632140,
   "uid": "6410748586712844288",
-  "data": {},
   "user": {
-    "gaId": "2039255293.1537236640",
+    "td": 0,
+    "id": "42",
+    "plan": "pro",
+    "ga4ClientId": "2039255293.1537236640",
     "ymId": "1537242943246737376",
-    "hybridPid": "59943dc57bc79f20d8fa53c5",
-    "ts": 1537243840171,
-    "tz": "Moscow Standard Time",
-    "tzo": 180000
+    "ts": 1757960000000,
+    "tz": "Europe/Moscow",
+    "tzo": 10800000
   },
   "page": {
-    "title": "Rockstat platform",
-    "ref": "",
-    "url": "https://rock.st/docs/reference/web-sdk/auto-track"
+    "title": "Rockstat",
+    "path": "/contacts",
+    "ref": "https://www.google.com/",
+    "url": "https://example.com/contacts?utm_source=g",
+    "query": { "utm_source": "g" },
+    "domain": "example.com",
+    "scheme": "https"
   },
   "sess": {
-    "pageNum": 14,
-    "eventNum": 90,
-    "type": "direct",
-    "marks": {},
-    "hasMarks": false,
+    "pageNum": 3,
+    "eventNum": 17,
     "num": 2,
-    "start": 1537242940499
+    "type": "campaign",
+    "engine": "google",
+    "refhost": "google.com",
+    "marks": { "utm_source": "g" },
+    "hasMarks": true,
+    "marksHash": 123456,
+    "start": 1757960000000
   },
-  "char": {
-    "ls": true,
-    "ae": true,
-    "pr": true,
-    "sb": true,
-    "ab": true,
-    "wp": true
-  },
+  "char": { "ls": true, "ae": true, "pr": true, "sb": true, "ab": true, "wp": true },
   "browser": {
-    "if1": 0,
-    "if2": 0,
-    "w": 1440,
-    "h": 415,
-    "tw": 1440,
-    "th": 900,
-    "aw": 1440,
-    "ah": 836,
-    "sopr": 2000,
-    "soa": -1,
-    "sot": "landscape-primary",
-    "plt": "MacIntel",
-    "prd": "Gecko"
+    "if1": 0, "if2": 0,
+    "w": 1440, "h": 415, "tw": 1440, "th": 900, "aw": 1440, "ah": 836,
+    "sopr": 2000, "soa": 0, "sot": "landscape-primary",
+    "plt": "MacIntel", "prd": "Gecko",
+    "uad": { "platform": "macOS", "platformVersion": "14.5.0", "mobile": false },
+    "nc": { "effectiveType": "4g", "rtt": 50 },
+    "ne": { "hc": 8, "dm": 8, "sq": 296630877388, "su": 12345 },
+    "nb": { "a": 1, "ch": 1, "l": 100, "ct": 0, "dt": -1 }
   },
-  "lib": {
-    "id": "rst-sdk-web",
-    "v": "3.14.4",
-    "sv": "3.14.0"
-  },
-  "perf": {
-    "cs": 0,
-    "ce": 0,
-    "scs": -1,
-    "rqs": 211,
-    "rss": 1549,
-    "rse": 1560,
-    "dl": 1581,
-    "di": 1812,
-    "dc": -1
-  },
-  "scroll": {
-    "dh": 1148,
-    "ch": 326,
-    "to": 479,
-    "cs": 100,
-    "ms": 100
-  }
+  "perf": { "cs": 0, "ce": 0, "scs": -1, "rqs": 211, "rss": 1549, "rse": 1560, "dl": 1581, "di": 1812, "dc": -1 },
+  "scroll": { "dh": 1148, "ch": 326, "to": 479, "cs": 100, "ms": 100 },
+  "lib": { "id": "web-sdk", "v": 5002001, "sv": 5002001, "st": 1757960000000 }
 }
 ```
 
-### Полная схема событий
+В строке запроса передаются `dig` — хеш тела (cyrb53) и `td_trans` — использованный транспорт
+(`b` — beacon, `f` — fetch). Подробнее в разделе [Транспорт](/docs/reference/web-sdk/transport).
 
-Точками в ключах помечен переход на следующий уровень вложености `page.title: abc` означают `{..., page { title: abc, ....`.
-Тип данных `{[string]:string}` означает обычный JavaScript объект, ключами и значениями которого являются строки.
-Обратите внимание, что у некоторых значений указан список событий, в которых они присутствуют.
+## Блоки сообщения
+
+| Блок | Содержимое |
+|---|---|
+| `name`, `data` | Имя события и его данные. Список автоматических событий и их `data` — в разделе [Автоматические события](/docs/reference/web-sdk/auto-track) |
+| `projectId` | Идентификатор проекта из конфигурации или хеш домена |
+| `uid` | Идентификатор посетителя. Хранится в cookie и localStorage |
+| `user` | `id` и трейты из `identify`; `ga4ClientId` и `ymId` из автоматических синхронизаций с GA4 и Яндекс Метрикой; `ts`, `tz`, `tzo` — время и часовой пояс клиента; `td` — расхождение часов с сервером |
+| `page` | `url`, `path`, `query` (разобранная строка запроса, включая UTM, `gclid`, `yclid`), `ref`, `title`, `domain`, `scheme` |
+| `sess` | Сессия: номер, старт, счётчики, тип источника, метки. Подробнее в разделе [Сессии](/docs/reference/web-sdk/sessions) |
+| `char` | Возможности браузера: `ls` localStorage, `ae` addEventListener, `pr` Promise, `sb` sendBeacon, `ab` atob, `wp` web push |
+| `browser` | `w`/`h` — область просмотра, `tw`/`th` — экран, `aw`/`ah` — доступная область, `sopr` — devicePixelRatio × 1000, `soa`/`sot` — ориентация, `if1`/`if2` — признаки iframe, `plt`/`prd` — платформа и движок, `uad` — Client Hints, `nc` — сеть, `ne` — ядра, память и квота хранилища, `nb` — батарея |
+| `perf` | Navigation Timing: `cs` connectStart, `ce` connectEnd, `scs` secureConnectionStart, `rqs` requestStart, `rss`/`rse` responseStart/End, `dl` domLoading, `di` domInteractive, `dc` domComplete. Только у `page` и `page_loaded` |
+| `scroll` | `dh` — высота документа, `ch` — высота области просмотра, `to` — смещение сверху, `cs` — текущая прокрутка в процентах, `ms` — максимальная прокрутка на странице. У всех событий, кроме `session`, `page`, `page_loaded`, `user_params`, `rec_start`, `rec_batch` |
+| `lib` | `id`, `v` — версия библиотеки числом `major × 1e6 + minor × 1e3 + patch`, `sv` — версия сниппета, `st` — время старта библиотеки |
+
+<Info>
+  Значения в `browser.uad`, `browser.nc`, `browser.ne.sq`/`su` и `browser.nb` собираются асинхронно
+  и могут отсутствовать в первых сообщениях страницы. Отсутствующие оценки батареи передаются как `-1`.
+</Info>
+
+## Полная схема событий
+
+Точками в ключах помечен переход на следующий уровень вложенности: `page.title` означает
+`{ page: { title } }`. Тип `{[string]:string}` — обычный объект со строковыми ключами и значениями.
+Колонка JavaScript описывает то, что отправляет браузер; поля без неё добавляет сервер.
 
 <Expand>
   <RenderTable data={eventStruct} colFilter={v=>v!="ClickHouse"} rowFilter={v=>v["JavaScript"]}/>

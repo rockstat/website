@@ -1,320 +1,272 @@
 ---
-title: "Автоматически генерируемые события в WebSDK"
+title: "Автоматические события Web-SDK"
 ---
 
-import { Alert, Tip, Info } from '@app/components'
+import { Tip, Info } from '@app/components'
 
-## Старт сессии
+Все события уходят в сервис `track` и имеют [общую структуру](/docs/reference/web-sdk/event-struct).
+Ниже описано только поле `data` каждого события и условия, при которых оно возникает.
 
-Сессионные данные общие на все события, у сессии есть только название. Даже data нет
+| Событие | Источник | Включается |
+|---|---|---|
+| `session` | старт или перезапуск сессии | всегда |
+| `page` | `rstat4('page')` | вызовом |
+| `page_loaded` | `window.load` | всегда |
+| `page_unload` | `beforeunload` | `browserEvents.unloadHandlers` |
+| `page_visibility` | `visibilitychange` | `browserEvents.visibilityHandlers` |
+| `activity` | счётчик DOM-событий, раз в `flushInterval` | `trackActivity` |
+| `scroll` | прокрутка остановилась | `trackActivity.scrollEvents` |
+| `link_click` | клик по ссылке | `trackClicks` |
+| `element_click` | клик по любому элементу | `trackClicks.allClicks` |
+| `form_submit` | отправка формы | `trackForms` |
+| `field_focus`, `field_blur`, `field_change`, `field_invalid` | события полей | `trackForms` |
+| `user_params` | синхронизация с GA4 и Яндекс Метрикой | всегда |
+| `rec_start`, `rec_batch` | запись сессии | `trackRecord` или `rstat4('record')` |
+
+## Сессия
+
+Отправляется вместо события, которое инициировало старт сессии, а оно уходит следом.
+`data` пустой, вся информация в блоке `sess`. Подробнее в разделе
+[Сессии](/docs/reference/web-sdk/sessions).
 
 ```json
 {
-  //...
-  "name": "session"
-  //...
+  "name": "session",
+  "data": {},
   "sess": {
-    // подробнее в разделе общей структуры данных и разделе про сессии
+    "pageNum": 0, "eventNum": 0, "num": 1,
+    "type": "organic", "engine": "google", "refhost": "google.com",
+    "marks": {}, "hasMarks": false, "start": 1757960000000
   }
-  //...
 }
 ```
 
-## Загрузка страницы
+## Просмотр страницы
 
-Просмотры страниц могут дополняться информацией о странице, вроде типа страницы или категории.
-Дополнительную информацию необходимо передавать самостоятельно.
+Библиотека не отправляет `page` сама, его вызывает сайт. В `data` попадает всё, что передано в
+вызов. К событию добавляется блок `perf` с таймингами загрузки.
 
 ```json
 {
-  //...
   "name": "page",
-  //...
-  "data": {
-    "category": "content page",
-    "name": "delivery"
-  }
-  //...
-  "perf": {
-    // подробнее в разделе с общей структурой данных
-  }
-  //...
+  "data": { "type": "category", "id": "2342344", "name": "Товары для дома" },
+  "perf": { "cs": 0, "ce": 0, "scs": -1, "rqs": 211, "rss": 1549, "rse": 1560, "dl": 1581, "di": 1812, "dc": -1 }
 }
 ```
 
 ## Страница загружена
 
-Содержит данные производительности сети и браузера, которые находятся в `perf` [общей структуры данных](alcojs-data-format)
+Уходит по `window.load`, `data` пустой, блок `perf` заполнен уже полностью.
 
 ```json
-{
-  //...
-  "name": "page_loaded",
-  //...
-  "perf": {
-    // подробнее в разделе с общей структурой данных
-  }
-  //...
-}
+{ "name": "page_loaded", "data": {}, "perf": { "...": "..." } }
 ```
 
 ## Выгрузка страницы
 
-Вызывается при переходе на другую страницу или закрытии браузера/вкладки
+Уходит по `beforeunload` при переходе на другую страницу или закрытии вкладки, `data` пустой.
+Доставка через `sendBeacon`, поэтому событие успевает уйти.
+
+```json
+{ "name": "page_unload", "data": {} }
+```
+
+## Видимость вкладки
+
+Уходит по `visibilitychange`: пользователь переключил вкладку, свернул браузер или вернулся.
 
 ```json
 {
-  //...
-  "name": "page_unload",
-  //...
-  "perf": {
-    // подробнее в разделе с общей структурой данных
+  "name": "page_visibility",
+  "data": {
+    "hidden": 1,          // 1 — вкладка скрыта, 0 — видима
+    "state": "hidden",    // document.visibilityState
+    "dur": 48213          // сколько мс держалось предыдущее состояние
   }
-  //...
 }
 ```
 
-<Alert>
-  Эта статья адаптирована от прошлой версии.
-  Если попадётся неточность, сообщите об этом в сообществе.
-</Alert>
+## Активность
 
-## Клики по ссылкам
+Счётчик DOM-событий накапливает статистику и раз в `flushInterval` секунд (по умолчанию 5)
+отправляет её на сервер. Если за период действий не было, событие не уходит, но номер итерации
+растёт. С `zeroEvents: true` отправляются и пустые периоды.
 
 ```json
 {
-  //...
+  "name": "activity",
+  "data": {
+    "interval": 5,     // период, секунд
+    "iteration": 65,   // номер периода с момента загрузки страницы
+    "active": 4,       // номер периода с активностью
+    "mousemove": 62,
+    "mousedown": 2,
+    "mouseup": 2,
+    "click": 2,
+    "wheel": 23,
+    "scroll": 22,
+    "keydown": 5,
+    "touchstart": 1
+  }
+}
+```
+
+Считаются события: `touchmove`, `touchstart`, `touchleave`, `touchenter`, `touchend`,
+`touchcancel`, `click`, `mouseup`, `mousedown`, `mousemove`, `mousewheel`, `wheel`, `scroll`,
+`keypress`, `keydown`, `keyup`, `resize`, `focus`, `blur`. В `data` попадают только те, что
+произошли за период. Описание событий есть на
+[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/Events).
+
+## Прокрутка
+
+Уходит, когда прокрутка остановилась. `data` пустой, позиция в блоке `scroll`, который
+добавляется и ко всем остальным пользовательским событиям.
+
+```json
+{ "name": "scroll", "data": {}, "scroll": { "dh": 1148, "ch": 326, "to": 479, "cs": 100, "ms": 100 } }
+```
+
+## Клик по ссылке
+
+Ищется ближайший `<a>` вверх от элемента, на который пришёлся клик. `outbound` — ссылка ведёт на
+другой хост. Элементы с классом `trackClicks.ignoreClass` (по умолчанию `rst-ignore`) не отслеживаются.
+
+```json
+{
   "name": "link_click",
-  //...
   "data": {
     "target": {
-      "tag": "span",
+      "tag": "span",              // тег самого глубокого элемента под курсором
       "type": "",
       "name": "",
-      "ph": "",
-      "cls": "phonablet-hide", 
-      // класс элемента
+      "ph": "",                   // placeholder
+      "cls": "menu-item",         // class
       "id": "",
       "href": "",
       "text": "Меню"
     },
-    "href": "https://www.example.com/link/#header-menu",
+    "href": "https://www.example.com/catalog/#menu",
     "text": "Текст ссылки",
-    // Ссылка уводит посетителя на другой сайт
-    "outbound": true | false
+    "outbound": false
   }
-  //...
 }
 ```
 
-## Клики по любым другим элементам
+## Клик по любому элементу
+
+Только при `trackClicks: { allClicks: true }`. Клики по ссылкам по-прежнему уходят как
+`link_click`, `element_click` для них не отправляется.
 
 ```json
 {
-  //...
   "name": "element_click",
-  //...
   "data": {
     "target": {
-      "tag": "input", 
-        // наименование наиболее глубокого в иерархии html-тега, на который пришелся клик 
-      "type": "text", 
-      "name": "",
+      "tag": "input",
+      "type": "text",
+      "name": "city",
       "ph": "Введите город прибытия",
-        // наименование плейсхолдера элемента
       "cls": "SearchWidget-input -to",
-        // наименование класса 
       "id": "",
       "href": "",
       "text": ""
     }
   }
-  //...
 }
 ```
 
-<Tip>
-  Отслеживание всех кликов отключено по-умолчанию. 
-  Для включения см. описание trackClicks [в настройках сниппета](/docs/reference/web-sdk/snippet-and-configuration/)
-</Tip>
+## Поля формы
 
-<Tip>
-  Активация отслеживания всех кликов не меняет поведение при кликах по ссылкам.
-  При клие по ссылке link_click будет по-прежнему отправляться, element_click - не будет.
-</Tip>
+Четыре события с одинаковым набором параметров:
 
-<Info>
-  Отправка value сейчас не производится
-</Info>
+- `field_focus` — каретка поставлена в поле;
+- `field_change` — значение поля изменилось;
+- `field_blur` — каретка покинула поле;
+- `field_invalid` — поле не прошло браузерную валидацию при отправке формы.
 
-## Взаимодействие с полями формы
-
-Три события с одинаковым набором параметров:
-
-- `field_focus` - каретка поставлена в поле ввода
-- `field_change` - в поле поменялись данные
-- `field_blur` - каретка покинула поле ввода
+Параметры с префиксом `e` описывают поле, с префиксом `f` — форму, в которой оно находится.
 
 ```json
 {
-  //...
   "name": "field_change",
-  //...
   "data": {
-    // Название события DOM.
-    "event": "change",
-    // element tag: html тэг элемента формы
-    "etag": "input",
-    // element type: атрибут type элемента формы
-    "etype": "text",
-    // element name: атрибут name элемента формы
-    "ename": "delivery_address", // Название поля формы
-    // element placeholder: атрибут placeholder (значение пока ничего не вписано)
-    "eph": null,
-    // element class: атрибут class элемента формы (css)
-    "ecl": "select2-selection form-field",
-    // element id: атрибут id элемента формы
-    "eid": "",
-    // form method: http метод отправки формы
-    "fmthd": "post",
-    // form action: url, куда будет отправлена форма
-    "fact": "/checkout/purchase",
-    // form name: атрибут name элемента формы
-    "fname": "order-form",
-    // form class: атрибут class элемента формы (css)
-    "fcls": "",
-    // element id: атрибут id элемента формы
-    "fid": "order-form",
+    "event": "change",            // DOM-событие
+    "etag": "input",              // тег элемента
+    "etype": "text",              // атрибут type
+    "ename": "delivery_address",  // атрибут name
+    "eph": "",                    // placeholder
+    "ecl": "form-field",          // class
+    "eid": "",                    // id
+    "evalue": "",                 // значение, см. ниже
+    "fmthd": "post",              // метод формы
+    "fact": "/checkout/purchase", // action формы
+    "fname": "order-form",        // name формы
+    "fcls": "",                   // class формы
+    "fid": "order-form"           // id формы
   }
-  //...
 }
 ```
 
-Если форма отсутствует
+Если поле не внутри формы, вместо `f*` приходит `"ferr": "Form element absent"`.
 
-```json
-{
-  //...
-  "name": "field_change",
-  //...
-  "data": {
-    // Название события DOM.
-    "event": "change",
-    // element tag: html тэг элемента формы
-    "etag": "input",
-    // element type: атрибут type элемента формы
-    "etype": "text",
-    // element name: атрибут name элемента формы
-    "ename": "delivery_address", // Название поля формы
-    // element placeholder: атрибут placeholder (значение пока ничего не вписано)
-    "eph": "",
-    // element class: атрибут class элемента формы (css)
-    "ecl": "select2-selection form-field",
-    // element id: атрибут id элемента формы
-    "eid": "",
-    // if form not present
-    "ferr": "Form element absent"
-  }
-  //...
-}
-```
+### Значения полей
 
-<Info>
-  Отправка value сейчас не производится
-</Info>
+По умолчанию значения не отправляются, `evalue` пустой. Варианты:
 
-Это одни из самых важных автоматических событий, по ним можно понимать, где произошел затык
+- `trackForms: { trackValues: true }` — значение уходит открытым текстом в `evalue`;
+- `trackForms: { encryptionKey: '...' }` — значение шифруется в браузере публичным RSA-ключом
+  (WebCrypto RSA-OAEP) и уходит в `evalue` с `eenc: 1`. Если шифрование недоступно, значение
+  отбрасывается и приходит `eenc: 0`.
+
+<Tip>
+  События полей — одни из самых полезных для поиска проблем в формах: по цепочке
+  `field_focus → field_change → field_invalid` видно, где посетитель застрял.
+</Tip>
 
 ## Отправка формы
 
 ```json
 {
-  //...
   "name": "form_submit",
-  //...
   "data": {
-    // DOM событие отправки формы
     "event": "submit",
-    // адрес назначения формы
-    "fact": "/cart",
-    // form class: атрибут class элемента формы (css)
-    "fcls": "cart-submit",
-    // element id: атрибут id элемента формы
-    "fid": "cart-submit",
-    // form method: http метрод отправки формы
     "fmthd": "post",
-    // form name: атрибут name элемента формы
-    "fname": "cart"
+    "fact": "/cart",
+    "fname": "cart",
+    "fcls": "cart-submit",
+    "fid": "cart-submit"
   }
-  //...
 }
 ```
+
+## Синхронизация идентификаторов
+
+Если на странице есть GA4 или Яндекс Метрика, SDK получает их client id и отправляет внутреннее
+событие `user_params`. Идентификаторы сохраняются в хранилище и далее приходят в блоке `user`
+каждого сообщения как `ga4ClientId` и `ymId`.
+
+```json
+{ "name": "user_params", "data": { "ga4ClientId": "2039255293.1537236640", "ymId": "1537242943246737376" } }
+```
+
+## Запись сессии
+
+При старте записи уходит `rec_start`, затем буфер rrweb отправляется батчами `rec_batch`.
+
+```json
+{ "name": "rec_start", "data": { "packed": 1, "masked": 1 } }
+```
+
+```json
+{ "name": "rec_batch", "data": { "seq": 3, "part": 1, "of": 2, "p": 1, "d": "[{\"type\":3,..." } }
+```
+
+`d` — фрагмент JSON-массива упакованных событий rrweb. Массив сериализуется целиком и режется на
+части по `maxBatchBytes` символов. Сервер склеивает `d` по ключу `(uid, lib.st, seq)` в порядке
+`part` (`of` — число частей), разбирает JSON и распаковывает каждое событие (`p: 1` — fflate,
+`p: 0` — сырой JSON).
 
 <Info>
-  Отправка value сейчас не производится
+  Запись сессии и `identify` не создают событий с `scroll`; остальные события пользователя
+  получают блок `scroll` с текущей позицией страницы.
 </Info>
-
-**TODO:** описать form_invalid
-
-## Скролл / прокрутка
-
-Событие прокрутки на определенную позицию страницы.
-Сами данные скрола находятся в `scroll` [общей структуры данных](alcojs-data-format)
-и добавляются ко всем событиям на основе действий пользователя.
-
-```json
-{
-  //...
-  "name": "scroll"
-  //...
-  "scroll": {
-    // подробнее в разделе общей структуры данных
-  }
-  //...
-}
-```
-
-## Активность: события объектной модели документа (DOM)
-
-Внутри Rockstat находится счетчик браузерных событий,
-который аккумулирует статистику и раз в 5 секунд (значение параметра по умолчанию) отправляет данные на сервер.
-Дополнительно содержит счетчик, который инкрементируется в конце каждого периода.
-Если активности нет, на сервер ничего не отправится, но счетчик прибавит единицу.
-
-```json
-{
-  //...
-  "name": "activity",
-  //...
-  "data": {
-    // Номер итерации обработки активности
-    "iteration": 65,
-    // Номер итерации содержащей действия (другие 61 были без активности пользователя и не отправлялись)
-    "active": 4,
-    // Интервал отправки данных об активности, секунд
-    "interval": 5,
-    // Событий движения мыши
-    "mousemove": 62,
-    // Событий нажатия кнопки мыши
-    "mousedown": 2,
-    // Событий отпускания кнопки мыши
-    "mouseup": 2,
-    // Событий кликов
-    "click": 2,
-    // Событий прокрутки (именно на уровне мыши/трекпада)
-    "wheel": 23,
-    // Событий скролла станицы
-    "scroll": 22
-    // и другие
-  }
-  //...
-}
-```
-
-Полный список отслеживаемых событий браузера:
-
-`touchmove`, `touchstart`, `touchleave`, `touchenter`, `touchend`, `touchcancel`, `click`,
-`mouseup`, `mousedown`, `mousemove`, `mousewheel`, `mousewheel`, `wheel`, `scroll`,
-`keypress`, `keydown`, `keyup`, `resize`, `focus`, `blur`
-
-Суть событий описана на [developer.mozilla.org/en-US/docs/Web/Events](https://developer.mozilla.org/en-US/docs/Web/Events)
