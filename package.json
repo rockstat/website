@@ -5,7 +5,7 @@
     "rockstat": "./rockstat"
   },
   "engines": {
-    "node": ">=20.9"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -73,5 +73,6 @@
     "stylelint-config-recommended": "^18.0.0",
     "typescript": "^5.9.3",
     "unist-util-visit": "^5.1.0"
-  }
+  },
+  "packageManager": "pnpm@11.0.7"
 }
