@@ -153,21 +153,6 @@
         - name: Front API
           href: /docs/reference/font-service/api
       
-    - name: Band Framework (Python)
-      items:
-
-        - name: Слекет сервиса
-          href: /docs/reference/band-framework/skeleton
-
-        - name: Программное API
-          href: /docs/reference/band-framework/python-api
-
-        - name: Файл конфигурации
-          href: /docs/reference/band-framework/configs
-
-    - name: Simple ClickHouse (Python)
-      href: /docs/reference/simplech
-
     - name: RockMe Framework (TypeScript)
       href: /docs/reference/rockme-framework/api
 
