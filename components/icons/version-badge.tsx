@@ -1,7 +1,7 @@
 import React from 'react';
 
 /** Small version mark shown next to the logo (replaces the former "alpha" label). */
-export const VersionBadge = ({ version = '4' }: { version?: string }) => (
+export const VersionBadge = ({ version = 'x011' }: { version?: string }) => (
   <span className="version">
     {version}
     <style jsx>{`
@@ -11,7 +11,8 @@ export const VersionBadge = ({ version = '4' }: { version?: string }) => (
         font-weight: 300;
         font-size: 15px;
         line-height: 1;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
         color: #fff;
       }
     `}</style>

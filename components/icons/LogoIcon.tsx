@@ -22,7 +22,7 @@ export class LogoIcon extends React.Component {
           position: absolute;
         }
         .version {
-          right: -14px;
+          left: calc(100% + 5px);
           top: -5px;
         }
       `}</style>
