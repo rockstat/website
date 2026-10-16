@@ -1,10 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'next/router'
-import { Footer, Header } from 'app/components';
-
-import '@app/static/styles/reset.css';
-import '@app/static/styles/index.css';
+import { withRouter } from 'next/router';
+import { Footer } from '../footer/footer';
+import { Header } from '../header/header';
 
 class WrapperClass extends React.Component {
   static propTypes = {
@@ -30,7 +28,7 @@ class WrapperClass extends React.Component {
         </div>
         <Footer lang={lang} />
       </div>
-    )
+    );
   }
 }
 

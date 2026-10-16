@@ -1,16 +1,13 @@
 import * as React from 'react';
 import Link from 'next/link';
-
 import cl from 'classnames';
 import PropTypes from 'prop-types';
 
-import style from './header.css';
+import style from './header.module.css';
 import { headerMenu, linksMenu } from '../../lib/constants';
-import { createLinker } from '../../lib/url-maker'
-import { itemTarget } from '../../lib/menu'
+import { createLinker } from '../../lib/url-maker';
+import { itemTarget } from '../../lib/menu';
 import { Logo } from '../logo';
-
-
 
 export class Header extends React.Component {
   static propTypes = {
@@ -18,7 +15,7 @@ export class Header extends React.Component {
     linkMenuPosition: PropTypes.string,
     lang: PropTypes.string,
     documentation: PropTypes.bool,
-    activePath: PropTypes.string
+    activeSection: PropTypes.string
   }
 
   state = {
@@ -26,24 +23,21 @@ export class Header extends React.Component {
   }
 
   changeMenu = () => {
-    this.setState({
-      menuActive: !this.state.menuActive
-    })
+    this.setState((prev) => ({ menuActive: !prev.menuActive }));
   }
 
   render() {
-    const { headerBgActive, linkMenuPosition, lang, documentation, activeSection } = this.props;
+    const { headerBgActive, linkMenuPosition, lang, activeSection } = this.props;
     const { menuActive } = this.state;
     const linkTo = createLinker(lang);
-    console.log(activeSection)
     return (
       <header
         className={cl(
           style.rockstatHeader,
           { [style.activeBg]: headerBgActive || linkMenuPosition === 'top' },
-          { [style.documentation]: activeSection == 'docs' },
+          { [style.documentation]: activeSection === 'docs' },
           { [style.menuActive]: menuActive },
-          { [style.blog]: activeSection == 'blog' }
+          { [style.blog]: activeSection === 'blog' }
         )}>
         <div onClick={this.changeMenu} className={cl(style.gamburger, { [style.active]: menuActive })}>
           <span></span>
@@ -55,41 +49,38 @@ export class Header extends React.Component {
 
         <div className={style.menu}>
           {
-            linksMenu.map((item, index) => {
-              return (
-                <div key={index} className={cl(style.menuItem, style.linksMenu)} >
-                  <Link href={linkTo(item.path)}>
-                    <a target={itemTarget(item)} className={cl({ [style.active]: activeSection === item.name })}> {item.name} </a>
-                  </Link>
-                </div>
-              )
-            })
+            linksMenu.map((item, index) => (
+              <div key={index} className={cl(style.menuItem, style.linksMenu)}>
+                <Link
+                  href={linkTo(item.path)}
+                  target={itemTarget(item)}
+                  rel={item.newTab ? 'noopener noreferrer' : undefined}
+                  className={cl({ [style.active]: activeSection === item.name })}
+                > {item.name} </Link>
+              </div>
+            ))
           }
           {
-            headerMenu.map((item, index) => {
-              return (
-                <div key={index} className={style.menuItem} >
-                  <Link href={linkTo(item.path)}>
-                    <a target={itemTarget(item)} className={cl({ [style.active]: activeSection === item.name })}> {item.title} </a>
-                  </Link>
-                </div>
-              )
-            })
+            headerMenu.map((item, index) => (
+              <div key={index} className={style.menuItem}>
+                <Link
+                  href={linkTo(item.path)}
+                  target={itemTarget(item)}
+                  className={cl({ [style.active]: activeSection === item.name })}
+                > {item.title} </Link>
+              </div>
+            ))
           }
           <div className={style.menuItemLg}>
-            <div className={cl(style.menuItemLgItem, style.menuLng)} >
-              <Link href="/ru" >
-                <a className={style.active}> ru </a>
-              </Link>
+            <div className={cl(style.menuItemLgItem, style.menuLng)}>
+              <Link href="/ru" className={style.active}> ru </Link>
             </div>
-            <div className={cl(style.menuItemLgItem, style.menuLng)} >
-              <Link href="/en" >
-                <a className={style.noClick}> en </a>
-              </Link>
+            <div className={cl(style.menuItemLgItem, style.menuLng)}>
+              <span className={style.noClick}> en </span>
             </div>
           </div>
         </div>
       </header>
-    )
+    );
   }
 }

@@ -1,4 +1,3 @@
-import asset from 'next/asset'
 import {withDoc} from 'app/lib'
 
 export const meta = {
@@ -139,7 +138,9 @@ clickhouse:
 
 Для того, чтобы Rockstat внес изменения в таблички согласно файлу, необходимо перезапустить контейнер chwriter:
 
-    docker restart chwriter
+```
+docker restart chwriter
+```
 
 Rockstat автоматически накатит необходимые изменения для таблицы и настроит маршруты. 
 Мы можем спокойно отправлять наши события по описанным URL.

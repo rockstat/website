@@ -1,12 +1,13 @@
-FROM mhart/alpine-node:8
+FROM node:24-alpine AS build
 
 WORKDIR /usr/src
-COPY package.json yarn.lock ./
-
-RUN yarn
+RUN corepack enable
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
+ENV EXPORT=1 MAIN=1
+RUN pnpm build
 
-RUN yarn link
-
-RUN yarn build && yarn export:zeit
+FROM nginx:alpine
+COPY --from=build /usr/src/out /usr/share/nginx/html

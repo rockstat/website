@@ -1,5 +1,4 @@
 
-import asset from 'next/asset'
 import { withDoc } from 'app/lib'
 import { Alert, Tip, Info } from 'app/components'
 
@@ -232,21 +231,23 @@ for i in count():
         break
 ```
 
-    collected 2019-01-14. Reports items amount: [97, 80]
-    collected 2019-01-13. Reports items amount: [35, 33]
-    collected 2019-01-12. Reports items amount: [84, 67]
-    collected 2019-01-11. Reports items amount: [76, 65]
-    collected 2019-01-10. Reports items amount: [157, 136]
-    collected 2019-01-09. Reports items amount: [117, 115]
-    collected 2019-01-08. Reports items amount: [97, 97]
-    collected 2019-01-07. Reports items amount: [98, 97]
-    collected 2019-01-06. Reports items amount: [167, 166]
-    collected 2019-01-05. Reports items amount: [203, 202]
-    collected 2019-01-04. Reports items amount: [305, 303]
-    collected 2019-01-03. Reports items amount: [191, 191]
-    collected 2019-01-02. Reports items amount: [24, 23]
-    collected 2019-01-01. Reports items amount: [27, 27]
-    collected 2018-12-31. Reports items amount: [4, 4]
+```
+collected 2019-01-14. Reports items amount: [97, 80]
+collected 2019-01-13. Reports items amount: [35, 33]
+collected 2019-01-12. Reports items amount: [84, 67]
+collected 2019-01-11. Reports items amount: [76, 65]
+collected 2019-01-10. Reports items amount: [157, 136]
+collected 2019-01-09. Reports items amount: [117, 115]
+collected 2019-01-08. Reports items amount: [97, 97]
+collected 2019-01-07. Reports items amount: [98, 97]
+collected 2019-01-06. Reports items amount: [167, 166]
+collected 2019-01-05. Reports items amount: [203, 202]
+collected 2019-01-04. Reports items amount: [305, 303]
+collected 2019-01-03. Reports items amount: [191, 191]
+collected 2019-01-02. Reports items amount: [24, 23]
+collected 2019-01-01. Reports items amount: [27, 27]
+collected 2018-12-31. Reports items amount: [4, 4]
+```
 
 
 #### Немного разберем процесс
@@ -260,123 +261,125 @@ for i in count():
 pprint(r)
 ```
 
-    {'reports': [{'columnHeader': {'dimensions': ['ga:dimension2',
-                                                  'ga:sessionCount',
-                                                  'ga:dateHourMinute',
-                                                  'ga:channelGrouping',
-                                                  'ga:socialNetwork',
-                                                  'ga:fullReferrer',
-                                                  'ga:adContent'],
-                                   'metricHeader': {'metricHeaderEntries': [{'name': 'ga:users',
-                                                                             'type': 'INTEGER'},
-                                                                            {'name': 'ga:sessions',
-                                                                             'type': 'INTEGER'},
-                                                                            {'name': 'ga:timeOnPage',
-                                                                             'type': 'TIME'},
-                                                                            {'name': 'ga:pageviews',
-                                                                             'type': 'INTEGER'}]}},
-                  'data': {'isDataGolden': True,
-                           'maximums': [{'values': ['1', '1', '31.0', '1']}],
-                           'minimums': [{'values': ['1', '0', '0.0', '1']}],
-                           'rowCount': 4,
-                           'rows': [{'dimensions': ['128983921.1546258642',
-                                                    '1',
-                                                    '201812311517',
-                                                    'Organic Search',
-                                                    '(not set)',
-                                                    'google',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1',
-                                                             '1',
-                                                             '0.0',
-                                                             '1']}]},
-                                    {'dimensions': ['1607744401.1543065937',
-                                                    '2',
-                                                    '201812311201',
-                                                    'Direct',
-                                                    '(not set)',
-                                                    '(direct)',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1',
-                                                             '1',
-                                                             '31.0',
-                                                             '1']}]},
-                                    {'dimensions': ['1607744401.1543065937',
-                                                    '2',
-                                                    '201812311202',
-                                                    'Direct',
-                                                    '(not set)',
-                                                    '(direct)',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1',
-                                                             '0',
-                                                             '0.0',
-                                                             '1']}]},
-                                    {'dimensions': ['657379397.1546062444',
-                                                    '2',
-                                                    '201812310006',
-                                                    'Referral',
-                                                    '(not set)',
-                                                    'rock.st/ru/',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1',
-                                                             '1',
-                                                             '0.0',
-                                                             '1']}]}],
-                           'totals': [{'values': ['4', '3', '31.0', '4']}]}},
-                 {'columnHeader': {'dimensions': ['ga:dimension2',
-                                                  'ga:sessionCount',
-                                                  'ga:dateHourMinute',
-                                                  'ga:channelGrouping',
-                                                  'ga:source',
-                                                  'ga:campaign',
-                                                  'ga:medium',
-                                                  'ga:keyword'],
-                                   'metricHeader': {'metricHeaderEntries': [{'name': 'ga:pageviews',
-                                                                             'type': 'INTEGER'},
-                                                                            {'name': 'ga:newUsers',
-                                                                             'type': 'INTEGER'}]}},
-                  'data': {'isDataGolden': True,
-                           'maximums': [{'values': ['1', '1']}],
-                           'minimums': [{'values': ['1', '0']}],
-                           'rowCount': 4,
-                           'rows': [{'dimensions': ['128983921.1546258642',
-                                                    '1',
-                                                    '201812311517',
-                                                    'Organic Search',
-                                                    'google',
-                                                    '(not set)',
-                                                    'organic',
-                                                    '(not provided)'],
-                                     'metrics': [{'values': ['1', '1']}]},
-                                    {'dimensions': ['1607744401.1543065937',
-                                                    '2',
-                                                    '201812311201',
-                                                    'Direct',
-                                                    '(direct)',
-                                                    '(not set)',
-                                                    '(none)',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1', '0']}]},
-                                    {'dimensions': ['1607744401.1543065937',
-                                                    '2',
-                                                    '201812311202',
-                                                    'Direct',
-                                                    '(direct)',
-                                                    '(not set)',
-                                                    '(none)',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1', '0']}]},
-                                    {'dimensions': ['657379397.1546062444',
-                                                    '2',
-                                                    '201812310006',
-                                                    'Referral',
-                                                    'rock.st',
-                                                    '(not set)',
-                                                    'referral',
-                                                    '(not set)'],
-                                     'metrics': [{'values': ['1', '0']}]}],
-                           'totals': [{'values': ['4', '1']}]}}]}
+```
+{'reports': [{'columnHeader': {'dimensions': ['ga:dimension2',
+                                              'ga:sessionCount',
+                                              'ga:dateHourMinute',
+                                              'ga:channelGrouping',
+                                              'ga:socialNetwork',
+                                              'ga:fullReferrer',
+                                              'ga:adContent'],
+                               'metricHeader': {'metricHeaderEntries': [{'name': 'ga:users',
+                                                                         'type': 'INTEGER'},
+                                                                        {'name': 'ga:sessions',
+                                                                         'type': 'INTEGER'},
+                                                                        {'name': 'ga:timeOnPage',
+                                                                         'type': 'TIME'},
+                                                                        {'name': 'ga:pageviews',
+                                                                         'type': 'INTEGER'}]}},
+              'data': {'isDataGolden': True,
+                       'maximums': [{'values': ['1', '1', '31.0', '1']}],
+                       'minimums': [{'values': ['1', '0', '0.0', '1']}],
+                       'rowCount': 4,
+                       'rows': [{'dimensions': ['128983921.1546258642',
+                                                '1',
+                                                '201812311517',
+                                                'Organic Search',
+                                                '(not set)',
+                                                'google',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1',
+                                                         '1',
+                                                         '0.0',
+                                                         '1']}]},
+                                {'dimensions': ['1607744401.1543065937',
+                                                '2',
+                                                '201812311201',
+                                                'Direct',
+                                                '(not set)',
+                                                '(direct)',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1',
+                                                         '1',
+                                                         '31.0',
+                                                         '1']}]},
+                                {'dimensions': ['1607744401.1543065937',
+                                                '2',
+                                                '201812311202',
+                                                'Direct',
+                                                '(not set)',
+                                                '(direct)',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1',
+                                                         '0',
+                                                         '0.0',
+                                                         '1']}]},
+                                {'dimensions': ['657379397.1546062444',
+                                                '2',
+                                                '201812310006',
+                                                'Referral',
+                                                '(not set)',
+                                                'rock.st/ru/',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1',
+                                                         '1',
+                                                         '0.0',
+                                                         '1']}]}],
+                       'totals': [{'values': ['4', '3', '31.0', '4']}]}},
+             {'columnHeader': {'dimensions': ['ga:dimension2',
+                                              'ga:sessionCount',
+                                              'ga:dateHourMinute',
+                                              'ga:channelGrouping',
+                                              'ga:source',
+                                              'ga:campaign',
+                                              'ga:medium',
+                                              'ga:keyword'],
+                               'metricHeader': {'metricHeaderEntries': [{'name': 'ga:pageviews',
+                                                                         'type': 'INTEGER'},
+                                                                        {'name': 'ga:newUsers',
+                                                                         'type': 'INTEGER'}]}},
+              'data': {'isDataGolden': True,
+                       'maximums': [{'values': ['1', '1']}],
+                       'minimums': [{'values': ['1', '0']}],
+                       'rowCount': 4,
+                       'rows': [{'dimensions': ['128983921.1546258642',
+                                                '1',
+                                                '201812311517',
+                                                'Organic Search',
+                                                'google',
+                                                '(not set)',
+                                                'organic',
+                                                '(not provided)'],
+                                 'metrics': [{'values': ['1', '1']}]},
+                                {'dimensions': ['1607744401.1543065937',
+                                                '2',
+                                                '201812311201',
+                                                'Direct',
+                                                '(direct)',
+                                                '(not set)',
+                                                '(none)',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1', '0']}]},
+                                {'dimensions': ['1607744401.1543065937',
+                                                '2',
+                                                '201812311202',
+                                                'Direct',
+                                                '(direct)',
+                                                '(not set)',
+                                                '(none)',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1', '0']}]},
+                                {'dimensions': ['657379397.1546062444',
+                                                '2',
+                                                '201812310006',
+                                                'Referral',
+                                                'rock.st',
+                                                '(not set)',
+                                                'referral',
+                                                '(not set)'],
+                                 'metrics': [{'values': ['1', '0']}]}],
+                       'totals': [{'values': ['4', '1']}]}}]}
+```
 
 
 Под другим углом
@@ -406,219 +409,221 @@ def walk(item, level=0, path=[]):
 walk(r)
 ```
 
-    [dict  
-    [list  reports
-    [dict  reports > 0
-    [dict  reports > 0 > columnHeader
-    [list  reports > 0 > columnHeader > dimensions
-    |      reports > 0 > columnHeader > dimensions > 0=ga:dimension2
-    |      reports > 0 > columnHeader > dimensions > 1=ga:sessionCount
-    |      reports > 0 > columnHeader > dimensions > 2=ga:dateHourMinute
-    |      reports > 0 > columnHeader > dimensions > 3=ga:channelGrouping
-    |      reports > 0 > columnHeader > dimensions > 4=ga:socialNetwork
-    |      reports > 0 > columnHeader > dimensions > 5=ga:fullReferrer
-    |      reports > 0 > columnHeader > dimensions > 6=ga:adContent
-    [dict  reports > 0 > columnHeader > metricHeader
-    [list  reports > 0 > columnHeader > metricHeader > metricHeaderEntries
-    [dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 0
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 0 > name=ga:users
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 0 > type=INTEGER
-    [dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 1
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 1 > name=ga:sessions
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 1 > type=INTEGER
-    [dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 2
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 2 > name=ga:timeOnPage
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 2 > type=TIME
-    [dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 3
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 3 > name=ga:pageviews
-    |      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 3 > type=INTEGER
-    [dict  reports > 0 > data
-    [list  reports > 0 > data > rows
-    [dict  reports > 0 > data > rows > 0
-    [list  reports > 0 > data > rows > 0 > dimensions
-    |      reports > 0 > data > rows > 0 > dimensions > 0=128983921.1546258642
-    |      reports > 0 > data > rows > 0 > dimensions > 1=1
-    |      reports > 0 > data > rows > 0 > dimensions > 2=201812311517
-    |      reports > 0 > data > rows > 0 > dimensions > 3=Organic Search
-    |      reports > 0 > data > rows > 0 > dimensions > 4=(not set)
-    |      reports > 0 > data > rows > 0 > dimensions > 5=google
-    |      reports > 0 > data > rows > 0 > dimensions > 6=(not set)
-    [list  reports > 0 > data > rows > 0 > metrics
-    [dict  reports > 0 > data > rows > 0 > metrics > 0
-    [list  reports > 0 > data > rows > 0 > metrics > 0 > values
-    |      reports > 0 > data > rows > 0 > metrics > 0 > values > 0=1
-    |      reports > 0 > data > rows > 0 > metrics > 0 > values > 1=1
-    |      reports > 0 > data > rows > 0 > metrics > 0 > values > 2=0.0
-    |      reports > 0 > data > rows > 0 > metrics > 0 > values > 3=1
-    [dict  reports > 0 > data > rows > 1
-    [list  reports > 0 > data > rows > 1 > dimensions
-    |      reports > 0 > data > rows > 1 > dimensions > 0=1607744401.1543065937
-    |      reports > 0 > data > rows > 1 > dimensions > 1=2
-    |      reports > 0 > data > rows > 1 > dimensions > 2=201812311201
-    |      reports > 0 > data > rows > 1 > dimensions > 3=Direct
-    |      reports > 0 > data > rows > 1 > dimensions > 4=(not set)
-    |      reports > 0 > data > rows > 1 > dimensions > 5=(direct)
-    |      reports > 0 > data > rows > 1 > dimensions > 6=(not set)
-    [list  reports > 0 > data > rows > 1 > metrics
-    [dict  reports > 0 > data > rows > 1 > metrics > 0
-    [list  reports > 0 > data > rows > 1 > metrics > 0 > values
-    |      reports > 0 > data > rows > 1 > metrics > 0 > values > 0=1
-    |      reports > 0 > data > rows > 1 > metrics > 0 > values > 1=1
-    |      reports > 0 > data > rows > 1 > metrics > 0 > values > 2=31.0
-    |      reports > 0 > data > rows > 1 > metrics > 0 > values > 3=1
-    [dict  reports > 0 > data > rows > 2
-    [list  reports > 0 > data > rows > 2 > dimensions
-    |      reports > 0 > data > rows > 2 > dimensions > 0=1607744401.1543065937
-    |      reports > 0 > data > rows > 2 > dimensions > 1=2
-    |      reports > 0 > data > rows > 2 > dimensions > 2=201812311202
-    |      reports > 0 > data > rows > 2 > dimensions > 3=Direct
-    |      reports > 0 > data > rows > 2 > dimensions > 4=(not set)
-    |      reports > 0 > data > rows > 2 > dimensions > 5=(direct)
-    |      reports > 0 > data > rows > 2 > dimensions > 6=(not set)
-    [list  reports > 0 > data > rows > 2 > metrics
-    [dict  reports > 0 > data > rows > 2 > metrics > 0
-    [list  reports > 0 > data > rows > 2 > metrics > 0 > values
-    |      reports > 0 > data > rows > 2 > metrics > 0 > values > 0=1
-    |      reports > 0 > data > rows > 2 > metrics > 0 > values > 1=0
-    |      reports > 0 > data > rows > 2 > metrics > 0 > values > 2=0.0
-    |      reports > 0 > data > rows > 2 > metrics > 0 > values > 3=1
-    [dict  reports > 0 > data > rows > 3
-    [list  reports > 0 > data > rows > 3 > dimensions
-    |      reports > 0 > data > rows > 3 > dimensions > 0=657379397.1546062444
-    |      reports > 0 > data > rows > 3 > dimensions > 1=2
-    |      reports > 0 > data > rows > 3 > dimensions > 2=201812310006
-    |      reports > 0 > data > rows > 3 > dimensions > 3=Referral
-    |      reports > 0 > data > rows > 3 > dimensions > 4=(not set)
-    |      reports > 0 > data > rows > 3 > dimensions > 5=rock.st/ru/
-    |      reports > 0 > data > rows > 3 > dimensions > 6=(not set)
-    [list  reports > 0 > data > rows > 3 > metrics
-    [dict  reports > 0 > data > rows > 3 > metrics > 0
-    [list  reports > 0 > data > rows > 3 > metrics > 0 > values
-    |      reports > 0 > data > rows > 3 > metrics > 0 > values > 0=1
-    |      reports > 0 > data > rows > 3 > metrics > 0 > values > 1=1
-    |      reports > 0 > data > rows > 3 > metrics > 0 > values > 2=0.0
-    |      reports > 0 > data > rows > 3 > metrics > 0 > values > 3=1
-    [list  reports > 0 > data > totals
-    [dict  reports > 0 > data > totals > 0
-    [list  reports > 0 > data > totals > 0 > values
-    |      reports > 0 > data > totals > 0 > values > 0=4
-    |      reports > 0 > data > totals > 0 > values > 1=3
-    |      reports > 0 > data > totals > 0 > values > 2=31.0
-    |      reports > 0 > data > totals > 0 > values > 3=4
-    |      reports > 0 > data > rowCount=4
-    [list  reports > 0 > data > minimums
-    [dict  reports > 0 > data > minimums > 0
-    [list  reports > 0 > data > minimums > 0 > values
-    |      reports > 0 > data > minimums > 0 > values > 0=1
-    |      reports > 0 > data > minimums > 0 > values > 1=0
-    |      reports > 0 > data > minimums > 0 > values > 2=0.0
-    |      reports > 0 > data > minimums > 0 > values > 3=1
-    [list  reports > 0 > data > maximums
-    [dict  reports > 0 > data > maximums > 0
-    [list  reports > 0 > data > maximums > 0 > values
-    |      reports > 0 > data > maximums > 0 > values > 0=1
-    |      reports > 0 > data > maximums > 0 > values > 1=1
-    |      reports > 0 > data > maximums > 0 > values > 2=31.0
-    |      reports > 0 > data > maximums > 0 > values > 3=1
-    |      reports > 0 > data > isDataGolden=True
-    [dict  reports > 1
-    [dict  reports > 1 > columnHeader
-    [list  reports > 1 > columnHeader > dimensions
-    |      reports > 1 > columnHeader > dimensions > 0=ga:dimension2
-    |      reports > 1 > columnHeader > dimensions > 1=ga:sessionCount
-    |      reports > 1 > columnHeader > dimensions > 2=ga:dateHourMinute
-    |      reports > 1 > columnHeader > dimensions > 3=ga:channelGrouping
-    |      reports > 1 > columnHeader > dimensions > 4=ga:source
-    |      reports > 1 > columnHeader > dimensions > 5=ga:campaign
-    |      reports > 1 > columnHeader > dimensions > 6=ga:medium
-    |      reports > 1 > columnHeader > dimensions > 7=ga:keyword
-    [dict  reports > 1 > columnHeader > metricHeader
-    [list  reports > 1 > columnHeader > metricHeader > metricHeaderEntries
-    [dict  reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 0
-    |      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 0 > name=ga:pageviews
-    |      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 0 > type=INTEGER
-    [dict  reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 1
-    |      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 1 > name=ga:newUsers
-    |      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 1 > type=INTEGER
-    [dict  reports > 1 > data
-    [list  reports > 1 > data > rows
-    [dict  reports > 1 > data > rows > 0
-    [list  reports > 1 > data > rows > 0 > dimensions
-    |      reports > 1 > data > rows > 0 > dimensions > 0=128983921.1546258642
-    |      reports > 1 > data > rows > 0 > dimensions > 1=1
-    |      reports > 1 > data > rows > 0 > dimensions > 2=201812311517
-    |      reports > 1 > data > rows > 0 > dimensions > 3=Organic Search
-    |      reports > 1 > data > rows > 0 > dimensions > 4=google
-    |      reports > 1 > data > rows > 0 > dimensions > 5=(not set)
-    |      reports > 1 > data > rows > 0 > dimensions > 6=organic
-    |      reports > 1 > data > rows > 0 > dimensions > 7=(not provided)
-    [list  reports > 1 > data > rows > 0 > metrics
-    [dict  reports > 1 > data > rows > 0 > metrics > 0
-    [list  reports > 1 > data > rows > 0 > metrics > 0 > values
-    |      reports > 1 > data > rows > 0 > metrics > 0 > values > 0=1
-    |      reports > 1 > data > rows > 0 > metrics > 0 > values > 1=1
-    [dict  reports > 1 > data > rows > 1
-    [list  reports > 1 > data > rows > 1 > dimensions
-    |      reports > 1 > data > rows > 1 > dimensions > 0=1607744401.1543065937
-    |      reports > 1 > data > rows > 1 > dimensions > 1=2
-    |      reports > 1 > data > rows > 1 > dimensions > 2=201812311201
-    |      reports > 1 > data > rows > 1 > dimensions > 3=Direct
-    |      reports > 1 > data > rows > 1 > dimensions > 4=(direct)
-    |      reports > 1 > data > rows > 1 > dimensions > 5=(not set)
-    |      reports > 1 > data > rows > 1 > dimensions > 6=(none)
-    |      reports > 1 > data > rows > 1 > dimensions > 7=(not set)
-    [list  reports > 1 > data > rows > 1 > metrics
-    [dict  reports > 1 > data > rows > 1 > metrics > 0
-    [list  reports > 1 > data > rows > 1 > metrics > 0 > values
-    |      reports > 1 > data > rows > 1 > metrics > 0 > values > 0=1
-    |      reports > 1 > data > rows > 1 > metrics > 0 > values > 1=0
-    [dict  reports > 1 > data > rows > 2
-    [list  reports > 1 > data > rows > 2 > dimensions
-    |      reports > 1 > data > rows > 2 > dimensions > 0=1607744401.1543065937
-    |      reports > 1 > data > rows > 2 > dimensions > 1=2
-    |      reports > 1 > data > rows > 2 > dimensions > 2=201812311202
-    |      reports > 1 > data > rows > 2 > dimensions > 3=Direct
-    |      reports > 1 > data > rows > 2 > dimensions > 4=(direct)
-    |      reports > 1 > data > rows > 2 > dimensions > 5=(not set)
-    |      reports > 1 > data > rows > 2 > dimensions > 6=(none)
-    |      reports > 1 > data > rows > 2 > dimensions > 7=(not set)
-    [list  reports > 1 > data > rows > 2 > metrics
-    [dict  reports > 1 > data > rows > 2 > metrics > 0
-    [list  reports > 1 > data > rows > 2 > metrics > 0 > values
-    |      reports > 1 > data > rows > 2 > metrics > 0 > values > 0=1
-    |      reports > 1 > data > rows > 2 > metrics > 0 > values > 1=0
-    [dict  reports > 1 > data > rows > 3
-    [list  reports > 1 > data > rows > 3 > dimensions
-    |      reports > 1 > data > rows > 3 > dimensions > 0=657379397.1546062444
-    |      reports > 1 > data > rows > 3 > dimensions > 1=2
-    |      reports > 1 > data > rows > 3 > dimensions > 2=201812310006
-    |      reports > 1 > data > rows > 3 > dimensions > 3=Referral
-    |      reports > 1 > data > rows > 3 > dimensions > 4=rock.st
-    |      reports > 1 > data > rows > 3 > dimensions > 5=(not set)
-    |      reports > 1 > data > rows > 3 > dimensions > 6=referral
-    |      reports > 1 > data > rows > 3 > dimensions > 7=(not set)
-    [list  reports > 1 > data > rows > 3 > metrics
-    [dict  reports > 1 > data > rows > 3 > metrics > 0
-    [list  reports > 1 > data > rows > 3 > metrics > 0 > values
-    |      reports > 1 > data > rows > 3 > metrics > 0 > values > 0=1
-    |      reports > 1 > data > rows > 3 > metrics > 0 > values > 1=0
-    [list  reports > 1 > data > totals
-    [dict  reports > 1 > data > totals > 0
-    [list  reports > 1 > data > totals > 0 > values
-    |      reports > 1 > data > totals > 0 > values > 0=4
-    |      reports > 1 > data > totals > 0 > values > 1=1
-    |      reports > 1 > data > rowCount=4
-    [list  reports > 1 > data > minimums
-    [dict  reports > 1 > data > minimums > 0
-    [list  reports > 1 > data > minimums > 0 > values
-    |      reports > 1 > data > minimums > 0 > values > 0=1
-    |      reports > 1 > data > minimums > 0 > values > 1=0
-    [list  reports > 1 > data > maximums
-    [dict  reports > 1 > data > maximums > 0
-    [list  reports > 1 > data > maximums > 0 > values
-    |      reports > 1 > data > maximums > 0 > values > 0=1
-    |      reports > 1 > data > maximums > 0 > values > 1=1
-    |      reports > 1 > data > isDataGolden=True
+```
+[dict  
+[list  reports
+[dict  reports > 0
+[dict  reports > 0 > columnHeader
+[list  reports > 0 > columnHeader > dimensions
+|      reports > 0 > columnHeader > dimensions > 0=ga:dimension2
+|      reports > 0 > columnHeader > dimensions > 1=ga:sessionCount
+|      reports > 0 > columnHeader > dimensions > 2=ga:dateHourMinute
+|      reports > 0 > columnHeader > dimensions > 3=ga:channelGrouping
+|      reports > 0 > columnHeader > dimensions > 4=ga:socialNetwork
+|      reports > 0 > columnHeader > dimensions > 5=ga:fullReferrer
+|      reports > 0 > columnHeader > dimensions > 6=ga:adContent
+[dict  reports > 0 > columnHeader > metricHeader
+[list  reports > 0 > columnHeader > metricHeader > metricHeaderEntries
+[dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 0
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 0 > name=ga:users
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 0 > type=INTEGER
+[dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 1
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 1 > name=ga:sessions
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 1 > type=INTEGER
+[dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 2
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 2 > name=ga:timeOnPage
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 2 > type=TIME
+[dict  reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 3
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 3 > name=ga:pageviews
+|      reports > 0 > columnHeader > metricHeader > metricHeaderEntries > 3 > type=INTEGER
+[dict  reports > 0 > data
+[list  reports > 0 > data > rows
+[dict  reports > 0 > data > rows > 0
+[list  reports > 0 > data > rows > 0 > dimensions
+|      reports > 0 > data > rows > 0 > dimensions > 0=128983921.1546258642
+|      reports > 0 > data > rows > 0 > dimensions > 1=1
+|      reports > 0 > data > rows > 0 > dimensions > 2=201812311517
+|      reports > 0 > data > rows > 0 > dimensions > 3=Organic Search
+|      reports > 0 > data > rows > 0 > dimensions > 4=(not set)
+|      reports > 0 > data > rows > 0 > dimensions > 5=google
+|      reports > 0 > data > rows > 0 > dimensions > 6=(not set)
+[list  reports > 0 > data > rows > 0 > metrics
+[dict  reports > 0 > data > rows > 0 > metrics > 0
+[list  reports > 0 > data > rows > 0 > metrics > 0 > values
+|      reports > 0 > data > rows > 0 > metrics > 0 > values > 0=1
+|      reports > 0 > data > rows > 0 > metrics > 0 > values > 1=1
+|      reports > 0 > data > rows > 0 > metrics > 0 > values > 2=0.0
+|      reports > 0 > data > rows > 0 > metrics > 0 > values > 3=1
+[dict  reports > 0 > data > rows > 1
+[list  reports > 0 > data > rows > 1 > dimensions
+|      reports > 0 > data > rows > 1 > dimensions > 0=1607744401.1543065937
+|      reports > 0 > data > rows > 1 > dimensions > 1=2
+|      reports > 0 > data > rows > 1 > dimensions > 2=201812311201
+|      reports > 0 > data > rows > 1 > dimensions > 3=Direct
+|      reports > 0 > data > rows > 1 > dimensions > 4=(not set)
+|      reports > 0 > data > rows > 1 > dimensions > 5=(direct)
+|      reports > 0 > data > rows > 1 > dimensions > 6=(not set)
+[list  reports > 0 > data > rows > 1 > metrics
+[dict  reports > 0 > data > rows > 1 > metrics > 0
+[list  reports > 0 > data > rows > 1 > metrics > 0 > values
+|      reports > 0 > data > rows > 1 > metrics > 0 > values > 0=1
+|      reports > 0 > data > rows > 1 > metrics > 0 > values > 1=1
+|      reports > 0 > data > rows > 1 > metrics > 0 > values > 2=31.0
+|      reports > 0 > data > rows > 1 > metrics > 0 > values > 3=1
+[dict  reports > 0 > data > rows > 2
+[list  reports > 0 > data > rows > 2 > dimensions
+|      reports > 0 > data > rows > 2 > dimensions > 0=1607744401.1543065937
+|      reports > 0 > data > rows > 2 > dimensions > 1=2
+|      reports > 0 > data > rows > 2 > dimensions > 2=201812311202
+|      reports > 0 > data > rows > 2 > dimensions > 3=Direct
+|      reports > 0 > data > rows > 2 > dimensions > 4=(not set)
+|      reports > 0 > data > rows > 2 > dimensions > 5=(direct)
+|      reports > 0 > data > rows > 2 > dimensions > 6=(not set)
+[list  reports > 0 > data > rows > 2 > metrics
+[dict  reports > 0 > data > rows > 2 > metrics > 0
+[list  reports > 0 > data > rows > 2 > metrics > 0 > values
+|      reports > 0 > data > rows > 2 > metrics > 0 > values > 0=1
+|      reports > 0 > data > rows > 2 > metrics > 0 > values > 1=0
+|      reports > 0 > data > rows > 2 > metrics > 0 > values > 2=0.0
+|      reports > 0 > data > rows > 2 > metrics > 0 > values > 3=1
+[dict  reports > 0 > data > rows > 3
+[list  reports > 0 > data > rows > 3 > dimensions
+|      reports > 0 > data > rows > 3 > dimensions > 0=657379397.1546062444
+|      reports > 0 > data > rows > 3 > dimensions > 1=2
+|      reports > 0 > data > rows > 3 > dimensions > 2=201812310006
+|      reports > 0 > data > rows > 3 > dimensions > 3=Referral
+|      reports > 0 > data > rows > 3 > dimensions > 4=(not set)
+|      reports > 0 > data > rows > 3 > dimensions > 5=rock.st/ru/
+|      reports > 0 > data > rows > 3 > dimensions > 6=(not set)
+[list  reports > 0 > data > rows > 3 > metrics
+[dict  reports > 0 > data > rows > 3 > metrics > 0
+[list  reports > 0 > data > rows > 3 > metrics > 0 > values
+|      reports > 0 > data > rows > 3 > metrics > 0 > values > 0=1
+|      reports > 0 > data > rows > 3 > metrics > 0 > values > 1=1
+|      reports > 0 > data > rows > 3 > metrics > 0 > values > 2=0.0
+|      reports > 0 > data > rows > 3 > metrics > 0 > values > 3=1
+[list  reports > 0 > data > totals
+[dict  reports > 0 > data > totals > 0
+[list  reports > 0 > data > totals > 0 > values
+|      reports > 0 > data > totals > 0 > values > 0=4
+|      reports > 0 > data > totals > 0 > values > 1=3
+|      reports > 0 > data > totals > 0 > values > 2=31.0
+|      reports > 0 > data > totals > 0 > values > 3=4
+|      reports > 0 > data > rowCount=4
+[list  reports > 0 > data > minimums
+[dict  reports > 0 > data > minimums > 0
+[list  reports > 0 > data > minimums > 0 > values
+|      reports > 0 > data > minimums > 0 > values > 0=1
+|      reports > 0 > data > minimums > 0 > values > 1=0
+|      reports > 0 > data > minimums > 0 > values > 2=0.0
+|      reports > 0 > data > minimums > 0 > values > 3=1
+[list  reports > 0 > data > maximums
+[dict  reports > 0 > data > maximums > 0
+[list  reports > 0 > data > maximums > 0 > values
+|      reports > 0 > data > maximums > 0 > values > 0=1
+|      reports > 0 > data > maximums > 0 > values > 1=1
+|      reports > 0 > data > maximums > 0 > values > 2=31.0
+|      reports > 0 > data > maximums > 0 > values > 3=1
+|      reports > 0 > data > isDataGolden=True
+[dict  reports > 1
+[dict  reports > 1 > columnHeader
+[list  reports > 1 > columnHeader > dimensions
+|      reports > 1 > columnHeader > dimensions > 0=ga:dimension2
+|      reports > 1 > columnHeader > dimensions > 1=ga:sessionCount
+|      reports > 1 > columnHeader > dimensions > 2=ga:dateHourMinute
+|      reports > 1 > columnHeader > dimensions > 3=ga:channelGrouping
+|      reports > 1 > columnHeader > dimensions > 4=ga:source
+|      reports > 1 > columnHeader > dimensions > 5=ga:campaign
+|      reports > 1 > columnHeader > dimensions > 6=ga:medium
+|      reports > 1 > columnHeader > dimensions > 7=ga:keyword
+[dict  reports > 1 > columnHeader > metricHeader
+[list  reports > 1 > columnHeader > metricHeader > metricHeaderEntries
+[dict  reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 0
+|      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 0 > name=ga:pageviews
+|      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 0 > type=INTEGER
+[dict  reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 1
+|      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 1 > name=ga:newUsers
+|      reports > 1 > columnHeader > metricHeader > metricHeaderEntries > 1 > type=INTEGER
+[dict  reports > 1 > data
+[list  reports > 1 > data > rows
+[dict  reports > 1 > data > rows > 0
+[list  reports > 1 > data > rows > 0 > dimensions
+|      reports > 1 > data > rows > 0 > dimensions > 0=128983921.1546258642
+|      reports > 1 > data > rows > 0 > dimensions > 1=1
+|      reports > 1 > data > rows > 0 > dimensions > 2=201812311517
+|      reports > 1 > data > rows > 0 > dimensions > 3=Organic Search
+|      reports > 1 > data > rows > 0 > dimensions > 4=google
+|      reports > 1 > data > rows > 0 > dimensions > 5=(not set)
+|      reports > 1 > data > rows > 0 > dimensions > 6=organic
+|      reports > 1 > data > rows > 0 > dimensions > 7=(not provided)
+[list  reports > 1 > data > rows > 0 > metrics
+[dict  reports > 1 > data > rows > 0 > metrics > 0
+[list  reports > 1 > data > rows > 0 > metrics > 0 > values
+|      reports > 1 > data > rows > 0 > metrics > 0 > values > 0=1
+|      reports > 1 > data > rows > 0 > metrics > 0 > values > 1=1
+[dict  reports > 1 > data > rows > 1
+[list  reports > 1 > data > rows > 1 > dimensions
+|      reports > 1 > data > rows > 1 > dimensions > 0=1607744401.1543065937
+|      reports > 1 > data > rows > 1 > dimensions > 1=2
+|      reports > 1 > data > rows > 1 > dimensions > 2=201812311201
+|      reports > 1 > data > rows > 1 > dimensions > 3=Direct
+|      reports > 1 > data > rows > 1 > dimensions > 4=(direct)
+|      reports > 1 > data > rows > 1 > dimensions > 5=(not set)
+|      reports > 1 > data > rows > 1 > dimensions > 6=(none)
+|      reports > 1 > data > rows > 1 > dimensions > 7=(not set)
+[list  reports > 1 > data > rows > 1 > metrics
+[dict  reports > 1 > data > rows > 1 > metrics > 0
+[list  reports > 1 > data > rows > 1 > metrics > 0 > values
+|      reports > 1 > data > rows > 1 > metrics > 0 > values > 0=1
+|      reports > 1 > data > rows > 1 > metrics > 0 > values > 1=0
+[dict  reports > 1 > data > rows > 2
+[list  reports > 1 > data > rows > 2 > dimensions
+|      reports > 1 > data > rows > 2 > dimensions > 0=1607744401.1543065937
+|      reports > 1 > data > rows > 2 > dimensions > 1=2
+|      reports > 1 > data > rows > 2 > dimensions > 2=201812311202
+|      reports > 1 > data > rows > 2 > dimensions > 3=Direct
+|      reports > 1 > data > rows > 2 > dimensions > 4=(direct)
+|      reports > 1 > data > rows > 2 > dimensions > 5=(not set)
+|      reports > 1 > data > rows > 2 > dimensions > 6=(none)
+|      reports > 1 > data > rows > 2 > dimensions > 7=(not set)
+[list  reports > 1 > data > rows > 2 > metrics
+[dict  reports > 1 > data > rows > 2 > metrics > 0
+[list  reports > 1 > data > rows > 2 > metrics > 0 > values
+|      reports > 1 > data > rows > 2 > metrics > 0 > values > 0=1
+|      reports > 1 > data > rows > 2 > metrics > 0 > values > 1=0
+[dict  reports > 1 > data > rows > 3
+[list  reports > 1 > data > rows > 3 > dimensions
+|      reports > 1 > data > rows > 3 > dimensions > 0=657379397.1546062444
+|      reports > 1 > data > rows > 3 > dimensions > 1=2
+|      reports > 1 > data > rows > 3 > dimensions > 2=201812310006
+|      reports > 1 > data > rows > 3 > dimensions > 3=Referral
+|      reports > 1 > data > rows > 3 > dimensions > 4=rock.st
+|      reports > 1 > data > rows > 3 > dimensions > 5=(not set)
+|      reports > 1 > data > rows > 3 > dimensions > 6=referral
+|      reports > 1 > data > rows > 3 > dimensions > 7=(not set)
+[list  reports > 1 > data > rows > 3 > metrics
+[dict  reports > 1 > data > rows > 3 > metrics > 0
+[list  reports > 1 > data > rows > 3 > metrics > 0 > values
+|      reports > 1 > data > rows > 3 > metrics > 0 > values > 0=1
+|      reports > 1 > data > rows > 3 > metrics > 0 > values > 1=0
+[list  reports > 1 > data > totals
+[dict  reports > 1 > data > totals > 0
+[list  reports > 1 > data > totals > 0 > values
+|      reports > 1 > data > totals > 0 > values > 0=4
+|      reports > 1 > data > totals > 0 > values > 1=1
+|      reports > 1 > data > rowCount=4
+[list  reports > 1 > data > minimums
+[dict  reports > 1 > data > minimums > 0
+[list  reports > 1 > data > minimums > 0 > values
+|      reports > 1 > data > minimums > 0 > values > 0=1
+|      reports > 1 > data > minimums > 0 > values > 1=0
+[list  reports > 1 > data > maximums
+[dict  reports > 1 > data > maximums > 0
+[list  reports > 1 > data > maximums > 0 > values
+|      reports > 1 > data > maximums > 0 > values > 0=1
+|      reports > 1 > data > maximums > 0 > values > 1=1
+|      reports > 1 > data > isDataGolden=True
+```
 
 
 В них отдельно предоставлены заголовки и списки для dimensions и metrics. Мы преваритили это все в словари и обхединили по единому ключу 
@@ -628,83 +633,85 @@ walk(r)
 walk(daily_stat)
 ```
 
-    [dict  
-    [dict  128983921.1546258642:1:201812311517
-    |      128983921.1546258642:1:201812311517 > ga_dimension2=128983921.1546258642
-    |      128983921.1546258642:1:201812311517 > ga_sessionCount=1
-    |      128983921.1546258642:1:201812311517 > ga_dateHourMinute=201812311517
-    |      128983921.1546258642:1:201812311517 > ga_channelGrouping=Organic Search
-    |      128983921.1546258642:1:201812311517 > ga_socialNetwork=
-    |      128983921.1546258642:1:201812311517 > ga_fullReferrer=google
-    |      128983921.1546258642:1:201812311517 > utm_content=
-    |      128983921.1546258642:1:201812311517 > ga_users=1
-    |      128983921.1546258642:1:201812311517 > ga_sessions=1
-    |      128983921.1546258642:1:201812311517 > ga_timeOnPage=0.0
-    |      128983921.1546258642:1:201812311517 > ga_pageviews=1
-    |      128983921.1546258642:1:201812311517 > utm_source=google
-    |      128983921.1546258642:1:201812311517 > utm_campaign=
-    |      128983921.1546258642:1:201812311517 > utm_medium=organic
-    |      128983921.1546258642:1:201812311517 > utm_term=(not provided)
-    |      128983921.1546258642:1:201812311517 > ga_newUsers=1
-    |      128983921.1546258642:1:201812311517 > date=2018-12-31
-    |      128983921.1546258642:1:201812311517 > profile_id=175660279
-    [dict  1607744401.1543065937:2:201812311201
-    |      1607744401.1543065937:2:201812311201 > ga_dimension2=1607744401.1543065937
-    |      1607744401.1543065937:2:201812311201 > ga_sessionCount=2
-    |      1607744401.1543065937:2:201812311201 > ga_dateHourMinute=201812311201
-    |      1607744401.1543065937:2:201812311201 > ga_channelGrouping=Direct
-    |      1607744401.1543065937:2:201812311201 > ga_socialNetwork=
-    |      1607744401.1543065937:2:201812311201 > ga_fullReferrer=(direct)
-    |      1607744401.1543065937:2:201812311201 > utm_content=
-    |      1607744401.1543065937:2:201812311201 > ga_users=1
-    |      1607744401.1543065937:2:201812311201 > ga_sessions=1
-    |      1607744401.1543065937:2:201812311201 > ga_timeOnPage=31.0
-    |      1607744401.1543065937:2:201812311201 > ga_pageviews=1
-    |      1607744401.1543065937:2:201812311201 > utm_source=(direct)
-    |      1607744401.1543065937:2:201812311201 > utm_campaign=
-    |      1607744401.1543065937:2:201812311201 > utm_medium=(none)
-    |      1607744401.1543065937:2:201812311201 > utm_term=
-    |      1607744401.1543065937:2:201812311201 > ga_newUsers=0
-    |      1607744401.1543065937:2:201812311201 > date=2018-12-31
-    |      1607744401.1543065937:2:201812311201 > profile_id=175660279
-    [dict  1607744401.1543065937:2:201812311202
-    |      1607744401.1543065937:2:201812311202 > ga_dimension2=1607744401.1543065937
-    |      1607744401.1543065937:2:201812311202 > ga_sessionCount=2
-    |      1607744401.1543065937:2:201812311202 > ga_dateHourMinute=201812311202
-    |      1607744401.1543065937:2:201812311202 > ga_channelGrouping=Direct
-    |      1607744401.1543065937:2:201812311202 > ga_socialNetwork=
-    |      1607744401.1543065937:2:201812311202 > ga_fullReferrer=(direct)
-    |      1607744401.1543065937:2:201812311202 > utm_content=
-    |      1607744401.1543065937:2:201812311202 > ga_users=1
-    |      1607744401.1543065937:2:201812311202 > ga_sessions=0
-    |      1607744401.1543065937:2:201812311202 > ga_timeOnPage=0.0
-    |      1607744401.1543065937:2:201812311202 > ga_pageviews=1
-    |      1607744401.1543065937:2:201812311202 > utm_source=(direct)
-    |      1607744401.1543065937:2:201812311202 > utm_campaign=
-    |      1607744401.1543065937:2:201812311202 > utm_medium=(none)
-    |      1607744401.1543065937:2:201812311202 > utm_term=
-    |      1607744401.1543065937:2:201812311202 > ga_newUsers=0
-    |      1607744401.1543065937:2:201812311202 > date=2018-12-31
-    |      1607744401.1543065937:2:201812311202 > profile_id=175660279
-    [dict  657379397.1546062444:2:201812310006
-    |      657379397.1546062444:2:201812310006 > ga_dimension2=657379397.1546062444
-    |      657379397.1546062444:2:201812310006 > ga_sessionCount=2
-    |      657379397.1546062444:2:201812310006 > ga_dateHourMinute=201812310006
-    |      657379397.1546062444:2:201812310006 > ga_channelGrouping=Referral
-    |      657379397.1546062444:2:201812310006 > ga_socialNetwork=
-    |      657379397.1546062444:2:201812310006 > ga_fullReferrer=rock.st/ru/
-    |      657379397.1546062444:2:201812310006 > utm_content=
-    |      657379397.1546062444:2:201812310006 > ga_users=1
-    |      657379397.1546062444:2:201812310006 > ga_sessions=1
-    |      657379397.1546062444:2:201812310006 > ga_timeOnPage=0.0
-    |      657379397.1546062444:2:201812310006 > ga_pageviews=1
-    |      657379397.1546062444:2:201812310006 > utm_source=rock.st
-    |      657379397.1546062444:2:201812310006 > utm_campaign=
-    |      657379397.1546062444:2:201812310006 > utm_medium=referral
-    |      657379397.1546062444:2:201812310006 > utm_term=
-    |      657379397.1546062444:2:201812310006 > ga_newUsers=0
-    |      657379397.1546062444:2:201812310006 > date=2018-12-31
-    |      657379397.1546062444:2:201812310006 > profile_id=175660279
+```
+[dict  
+[dict  128983921.1546258642:1:201812311517
+|      128983921.1546258642:1:201812311517 > ga_dimension2=128983921.1546258642
+|      128983921.1546258642:1:201812311517 > ga_sessionCount=1
+|      128983921.1546258642:1:201812311517 > ga_dateHourMinute=201812311517
+|      128983921.1546258642:1:201812311517 > ga_channelGrouping=Organic Search
+|      128983921.1546258642:1:201812311517 > ga_socialNetwork=
+|      128983921.1546258642:1:201812311517 > ga_fullReferrer=google
+|      128983921.1546258642:1:201812311517 > utm_content=
+|      128983921.1546258642:1:201812311517 > ga_users=1
+|      128983921.1546258642:1:201812311517 > ga_sessions=1
+|      128983921.1546258642:1:201812311517 > ga_timeOnPage=0.0
+|      128983921.1546258642:1:201812311517 > ga_pageviews=1
+|      128983921.1546258642:1:201812311517 > utm_source=google
+|      128983921.1546258642:1:201812311517 > utm_campaign=
+|      128983921.1546258642:1:201812311517 > utm_medium=organic
+|      128983921.1546258642:1:201812311517 > utm_term=(not provided)
+|      128983921.1546258642:1:201812311517 > ga_newUsers=1
+|      128983921.1546258642:1:201812311517 > date=2018-12-31
+|      128983921.1546258642:1:201812311517 > profile_id=175660279
+[dict  1607744401.1543065937:2:201812311201
+|      1607744401.1543065937:2:201812311201 > ga_dimension2=1607744401.1543065937
+|      1607744401.1543065937:2:201812311201 > ga_sessionCount=2
+|      1607744401.1543065937:2:201812311201 > ga_dateHourMinute=201812311201
+|      1607744401.1543065937:2:201812311201 > ga_channelGrouping=Direct
+|      1607744401.1543065937:2:201812311201 > ga_socialNetwork=
+|      1607744401.1543065937:2:201812311201 > ga_fullReferrer=(direct)
+|      1607744401.1543065937:2:201812311201 > utm_content=
+|      1607744401.1543065937:2:201812311201 > ga_users=1
+|      1607744401.1543065937:2:201812311201 > ga_sessions=1
+|      1607744401.1543065937:2:201812311201 > ga_timeOnPage=31.0
+|      1607744401.1543065937:2:201812311201 > ga_pageviews=1
+|      1607744401.1543065937:2:201812311201 > utm_source=(direct)
+|      1607744401.1543065937:2:201812311201 > utm_campaign=
+|      1607744401.1543065937:2:201812311201 > utm_medium=(none)
+|      1607744401.1543065937:2:201812311201 > utm_term=
+|      1607744401.1543065937:2:201812311201 > ga_newUsers=0
+|      1607744401.1543065937:2:201812311201 > date=2018-12-31
+|      1607744401.1543065937:2:201812311201 > profile_id=175660279
+[dict  1607744401.1543065937:2:201812311202
+|      1607744401.1543065937:2:201812311202 > ga_dimension2=1607744401.1543065937
+|      1607744401.1543065937:2:201812311202 > ga_sessionCount=2
+|      1607744401.1543065937:2:201812311202 > ga_dateHourMinute=201812311202
+|      1607744401.1543065937:2:201812311202 > ga_channelGrouping=Direct
+|      1607744401.1543065937:2:201812311202 > ga_socialNetwork=
+|      1607744401.1543065937:2:201812311202 > ga_fullReferrer=(direct)
+|      1607744401.1543065937:2:201812311202 > utm_content=
+|      1607744401.1543065937:2:201812311202 > ga_users=1
+|      1607744401.1543065937:2:201812311202 > ga_sessions=0
+|      1607744401.1543065937:2:201812311202 > ga_timeOnPage=0.0
+|      1607744401.1543065937:2:201812311202 > ga_pageviews=1
+|      1607744401.1543065937:2:201812311202 > utm_source=(direct)
+|      1607744401.1543065937:2:201812311202 > utm_campaign=
+|      1607744401.1543065937:2:201812311202 > utm_medium=(none)
+|      1607744401.1543065937:2:201812311202 > utm_term=
+|      1607744401.1543065937:2:201812311202 > ga_newUsers=0
+|      1607744401.1543065937:2:201812311202 > date=2018-12-31
+|      1607744401.1543065937:2:201812311202 > profile_id=175660279
+[dict  657379397.1546062444:2:201812310006
+|      657379397.1546062444:2:201812310006 > ga_dimension2=657379397.1546062444
+|      657379397.1546062444:2:201812310006 > ga_sessionCount=2
+|      657379397.1546062444:2:201812310006 > ga_dateHourMinute=201812310006
+|      657379397.1546062444:2:201812310006 > ga_channelGrouping=Referral
+|      657379397.1546062444:2:201812310006 > ga_socialNetwork=
+|      657379397.1546062444:2:201812310006 > ga_fullReferrer=rock.st/ru/
+|      657379397.1546062444:2:201812310006 > utm_content=
+|      657379397.1546062444:2:201812310006 > ga_users=1
+|      657379397.1546062444:2:201812310006 > ga_sessions=1
+|      657379397.1546062444:2:201812310006 > ga_timeOnPage=0.0
+|      657379397.1546062444:2:201812310006 > ga_pageviews=1
+|      657379397.1546062444:2:201812310006 > utm_source=rock.st
+|      657379397.1546062444:2:201812310006 > utm_campaign=
+|      657379397.1546062444:2:201812310006 > utm_medium=referral
+|      657379397.1546062444:2:201812310006 > utm_term=
+|      657379397.1546062444:2:201812310006 > ga_newUsers=0
+|      657379397.1546062444:2:201812310006 > date=2018-12-31
+|      657379397.1546062444:2:201812310006 > profile_id=175660279
+```
 
 
 Эти данные мы схлопываем по пользователю, номеру его визита и времени. `rec['ga_dimension2'] +':' + rec['ga_sessionCount'] + ':' + rec['ga_dateHourMinute']`.
@@ -714,78 +721,80 @@ walk(daily_stat)
 pprint(dict(daily_stat))
 ```
 
-    {'128983921.1546258642:1:201812311517': {'date': '2018-12-31',
-                                             'ga_channelGrouping': 'Organic Search',
-                                             'ga_dateHourMinute': '201812311517',
-                                             'ga_dimension2': '128983921.1546258642',
-                                             'ga_fullReferrer': 'google',
-                                             'ga_newUsers': '1',
-                                             'ga_pageviews': '1',
-                                             'ga_sessionCount': '1',
-                                             'ga_sessions': '1',
-                                             'ga_socialNetwork': '',
-                                             'ga_timeOnPage': '0.0',
-                                             'ga_users': '1',
-                                             'profile_id': '175660279',
-                                             'utm_campaign': '',
-                                             'utm_content': '',
-                                             'utm_medium': 'organic',
-                                             'utm_source': 'google',
-                                             'utm_term': '(not provided)'},
-     '1607744401.1543065937:2:201812311201': {'date': '2018-12-31',
-                                              'ga_channelGrouping': 'Direct',
-                                              'ga_dateHourMinute': '201812311201',
-                                              'ga_dimension2': '1607744401.1543065937',
-                                              'ga_fullReferrer': '(direct)',
-                                              'ga_newUsers': '0',
-                                              'ga_pageviews': '1',
-                                              'ga_sessionCount': '2',
-                                              'ga_sessions': '1',
-                                              'ga_socialNetwork': '',
-                                              'ga_timeOnPage': '31.0',
-                                              'ga_users': '1',
-                                              'profile_id': '175660279',
-                                              'utm_campaign': '',
-                                              'utm_content': '',
-                                              'utm_medium': '(none)',
-                                              'utm_source': '(direct)',
-                                              'utm_term': ''},
-     '1607744401.1543065937:2:201812311202': {'date': '2018-12-31',
-                                              'ga_channelGrouping': 'Direct',
-                                              'ga_dateHourMinute': '201812311202',
-                                              'ga_dimension2': '1607744401.1543065937',
-                                              'ga_fullReferrer': '(direct)',
-                                              'ga_newUsers': '0',
-                                              'ga_pageviews': '1',
-                                              'ga_sessionCount': '2',
-                                              'ga_sessions': '0',
-                                              'ga_socialNetwork': '',
-                                              'ga_timeOnPage': '0.0',
-                                              'ga_users': '1',
-                                              'profile_id': '175660279',
-                                              'utm_campaign': '',
-                                              'utm_content': '',
-                                              'utm_medium': '(none)',
-                                              'utm_source': '(direct)',
-                                              'utm_term': ''},
-     '657379397.1546062444:2:201812310006': {'date': '2018-12-31',
-                                             'ga_channelGrouping': 'Referral',
-                                             'ga_dateHourMinute': '201812310006',
-                                             'ga_dimension2': '657379397.1546062444',
-                                             'ga_fullReferrer': 'rock.st/ru/',
-                                             'ga_newUsers': '0',
-                                             'ga_pageviews': '1',
-                                             'ga_sessionCount': '2',
-                                             'ga_sessions': '1',
-                                             'ga_socialNetwork': '',
-                                             'ga_timeOnPage': '0.0',
-                                             'ga_users': '1',
-                                             'profile_id': '175660279',
-                                             'utm_campaign': '',
-                                             'utm_content': '',
-                                             'utm_medium': 'referral',
-                                             'utm_source': 'rock.st',
-                                             'utm_term': ''}}
+```
+{'128983921.1546258642:1:201812311517': {'date': '2018-12-31',
+                                         'ga_channelGrouping': 'Organic Search',
+                                         'ga_dateHourMinute': '201812311517',
+                                         'ga_dimension2': '128983921.1546258642',
+                                         'ga_fullReferrer': 'google',
+                                         'ga_newUsers': '1',
+                                         'ga_pageviews': '1',
+                                         'ga_sessionCount': '1',
+                                         'ga_sessions': '1',
+                                         'ga_socialNetwork': '',
+                                         'ga_timeOnPage': '0.0',
+                                         'ga_users': '1',
+                                         'profile_id': '175660279',
+                                         'utm_campaign': '',
+                                         'utm_content': '',
+                                         'utm_medium': 'organic',
+                                         'utm_source': 'google',
+                                         'utm_term': '(not provided)'},
+ '1607744401.1543065937:2:201812311201': {'date': '2018-12-31',
+                                          'ga_channelGrouping': 'Direct',
+                                          'ga_dateHourMinute': '201812311201',
+                                          'ga_dimension2': '1607744401.1543065937',
+                                          'ga_fullReferrer': '(direct)',
+                                          'ga_newUsers': '0',
+                                          'ga_pageviews': '1',
+                                          'ga_sessionCount': '2',
+                                          'ga_sessions': '1',
+                                          'ga_socialNetwork': '',
+                                          'ga_timeOnPage': '31.0',
+                                          'ga_users': '1',
+                                          'profile_id': '175660279',
+                                          'utm_campaign': '',
+                                          'utm_content': '',
+                                          'utm_medium': '(none)',
+                                          'utm_source': '(direct)',
+                                          'utm_term': ''},
+ '1607744401.1543065937:2:201812311202': {'date': '2018-12-31',
+                                          'ga_channelGrouping': 'Direct',
+                                          'ga_dateHourMinute': '201812311202',
+                                          'ga_dimension2': '1607744401.1543065937',
+                                          'ga_fullReferrer': '(direct)',
+                                          'ga_newUsers': '0',
+                                          'ga_pageviews': '1',
+                                          'ga_sessionCount': '2',
+                                          'ga_sessions': '0',
+                                          'ga_socialNetwork': '',
+                                          'ga_timeOnPage': '0.0',
+                                          'ga_users': '1',
+                                          'profile_id': '175660279',
+                                          'utm_campaign': '',
+                                          'utm_content': '',
+                                          'utm_medium': '(none)',
+                                          'utm_source': '(direct)',
+                                          'utm_term': ''},
+ '657379397.1546062444:2:201812310006': {'date': '2018-12-31',
+                                         'ga_channelGrouping': 'Referral',
+                                         'ga_dateHourMinute': '201812310006',
+                                         'ga_dimension2': '657379397.1546062444',
+                                         'ga_fullReferrer': 'rock.st/ru/',
+                                         'ga_newUsers': '0',
+                                         'ga_pageviews': '1',
+                                         'ga_sessionCount': '2',
+                                         'ga_sessions': '1',
+                                         'ga_socialNetwork': '',
+                                         'ga_timeOnPage': '0.0',
+                                         'ga_users': '1',
+                                         'profile_id': '175660279',
+                                         'utm_campaign': '',
+                                         'utm_content': '',
+                                         'utm_medium': 'referral',
+                                         'utm_source': 'rock.st',
+                                         'utm_term': ''}}
+```
 
 
 В результате получили несколько записей покаждой сессии пользователя, из-за времени, но оно нам нужно чтобы правильно атрибуцировать лиды из CRM по ClientId
@@ -799,29 +808,31 @@ pprint(dict(daily_stat))
 !pip install -U git+https://github.com/madiedinro/simple-clickhouse
 ```
 
-    Collecting git+https://github.com/madiedinro/simple-clickhouse
-      Cloning https://github.com/madiedinro/simple-clickhouse to /tmp/pip-req-build-eykunikw
-    Requirement not upgraded as not directly required: ujson<2,>=1.35 in /opt/conda/lib/python3.6/site-packages (from simplech==0.5.0) (1.35)
-    Requirement not upgraded as not directly required: aiohttp<4,>=3 in /opt/conda/lib/python3.6/site-packages (from simplech==0.5.0) (3.5.0)
-    Requirement not upgraded as not directly required: async-timeout<4.0,>=3.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (3.0.1)
-    Requirement not upgraded as not directly required: chardet<4.0,>=2.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (3.0.4)
-    Requirement not upgraded as not directly required: attrs>=17.3.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (18.1.0)
-    Requirement not upgraded as not directly required: yarl<2.0,>=1.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (1.3.0)
-    Requirement not upgraded as not directly required: typing-extensions>=3.6.5; python_version < "3.7" in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (3.6.6)
-    Requirement not upgraded as not directly required: idna-ssl>=1.0; python_version < "3.7" in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (1.1.0)
-    Requirement not upgraded as not directly required: multidict<5.0,>=4.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (4.5.2)
-    Requirement not upgraded as not directly required: idna>=2.0 in /opt/conda/lib/python3.6/site-packages (from yarl<2.0,>=1.0->aiohttp<4,>=3->simplech==0.5.0) (2.6)
-    Building wheels for collected packages: simplech
-      Running setup.py bdist_wheel for simplech ... [?25ldone
-    [?25h  Stored in directory: /tmp/pip-ephem-wheel-cache-h7cu_rqz/wheels/27/01/44/3d8e895d405eeec7e838f1cb1511af91eed3c143cea831d073
-    Successfully built simplech
-    Installing collected packages: simplech
-      Found existing installation: simplech 0.5.0
-        Uninstalling simplech-0.5.0:
-          Successfully uninstalled simplech-0.5.0
-    Successfully installed simplech-0.5.0
-    [33mYou are using pip version 10.0.1, however version 18.1 is available.
-    You should consider upgrading via the 'pip install --upgrade pip' command.[0m
+```
+Collecting git+https://github.com/madiedinro/simple-clickhouse
+  Cloning https://github.com/madiedinro/simple-clickhouse to /tmp/pip-req-build-eykunikw
+Requirement not upgraded as not directly required: ujson<2,>=1.35 in /opt/conda/lib/python3.6/site-packages (from simplech==0.5.0) (1.35)
+Requirement not upgraded as not directly required: aiohttp<4,>=3 in /opt/conda/lib/python3.6/site-packages (from simplech==0.5.0) (3.5.0)
+Requirement not upgraded as not directly required: async-timeout<4.0,>=3.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (3.0.1)
+Requirement not upgraded as not directly required: chardet<4.0,>=2.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (3.0.4)
+Requirement not upgraded as not directly required: attrs>=17.3.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (18.1.0)
+Requirement not upgraded as not directly required: yarl<2.0,>=1.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (1.3.0)
+Requirement not upgraded as not directly required: typing-extensions>=3.6.5; python_version < "3.7" in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (3.6.6)
+Requirement not upgraded as not directly required: idna-ssl>=1.0; python_version < "3.7" in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (1.1.0)
+Requirement not upgraded as not directly required: multidict<5.0,>=4.0 in /opt/conda/lib/python3.6/site-packages (from aiohttp<4,>=3->simplech==0.5.0) (4.5.2)
+Requirement not upgraded as not directly required: idna>=2.0 in /opt/conda/lib/python3.6/site-packages (from yarl<2.0,>=1.0->aiohttp<4,>=3->simplech==0.5.0) (2.6)
+Building wheels for collected packages: simplech
+  Running setup.py bdist_wheel for simplech ... [?25ldone
+[?25h  Stored in directory: /tmp/pip-ephem-wheel-cache-h7cu_rqz/wheels/27/01/44/3d8e895d405eeec7e838f1cb1511af91eed3c143cea831d073
+Successfully built simplech
+Installing collected packages: simplech
+  Found existing installation: simplech 0.5.0
+    Uninstalling simplech-0.5.0:
+      Successfully uninstalled simplech-0.5.0
+Successfully installed simplech-0.5.0
+[33mYou are using pip version 10.0.1, however version 18.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.[0m
+```
 
 
 #### Автоматическая генерация схемы таблицы ClickHouse
@@ -841,26 +852,28 @@ td = TableDiscovery(list(daily_stat.values()), 'ga_stat')
 print(td.idx('profile_id', 'date').merge_tree())
 ```
 
-    CREATE TABLE `ga_stat` (
-      `ga_dimension2`  String,
-      `ga_sessionCount`  UInt64,
-      `ga_dateHourMinute`  UInt64,
-      `ga_channelGrouping`  String,
-      `ga_socialNetwork`  String,
-      `ga_fullReferrer`  String,
-      `utm_content`  String,
-      `ga_users`  UInt64,
-      `ga_sessions`  UInt64,
-      `ga_timeOnPage`  Float64,
-      `ga_pageviews`  UInt64,
-      `utm_source`  String,
-      `utm_campaign`  String,
-      `utm_medium`  String,
-      `utm_term`  String,
-      `ga_newUsers`  UInt64,
-      `date`  Date,
-      `profile_id`  UInt64
-    ) ENGINE MergeTree() PARTITION BY toYYYYMM(`date`) ORDER BY (`profile_id`, `date`) SETTINGS index_granularity=8192;
+```
+CREATE TABLE `ga_stat` (
+  `ga_dimension2`  String,
+  `ga_sessionCount`  UInt64,
+  `ga_dateHourMinute`  UInt64,
+  `ga_channelGrouping`  String,
+  `ga_socialNetwork`  String,
+  `ga_fullReferrer`  String,
+  `utm_content`  String,
+  `ga_users`  UInt64,
+  `ga_sessions`  UInt64,
+  `ga_timeOnPage`  Float64,
+  `ga_pageviews`  UInt64,
+  `utm_source`  String,
+  `utm_campaign`  String,
+  `utm_medium`  String,
+  `utm_term`  String,
+  `ga_newUsers`  UInt64,
+  `date`  Date,
+  `profile_id`  UInt64
+) ENGINE MergeTree() PARTITION BY toYYYYMM(`date`) ORDER BY (`profile_id`, `date`) SETTINGS index_granularity=8192;
+```
     
 
 
@@ -874,7 +887,9 @@ ch.run(td.idx('profile_id', 'date').merge_tree())
 
 
 
-    ''
+```
+''
+```
 
 
 
@@ -893,7 +908,9 @@ ch.select('SELECT count() FROM ga_stat')
 
 
 
-    '1682\n'
+```
+'1682\n'
+```
 
 
 
@@ -1070,7 +1087,9 @@ ch.select(f'SELECT count() FROM ga_stat WHERE ga_dimension2 IN ({gaclids_in})')
 
 
 
-    '99\n'
+```
+'99\n'
+```
 
 
 

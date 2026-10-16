@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './postslist.css';
+import style from './postslist.module.css';
 
 export class PostList extends React.Component {
   render() {

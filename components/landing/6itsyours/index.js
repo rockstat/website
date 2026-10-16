@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './platform.css';
+import style from './platform.module.css';
 
 import { Docker, Js, Golang, Python, Ts, Clickhouse } from '@app/components/icons/technologies';
 

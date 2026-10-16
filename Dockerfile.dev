@@ -1,7 +1,7 @@
-FROM mhart/alpine-node:8
+FROM node:24-alpine
 
 WORKDIR /usr/src
-ENV HOST=0.0.0.0
+RUN corepack enable
+ENV HOSTNAME=0.0.0.0
 
-CMD yarn && yarn start:dev
-
+CMD pnpm install && pnpm dev -H 0.0.0.0

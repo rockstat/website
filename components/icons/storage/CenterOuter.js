@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.css';
+import style from './style.module.css';
 import cl from 'classnames';
 
 export class CenterOuter extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from 'classnames';
-import style from './analytic.css';
+import style from './analytic.module.css';
 
 import { Center3, Two, Three, Wawe } from 'app/components/icons/analysis-platform';
 

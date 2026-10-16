@@ -1,4 +1,3 @@
-import asset from 'next/asset'
 import { withDoc } from 'app/lib'
 import { Alert, Tip, Info } from 'app/components'
 import Footer from './footer.mdx'
@@ -89,6 +88,7 @@ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/ycloud_v
 
 ```bash
 curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstart | sudo -E bash -
+```
 
 Если окажется, что нет приложения `curl`, установите при помощи.
 
@@ -96,6 +96,9 @@ curl -s https://raw.githubusercontent.com/rockstat/bootstrap/master/bin/kickstar
 sudo apt -qqy update && sudo apt -qqy install curl
 ```
 
+Установщик выведет приветствие:
+
+```
 ##
 ## Rockstat Bootstrap
 ##

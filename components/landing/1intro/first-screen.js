@@ -1,28 +1,15 @@
 import React from 'react';
 import cl from 'classnames';
 import PropTypes from 'prop-types';
-import style from './first-screen.css';
+import style from './first-screen.module.css';
 
 // import Vivus from 'vivus';
-import VisibilitySensor from "react-visibility-sensor";
+import { VisibilitySensor } from "@app/components/visibility-sensor";
 
 import { EverythingRhimbusIcon, Circletransparent, CircleBlur, CircleGreenIcon, RockFig } from '@app/components/icons/intro';
 import { LogoIcon } from '@app/components/icons';
 import { linksMenu } from '@app/lib/constants';
 
-
-class CircleComponent extends React.PureComponent {
-  render() {
-    const { width, height } = this.props;
-    return (
-      <svg width={width} height={height} className='chart'>
-        <circlec x={30} cy={80} r={25} fill={'red'} />
-        <circlec x={130} cy={80} r={60} fill={'green'} />
-        <circlec x={260} cy={80} r={40} fill={'blue'} />
-      </svg>
-    );
-  }
-}
 
 export class Everything extends React.PureComponent {
   state = {
@@ -89,12 +76,7 @@ export class Everything extends React.PureComponent {
           </div>
           <div className={cl(style.demoContainer, { [style.top]: linksMenuPosition === 'top' })}>
             {/* <div className={style.btn}> <a href={'/'}> Demo </a> </div> */}
-            <VisibilitySensor
-              scrollCheck
-              scrollThrottle={100}
-              intervalDelay={8000}
-              onChange={this.linksMenuPositionDetect}
-            >
+            <VisibilitySensor onChange={this.linksMenuPositionDetect}>
               <div className={style.description}>
                 <div>Open Source</div>
                 <div>Apache 2.0</div>

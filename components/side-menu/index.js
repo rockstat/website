@@ -1,33 +1,22 @@
 import * as React from 'react';
 import cls from 'classnames';
-import { Link } from '../../next-routes'
 import { ShowIf, ShowIfElse, GenericLink } from '..'
 import { ShowMenuIcon } from '../icons';
 import { Logo } from '../logo';
 
-import style from './sideMenu.css';
+import style from './sideMenu.module.css';
 
 export class SideMenu extends React.Component {
-  state = {
-    activeMenuItem: [],
-    showMenu: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeMenuItem: SideMenu.findActiveItems(props.menuData, props.pathname),
+      showMenu: false
+    };
   }
 
-  setActiveMenuItem = (key) => {
-    const { activeMenuItem } = this.state;
-    let newActvieMenuItem = [...activeMenuItem];
-    let activeShowDetect = activeMenuItem.indexOf(key);
-
-    activeShowDetect >= 0 ? newActvieMenuItem.splice(activeShowDetect, 1) : newActvieMenuItem.push(key)
-    this.setState({
-      activeMenuItem: newActvieMenuItem
-    })
-  }
-
-  componentWillMount() {
-    const { menuData, pathname } = this.props;
+  static findActiveItems(menuData, pathname) {
     const activeMenuItem = [];
-
     const iter = (items) => {
       for (const item of items) {
         const active = item.href === pathname || (item.hrefs || []).indexOf(pathname) >= 0;
@@ -38,15 +27,22 @@ export class SideMenu extends React.Component {
           iter(item.items);
         }
       }
-    }
-    this.setState({ activeMenuItem })
-    iter(menuData)
+    };
+    iter(menuData || []);
+    return activeMenuItem;
+  }
+
+  setActiveMenuItem = (key) => {
+    this.setState(({ activeMenuItem }) => {
+      const next = [...activeMenuItem];
+      const idx = next.indexOf(key);
+      idx >= 0 ? next.splice(idx, 1) : next.push(key);
+      return { activeMenuItem: next };
+    });
   }
 
   changeMenu = () => {
-    this.setState({
-      showMenu: !this.state.showMenu
-    })
+    this.setState((prev) => ({ showMenu: !prev.showMenu }));
   }
 
   renderItemStatus(enabled, pathname, href) {

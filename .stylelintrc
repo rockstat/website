@@ -1,17 +1,42 @@
 {
     "extends": "stylelint-config-recommended",
-    "plugins": [
-      "stylelint-declaration-use-variable"
-    ],
     "rules": {
-        "selector-pseudo-class-no-unknown": [true, {
-          "ignorePseudoClasses": ["global"]
-        }],
-        "selector-pseudo-element-no-unknown": [true, {
-          "ignorePseudoElements": ["global"]
-        }],
-        "at-rule-no-unknown": [true, {
-          "ignoreAtRules": ["mixin", "define-mixin"]
-        }]
+        "selector-pseudo-class-no-unknown": [
+            true,
+            {
+                "ignorePseudoClasses": [
+                    "global"
+                ]
+            }
+        ],
+        "selector-pseudo-element-no-unknown": [
+            true,
+            {
+                "ignorePseudoElements": [
+                    "global"
+                ]
+            }
+        ],
+        "at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "mixin",
+                    "define-mixin",
+                    "at-root"
+                ]
+            }
+        ],
+        "function-no-unknown": [
+            true,
+            {
+                "ignoreFunctions": [
+                    "rem"
+                ]
+            }
+        ],
+        "no-descending-specificity": null,
+        "at-rule-prelude-no-invalid": null,
+        "at-rule-descriptor-value-no-unknown": null
     }
 }

@@ -1,8 +1,7 @@
 import React from 'react';
+import Head from 'next/head';
 import {
-  Wrapper
-} from '@app/components'
-import {
+  Wrapper,
   Everything,
   Analytic,
   Repository,
@@ -12,32 +11,28 @@ import {
   Center,
   Information
 } from '@app/components';
-import Head from 'next/head'
 
 const lang = 'ru';
 
-export default class extends React.Component {
-  static async getInitialProps({ query }) {
-    return { query: query }
-  }
-
-  componentDidMount() {
-    document.querySelector('html').style.backgroundColor = '#000';
-  }
-
+export default class MainPage extends React.Component {
   state = {
     linksMenuPosition: 'bottom'
   }
 
-  _changeLinkMenuPosition = (e) => {
-    this.setState({
-      linksMenuPosition: e
-    })
+  componentDidMount() {
+    document.documentElement.style.backgroundColor = '#000';
+  }
+
+  componentWillUnmount() {
+    document.documentElement.style.backgroundColor = '';
+  }
+
+  _changeLinkMenuPosition = (pos) => {
+    this.setState({ linksMenuPosition: pos });
   }
 
   render() {
     const { linksMenuPosition } = this.state;
-    const { asPath, query } = this.props;
 
     return (
       <div>
@@ -55,6 +50,6 @@ export default class extends React.Component {
           <Information />
         </Wrapper>
       </div>
-    )
+    );
   }
 }

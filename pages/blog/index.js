@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../../static/styles/blog.css';
+import style from '@app/styles/blog.module.css';
 import { Wrapper } from '@app/components'
 import { PostList, BlogSideBar } from '../../components';
 

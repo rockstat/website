@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from 'classnames';
-import style from './repository.css';
+import style from './repository.module.css';
 import { Center, CenterOuter, CenterRounds, CenterDots, EnvOne } from '@app/components/icons/storage';
 
 export class Repository extends React.Component {

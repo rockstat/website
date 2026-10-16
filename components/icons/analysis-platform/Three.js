@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from 'classnames';
-import style from './style.css';
+import style from './style.module.css';
 
 export const Three = (props) => (
   <svg className={cl(style.treeContainer, {[style.active]: props.animationChange})} viewBox='0 0 512 506' fill='none'>

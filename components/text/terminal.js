@@ -1,106 +1,95 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { GenericLink } from './link'
+import React, { createContext, useContext } from 'react';
+import { GenericLink } from './link';
 
-export const TerminalInput = ({ children }, { darkBg = false }) => (
-  <div className={darkBg ? 'dark' : ''}>
-    {Array.isArray(children) ? (
-      <span>{children}</span>
-    ) : (
-      children
-        .split(/\r?\n/)
-        .map((item, index) => <span key={index}>{item}</span>)
-    )}
+const DarkBgContext = createContext(false);
 
-    <style jsx>
-      {`
-        div {
-          border: 1px solid #eaeaea;
-          color: #bd10e0;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-            serif;
-          font-size: 13px;
-          line-height: 20px;
-          margin: 40px 0;
-          padding: 20px;
-          -webkit-overflow-scrolling: touch;
-          white-space: pre;
-          overflow: auto;
-        }
+export const TerminalInput = ({ children }) => {
+  const darkBg = useContext(DarkBgContext);
+  return (
+    <div className={darkBg ? 'dark' : ''}>
+      {Array.isArray(children) ? (
+        <span>{children}</span>
+      ) : (
+        String(children)
+          .split(/\r?\n/)
+          .map((item, index) => <span key={index}>{item}</span>)
+      )}
 
-        div span {
-          display: block;
-        }
+      <style jsx>
+        {`
+          div {
+            border: 1px solid #eaeaea;
+            color: #bd10e0;
+            font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+              DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
+              serif;
+            font-size: 13px;
+            line-height: 20px;
+            margin: 40px 0;
+            padding: 20px;
+            -webkit-overflow-scrolling: touch;
+            white-space: pre;
+            overflow: auto;
+          }
 
-        div span::before {
-          content: '$ ';
-        }
+          div span {
+            display: block;
+          }
 
-        div.dark {
-          border-color: #333;
-          color: #5ce6cd;
-        }
-      `}
-    </style>
-  </div>
-)
+          div span::before {
+            content: '$ ';
+          }
 
-TerminalInput.contextTypes = {
-  darkBg: PropTypes.bool
-}
+          div.dark {
+            border-color: #333;
+            color: #5ce6cd;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
 
-export class TerminalOutput extends React.Component {
-  static childContextTypes = {
-    darkBg: PropTypes.bool
-  }
+export const TerminalOutput = ({ children }) => (
+  <DarkBgContext.Provider value={true}>
+    <div className="output">
+      {children}
+      <style jsx>
+        {`
+          .output {
+            background: #000;
+            color: #fff;
+            font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+              DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+              monospace, serif;
+            font-size: 13px;
+            line-height: 20px;
+            margin: 40px 0;
+            padding: 20px;
+          }
 
-  getChildContext() {
-    return { darkBg: true }
-  }
-
-  render() {
-    const { children } = this.props
-    return (
-      <div className="output">
-        {children}
-        <style jsx>
-          {`
-            .output {
-              background: #000;
-              color: #fff;
-              font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-                DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
-                monospace, serif;
-              font-size: 13px;
-              line-height: 20px;
-              margin: 40px 0;
-              padding: 20px;
-            }
-
-            .output :global(pre) {
-              margin: 0;
-              font-family: inherit;
-              font-size: inherit;
-              line-height: inherit;
-              white-space: pre-wrap;
-            }
-          `}
-        </style>
-      </div>
-    )
-  }
-}
+          .output :global(pre) {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            white-space: pre-wrap;
+          }
+        `}
+      </style>
+    </div>
+  </DarkBgContext.Provider>
+);
 
 export const TerminalLink = props => (
   <span>
     <GenericLink {...props} />
     <style jsx>
       {`
-        span :gloabl(a) {
+        span :global(a) {
           text-decoration: underline;
         }
       `}
     </style>
   </span>
-)
+);

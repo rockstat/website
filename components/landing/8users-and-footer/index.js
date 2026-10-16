@@ -1,8 +1,8 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './information.css';
-import { Link } from 'app/next-routes'
+import style from './information.module.css';
+import Link from 'next/link'
 import * as Icons from 'app/components/icons/users';
 
 
@@ -88,7 +88,6 @@ export class Information extends React.Component {
 
         <div className={style.btn}>
           <Link href={'/docs'}>
-            <a>
               Установить Rockstat
 
             <svg viewBox="0 0 272 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +99,6 @@ export class Information extends React.Component {
                   </linearGradient>
                 </defs>
               </svg>
-            </a>
           </Link>
         </div>
       </div>

@@ -10,7 +10,7 @@
 
 ## Работа с меню
 
-Управление меню происходит в файле `data/docs.yml`.
+Управление меню происходит в файле `pages/docs/docs.yml`.
 
 ## Добавление страниц документации
 
@@ -21,26 +21,49 @@
 Проще всего воспользоваться визивиг https://mdp.tylingsoft.com/ 
 или любым другим из "Downstream projects" https://mermaidjs.github.io/
 
-### local dev
+### Стек
 
-Подготовка
+- Next.js 16 (Pages Router, Turbopack), React 19
+- MDX 3 (`@next/mdx`) — документация и блог в `pages/**/*.mdx`
+- PostCSS (mixins, variables, nested, `rem()`), CSS Modules (`*.module.css`), styled-jsx
+- Node.js 24, pnpm
 
-```bash
-yarn
-yarn link
-```
-
-Запуск
+### Локальная разработка
 
 ```bash
-yarn start:dev
-# or
-yarn build:export
-yarn run serve
+pnpm install
+pnpm dev          # http://localhost:3000 (сначала генерирует оглавление документации)
 ```
 
-### Using docker
+Сборка и статический экспорт (результат в `out/`):
 
+```bash
+pnpm build        # серверная сборка (.next)
+pnpm build:export # статический экспорт в out/ (MAIN=1 — production robots.txt)
+pnpm serve        # раздать out/ локально
+pnpm lint:css     # stylelint
+```
+
+Вспомогательные команды (`./rockstat`):
+
+- `node ./rockstat build-toc` — собрать `lib/constants/docs.js` из `pages/docs/docs.yml`
+- `node ./rockstat build-sitemap` — записать `public/sitemap.xml` и `public/robots.txt`
+
+Статика (картинки, шрифты, favicon) лежит в `public/static` и доступна по `/static/...`.
+
+### Особенности MDX
+
+- Блоки `[[tip]]`, `[[info]]`, `[[success]]`, `[[alert]]`, `[[chapter]]` с телом в строках `| ...`
+  обрабатывает плагин `lib/remark/custom-blocks.mjs`.
+- Таблицы из CSV: `import rows from '../structs/file.csv'` и `<RenderTable data={rows} />`.
+- Отступ в 4 пробела больше **не** является блоком кода — используйте ограждения ```.
+
+### Docker
+
+```bash
+make build-dev && make start-dev   # dev-сервер в контейнере на :3000
+docker build -t website .          # статическая сборка + nginx
+```
 
 ## License
 

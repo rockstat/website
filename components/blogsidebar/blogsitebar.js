@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './blogsidebar.css';
+import style from './blogsidebar.module.css';
 
 export class BlogSideBar extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from 'classnames';
 
-import style from './dashboard.css';
+import style from './dashboard.module.css';
 import { 
   BgChart, 
   Tooltips, 

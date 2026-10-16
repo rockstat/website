@@ -1,4 +1,4 @@
-@import '../../../static/styles/variables.css';
+@import '../../../styles/variables.css';
 
 .analyticContainer {
   width: 100vw;
@@ -206,7 +206,7 @@
       padding: 0 25px;
       width: 100%;
       margin-top: 125%;
-      // margin-top: 105vw;
+      /* margin-top: 105vw; */
       .leftText {
         width: 100%;
       }

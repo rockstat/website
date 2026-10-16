@@ -1,15 +1,16 @@
 [build]
-publish = "public"
-command = "yarn link && yarn build:export"
+publish = "out"
+command = "pnpm build:export"
 
 [context.production.environment]
-REPOSITORY_URL = "https://github.com/madiedinro/rockstat-web"
+REPOSITORY_URL = "https://github.com/rockstat/website"
 CONTEXT = "production"
-NODE_VERSION= "8.12.0"
+NODE_VERSION = "24"
+MAIN = "1"
 WEBHOOK_TITLE = "rstat.org build"
 WEBHOOK_URL = "https://bolt.rstat.org/netlify/build/1"
 
 [[redirects]]
 from = "/"
-to = "/ru"
+to = "/ru/"
 status = 303

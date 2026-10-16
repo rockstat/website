@@ -1,32 +1,34 @@
-import React from 'react';
-import mermaid, {mermaidAPI} from 'mermaid';
+import React, { useEffect, useId, useState } from 'react';
 
-export const Mermaid = React.createClass({
+/**
+ * Renders a Mermaid diagram on the client. `mermaid` is imported lazily so it
+ * never runs during SSR / static export.
+ *
+ *   <Mermaid>{`graph TD; A-->B;`}</Mermaid>
+ */
+export function Mermaid({ children, content, theme = 'forest' }) {
+  const reactId = useId();
+  const [svg, setSvg] = useState(null);
+  const source = typeof content === 'string' ? content : String(children || '');
 
-  propTypes: {
-    name: React.PropTypes.string
-  },
+  useEffect(() => {
+    let cancelled = false;
+    import('mermaid').then(async ({ default: mermaid }) => {
+      mermaid.initialize({ startOnLoad: false, theme });
+      try {
+        const id = `mermaid-${reactId.replace(/[^a-zA-Z0-9_-]/g, '')}`;
+        const result = await mermaid.render(id, source);
+        if (!cancelled) setSvg(result.svg);
+      } catch (err) {
+        if (!cancelled) setSvg(`<pre>${String(err && err.message ? err.message : err)}</pre>`);
+      }
+    });
+    return () => { cancelled = true; };
+  }, [source, theme, reactId]);
 
-  getDefaultProps () {
-    return {
-      name: 'mermaid'
-    };
-  },
-
-  getInitialState () {
-    return {
-      diagram: 'Loading diagram...'
-    };
-  },
-
-  componentDidMount () {
-    mermaidAPI.render(this.props.name, this.props.children.toString(), (html) => this.setState({diagram: html}));
-  },
-
-  render () {
-    return (
-      <div className="mermaid" dangerouslySetInnerHTML={{__html: this.state.diagram}}></div>
-    )
+  if (!svg) {
+    return <div className="mermaid">Loading diagram...</div>;
   }
-});
 
+  return <div className="mermaid" dangerouslySetInnerHTML={{ __html: svg }} />;
+}

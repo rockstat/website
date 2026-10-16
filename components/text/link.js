@@ -1,41 +1,32 @@
-// Packages
-import { Link } from 'app/next-routes';
+import Link from 'next/link';
 
-/**
- * 
- * @param {String} str 
- * @param {String} val 
- */
-const startsWith = (str, val) => {
-  return str.substr(0, val.length) === val;
-}
+const startsWith = (str, val) => typeof str === 'string' && str.substr(0, val.length) === val;
 
 export const GenericLink = (props) => {
-  if (startsWith(props.href, '/docs')) {
-    return <InternalLink {...props} />
+  const href = props.href || '';
+
+  if (startsWith(href, '/docs') || startsWith(href, '/blog') || startsWith(href, '/ru')) {
+    return <InternalLink {...props} href={href} />;
   }
 
-  if (props.href.indexOf('@') >= 0 || startsWith(props.href, '#')) {
-    return <AnchorLink {...props} />
+  if (href.indexOf('@') >= 0 || startsWith(href, '#')) {
+    return <AnchorLink {...props} href={href} />;
   }
 
-  return <ExternalLink {...props} />
-}
+  return <ExternalLink {...props} href={href} />;
+};
 
-//prefetch
-export const InternalLink = ({href, children, ...props}) => {
-  return (<Link href={href}>
-    <a {...props}>
-      {children}
-    </a>
+export const InternalLink = ({ href, children, ...props }) => (
+  <Link href={href} {...props}>
+    {children}
   </Link>
-)}
+);
 
-export const AnchorLink = ({children, ...props}) => (
+export const AnchorLink = ({ children, ...props }) => (
   <a {...props}>
     {children}
   </a>
-)
+);
 
 export const ExternalLink = ({ href, children, ...props }) => (
   <a
@@ -46,4 +37,4 @@ export const ExternalLink = ({ href, children, ...props }) => (
   >
     {children}
   </a>
-)
+);

@@ -9,7 +9,7 @@
   },
   "type": "static",
   "static": {
-    "public": "public",
+    "public": "out",
     "redirects": [
       { "source": "/", "destination": "/ru/", "type": 301 },
       { "source": "/docs/intro/about/", "destination": "/docs/", "type": 301 }

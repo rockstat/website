@@ -1,5 +1,4 @@
 
-import asset from 'next/asset'
 import { withPost } from 'app/lib'
 import { Alert, Tip, Info, YouTube } from 'app/components'
 
@@ -95,7 +94,9 @@ def auth(user, user_hash):
 auth(amo_user, amo_key)
 ```
 
-    200 {'response': {'auth': True, 'accounts': [{'id': '23668636', 'name': 'wevdiw', 'subdomain': 'wevdiw', 'language': 'ru', 'timezone': 'Europe/Moscow'}], 'user': {'id': '3037510', 'language': 'ru'}, 'server_time': 1548618503}}
+```
+200 {'response': {'auth': True, 'accounts': [{'id': '23668636', 'name': 'wevdiw', 'subdomain': 'wevdiw', 'language': 'ru', 'timezone': 'Europe/Moscow'}], 'user': {'id': '3037510', 'language': 'ru'}, 'server_time': 1548618503}}
+```
 
 
 Если 200 то все супер. Если нет - ищем ошибку
@@ -113,7 +114,9 @@ if res.status_code == 200:
 print(res.json())
 ```
 
-    {'_links': {'self': {'href': '/api/v2/account?with=pipelines,groups,note_types,task_types', 'method': 'get'}}, 'id': 23668636, 'name': 'wevdiw', 'subdomain': 'wevdiw', 'currency': 'RUB', 'timezone': 'Europe/Moscow', 'timezone_offset': '+03:00', 'language': 'ru', 'date_pattern': {'date': 'd.m.Y', 'time': 'H:i', 'date_time': 'd.m.Y H:i', 'time_full': 'H:i:s'}, 'current_user': 3037510, '_embedded': {'note_types': {'1': {'id': 1, 'code': 'DEAL_CREATED', 'is_editable': False}, '2': {'id': 2, 'code': 'CONTACT_CREATED', 'is_editable': False}, '3': {'id': 3, 'code': 'DEAL_STATUS_CHANGED', 'is_editable': False}, '4': {'id': 4, 'code': 'COMMON', 'is_editable': True}, '5': {'id': 5, 'code': 'ATTACHEMENT', 'is_editable': False}, '6': {'id': 6, 'code': 'CALL', 'is_editable': False}, '7': {'id': 7, 'code': 'MAIL_MESSAGE', 'is_editable': False}, '8': {'id': 8, 'code': 'MAIL_MESSAGE_ATTACHMENT', 'is_editable': False}, '9': {'id': 9, 'code': 'EXTERNAL_ATTACH', 'is_editable': False}, '10': {'id': 10, 'code': 'CALL_IN', 'is_editable': False}, '11': {'id': 11, 'code': 'CALL_OUT', 'is_editable': False}, '12': {'id': 12, 'code': 'COMPANY_CREATED', 'is_editable': False}, '13': {'id': 13, 'code': 'TASK_RESULT', 'is_editable': False}, '17': {'id': 17, 'code': 'CHAT', 'is_editable': False}, '99': {'id': 99, 'code': 'MAX_SYSTEM', 'is_editable': False}, '101': {'id': 101, 'code': 'DROPBOX', 'is_editable': False}, '102': {'id': 102, 'code': 'SMS_IN', 'is_editable': False}, '103': {'id': 103, 'code': 'SMS_OUT', 'is_editable': False}}, 'groups': [{'id': 0, 'name': 'Отдел продаж'}], 'task_types': {'1': {'id': 1, 'name': 'Звонок'}, '2': {'id': 2, 'name': 'Встреча'}, '3': {'id': 3, 'name': 'Письмо'}}, 'pipelines': {'1543696': {'id': 1543696, 'name': 'Воронка', 'sort': 1, 'is_main': True, 'statuses': {'23668642': {'id': 23668642, 'name': 'Первичный контакт', 'color': '#99ccff', 'sort': 10, 'is_editable': True}, '23668645': {'id': 23668645, 'name': 'Переговоры', 'color': '#ffff99', 'sort': 20, 'is_editable': True}, '23668648': {'id': 23668648, 'name': 'Принимают решение', 'color': '#ffcc66', 'sort': 30, 'is_editable': True}, '23668651': {'id': 23668651, 'name': 'Согласование договора', 'color': '#ffcccc', 'sort': 40, 'is_editable': True}, '142': {'id': 142, 'name': 'Успешно реализовано', 'color': '#CCFF66', 'sort': 10000, 'is_editable': False}, '143': {'id': 143, 'name': 'Закрыто и не реализовано', 'color': '#D5D8DB', 'sort': 11000, 'is_editable': False}}, '_links': {'self': {'href': '/api/v2/pipelines?id=1543696', 'method': 'get'}}}}}}
+```
+{'_links': {'self': {'href': '/api/v2/account?with=pipelines,groups,note_types,task_types', 'method': 'get'}}, 'id': 23668636, 'name': 'wevdiw', 'subdomain': 'wevdiw', 'currency': 'RUB', 'timezone': 'Europe/Moscow', 'timezone_offset': '+03:00', 'language': 'ru', 'date_pattern': {'date': 'd.m.Y', 'time': 'H:i', 'date_time': 'd.m.Y H:i', 'time_full': 'H:i:s'}, 'current_user': 3037510, '_embedded': {'note_types': {'1': {'id': 1, 'code': 'DEAL_CREATED', 'is_editable': False}, '2': {'id': 2, 'code': 'CONTACT_CREATED', 'is_editable': False}, '3': {'id': 3, 'code': 'DEAL_STATUS_CHANGED', 'is_editable': False}, '4': {'id': 4, 'code': 'COMMON', 'is_editable': True}, '5': {'id': 5, 'code': 'ATTACHEMENT', 'is_editable': False}, '6': {'id': 6, 'code': 'CALL', 'is_editable': False}, '7': {'id': 7, 'code': 'MAIL_MESSAGE', 'is_editable': False}, '8': {'id': 8, 'code': 'MAIL_MESSAGE_ATTACHMENT', 'is_editable': False}, '9': {'id': 9, 'code': 'EXTERNAL_ATTACH', 'is_editable': False}, '10': {'id': 10, 'code': 'CALL_IN', 'is_editable': False}, '11': {'id': 11, 'code': 'CALL_OUT', 'is_editable': False}, '12': {'id': 12, 'code': 'COMPANY_CREATED', 'is_editable': False}, '13': {'id': 13, 'code': 'TASK_RESULT', 'is_editable': False}, '17': {'id': 17, 'code': 'CHAT', 'is_editable': False}, '99': {'id': 99, 'code': 'MAX_SYSTEM', 'is_editable': False}, '101': {'id': 101, 'code': 'DROPBOX', 'is_editable': False}, '102': {'id': 102, 'code': 'SMS_IN', 'is_editable': False}, '103': {'id': 103, 'code': 'SMS_OUT', 'is_editable': False}}, 'groups': [{'id': 0, 'name': 'Отдел продаж'}], 'task_types': {'1': {'id': 1, 'name': 'Звонок'}, '2': {'id': 2, 'name': 'Встреча'}, '3': {'id': 3, 'name': 'Письмо'}}, 'pipelines': {'1543696': {'id': 1543696, 'name': 'Воронка', 'sort': 1, 'is_main': True, 'statuses': {'23668642': {'id': 23668642, 'name': 'Первичный контакт', 'color': '#99ccff', 'sort': 10, 'is_editable': True}, '23668645': {'id': 23668645, 'name': 'Переговоры', 'color': '#ffff99', 'sort': 20, 'is_editable': True}, '23668648': {'id': 23668648, 'name': 'Принимают решение', 'color': '#ffcc66', 'sort': 30, 'is_editable': True}, '23668651': {'id': 23668651, 'name': 'Согласование договора', 'color': '#ffcccc', 'sort': 40, 'is_editable': True}, '142': {'id': 142, 'name': 'Успешно реализовано', 'color': '#CCFF66', 'sort': 10000, 'is_editable': False}, '143': {'id': 143, 'name': 'Закрыто и не реализовано', 'color': '#D5D8DB', 'sort': 11000, 'is_editable': False}}, '_links': {'self': {'href': '/api/v2/pipelines?id=1543696', 'method': 'get'}}}}}}
+```
 
 
 Ничего не понятно. Попробуем воспользоваться встроенным модулем `pprint`
@@ -123,120 +126,122 @@ print(res.json())
 pprint(data)
 ```
 
-    {'_embedded': {'groups': [{'id': 0, 'name': 'Отдел продаж'}],
-                   'note_types': {'1': {'code': 'DEAL_CREATED',
-                                        'id': 1,
-                                        'is_editable': False},
-                                  '10': {'code': 'CALL_IN',
-                                         'id': 10,
-                                         'is_editable': False},
-                                  '101': {'code': 'DROPBOX',
-                                          'id': 101,
-                                          'is_editable': False},
-                                  '102': {'code': 'SMS_IN',
-                                          'id': 102,
-                                          'is_editable': False},
-                                  '103': {'code': 'SMS_OUT',
-                                          'id': 103,
-                                          'is_editable': False},
-                                  '11': {'code': 'CALL_OUT',
-                                         'id': 11,
-                                         'is_editable': False},
-                                  '12': {'code': 'COMPANY_CREATED',
-                                         'id': 12,
-                                         'is_editable': False},
-                                  '13': {'code': 'TASK_RESULT',
-                                         'id': 13,
-                                         'is_editable': False},
-                                  '17': {'code': 'CHAT',
-                                         'id': 17,
-                                         'is_editable': False},
-                                  '2': {'code': 'CONTACT_CREATED',
-                                        'id': 2,
-                                        'is_editable': False},
-                                  '3': {'code': 'DEAL_STATUS_CHANGED',
-                                        'id': 3,
-                                        'is_editable': False},
-                                  '4': {'code': 'COMMON',
-                                        'id': 4,
-                                        'is_editable': True},
-                                  '5': {'code': 'ATTACHEMENT',
-                                        'id': 5,
-                                        'is_editable': False},
-                                  '6': {'code': 'CALL',
-                                        'id': 6,
-                                        'is_editable': False},
-                                  '7': {'code': 'MAIL_MESSAGE',
-                                        'id': 7,
-                                        'is_editable': False},
-                                  '8': {'code': 'MAIL_MESSAGE_ATTACHMENT',
-                                        'id': 8,
-                                        'is_editable': False},
-                                  '9': {'code': 'EXTERNAL_ATTACH',
-                                        'id': 9,
-                                        'is_editable': False},
-                                  '99': {'code': 'MAX_SYSTEM',
-                                         'id': 99,
-                                         'is_editable': False}},
-                   'pipelines': {'1543696': {'_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
-                                                                 'method': 'get'}},
-                                             'id': 1543696,
-                                             'is_main': True,
-                                             'name': 'Воронка',
-                                             'sort': 1,
-                                             'statuses': {'142': {'color': '#CCFF66',
-                                                                  'id': 142,
-                                                                  'is_editable': False,
-                                                                  'name': 'Успешно '
-                                                                          'реализовано',
-                                                                  'sort': 10000},
-                                                          '143': {'color': '#D5D8DB',
-                                                                  'id': 143,
-                                                                  'is_editable': False,
-                                                                  'name': 'Закрыто '
-                                                                          'и не '
-                                                                          'реализовано',
-                                                                  'sort': 11000},
-                                                          '23668642': {'color': '#99ccff',
-                                                                       'id': 23668642,
-                                                                       'is_editable': True,
-                                                                       'name': 'Первичный '
-                                                                               'контакт',
-                                                                       'sort': 10},
-                                                          '23668645': {'color': '#ffff99',
-                                                                       'id': 23668645,
-                                                                       'is_editable': True,
-                                                                       'name': 'Переговоры',
-                                                                       'sort': 20},
-                                                          '23668648': {'color': '#ffcc66',
-                                                                       'id': 23668648,
-                                                                       'is_editable': True,
-                                                                       'name': 'Принимают '
-                                                                               'решение',
-                                                                       'sort': 30},
-                                                          '23668651': {'color': '#ffcccc',
-                                                                       'id': 23668651,
-                                                                       'is_editable': True,
-                                                                       'name': 'Согласование '
-                                                                               'договора',
-                                                                       'sort': 40}}}},
-                   'task_types': {'1': {'id': 1, 'name': 'Звонок'},
-                                  '2': {'id': 2, 'name': 'Встреча'},
-                                  '3': {'id': 3, 'name': 'Письмо'}}},
-     '_links': {'self': {'href': '/api/v2/account?with=pipelines,groups,note_types,task_types',
-                         'method': 'get'}},
-     'currency': 'RUB',
-     'current_user': 3037510,
-     'date_pattern': {'date': 'd.m.Y',
-                      'date_time': 'd.m.Y H:i',
-                      'time': 'H:i',
-                      'time_full': 'H:i:s'},
-     'id': 23668636,
-     'language': 'ru',
-     'name': 'wevdiw',
-     'subdomain': 'wevdiw',
-     'timezone': 'Europe/Moscow',
-     'timezone_offset': '+03:00'}
+```
+{'_embedded': {'groups': [{'id': 0, 'name': 'Отдел продаж'}],
+               'note_types': {'1': {'code': 'DEAL_CREATED',
+                                    'id': 1,
+                                    'is_editable': False},
+                              '10': {'code': 'CALL_IN',
+                                     'id': 10,
+                                     'is_editable': False},
+                              '101': {'code': 'DROPBOX',
+                                      'id': 101,
+                                      'is_editable': False},
+                              '102': {'code': 'SMS_IN',
+                                      'id': 102,
+                                      'is_editable': False},
+                              '103': {'code': 'SMS_OUT',
+                                      'id': 103,
+                                      'is_editable': False},
+                              '11': {'code': 'CALL_OUT',
+                                     'id': 11,
+                                     'is_editable': False},
+                              '12': {'code': 'COMPANY_CREATED',
+                                     'id': 12,
+                                     'is_editable': False},
+                              '13': {'code': 'TASK_RESULT',
+                                     'id': 13,
+                                     'is_editable': False},
+                              '17': {'code': 'CHAT',
+                                     'id': 17,
+                                     'is_editable': False},
+                              '2': {'code': 'CONTACT_CREATED',
+                                    'id': 2,
+                                    'is_editable': False},
+                              '3': {'code': 'DEAL_STATUS_CHANGED',
+                                    'id': 3,
+                                    'is_editable': False},
+                              '4': {'code': 'COMMON',
+                                    'id': 4,
+                                    'is_editable': True},
+                              '5': {'code': 'ATTACHEMENT',
+                                    'id': 5,
+                                    'is_editable': False},
+                              '6': {'code': 'CALL',
+                                    'id': 6,
+                                    'is_editable': False},
+                              '7': {'code': 'MAIL_MESSAGE',
+                                    'id': 7,
+                                    'is_editable': False},
+                              '8': {'code': 'MAIL_MESSAGE_ATTACHMENT',
+                                    'id': 8,
+                                    'is_editable': False},
+                              '9': {'code': 'EXTERNAL_ATTACH',
+                                    'id': 9,
+                                    'is_editable': False},
+                              '99': {'code': 'MAX_SYSTEM',
+                                     'id': 99,
+                                     'is_editable': False}},
+               'pipelines': {'1543696': {'_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+                                                             'method': 'get'}},
+                                         'id': 1543696,
+                                         'is_main': True,
+                                         'name': 'Воронка',
+                                         'sort': 1,
+                                         'statuses': {'142': {'color': '#CCFF66',
+                                                              'id': 142,
+                                                              'is_editable': False,
+                                                              'name': 'Успешно '
+                                                                      'реализовано',
+                                                              'sort': 10000},
+                                                      '143': {'color': '#D5D8DB',
+                                                              'id': 143,
+                                                              'is_editable': False,
+                                                              'name': 'Закрыто '
+                                                                      'и не '
+                                                                      'реализовано',
+                                                              'sort': 11000},
+                                                      '23668642': {'color': '#99ccff',
+                                                                   'id': 23668642,
+                                                                   'is_editable': True,
+                                                                   'name': 'Первичный '
+                                                                           'контакт',
+                                                                   'sort': 10},
+                                                      '23668645': {'color': '#ffff99',
+                                                                   'id': 23668645,
+                                                                   'is_editable': True,
+                                                                   'name': 'Переговоры',
+                                                                   'sort': 20},
+                                                      '23668648': {'color': '#ffcc66',
+                                                                   'id': 23668648,
+                                                                   'is_editable': True,
+                                                                   'name': 'Принимают '
+                                                                           'решение',
+                                                                   'sort': 30},
+                                                      '23668651': {'color': '#ffcccc',
+                                                                   'id': 23668651,
+                                                                   'is_editable': True,
+                                                                   'name': 'Согласование '
+                                                                           'договора',
+                                                                   'sort': 40}}}},
+               'task_types': {'1': {'id': 1, 'name': 'Звонок'},
+                              '2': {'id': 2, 'name': 'Встреча'},
+                              '3': {'id': 3, 'name': 'Письмо'}}},
+ '_links': {'self': {'href': '/api/v2/account?with=pipelines,groups,note_types,task_types',
+                     'method': 'get'}},
+ 'currency': 'RUB',
+ 'current_user': 3037510,
+ 'date_pattern': {'date': 'd.m.Y',
+                  'date_time': 'd.m.Y H:i',
+                  'time': 'H:i',
+                  'time_full': 'H:i:s'},
+ 'id': 23668636,
+ 'language': 'ru',
+ 'name': 'wevdiw',
+ 'subdomain': 'wevdiw',
+ 'timezone': 'Europe/Moscow',
+ 'timezone_offset': '+03:00'}
+```
 
 
 ---
@@ -247,159 +252,161 @@ pprint(data)
 rh.walk(data)
 ```
 
-    [dict  
-    [dict  _links
-    [dict  _links > self
-    |      _links > self > href=/api/v2/account?with=pipelines,groups,note_types,task_types
-    |      _links > self > method=get
-    |      id=23668636
-    |      name=wevdiw
-    |      subdomain=wevdiw
-    |      currency=RUB
-    |      timezone=Europe/Moscow
-    |      timezone_offset=+03:00
-    |      language=ru
-    [dict  date_pattern
-    |      date_pattern > date=d.m.Y
-    |      date_pattern > time=H:i
-    |      date_pattern > date_time=d.m.Y H:i
-    |      date_pattern > time_full=H:i:s
-    |      current_user=3037510
-    [dict  _embedded
-    [dict  _embedded > note_types
-    [dict  _embedded > note_types > 1
-    |      _embedded > note_types > 1 > id=1
-    |      _embedded > note_types > 1 > code=DEAL_CREATED
-    |      _embedded > note_types > 1 > is_editable=False
-    [dict  _embedded > note_types > 2
-    |      _embedded > note_types > 2 > id=2
-    |      _embedded > note_types > 2 > code=CONTACT_CREATED
-    |      _embedded > note_types > 2 > is_editable=False
-    [dict  _embedded > note_types > 3
-    |      _embedded > note_types > 3 > id=3
-    |      _embedded > note_types > 3 > code=DEAL_STATUS_CHANGED
-    |      _embedded > note_types > 3 > is_editable=False
-    [dict  _embedded > note_types > 4
-    |      _embedded > note_types > 4 > id=4
-    |      _embedded > note_types > 4 > code=COMMON
-    |      _embedded > note_types > 4 > is_editable=True
-    [dict  _embedded > note_types > 5
-    |      _embedded > note_types > 5 > id=5
-    |      _embedded > note_types > 5 > code=ATTACHEMENT
-    |      _embedded > note_types > 5 > is_editable=False
-    [dict  _embedded > note_types > 6
-    |      _embedded > note_types > 6 > id=6
-    |      _embedded > note_types > 6 > code=CALL
-    |      _embedded > note_types > 6 > is_editable=False
-    [dict  _embedded > note_types > 7
-    |      _embedded > note_types > 7 > id=7
-    |      _embedded > note_types > 7 > code=MAIL_MESSAGE
-    |      _embedded > note_types > 7 > is_editable=False
-    [dict  _embedded > note_types > 8
-    |      _embedded > note_types > 8 > id=8
-    |      _embedded > note_types > 8 > code=MAIL_MESSAGE_ATTACHMENT
-    |      _embedded > note_types > 8 > is_editable=False
-    [dict  _embedded > note_types > 9
-    |      _embedded > note_types > 9 > id=9
-    |      _embedded > note_types > 9 > code=EXTERNAL_ATTACH
-    |      _embedded > note_types > 9 > is_editable=False
-    [dict  _embedded > note_types > 10
-    |      _embedded > note_types > 10 > id=10
-    |      _embedded > note_types > 10 > code=CALL_IN
-    |      _embedded > note_types > 10 > is_editable=False
-    [dict  _embedded > note_types > 11
-    |      _embedded > note_types > 11 > id=11
-    |      _embedded > note_types > 11 > code=CALL_OUT
-    |      _embedded > note_types > 11 > is_editable=False
-    [dict  _embedded > note_types > 12
-    |      _embedded > note_types > 12 > id=12
-    |      _embedded > note_types > 12 > code=COMPANY_CREATED
-    |      _embedded > note_types > 12 > is_editable=False
-    [dict  _embedded > note_types > 13
-    |      _embedded > note_types > 13 > id=13
-    |      _embedded > note_types > 13 > code=TASK_RESULT
-    |      _embedded > note_types > 13 > is_editable=False
-    [dict  _embedded > note_types > 17
-    |      _embedded > note_types > 17 > id=17
-    |      _embedded > note_types > 17 > code=CHAT
-    |      _embedded > note_types > 17 > is_editable=False
-    [dict  _embedded > note_types > 99
-    |      _embedded > note_types > 99 > id=99
-    |      _embedded > note_types > 99 > code=MAX_SYSTEM
-    |      _embedded > note_types > 99 > is_editable=False
-    [dict  _embedded > note_types > 101
-    |      _embedded > note_types > 101 > id=101
-    |      _embedded > note_types > 101 > code=DROPBOX
-    |      _embedded > note_types > 101 > is_editable=False
-    [dict  _embedded > note_types > 102
-    |      _embedded > note_types > 102 > id=102
-    |      _embedded > note_types > 102 > code=SMS_IN
-    |      _embedded > note_types > 102 > is_editable=False
-    [dict  _embedded > note_types > 103
-    |      _embedded > note_types > 103 > id=103
-    |      _embedded > note_types > 103 > code=SMS_OUT
-    |      _embedded > note_types > 103 > is_editable=False
-    [list  _embedded > groups
-    [dict  _embedded > groups > 0
-    |      _embedded > groups > 0 > id=0
-    |      _embedded > groups > 0 > name=Отдел продаж
-    [dict  _embedded > task_types
-    [dict  _embedded > task_types > 1
-    |      _embedded > task_types > 1 > id=1
-    |      _embedded > task_types > 1 > name=Звонок
-    [dict  _embedded > task_types > 2
-    |      _embedded > task_types > 2 > id=2
-    |      _embedded > task_types > 2 > name=Встреча
-    [dict  _embedded > task_types > 3
-    |      _embedded > task_types > 3 > id=3
-    |      _embedded > task_types > 3 > name=Письмо
-    [dict  _embedded > pipelines
-    [dict  _embedded > pipelines > 1543696
-    |      _embedded > pipelines > 1543696 > id=1543696
-    |      _embedded > pipelines > 1543696 > name=Воронка
-    |      _embedded > pipelines > 1543696 > sort=1
-    |      _embedded > pipelines > 1543696 > is_main=True
-    [dict  _embedded > pipelines > 1543696 > statuses
-    [dict  _embedded > pipelines > 1543696 > statuses > 23668642
-    |      _embedded > pipelines > 1543696 > statuses > 23668642 > id=23668642
-    |      _embedded > pipelines > 1543696 > statuses > 23668642 > name=Первичный контакт
-    |      _embedded > pipelines > 1543696 > statuses > 23668642 > color=#99ccff
-    |      _embedded > pipelines > 1543696 > statuses > 23668642 > sort=10
-    |      _embedded > pipelines > 1543696 > statuses > 23668642 > is_editable=True
-    [dict  _embedded > pipelines > 1543696 > statuses > 23668645
-    |      _embedded > pipelines > 1543696 > statuses > 23668645 > id=23668645
-    |      _embedded > pipelines > 1543696 > statuses > 23668645 > name=Переговоры
-    |      _embedded > pipelines > 1543696 > statuses > 23668645 > color=#ffff99
-    |      _embedded > pipelines > 1543696 > statuses > 23668645 > sort=20
-    |      _embedded > pipelines > 1543696 > statuses > 23668645 > is_editable=True
-    [dict  _embedded > pipelines > 1543696 > statuses > 23668648
-    |      _embedded > pipelines > 1543696 > statuses > 23668648 > id=23668648
-    |      _embedded > pipelines > 1543696 > statuses > 23668648 > name=Принимают решение
-    |      _embedded > pipelines > 1543696 > statuses > 23668648 > color=#ffcc66
-    |      _embedded > pipelines > 1543696 > statuses > 23668648 > sort=30
-    |      _embedded > pipelines > 1543696 > statuses > 23668648 > is_editable=True
-    [dict  _embedded > pipelines > 1543696 > statuses > 23668651
-    |      _embedded > pipelines > 1543696 > statuses > 23668651 > id=23668651
-    |      _embedded > pipelines > 1543696 > statuses > 23668651 > name=Согласование договора
-    |      _embedded > pipelines > 1543696 > statuses > 23668651 > color=#ffcccc
-    |      _embedded > pipelines > 1543696 > statuses > 23668651 > sort=40
-    |      _embedded > pipelines > 1543696 > statuses > 23668651 > is_editable=True
-    [dict  _embedded > pipelines > 1543696 > statuses > 142
-    |      _embedded > pipelines > 1543696 > statuses > 142 > id=142
-    |      _embedded > pipelines > 1543696 > statuses > 142 > name=Успешно реализовано
-    |      _embedded > pipelines > 1543696 > statuses > 142 > color=#CCFF66
-    |      _embedded > pipelines > 1543696 > statuses > 142 > sort=10000
-    |      _embedded > pipelines > 1543696 > statuses > 142 > is_editable=False
-    [dict  _embedded > pipelines > 1543696 > statuses > 143
-    |      _embedded > pipelines > 1543696 > statuses > 143 > id=143
-    |      _embedded > pipelines > 1543696 > statuses > 143 > name=Закрыто и не реализовано
-    |      _embedded > pipelines > 1543696 > statuses > 143 > color=#D5D8DB
-    |      _embedded > pipelines > 1543696 > statuses > 143 > sort=11000
-    |      _embedded > pipelines > 1543696 > statuses > 143 > is_editable=False
-    [dict  _embedded > pipelines > 1543696 > _links
-    [dict  _embedded > pipelines > 1543696 > _links > self
-    |      _embedded > pipelines > 1543696 > _links > self > href=/api/v2/pipelines?id=1543696
-    |      _embedded > pipelines > 1543696 > _links > self > method=get
+```
+[dict  
+[dict  _links
+[dict  _links > self
+|      _links > self > href=/api/v2/account?with=pipelines,groups,note_types,task_types
+|      _links > self > method=get
+|      id=23668636
+|      name=wevdiw
+|      subdomain=wevdiw
+|      currency=RUB
+|      timezone=Europe/Moscow
+|      timezone_offset=+03:00
+|      language=ru
+[dict  date_pattern
+|      date_pattern > date=d.m.Y
+|      date_pattern > time=H:i
+|      date_pattern > date_time=d.m.Y H:i
+|      date_pattern > time_full=H:i:s
+|      current_user=3037510
+[dict  _embedded
+[dict  _embedded > note_types
+[dict  _embedded > note_types > 1
+|      _embedded > note_types > 1 > id=1
+|      _embedded > note_types > 1 > code=DEAL_CREATED
+|      _embedded > note_types > 1 > is_editable=False
+[dict  _embedded > note_types > 2
+|      _embedded > note_types > 2 > id=2
+|      _embedded > note_types > 2 > code=CONTACT_CREATED
+|      _embedded > note_types > 2 > is_editable=False
+[dict  _embedded > note_types > 3
+|      _embedded > note_types > 3 > id=3
+|      _embedded > note_types > 3 > code=DEAL_STATUS_CHANGED
+|      _embedded > note_types > 3 > is_editable=False
+[dict  _embedded > note_types > 4
+|      _embedded > note_types > 4 > id=4
+|      _embedded > note_types > 4 > code=COMMON
+|      _embedded > note_types > 4 > is_editable=True
+[dict  _embedded > note_types > 5
+|      _embedded > note_types > 5 > id=5
+|      _embedded > note_types > 5 > code=ATTACHEMENT
+|      _embedded > note_types > 5 > is_editable=False
+[dict  _embedded > note_types > 6
+|      _embedded > note_types > 6 > id=6
+|      _embedded > note_types > 6 > code=CALL
+|      _embedded > note_types > 6 > is_editable=False
+[dict  _embedded > note_types > 7
+|      _embedded > note_types > 7 > id=7
+|      _embedded > note_types > 7 > code=MAIL_MESSAGE
+|      _embedded > note_types > 7 > is_editable=False
+[dict  _embedded > note_types > 8
+|      _embedded > note_types > 8 > id=8
+|      _embedded > note_types > 8 > code=MAIL_MESSAGE_ATTACHMENT
+|      _embedded > note_types > 8 > is_editable=False
+[dict  _embedded > note_types > 9
+|      _embedded > note_types > 9 > id=9
+|      _embedded > note_types > 9 > code=EXTERNAL_ATTACH
+|      _embedded > note_types > 9 > is_editable=False
+[dict  _embedded > note_types > 10
+|      _embedded > note_types > 10 > id=10
+|      _embedded > note_types > 10 > code=CALL_IN
+|      _embedded > note_types > 10 > is_editable=False
+[dict  _embedded > note_types > 11
+|      _embedded > note_types > 11 > id=11
+|      _embedded > note_types > 11 > code=CALL_OUT
+|      _embedded > note_types > 11 > is_editable=False
+[dict  _embedded > note_types > 12
+|      _embedded > note_types > 12 > id=12
+|      _embedded > note_types > 12 > code=COMPANY_CREATED
+|      _embedded > note_types > 12 > is_editable=False
+[dict  _embedded > note_types > 13
+|      _embedded > note_types > 13 > id=13
+|      _embedded > note_types > 13 > code=TASK_RESULT
+|      _embedded > note_types > 13 > is_editable=False
+[dict  _embedded > note_types > 17
+|      _embedded > note_types > 17 > id=17
+|      _embedded > note_types > 17 > code=CHAT
+|      _embedded > note_types > 17 > is_editable=False
+[dict  _embedded > note_types > 99
+|      _embedded > note_types > 99 > id=99
+|      _embedded > note_types > 99 > code=MAX_SYSTEM
+|      _embedded > note_types > 99 > is_editable=False
+[dict  _embedded > note_types > 101
+|      _embedded > note_types > 101 > id=101
+|      _embedded > note_types > 101 > code=DROPBOX
+|      _embedded > note_types > 101 > is_editable=False
+[dict  _embedded > note_types > 102
+|      _embedded > note_types > 102 > id=102
+|      _embedded > note_types > 102 > code=SMS_IN
+|      _embedded > note_types > 102 > is_editable=False
+[dict  _embedded > note_types > 103
+|      _embedded > note_types > 103 > id=103
+|      _embedded > note_types > 103 > code=SMS_OUT
+|      _embedded > note_types > 103 > is_editable=False
+[list  _embedded > groups
+[dict  _embedded > groups > 0
+|      _embedded > groups > 0 > id=0
+|      _embedded > groups > 0 > name=Отдел продаж
+[dict  _embedded > task_types
+[dict  _embedded > task_types > 1
+|      _embedded > task_types > 1 > id=1
+|      _embedded > task_types > 1 > name=Звонок
+[dict  _embedded > task_types > 2
+|      _embedded > task_types > 2 > id=2
+|      _embedded > task_types > 2 > name=Встреча
+[dict  _embedded > task_types > 3
+|      _embedded > task_types > 3 > id=3
+|      _embedded > task_types > 3 > name=Письмо
+[dict  _embedded > pipelines
+[dict  _embedded > pipelines > 1543696
+|      _embedded > pipelines > 1543696 > id=1543696
+|      _embedded > pipelines > 1543696 > name=Воронка
+|      _embedded > pipelines > 1543696 > sort=1
+|      _embedded > pipelines > 1543696 > is_main=True
+[dict  _embedded > pipelines > 1543696 > statuses
+[dict  _embedded > pipelines > 1543696 > statuses > 23668642
+|      _embedded > pipelines > 1543696 > statuses > 23668642 > id=23668642
+|      _embedded > pipelines > 1543696 > statuses > 23668642 > name=Первичный контакт
+|      _embedded > pipelines > 1543696 > statuses > 23668642 > color=#99ccff
+|      _embedded > pipelines > 1543696 > statuses > 23668642 > sort=10
+|      _embedded > pipelines > 1543696 > statuses > 23668642 > is_editable=True
+[dict  _embedded > pipelines > 1543696 > statuses > 23668645
+|      _embedded > pipelines > 1543696 > statuses > 23668645 > id=23668645
+|      _embedded > pipelines > 1543696 > statuses > 23668645 > name=Переговоры
+|      _embedded > pipelines > 1543696 > statuses > 23668645 > color=#ffff99
+|      _embedded > pipelines > 1543696 > statuses > 23668645 > sort=20
+|      _embedded > pipelines > 1543696 > statuses > 23668645 > is_editable=True
+[dict  _embedded > pipelines > 1543696 > statuses > 23668648
+|      _embedded > pipelines > 1543696 > statuses > 23668648 > id=23668648
+|      _embedded > pipelines > 1543696 > statuses > 23668648 > name=Принимают решение
+|      _embedded > pipelines > 1543696 > statuses > 23668648 > color=#ffcc66
+|      _embedded > pipelines > 1543696 > statuses > 23668648 > sort=30
+|      _embedded > pipelines > 1543696 > statuses > 23668648 > is_editable=True
+[dict  _embedded > pipelines > 1543696 > statuses > 23668651
+|      _embedded > pipelines > 1543696 > statuses > 23668651 > id=23668651
+|      _embedded > pipelines > 1543696 > statuses > 23668651 > name=Согласование договора
+|      _embedded > pipelines > 1543696 > statuses > 23668651 > color=#ffcccc
+|      _embedded > pipelines > 1543696 > statuses > 23668651 > sort=40
+|      _embedded > pipelines > 1543696 > statuses > 23668651 > is_editable=True
+[dict  _embedded > pipelines > 1543696 > statuses > 142
+|      _embedded > pipelines > 1543696 > statuses > 142 > id=142
+|      _embedded > pipelines > 1543696 > statuses > 142 > name=Успешно реализовано
+|      _embedded > pipelines > 1543696 > statuses > 142 > color=#CCFF66
+|      _embedded > pipelines > 1543696 > statuses > 142 > sort=10000
+|      _embedded > pipelines > 1543696 > statuses > 142 > is_editable=False
+[dict  _embedded > pipelines > 1543696 > statuses > 143
+|      _embedded > pipelines > 1543696 > statuses > 143 > id=143
+|      _embedded > pipelines > 1543696 > statuses > 143 > name=Закрыто и не реализовано
+|      _embedded > pipelines > 1543696 > statuses > 143 > color=#D5D8DB
+|      _embedded > pipelines > 1543696 > statuses > 143 > sort=11000
+|      _embedded > pipelines > 1543696 > statuses > 143 > is_editable=False
+[dict  _embedded > pipelines > 1543696 > _links
+[dict  _embedded > pipelines > 1543696 > _links > self
+|      _embedded > pipelines > 1543696 > _links > self > href=/api/v2/pipelines?id=1543696
+|      _embedded > pipelines > 1543696 > _links > self > method=get
+```
 
 
 ---
@@ -420,100 +427,102 @@ data=res.json()
 rh.walk(data)
 ```
 
-    [dict  
-    [dict  _links
-    [dict  _links > self
-    |      _links > self > href=/api/v2/leads?status=142
-    |      _links > self > method=get
-    [dict  _embedded
-    [list  _embedded > items
-    [dict  _embedded > items > 0
-    |      _embedded > items > 0 > id=1795469
-    |      _embedded > items > 0 > name=Lead from: https://digitalgod.be/page4500864.html?utm_referrer=
-    |      _embedded > items > 0 > responsible_user_id=3037510
-    |      _embedded > items > 0 > created_by=3037510
-    |      _embedded > items > 0 > created_at=1547106499
-    |      _embedded > items > 0 > updated_at=1547107344
-    |      _embedded > items > 0 > account_id=23668636
-    |      _embedded > items > 0 > is_deleted=False
-    [dict  _embedded > items > 0 > main_contact
-    |      _embedded > items > 0 > main_contact > id=10118771
-    [dict  _embedded > items > 0 > main_contact > _links
-    [dict  _embedded > items > 0 > main_contact > _links > self
-    |      _embedded > items > 0 > main_contact > _links > self > href=/api/v2/contacts?id=10118771
-    |      _embedded > items > 0 > main_contact > _links > self > method=get
-    |      _embedded > items > 0 > group_id=0
-    [dict  _embedded > items > 0 > company
-    |      _embedded > items > 0 > closed_at=1547107243
-    |      _embedded > items > 0 > closest_task_at=0
-    [list  _embedded > items > 0 > tags
-    [dict  _embedded > items > 0 > tags > 0
-    |      _embedded > items > 0 > tags > 0 > id=30577
-    |      _embedded > items > 0 > tags > 0 > name=tilda
-    [list  _embedded > items > 0 > custom_fields
-    [dict  _embedded > items > 0 > custom_fields > 0
-    |      _embedded > items > 0 > custom_fields > 0 > id=128813
-    |      _embedded > items > 0 > custom_fields > 0 > name=COMMENTS
-    [list  _embedded > items > 0 > custom_fields > 0 > values
-    [dict  _embedded > items > 0 > custom_fields > 0 > values > 0
-    |      _embedded > items > 0 > custom_fields > 0 > values > 0 > value=sdfdsf
-    |      _embedded > items > 0 > custom_fields > 0 > is_system=False
-    [dict  _embedded > items > 0 > custom_fields > 1
-    |      _embedded > items > 0 > custom_fields > 1 > id=129773
-    |      _embedded > items > 0 > custom_fields > 1 > name=CID
-    [list  _embedded > items > 0 > custom_fields > 1 > values
-    [dict  _embedded > items > 0 > custom_fields > 1 > values > 0
-    |      _embedded > items > 0 > custom_fields > 1 > values > 0 > value=69296758.1544679970
-    |      _embedded > items > 0 > custom_fields > 1 > is_system=False
-    [dict  _embedded > items > 0 > custom_fields > 2
-    |      _embedded > items > 0 > custom_fields > 2 > id=129775
-    |      _embedded > items > 0 > custom_fields > 2 > name=UID
-    [list  _embedded > items > 0 > custom_fields > 2 > values
-    [dict  _embedded > items > 0 > custom_fields > 2 > values > 0
-    |      _embedded > items > 0 > custom_fields > 2 > values > 0 > value=6450101900745375744
-    |      _embedded > items > 0 > custom_fields > 2 > is_system=False
-    [dict  _embedded > items > 0 > custom_fields > 3
-    |      _embedded > items > 0 > custom_fields > 3 > id=128815
-    |      _embedded > items > 0 > custom_fields > 3 > name=TRANID
-    [list  _embedded > items > 0 > custom_fields > 3 > values
-    [dict  _embedded > items > 0 > custom_fields > 3 > values > 0
-    |      _embedded > items > 0 > custom_fields > 3 > values > 0 > value=681808:125327642
-    |      _embedded > items > 0 > custom_fields > 3 > is_system=False
-    [dict  _embedded > items > 0 > custom_fields > 4
-    |      _embedded > items > 0 > custom_fields > 4 > id=128819
-    |      _embedded > items > 0 > custom_fields > 4 > name=FORMID
-    [list  _embedded > items > 0 > custom_fields > 4 > values
-    [dict  _embedded > items > 0 > custom_fields > 4 > values > 0
-    |      _embedded > items > 0 > custom_fields > 4 > values > 0 > value=form82325525
-    |      _embedded > items > 0 > custom_fields > 4 > is_system=False
-    [dict  _embedded > items > 0 > custom_fields > 5
-    |      _embedded > items > 0 > custom_fields > 5 > id=128821
-    |      _embedded > items > 0 > custom_fields > 5 > name=REFERER
-    [list  _embedded > items > 0 > custom_fields > 5 > values
-    [dict  _embedded > items > 0 > custom_fields > 5 > values > 0
-    |      _embedded > items > 0 > custom_fields > 5 > values > 0 > value=https://digitalgod.be/page4500864.html?utm_referrer=
-    |      _embedded > items > 0 > custom_fields > 5 > is_system=False
-    [dict  _embedded > items > 0 > contacts
-    [list  _embedded > items > 0 > contacts > id
-    |      _embedded > items > 0 > contacts > id > 0=10118771
-    |      _embedded > items > 0 > contacts > id > 1=10120393
-    [dict  _embedded > items > 0 > contacts > _links
-    [dict  _embedded > items > 0 > contacts > _links > self
-    |      _embedded > items > 0 > contacts > _links > self > href=/api/v2/contacts?id=10118771,10120393
-    |      _embedded > items > 0 > contacts > _links > self > method=get
-    |      _embedded > items > 0 > status_id=142
-    |      _embedded > items > 0 > sale=70000
-    |      _embedded > items > 0 > loss_reason_id=0
-    [dict  _embedded > items > 0 > pipeline
-    |      _embedded > items > 0 > pipeline > id=1543696
-    [dict  _embedded > items > 0 > pipeline > _links
-    [dict  _embedded > items > 0 > pipeline > _links > self
-    |      _embedded > items > 0 > pipeline > _links > self > href=/api/v2/pipelines?id=1543696
-    |      _embedded > items > 0 > pipeline > _links > self > method=get
-    [dict  _embedded > items > 0 > _links
-    [dict  _embedded > items > 0 > _links > self
-    |      _embedded > items > 0 > _links > self > href=/api/v2/leads?id=1795469
-    |      _embedded > items > 0 > _links > self > method=get
+```
+[dict  
+[dict  _links
+[dict  _links > self
+|      _links > self > href=/api/v2/leads?status=142
+|      _links > self > method=get
+[dict  _embedded
+[list  _embedded > items
+[dict  _embedded > items > 0
+|      _embedded > items > 0 > id=1795469
+|      _embedded > items > 0 > name=Lead from: https://digitalgod.be/page4500864.html?utm_referrer=
+|      _embedded > items > 0 > responsible_user_id=3037510
+|      _embedded > items > 0 > created_by=3037510
+|      _embedded > items > 0 > created_at=1547106499
+|      _embedded > items > 0 > updated_at=1547107344
+|      _embedded > items > 0 > account_id=23668636
+|      _embedded > items > 0 > is_deleted=False
+[dict  _embedded > items > 0 > main_contact
+|      _embedded > items > 0 > main_contact > id=10118771
+[dict  _embedded > items > 0 > main_contact > _links
+[dict  _embedded > items > 0 > main_contact > _links > self
+|      _embedded > items > 0 > main_contact > _links > self > href=/api/v2/contacts?id=10118771
+|      _embedded > items > 0 > main_contact > _links > self > method=get
+|      _embedded > items > 0 > group_id=0
+[dict  _embedded > items > 0 > company
+|      _embedded > items > 0 > closed_at=1547107243
+|      _embedded > items > 0 > closest_task_at=0
+[list  _embedded > items > 0 > tags
+[dict  _embedded > items > 0 > tags > 0
+|      _embedded > items > 0 > tags > 0 > id=30577
+|      _embedded > items > 0 > tags > 0 > name=tilda
+[list  _embedded > items > 0 > custom_fields
+[dict  _embedded > items > 0 > custom_fields > 0
+|      _embedded > items > 0 > custom_fields > 0 > id=128813
+|      _embedded > items > 0 > custom_fields > 0 > name=COMMENTS
+[list  _embedded > items > 0 > custom_fields > 0 > values
+[dict  _embedded > items > 0 > custom_fields > 0 > values > 0
+|      _embedded > items > 0 > custom_fields > 0 > values > 0 > value=sdfdsf
+|      _embedded > items > 0 > custom_fields > 0 > is_system=False
+[dict  _embedded > items > 0 > custom_fields > 1
+|      _embedded > items > 0 > custom_fields > 1 > id=129773
+|      _embedded > items > 0 > custom_fields > 1 > name=CID
+[list  _embedded > items > 0 > custom_fields > 1 > values
+[dict  _embedded > items > 0 > custom_fields > 1 > values > 0
+|      _embedded > items > 0 > custom_fields > 1 > values > 0 > value=69296758.1544679970
+|      _embedded > items > 0 > custom_fields > 1 > is_system=False
+[dict  _embedded > items > 0 > custom_fields > 2
+|      _embedded > items > 0 > custom_fields > 2 > id=129775
+|      _embedded > items > 0 > custom_fields > 2 > name=UID
+[list  _embedded > items > 0 > custom_fields > 2 > values
+[dict  _embedded > items > 0 > custom_fields > 2 > values > 0
+|      _embedded > items > 0 > custom_fields > 2 > values > 0 > value=6450101900745375744
+|      _embedded > items > 0 > custom_fields > 2 > is_system=False
+[dict  _embedded > items > 0 > custom_fields > 3
+|      _embedded > items > 0 > custom_fields > 3 > id=128815
+|      _embedded > items > 0 > custom_fields > 3 > name=TRANID
+[list  _embedded > items > 0 > custom_fields > 3 > values
+[dict  _embedded > items > 0 > custom_fields > 3 > values > 0
+|      _embedded > items > 0 > custom_fields > 3 > values > 0 > value=681808:125327642
+|      _embedded > items > 0 > custom_fields > 3 > is_system=False
+[dict  _embedded > items > 0 > custom_fields > 4
+|      _embedded > items > 0 > custom_fields > 4 > id=128819
+|      _embedded > items > 0 > custom_fields > 4 > name=FORMID
+[list  _embedded > items > 0 > custom_fields > 4 > values
+[dict  _embedded > items > 0 > custom_fields > 4 > values > 0
+|      _embedded > items > 0 > custom_fields > 4 > values > 0 > value=form82325525
+|      _embedded > items > 0 > custom_fields > 4 > is_system=False
+[dict  _embedded > items > 0 > custom_fields > 5
+|      _embedded > items > 0 > custom_fields > 5 > id=128821
+|      _embedded > items > 0 > custom_fields > 5 > name=REFERER
+[list  _embedded > items > 0 > custom_fields > 5 > values
+[dict  _embedded > items > 0 > custom_fields > 5 > values > 0
+|      _embedded > items > 0 > custom_fields > 5 > values > 0 > value=https://digitalgod.be/page4500864.html?utm_referrer=
+|      _embedded > items > 0 > custom_fields > 5 > is_system=False
+[dict  _embedded > items > 0 > contacts
+[list  _embedded > items > 0 > contacts > id
+|      _embedded > items > 0 > contacts > id > 0=10118771
+|      _embedded > items > 0 > contacts > id > 1=10120393
+[dict  _embedded > items > 0 > contacts > _links
+[dict  _embedded > items > 0 > contacts > _links > self
+|      _embedded > items > 0 > contacts > _links > self > href=/api/v2/contacts?id=10118771,10120393
+|      _embedded > items > 0 > contacts > _links > self > method=get
+|      _embedded > items > 0 > status_id=142
+|      _embedded > items > 0 > sale=70000
+|      _embedded > items > 0 > loss_reason_id=0
+[dict  _embedded > items > 0 > pipeline
+|      _embedded > items > 0 > pipeline > id=1543696
+[dict  _embedded > items > 0 > pipeline > _links
+[dict  _embedded > items > 0 > pipeline > _links > self
+|      _embedded > items > 0 > pipeline > _links > self > href=/api/v2/pipelines?id=1543696
+|      _embedded > items > 0 > pipeline > _links > self > method=get
+[dict  _embedded > items > 0 > _links
+[dict  _embedded > items > 0 > _links > self
+|      _embedded > items > 0 > _links > self > href=/api/v2/leads?id=1795469
+|      _embedded > items > 0 > _links > self > method=get
+```
 
 
 ---
@@ -544,13 +553,15 @@ deals
 
 
 
-    [{'id': 1795469,
-      'uid': '6450101900745375744',
-      'cid': '69296758.1544679970',
-      'sale': 70000,
-      'date': '2019-01-10',
-      'date_time': '2019-01-10 08:00:43',
-      'account_id': 23668636}]
+```
+[{'id': 1795469,
+  'uid': '6450101900745375744',
+  'cid': '69296758.1544679970',
+  'sale': 70000,
+  'date': '2019-01-10',
+  'date_time': '2019-01-10 08:00:43',
+  'account_id': 23668636}]
+```
 
 
 
@@ -585,7 +596,9 @@ td
 
 
 
-    <Instance of TableDiscovery class, value=TableDescription table=None date_field=None index_granularity=8192 columns={'id': <class 'simplech.types.Int64'>, 'uid': <class 'simplech.types.Int64'>, '… idx=None metrics_set=set() metrics={} dimensions_set={'id', 'sale', 'cid', 'date', 'account_id', 'uid', 'date_time'} dimensions={'id': <class 'simplech.types.Int64'>, 'sale': <class 'simplech.types.Int64'>, …>
+```
+<Instance of TableDiscovery class, value=TableDescription table=None date_field=None index_granularity=8192 columns={'id': <class 'simplech.types.Int64'>, 'uid': <class 'simplech.types.Int64'>, '… idx=None metrics_set=set() metrics={} dimensions_set={'id', 'sale', 'cid', 'date', 'account_id', 'uid', 'date_time'} dimensions={'id': <class 'simplech.types.Int64'>, 'sale': <class 'simplech.types.Int64'>, …>
+```
 
 
 
@@ -599,7 +612,9 @@ td.date('date').idx('account_id', 'date').metrics('sale')
 
 
 
-    <Instance of TableDiscovery class, value=TableDescription table=None date_field='date' index_granularity=8192 columns={'id': <class 'simplech.types.Int64'>, 'uid': <class 'simplech.types.Int64'>, '… idx=['account_id', 'date'] metrics_set={'sale'} metrics={'sale': <class 'simplech.types.Int64'>} dimensions_set={'id', 'cid', 'date', 'account_id', 'uid', 'date_time'} dimensions={'id': <class 'simplech.types.Int64'>, 'cid': <class 'simplech.types.String'>, …>
+```
+<Instance of TableDiscovery class, value=TableDescription table=None date_field='date' index_granularity=8192 columns={'id': <class 'simplech.types.Int64'>, 'uid': <class 'simplech.types.Int64'>, '… idx=['account_id', 'date'] metrics_set={'sale'} metrics={'sale': <class 'simplech.types.Int64'>} dimensions_set={'id', 'cid', 'date', 'account_id', 'uid', 'date_time'} dimensions={'id': <class 'simplech.types.Int64'>, 'cid': <class 'simplech.types.String'>, …>
+```
 
 
 
@@ -611,15 +626,17 @@ schema = td.merge_tree()
 print(schema)
 ```
 
-    CREATE TABLE IF NOT EXISTS `deals` (
-      `id`  Int64,
-      `uid`  Int64,
-      `cid`  String,
-      `sale`  Int64,
-      `date`  Date,
-      `date_time`  DateTime,
-      `account_id`  Int64
-    ) ENGINE MergeTree() PARTITION BY toYYYYMM(`date`) ORDER BY (`account_id`, `date`) SETTINGS index_granularity=8192
+```
+CREATE TABLE IF NOT EXISTS `deals` (
+  `id`  Int64,
+  `uid`  Int64,
+  `cid`  String,
+  `sale`  Int64,
+  `date`  Date,
+  `date_time`  DateTime,
+  `account_id`  Int64
+) ENGINE MergeTree() PARTITION BY toYYYYMM(`date`) ORDER BY (`account_id`, `date`) SETTINGS index_granularity=8192
+```
     
 
 
@@ -720,28 +737,30 @@ id|sale|cid|date|account_id|uid|date_time
 print(ch.select('SHOW TABLES'))
 ```
 
-    activity
-    amocrm_deals
-    bot_feedback
-    cookiesync
-    crossstat
-    deals
-    events
-    ga
-    ga_stat
-    ga_visits
-    logs
-    migrations
-    raw_ga
-    shortcuts
-    telegram
-    test_stat
-    test_write
-    vk_stat
-    webhooks
-    wh_zadarma
-    wh_ztrack
-    ym_visits
+```
+activity
+amocrm_deals
+bot_feedback
+cookiesync
+crossstat
+deals
+events
+ga
+ga_stat
+ga_visits
+logs
+migrations
+raw_ga
+shortcuts
+telegram
+test_stat
+test_write
+vk_stat
+webhooks
+wh_zadarma
+wh_ztrack
+ym_visits
+```
     
 
 
@@ -793,28 +812,30 @@ clickhouse:
 print(ch.select('SHOW TABLES'))
 ```
 
-    activity
-    amocrm_deals
-    bot_feedback
-    cookiesync
-    crossstat
-    deals
-    events
-    ga
-    ga_stat
-    ga_visits
-    logs
-    migrations
-    raw_ga
-    shortcuts
-    telegram
-    test_stat
-    test_write
-    vk_stat
-    webhooks
-    wh_zadarma
-    wh_ztrack
-    ym_visits
+```
+activity
+amocrm_deals
+bot_feedback
+cookiesync
+crossstat
+deals
+events
+ga
+ga_stat
+ga_visits
+logs
+migrations
+raw_ga
+shortcuts
+telegram
+test_stat
+test_write
+vk_stat
+webhooks
+wh_zadarma
+wh_ztrack
+ym_visits
+```
     
 
 
@@ -875,27 +896,29 @@ fake_deals[:3]
 
 
 
-    [{'id': 8965844,
-      'uid': '6450101900747435069',
-      'cid': '69296758.1546344288',
-      'sale': 42729,
-      'date': '2019-01-21',
-      'date_time': '2019-01-21 19:48:24',
-      'account_id': 23668636},
-     {'id': 11754234,
-      'uid': '6450101900746776087',
-      'cid': '69296758.1543070335',
-      'sale': 55200,
-      'date': '2019-01-20',
-      'date_time': '2019-01-20 19:48:24',
-      'account_id': 23668636},
-     {'id': 6251379,
-      'uid': '6450101900744330699',
-      'cid': '69296758.1546976726',
-      'sale': 49845,
-      'date': '2019-01-20',
-      'date_time': '2019-01-20 19:48:24',
-      'account_id': 23668636}]
+```
+[{'id': 8965844,
+  'uid': '6450101900747435069',
+  'cid': '69296758.1546344288',
+  'sale': 42729,
+  'date': '2019-01-21',
+  'date_time': '2019-01-21 19:48:24',
+  'account_id': 23668636},
+ {'id': 11754234,
+  'uid': '6450101900746776087',
+  'cid': '69296758.1543070335',
+  'sale': 55200,
+  'date': '2019-01-20',
+  'date_time': '2019-01-20 19:48:24',
+  'account_id': 23668636},
+ {'id': 6251379,
+  'uid': '6450101900744330699',
+  'cid': '69296758.1546976726',
+  'sale': 49845,
+  'date': '2019-01-20',
+  'date_time': '2019-01-20 19:48:24',
+  'account_id': 23668636}]
+```
 
 
 
@@ -941,13 +964,15 @@ rh.video('03EPLqwKOK8')
 
 
 
-        <iframe
-            width="700"
-            height="400"
-            src="https://www.youtube.com/embed/03EPLqwKOK8"
-            frameborder="0"
-            allowfullscreen
-        ></iframe>
+```
+    <iframe
+        width="700"
+        height="400"
+        src="https://www.youtube.com/embed/03EPLqwKOK8"
+        frameborder="0"
+        allowfullscreen
+    ></iframe>
+```
         
 
 
@@ -1037,133 +1062,137 @@ def amo_query(path, params=None, data=None, json=None, method='get', attemps=2, 
 amo_query('/api/v2/leads')
 ```
 
-    401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618505}}
+```
+401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618505}}
+```
 
 
 
 
 
-    {'_links': {'self': {'href': '/api/v2/leads?type=json', 'method': 'get'}},
-     '_embedded': {'items': [{'id': 1735241,
-        'name': 'Lead from: https://digitalgod.be/page4500864.html',
-        'responsible_user_id': 3037510,
-        'created_by': 3037510,
-        'created_at': 1547099814,
-        'updated_at': 1547099814,
-        'account_id': 23668636,
-        'is_deleted': False,
-        'main_contact': {'id': 10015551,
-         '_links': {'self': {'href': '/api/v2/contacts?id=10015551',
-           'method': 'get'}}},
-        'group_id': 0,
-        'company': {},
-        'closed_at': 0,
-        'closest_task_at': 0,
-        'tags': [{'id': 30577, 'name': 'tilda'}],
-        'custom_fields': [{'id': 128813,
-          'name': 'COMMENTS',
-          'values': [{'value': 'wdfsf'}],
-          'is_system': False},
-         {'id': 128815,
-          'name': 'TRANID',
-          'values': [{'value': '681808:125260852'}],
-          'is_system': False},
-         {'id': 128817,
-          'name': 'UTM_KEYWORD',
-          'values': [{'value': 'digital god'}],
-          'is_system': False},
-         {'id': 128819,
-          'name': 'FORMID',
-          'values': [{'value': 'form82325525'}],
-          'is_system': False},
-         {'id': 128821,
-          'name': 'REFERER',
-          'values': [{'value': 'https://digitalgod.be/page4500864.html'}],
-          'is_system': False}],
-        'contacts': {'id': [10015551],
-         '_links': {'self': {'href': '/api/v2/contacts?id=10015551',
-           'method': 'get'}}},
-        'status_id': 23668642,
-        'sale': 0,
-        'loss_reason_id': 0,
-        'pipeline': {'id': 1543696,
-         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
-           'method': 'get'}}},
-        '_links': {'self': {'href': '/api/v2/leads?id=1735241', 'method': 'get'}}},
-       {'id': 1795469,
-        'name': 'Lead from: https://digitalgod.be/page4500864.html?utm_referrer=',
-        'responsible_user_id': 3037510,
-        'created_by': 3037510,
-        'created_at': 1547106499,
-        'updated_at': 1547107344,
-        'account_id': 23668636,
-        'is_deleted': False,
-        'main_contact': {'id': 10118771,
-         '_links': {'self': {'href': '/api/v2/contacts?id=10118771',
-           'method': 'get'}}},
-        'group_id': 0,
-        'company': {},
-        'closed_at': 1547107243,
-        'closest_task_at': 0,
-        'tags': [{'id': 30577, 'name': 'tilda'}],
-        'custom_fields': [{'id': 128813,
-          'name': 'COMMENTS',
-          'values': [{'value': 'sdfdsf'}],
-          'is_system': False},
-         {'id': 129773,
-          'name': 'CID',
-          'values': [{'value': '69296758.1544679970'}],
-          'is_system': False},
-         {'id': 129775,
-          'name': 'UID',
-          'values': [{'value': '6450101900745375744'}],
-          'is_system': False},
-         {'id': 128815,
-          'name': 'TRANID',
-          'values': [{'value': '681808:125327642'}],
-          'is_system': False},
-         {'id': 128819,
-          'name': 'FORMID',
-          'values': [{'value': 'form82325525'}],
-          'is_system': False},
-         {'id': 128821,
-          'name': 'REFERER',
-          'values': [{'value': 'https://digitalgod.be/page4500864.html?utm_referrer='}],
-          'is_system': False}],
-        'contacts': {'id': [10118771, 10120393],
-         '_links': {'self': {'href': '/api/v2/contacts?id=10118771,10120393',
-           'method': 'get'}}},
-        'status_id': 142,
-        'sale': 70000,
-        'loss_reason_id': 0,
-        'pipeline': {'id': 1543696,
-         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
-           'method': 'get'}}},
-        '_links': {'self': {'href': '/api/v2/leads?id=1795469', 'method': 'get'}}},
-       {'id': 1800929,
-        'name': 'sdfsdf',
-        'responsible_user_id': 3037510,
-        'created_by': 3037510,
-        'created_at': 1547109921,
-        'updated_at': 1547109921,
-        'account_id': 23668636,
-        'is_deleted': False,
-        'main_contact': {},
-        'group_id': 0,
-        'company': {},
-        'closed_at': 0,
-        'closest_task_at': 0,
-        'tags': {},
-        'custom_fields': {},
-        'status_id': 23668642,
-        'sale': 0,
-        'loss_reason_id': 0,
-        'contacts': {},
-        'pipeline': {'id': 1543696,
-         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
-           'method': 'get'}}},
-        '_links': {'self': {'href': '/api/v2/leads?id=1800929',
-          'method': 'get'}}}]}}
+```
+{'_links': {'self': {'href': '/api/v2/leads?type=json', 'method': 'get'}},
+ '_embedded': {'items': [{'id': 1735241,
+    'name': 'Lead from: https://digitalgod.be/page4500864.html',
+    'responsible_user_id': 3037510,
+    'created_by': 3037510,
+    'created_at': 1547099814,
+    'updated_at': 1547099814,
+    'account_id': 23668636,
+    'is_deleted': False,
+    'main_contact': {'id': 10015551,
+     '_links': {'self': {'href': '/api/v2/contacts?id=10015551',
+       'method': 'get'}}},
+    'group_id': 0,
+    'company': {},
+    'closed_at': 0,
+    'closest_task_at': 0,
+    'tags': [{'id': 30577, 'name': 'tilda'}],
+    'custom_fields': [{'id': 128813,
+      'name': 'COMMENTS',
+      'values': [{'value': 'wdfsf'}],
+      'is_system': False},
+     {'id': 128815,
+      'name': 'TRANID',
+      'values': [{'value': '681808:125260852'}],
+      'is_system': False},
+     {'id': 128817,
+      'name': 'UTM_KEYWORD',
+      'values': [{'value': 'digital god'}],
+      'is_system': False},
+     {'id': 128819,
+      'name': 'FORMID',
+      'values': [{'value': 'form82325525'}],
+      'is_system': False},
+     {'id': 128821,
+      'name': 'REFERER',
+      'values': [{'value': 'https://digitalgod.be/page4500864.html'}],
+      'is_system': False}],
+    'contacts': {'id': [10015551],
+     '_links': {'self': {'href': '/api/v2/contacts?id=10015551',
+       'method': 'get'}}},
+    'status_id': 23668642,
+    'sale': 0,
+    'loss_reason_id': 0,
+    'pipeline': {'id': 1543696,
+     '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+       'method': 'get'}}},
+    '_links': {'self': {'href': '/api/v2/leads?id=1735241', 'method': 'get'}}},
+   {'id': 1795469,
+    'name': 'Lead from: https://digitalgod.be/page4500864.html?utm_referrer=',
+    'responsible_user_id': 3037510,
+    'created_by': 3037510,
+    'created_at': 1547106499,
+    'updated_at': 1547107344,
+    'account_id': 23668636,
+    'is_deleted': False,
+    'main_contact': {'id': 10118771,
+     '_links': {'self': {'href': '/api/v2/contacts?id=10118771',
+       'method': 'get'}}},
+    'group_id': 0,
+    'company': {},
+    'closed_at': 1547107243,
+    'closest_task_at': 0,
+    'tags': [{'id': 30577, 'name': 'tilda'}],
+    'custom_fields': [{'id': 128813,
+      'name': 'COMMENTS',
+      'values': [{'value': 'sdfdsf'}],
+      'is_system': False},
+     {'id': 129773,
+      'name': 'CID',
+      'values': [{'value': '69296758.1544679970'}],
+      'is_system': False},
+     {'id': 129775,
+      'name': 'UID',
+      'values': [{'value': '6450101900745375744'}],
+      'is_system': False},
+     {'id': 128815,
+      'name': 'TRANID',
+      'values': [{'value': '681808:125327642'}],
+      'is_system': False},
+     {'id': 128819,
+      'name': 'FORMID',
+      'values': [{'value': 'form82325525'}],
+      'is_system': False},
+     {'id': 128821,
+      'name': 'REFERER',
+      'values': [{'value': 'https://digitalgod.be/page4500864.html?utm_referrer='}],
+      'is_system': False}],
+    'contacts': {'id': [10118771, 10120393],
+     '_links': {'self': {'href': '/api/v2/contacts?id=10118771,10120393',
+       'method': 'get'}}},
+    'status_id': 142,
+    'sale': 70000,
+    'loss_reason_id': 0,
+    'pipeline': {'id': 1543696,
+     '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+       'method': 'get'}}},
+    '_links': {'self': {'href': '/api/v2/leads?id=1795469', 'method': 'get'}}},
+   {'id': 1800929,
+    'name': 'sdfsdf',
+    'responsible_user_id': 3037510,
+    'created_by': 3037510,
+    'created_at': 1547109921,
+    'updated_at': 1547109921,
+    'account_id': 23668636,
+    'is_deleted': False,
+    'main_contact': {},
+    'group_id': 0,
+    'company': {},
+    'closed_at': 0,
+    'closest_task_at': 0,
+    'tags': {},
+    'custom_fields': {},
+    'status_id': 23668642,
+    'sale': 0,
+    'loss_reason_id': 0,
+    'contacts': {},
+    'pipeline': {'id': 1543696,
+     '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+       'method': 'get'}}},
+    '_links': {'self': {'href': '/api/v2/leads?id=1800929',
+      'method': 'get'}}}]}}
+```
 
 
 
@@ -1212,22 +1241,26 @@ task = asyncio.gather(tick01(), tick02())
 loop.run_until_complete(task)
 ```
 
-    0.1
-    0.2
-    0.1
-    0.1
-    0.2
-    0.1
-    0.1
-    0.2
-    0.2
-    0.2
+```
+0.1
+0.2
+0.1
+0.1
+0.2
+0.1
+0.1
+0.2
+0.2
+0.2
+```
 
 
 
 
 
-    [{'a': 111}, {'b': 222}]
+```
+[{'a': 111}, {'b': 222}]
+```
 
 
 
@@ -1343,18 +1376,20 @@ code = td.pycode()
 print(code)
 ```
 
-    td_deals = ch.discover('deals', columns={
-            'id': 'Int64', 
-            'uid': 'Int64', 
-            'cid': 'String', 
-            'sale': 'Int64', 
-            'date': 'Date', 
-            'date_time': 'DateTime', 
-            'account_id': 'Int64'})\
-        .metrics('sale')\
-        .dimensions('id', 'cid', 'date', 'account_id', 'uid', 'date_time')\
-        .date('date')\
-        .idx('account_id', 'date')
+```
+td_deals = ch.discover('deals', columns={
+        'id': 'Int64', 
+        'uid': 'Int64', 
+        'cid': 'String', 
+        'sale': 'Int64', 
+        'date': 'Date', 
+        'date_time': 'DateTime', 
+        'account_id': 'Int64'})\
+    .metrics('sale')\
+    .dimensions('id', 'cid', 'date', 'account_id', 'uid', 'date_time')\
+    .date('date')\
+    .idx('account_id', 'date')
+```
     
 
 
@@ -1471,26 +1506,34 @@ rh.video('5rL96O2GmW0')
 
 
 
-        <iframe
-            width="700"
-            height="400"
-            src="https://www.youtube.com/embed/5rL96O2GmW0"
-            frameborder="0"
-            allowfullscreen
-        ></iframe>
+```
+    <iframe
+        width="700"
+        height="400"
+        src="https://www.youtube.com/embed/5rL96O2GmW0"
+        frameborder="0"
+        allowfullscreen
+    ></iframe>
+```
         
 
 
 
-    ERROR! Session/line number was not unique in database. History logging moved to new session 22
+```
+ERROR! Session/line number was not unique in database. History logging moved to new session 22
+```
 
 
-    2019-01-27 19:48:27,447 ERROR wrong http code 404 Code: 60, e.displayText() = DB::Exception: Table stats.deals doesn't exist., e.what() = DB::Exception
+```
+2019-01-27 19:48:27,447 ERROR wrong http code 404 Code: 60, e.displayText() = DB::Exception: Table stats.deals doesn't exist., e.what() = DB::Exception
+```
     
 
 
-    ERROR! Session/line number was not unique in database. History logging moved to new session 23
-    ERROR! Session/line number was not unique in database. History logging moved to new session 24
+```
+ERROR! Session/line number was not unique in database. History logging moved to new session 23
+ERROR! Session/line number was not unique in database. History logging moved to new session 24
+```
 
 
 
@@ -1499,66 +1542,70 @@ rh.video('5rL96O2GmW0')
 
 
 
-    401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618507}}
-    401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618507}}
+```
+401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618507}}
+401 {'response': {'error': 'Неверный логин или пароль', 'error_code': '110', 'ip': '88.212.240.252', 'domain': 'wevdiw.amocrm.ru', 'server_time': 1548618507}}
+```
 
 
 
 
 
-    {'_links': {'self': {'href': '/api/v2/leads?type=json&status=142',
-       'method': 'get'}},
-     '_embedded': {'items': [{'id': 1795469,
-        'name': 'Lead from: https://digitalgod.be/page4500864.html?utm_referrer=',
-        'responsible_user_id': 3037510,
-        'created_by': 3037510,
-        'created_at': 1547106499,
-        'updated_at': 1547107344,
-        'account_id': 23668636,
-        'is_deleted': False,
-        'main_contact': {'id': 10118771,
-         '_links': {'self': {'href': '/api/v2/contacts?id=10118771',
-           'method': 'get'}}},
-        'group_id': 0,
-        'company': {},
-        'closed_at': 1547107243,
-        'closest_task_at': 0,
-        'tags': [{'id': 30577, 'name': 'tilda'}],
-        'custom_fields': [{'id': 128813,
-          'name': 'COMMENTS',
-          'values': [{'value': 'sdfdsf'}],
-          'is_system': False},
-         {'id': 129773,
-          'name': 'CID',
-          'values': [{'value': '69296758.1544679970'}],
-          'is_system': False},
-         {'id': 129775,
-          'name': 'UID',
-          'values': [{'value': '6450101900745375744'}],
-          'is_system': False},
-         {'id': 128815,
-          'name': 'TRANID',
-          'values': [{'value': '681808:125327642'}],
-          'is_system': False},
-         {'id': 128819,
-          'name': 'FORMID',
-          'values': [{'value': 'form82325525'}],
-          'is_system': False},
-         {'id': 128821,
-          'name': 'REFERER',
-          'values': [{'value': 'https://digitalgod.be/page4500864.html?utm_referrer='}],
-          'is_system': False}],
-        'contacts': {'id': [10118771, 10120393],
-         '_links': {'self': {'href': '/api/v2/contacts?id=10118771,10120393',
-           'method': 'get'}}},
-        'status_id': 142,
-        'sale': 70000,
-        'loss_reason_id': 0,
-        'pipeline': {'id': 1543696,
-         '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
-           'method': 'get'}}},
-        '_links': {'self': {'href': '/api/v2/leads?id=1795469',
-          'method': 'get'}}}]}}
+```
+{'_links': {'self': {'href': '/api/v2/leads?type=json&status=142',
+   'method': 'get'}},
+ '_embedded': {'items': [{'id': 1795469,
+    'name': 'Lead from: https://digitalgod.be/page4500864.html?utm_referrer=',
+    'responsible_user_id': 3037510,
+    'created_by': 3037510,
+    'created_at': 1547106499,
+    'updated_at': 1547107344,
+    'account_id': 23668636,
+    'is_deleted': False,
+    'main_contact': {'id': 10118771,
+     '_links': {'self': {'href': '/api/v2/contacts?id=10118771',
+       'method': 'get'}}},
+    'group_id': 0,
+    'company': {},
+    'closed_at': 1547107243,
+    'closest_task_at': 0,
+    'tags': [{'id': 30577, 'name': 'tilda'}],
+    'custom_fields': [{'id': 128813,
+      'name': 'COMMENTS',
+      'values': [{'value': 'sdfdsf'}],
+      'is_system': False},
+     {'id': 129773,
+      'name': 'CID',
+      'values': [{'value': '69296758.1544679970'}],
+      'is_system': False},
+     {'id': 129775,
+      'name': 'UID',
+      'values': [{'value': '6450101900745375744'}],
+      'is_system': False},
+     {'id': 128815,
+      'name': 'TRANID',
+      'values': [{'value': '681808:125327642'}],
+      'is_system': False},
+     {'id': 128819,
+      'name': 'FORMID',
+      'values': [{'value': 'form82325525'}],
+      'is_system': False},
+     {'id': 128821,
+      'name': 'REFERER',
+      'values': [{'value': 'https://digitalgod.be/page4500864.html?utm_referrer='}],
+      'is_system': False}],
+    'contacts': {'id': [10118771, 10120393],
+     '_links': {'self': {'href': '/api/v2/contacts?id=10118771,10120393',
+       'method': 'get'}}},
+    'status_id': 142,
+    'sale': 70000,
+    'loss_reason_id': 0,
+    'pipeline': {'id': 1543696,
+     '_links': {'self': {'href': '/api/v2/pipelines?id=1543696',
+       'method': 'get'}}},
+    '_links': {'self': {'href': '/api/v2/leads?id=1795469',
+      'method': 'get'}}}]}}
+```
 
 
 

@@ -1,4 +1,3 @@
-import { FONT_FAMILY_MONO } from '../css-config'
 
 const Caption = ({ children }) => (
   <p>

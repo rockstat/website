@@ -32,4 +32,4 @@ build-dev:
 
 start-dev: 
 	docker run --rm -it --name $(DEVNAME) \
-		-v "$$PWD:/usr/src" -p 10080:10080 $(DEVIMG) $(cmd)
+		-v "$$PWD:/usr/src" -p 3000:3000 $(DEVIMG) $(cmd)

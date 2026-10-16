@@ -1,6 +1,6 @@
 import React from "react"
 import cl from 'classnames';
-import style from './style.css';
+import style from './style.module.css';
 
 export const AnalyticOuter = props => (
     <svg  className={cl(style.treeContainer, {[style.active]: props.animationChange})} width={516} height={516} fill="none" {...props}>

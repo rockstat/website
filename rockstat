@@ -1,49 +1,24 @@
 #!/usr/bin/env node
-const program = require('commander');
-const { getTOCGenerator } = require('./lib/table_of_contents')
-
-// program
-//   .version('0.1.0')
-//   .option('-C, --chdir <path>', 'change the working directory')
-//   .option('-c, --config <path>', 'set config path. defaults to ./deploy.conf')
-//   .option('-T, --no-tests', 'ignore test hook');
+const { program } = require('commander');
+const { getTOCGenerator, buildSitemap } = require('./lib/table_of_contents');
 
 program
-  .command('setup [env]')
-  .description('run setup commands for all envs')
-  .option("-s, --setup_mode [mode]", "Which setup mode to use")
-  .action(function (env, options) {
-    var mode = options.setup_mode || "normal";
-    env = env || 'all';
-    console.log('setup for %s env(s) with %s mode', env, mode);
-  });
+  .name('rockstat')
+  .description('Rockstat website helper commands');
 
 program
   .command('build-toc')
-  .description('build table of content')
-  .action(function () {
+  .description('build documentation table of contents (lib/constants/docs.js) from pages/docs/docs.yml')
+  .action(() => {
     getTOCGenerator().convert();
   });
 
-// program
-//   .command('build-toc <cmd>')
-//   .alias('ex')
-//   .description('execute the given remote cmd')
-//   .option("-e, --exec_mode <mode>", "Which exec mode to use")
-//   .action(function(cmd, options){
-//     console.log('exec "%s" using %s mode', cmd, options.exec_mode);
-//   }).on('--help', function() {
-//     console.log('');
-//     console.log('Examples:');
-//     console.log('');
-//     console.log('  $ deploy exec sequential');
-//     console.log('  $ deploy exec async');
-//   });
-
-// program
-//   .command('*')
-//   .action(function(env){
-//     console.log('deploying "%s"', env);
-//   });
+program
+  .command('build-sitemap')
+  .description('write public/sitemap.xml and public/robots.txt (MAIN=1 selects production robots.txt)')
+  .option('--main', 'use production robots.txt')
+  .action((options) => {
+    buildSitemap({ main: options.main || process.env.MAIN === '1' });
+  });
 
 program.parse(process.argv);
