@@ -173,21 +173,6 @@
 - name: Создание сервисов
   items:
 
-    - name: Python + Band Framework
-      items:
-
-        - name: Организация сервиса
-          href: /docs/build-service-band/stucture
-
-        - name: Коммуникация с другими сервисами
-          href: /docs/build-service-band/call-other-method
-
-        - name: Работа с ClickHouse
-          href: /docs/build-service-band/clickhouse
-
-        - name: Другие возможности
-          href: /docs/build-service-band/other-functions
-
     - name: TypeScript + Rockme Framework
       items:
 
