@@ -187,10 +187,10 @@
       &.top {
         position: fixed;
         top: 0.6vw;
-        /* keep clear of the logo + version badge in the header */
-        left: rem(230px);
+        left: 0;
         padding: rem(20px 50px 27px 50px);
-        transform: none;
+        /* animated via the transform transition; offset keeps clear of the logo + version badge */
+        transform: translateX(rem(230px));
         z-index: 99;
       }
     }
