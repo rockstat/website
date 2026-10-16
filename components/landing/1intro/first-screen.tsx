@@ -72,7 +72,8 @@ export class Everything extends React.PureComponent<EverythingProps> {
           </div>
           <div className={cl(style.demoContainer, { [style.top]: linksMenuPosition === 'top' })}>
             {/* <div className={style.btn}> <a href={'/'}> Demo </a> </div> */}
-            <VisibilitySensor onChange={this.linksMenuPositionDetect}>
+            {/* switch the social links into the header as soon as this row reaches the header's bottom edge */}
+            <VisibilitySensor onChange={this.linksMenuPositionDetect} rootMargin="-80px 0px 0px 0px">
               <div className={style.description}>
                 <div>Open Source</div>
                 <div>Apache 2.0</div>
