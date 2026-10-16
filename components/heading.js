@@ -15,7 +15,7 @@ class Heading extends React.Component {
   }
 }
 
-export default (props) => {
+export default function HeadingAnchor(props) {
   const { offsetTop } = props
   const component = props.children
   const children = component.props.children || ''

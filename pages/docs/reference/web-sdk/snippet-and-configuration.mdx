@@ -1,11 +1,9 @@
-import { withDoc } from '@app/lib'
-import { RenderTable, Tip, Success, Alert, Info, Expand, Image } from '@app/components'
+---
+title: "Сниппет и конфигурация Web-SDK"
+---
+
+import { RenderTable, Expand } from '@app/components'
 import webSdkParams from '../../structs/web-sdk-params.csv';
-
-export const meta = {
-  title: 'Сниппет и конфигурация Web-SDK',
-}
-
 
 Актуальная версия сниппета в репозитории [github.com/rockstat/web-sdk/snippet](https://github.com/rockstat/web-sdk/blob/master/snippet/snippet.html)
 
@@ -38,6 +36,3 @@ export const meta = {
 <Expand>
   <RenderTable data={webSdkParams} />
 </Expand>
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

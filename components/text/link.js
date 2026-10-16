@@ -5,7 +5,7 @@ const startsWith = (str, val) => typeof str === 'string' && str.substr(0, val.le
 export const GenericLink = (props) => {
   const href = props.href || '';
 
-  if (startsWith(href, '/docs') || startsWith(href, '/blog') || startsWith(href, '/ru')) {
+  if (startsWith(href, '/docs') || startsWith(href, '/ru')) {
     return <InternalLink {...props} href={href} />;
   }
 

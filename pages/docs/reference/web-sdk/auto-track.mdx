@@ -1,9 +1,8 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
+---
+title: "Автоматически генерируемые события в WebSDK"
+---
 
-export const meta = {
-  title: 'Автоматически генерируемые события в WebSDK',
-}
+import { Alert, Tip, Info } from '@app/components'
 
 ## Старт сессии
 
@@ -75,13 +74,10 @@ export const meta = {
 }
 ```
 
-
 <Alert>
   Эта статья адаптирована от прошлой версии.
   Если попадётся неточность, сообщите об этом в сообществе.
 </Alert>
-
-
 
 ## Клики по ссылкам
 
@@ -112,7 +108,6 @@ export const meta = {
 ```
 
 ## Клики по любым другим элементам
-
 
 ```json
 {
@@ -152,8 +147,6 @@ export const meta = {
   Отправка value сейчас не производится
 </Info>
 
-
-
 ## Взаимодействие с полями формы
 
 Три события с одинаковым набором параметров:
@@ -161,7 +154,6 @@ export const meta = {
 - `field_focus` - каретка поставлена в поле ввода
 - `field_change` - в поле поменялись данные
 - `field_blur` - каретка покинула поле ввода
-
 
 ```json
 {
@@ -326,6 +318,3 @@ export const meta = {
 `keypress`, `keydown`, `keyup`, `resize`, `focus`, `blur`
 
 Суть событий описана на [developer.mozilla.org/en-US/docs/Web/Events](https://developer.mozilla.org/en-US/docs/Web/Events)
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

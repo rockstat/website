@@ -1,9 +1,6 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-
-export const meta = {
-  title: 'Получение данных из AppMetrika',
-}
+---
+title: "Получение данных из AppMetrika"
+---
 
 ## Webhook по событию
 
@@ -33,7 +30,3 @@ Rockstat записывает все пришедшие данные, не за�
 
 В платформу включено множество различных инструментов для получения и визуализации данных их ClickHouse,
 показанная ранее консоль - это самый низкоуровневый из них.
-
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

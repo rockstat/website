@@ -1,10 +1,9 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-import Footer from './footer.mdx'
+---
+title: "Выбор сервера и настройка DNS"
+---
 
-export const meta = {
-  title: 'Выбор сервера и настройка DNS',
-}
+import { Alert } from '@app/components'
+import Footer from '@app/components/mdx/setup-footer.mdx'
 
 ## Выбор и подготовка сервера
 
@@ -47,7 +46,6 @@ Rockstat устанавливается на собственный сервер
 
 При больших нагрузках можно использовать физические серверы. 
 
-
 ## Конфигурация DNS
 
 Сервер должен иметь доменное имя, лучше всего использовать поддомен основного домена, 
@@ -85,5 +83,3 @@ rstat         A   46.161.39.109
 ![Aws zone overview](/static/images/docs/setup/aws_dns_setup.jpg)
 
 <Footer/>
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

@@ -1,45 +1,40 @@
 import React, { useEffect } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import NProgress from 'nprogress';
+import { DocLayout } from '@app/components/doc-layout';
 
+import '@app/styles/nprogress.css';
 import '@app/styles/reset.css';
 import '@app/styles/index.css';
 
-function track(...args) {
-  if (typeof window !== 'undefined' && typeof window.rstat === 'function') {
-    window.rstat(...args);
-  }
-}
+const isDocsRoute = (pathname) => pathname === '/docs' || pathname.startsWith('/docs/');
 
 export default function MyApp({ Component, pageProps }) {
+  const { pathname } = useRouter();
+
   useEffect(() => {
-    const onStart = () => {
-      NProgress.start();
-      track('page');
-    };
-    const onComplete = () => {
-      NProgress.done();
-      track('event', 'page_loaded');
-    };
-    const onError = () => NProgress.done();
+    const onStart = () => NProgress.start();
+    const onDone = () => NProgress.done();
 
     Router.events.on('routeChangeStart', onStart);
-    Router.events.on('routeChangeComplete', onComplete);
-    Router.events.on('routeChangeError', onError);
+    Router.events.on('routeChangeComplete', onDone);
+    Router.events.on('routeChangeError', onDone);
     return () => {
       Router.events.off('routeChangeStart', onStart);
-      Router.events.off('routeChangeComplete', onComplete);
-      Router.events.off('routeChangeError', onError);
+      Router.events.off('routeChangeComplete', onDone);
+      Router.events.off('routeChangeError', onDone);
     };
   }, []);
+
+  const page = <Component {...pageProps} />;
 
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Component {...pageProps} />
+      {isDocsRoute(pathname) ? <DocLayout frontmatter={Component.frontmatter}>{page}</DocLayout> : page}
     </>
   );
 }

@@ -20,6 +20,8 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [
+      'remark-frontmatter',
+      'remark-mdx-frontmatter', // `export const frontmatter = {...}` from the YAML block
       'remark-gfm', // tables, strikethrough, task lists, autolinks (built into remark before v13)
       [path.join(__dirname, 'lib/remark/custom-blocks.mjs'), { blocks: customBlocks }],
       'remark-emoji',
@@ -29,6 +31,9 @@ const withMDX = createMDX({
       'rehype-slug',
       ['rehype-autolink-headings', { behavior: 'append', properties: { className: ['heading-anchor'], ariaHidden: true, tabIndex: -1 } }],
       ['@mapbox/rehype-prism', { ignoreMissing: true }]
+    ],
+    recmaPlugins: [
+      path.join(__dirname, 'lib/recma/attach-frontmatter.mjs')
     ]
   }
 });
@@ -37,6 +42,7 @@ const dsvLoader = {
   loader: path.join(__dirname, 'lib/loaders/dsv-loader.js'),
   options: { delimiter: ';' }
 };
+const docsMenuLoader = path.join(__dirname, 'lib/loaders/docs-menu-loader.js');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -53,11 +59,13 @@ const nextConfig = {
   },
   turbopack: {
     rules: {
-      '*.csv': { loaders: [dsvLoader], as: '*.js' }
+      '*.csv': { loaders: [dsvLoader], as: '*.js' },
+      '*.yml': { loaders: [docsMenuLoader], as: '*.js' }
     }
   },
   webpack: (config) => {
     config.module.rules.push({ test: /\.csv$/, use: [dsvLoader] });
+    config.module.rules.push({ test: /\.yml$/, use: [docsMenuLoader] });
     return config;
   }
 };

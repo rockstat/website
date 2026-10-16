@@ -1,11 +1,7 @@
-
-import { withDoc } from 'app/lib'
-
-export const meta = {
-  title: 'Использование "пикселя"',
-  description: 'Применяется для задач: безопасный трекинг "thankyoupage", вставки в креатив для подсчета показов, сбора данных с AMP сайтов, cookie-sync с рекламными сервисами и DMP.'
-}
-
+---
+title: "Использование \"пикселя\""
+description: "Применяется для задач: безопасный трекинг \"thankyoupage\", вставки в креатив для подсчета показов, сбора данных с AMP сайтов, cookie-sync с рекламными сервисами и DMP."
+---
 
 "Пиксель" - в данном контексте подрузумевается способ сбора данных при помощи прозрачной картинки размером 1x1 (gif 1x1 image), 
 которая загружается с отслеживающего сервера. Таким образом он получает информацию о посещении/просмотре.
@@ -62,7 +58,6 @@ https://test.rstat.org/pixel/x1_order_completed
 https://your_rockstat_domain/pixel/x1_order_completed?internal_campaign=superpuper&ad_content=wow
 ```
 
-
 Собранные данные будут обработаны системами сохранения в ClickHouse или стриминга в другие сервисы.
 
 Запросы можно обрабатывать программно, для этого 
@@ -72,11 +67,9 @@ https://your_rockstat_domain/pixel/x1_order_completed?internal_campaign=superpup
 Устанавливается между `<body></body>`, чем ближе к началу, 
 тем раньше начнет грузиться и больше вероятность, что загрузится.
 
-
 ```html
 <img src="https://your_rockstat_domain/pixel/x1_order_completed?internal_campaign=superpuper&ad_content=wow" />
 ```
-
 
 ### AMP (Accelerated Mobile Pages)
 
@@ -87,7 +80,6 @@ https://your_rockstat_domain/pixel/x1_order_completed?internal_campaign=superpup
 ```
 
 Детали на [странице проекта AMP](https://www.ampproject.org/docs/reference/components/amp-pixel)
-
 
 ## Markdown
 
@@ -110,5 +102,3 @@ GIF89a...
 ```
 
 Curl - утилита выполнения http запросов. Также можете воспользоваться инструментами разработчика в браузере
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

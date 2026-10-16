@@ -1,9 +1,6 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-
-export const meta = {
-  title: 'Хитрости конфигурации',
-}
+---
+title: "Хитрости конфигурации"
+---
 
 ## Theia IDE
 
@@ -18,7 +15,6 @@ max-line-length = 250
 
 *— Andrew Romm*
 
-
 ### Запомнить пароль от гита на сутки
 
 ```shell
@@ -26,8 +22,6 @@ git config --global credential.helper "cache --timeout=86400"
 ```
 
 *— Dmitry Rodin*
-
-
 
 ### Скрипт инициализации Theia
 
@@ -57,6 +51,3 @@ done
 ```
 
 *— Dmitry Rodin*
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

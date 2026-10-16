@@ -1,9 +1,8 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
+---
+title: "Band framework API"
+---
 
-export const meta = {
-  title: 'Band framework API',
-}
+import { Tip } from '@app/components'
 
 ```python
 from band import settings, logger, expose, worker, cleanup, response, rpc, scheduler
@@ -89,7 +88,6 @@ async def alias(**params):
     return {'message': 'you are catch me!'}
 ```
 
-
 <Tip>
   Work in progress
 </Tip>
@@ -166,8 +164,6 @@ async def enrich(ip, ua, uid, **params):
   }
 ```
 
-
-
 ### expose.handler / регистрация обработчиком
 
 `expose.handler(name=None, path=None, alias=None, timeout=None)`
@@ -179,7 +175,6 @@ Arguments:
 - **timeout**: сколько времени `front` service будет ждать ответа от этого метода. По умолчанию 200ms (1/5 секунды).
 
 Метод будет зарегистрирован в `front` service. Запросы с совпадающим именем сервиса будут направлены на него. Возвращаемое значение будет возвращено наружу.
-
 
 ```python
 from band import expose
@@ -262,7 +257,6 @@ async def service_worker():
         await asyncio.sleep(5)
 ```
 
-
 ## band.cleanup / Shotdown handler decorator
 
 Mark function as shutdown handler which will be executed on stop.
@@ -306,7 +300,6 @@ For example, if a function performs a CPU-intensive calculation for 1 second,
 all concurrent asyncio Tasks and IO operations would be delayed by 1 second.
 More information 
 [https://docs.python.org/3/library/asyncio-dev.html#running-blocking-code](Running Blocking Code)
-
 
 ## band.rpc / взимодействие с другими сервисами
 
@@ -383,11 +376,6 @@ print(settings.extra)
 from band import redis_factory
 ```
 
-
 <Tip>
   Work in progress
 </Tip>
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)
-

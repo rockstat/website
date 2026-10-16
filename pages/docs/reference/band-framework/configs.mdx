@@ -1,10 +1,6 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-
-export const meta = {
-  title: 'Файлы конфигурации Band Framework',
-}
-
+---
+title: "Файлы конфигурации Band Framework"
+---
 
 #### .env
 
@@ -45,7 +41,6 @@ your_param: param_value
 your_secret: {{SECRET_KEY}}
 ```
 
-
 #### custom.yaml
 
 Файл `custom.yaml` внесен в список игнорируемых git и в нем можно размещать приватные значения
@@ -57,5 +52,3 @@ secret_param: secret_val
 # Поддерживается подстановка переменных окружения
 other_secret: {{OTHER_SECRET}}
 ```
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

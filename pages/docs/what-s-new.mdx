@@ -1,11 +1,6 @@
-import { withDoc } from 'app/lib'
-import { Tip } from 'app/components'
-
-export const meta = {
-  title: "What's new",
-  descriptions: 'Что нового появилось в Rockstat'
-}
-
+---
+title: "What's new"
+---
 
 ### Coming
 
@@ -30,7 +25,6 @@ export const meta = {
 - **Dashboard**
   - Logs commands: auto-follow, pause
   - Swithed to director source
-
 
 ### 2 jan 2019
 
@@ -82,7 +76,6 @@ export const meta = {
   - Cmd+Shift+P -> Tasks: Run -> Genrate bans service
   - Initialize script support (bootstrap.sh)
 
-
 ### 19 oct 2018
 
 - **WebSDK**
@@ -103,7 +96,6 @@ export const meta = {
   - Public directory for storing external usable files accessible in Theia.
   - Ability to manage CHWriter and Front custom configuration using Theia.
   - new SimpleCH library with sync and async API.
-
 
 ### 02 oct 2018
 
@@ -185,7 +177,6 @@ export const meta = {
   - Родительский образ для сервисов на Band Framework теперь `rockstat/band-base-py` (вместо `rst/band-base-py`).
   - Появился промежуточный образ Grafana, при помощи которого можно вносить изменения в ее сборку.
 
-
 ### 25 aug 2018
 
 - **bootstrap** main version switched to master.
@@ -194,7 +185,4 @@ export const meta = {
 
 - **bootstrap** clickhouse column `channel` changed from enum to string. Only `events`, `webhooks`, `activity` tables updated automatically, others need to be updated. Look at `clickhouse_migrations/002-...`
 
-
 **... a lot of issues**
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

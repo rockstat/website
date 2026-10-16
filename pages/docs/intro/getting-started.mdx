@@ -1,17 +1,12 @@
-import { withDoc } from '@app/lib'
-import { RenderTable, Tip, Success, Alert, Info, Expand, Image } from '@app/components'
-import webSdkParams from '../structs/web-sdk-params.csv';
+---
+title: "Быстрый старт с Rockstat"
+---
 
-
-export const meta = {
-  title: 'Быстрый старт с Rockstat',
-}
 
 Rockstat состоит из множества компонентов: хранилищ, средств администрирования, инструментов для работы с данными, 
 специально разработанных сервисов. Далее приведены основные шаги, нобходимые для получения работающей платформы.
 
 ![dashboard](/static/images/docs/setup/rst_dashboard.jpg)
-
 
 Первым делом надо разобраться, какой требуется сервер 
 и как настроить поддомен для системы сбора данных.
@@ -23,7 +18,6 @@ Rockstat состоит из множества компонентов: хран
 
 [[chapter]]
 | [Установка платформы](/docs/guides/setup/installation)
-
 
 Чтобы начать собирать данные с сайтов, установите код WebSDK на все страницы. 
 Помимо привычных сессий и страниц, будут отслеживаться клики, взаимодействия с формами, активность.
@@ -38,7 +32,6 @@ Rockstat состоит из множества компонентов: хран
 [[chapter]]
 | [События из AppMetrika](/docs/tutorials/sources/appmetrika)
 
-
 Сразу после установки в Grafana доступен демонстрационный dashboard.
 Изучите его устройство, это поможет вам строить свои визуализации.
 
@@ -47,5 +40,3 @@ Rockstat состоит из множества компонентов: хран
 ## Ссылки по теме:
 
 1. [Из чего состоит платформа](/docs/architecture/overview).
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

@@ -25,14 +25,14 @@ export class Information extends React.Component {
 
 
   users = [
-    <Icons.Virgins />,
-    <Icons.BurlesqueLogo />,
-    <Icons.Flora />,
-    <Icons.TcehLogo />,
-    <Icons.UtairIcon />,
-    <Icons.Textapp />,
-    <Icons.UrbanLogo />,
-    <Icons.Vrtech />
+    <Icons.Virgins key="virgins" />,
+    <Icons.BurlesqueLogo key="burlesque" />,
+    <Icons.Flora key="flora" />,
+    <Icons.TcehLogo key="tceh" />,
+    <Icons.UtairIcon key="utair" />,
+    <Icons.Textapp key="textapp" />,
+    <Icons.UrbanLogo key="urban" />,
+    <Icons.Vrtech key="vrtech" />
   ];
 
 

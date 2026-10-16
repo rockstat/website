@@ -1,9 +1,6 @@
-import { withDoc } from 'app/lib'
-
-export const meta = {
-  title: 'Получение HTTP запросов: webhook / postback',
-}
-
+---
+title: "Получение HTTP запросов: webhook / postback"
+---
 
 Это обычные HTTP запросы от сервера к серверу.
 В некоторых сервисах может называться HTTP нотификацией, как в случае с CoMagic.
@@ -14,7 +11,6 @@ export const meta = {
   * CPA-трекеры: Affise, HasOffers...
   * Мобильные трекеры: Yandex Metrika, AppsFlyer...
   * И множество других
-
 
 ## Endpoint
 
@@ -99,5 +95,3 @@ $ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" https://your
   "time": 1540771658623 
 }
 ```
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

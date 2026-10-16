@@ -36,8 +36,7 @@ export class Header extends React.Component {
           style.rockstatHeader,
           { [style.activeBg]: headerBgActive || linkMenuPosition === 'top' },
           { [style.documentation]: activeSection === 'docs' },
-          { [style.menuActive]: menuActive },
-          { [style.blog]: activeSection === 'blog' }
+          { [style.menuActive]: menuActive }
         )}>
         <div onClick={this.changeMenu} className={cl(style.gamburger, { [style.active]: menuActive })}>
           <span></span>

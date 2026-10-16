@@ -7,7 +7,10 @@ import React, { useEffect, useRef } from 'react';
 export function VisibilitySensor({ children, onChange, threshold = 0, rootMargin = '0px' }) {
   const ref = useRef(null);
   const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
+
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
   useEffect(() => {
     const node = ref.current;

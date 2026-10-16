@@ -1,10 +1,8 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-import Footer from './footer.mdx'
+---
+title: "Запуск системы установки"
+---
 
-export const meta = {
-  title: 'Запуск системы установки',
-}
+import Footer from '@app/components/mdx/setup-footer.mdx'
 
 На серверах не используются графические интерфейсы, для взаимодействия используется обычный текстовый терминал.
 Терминал Linux — это мощный инструмент, используя который проще и быстрее произвести настройку.
@@ -22,7 +20,6 @@ Windows воспользуйтесь `cmd`. Команда подключени�
 | возмользуйтесь альтернативным приложением [Hyper](https://hyper.is/).
 | Работает на всех операционных системах
 
-
 ```bash
 ssh root@домен-вашего-сервера
 ```
@@ -30,7 +27,6 @@ ssh root@домен-вашего-сервера
 [[alert|Если не удается подключиться]]
 | Проверьте регистрационные данные сервера, пользователь может быть отличным от`root`. 
 | Обратитесь за помощью в сообщество Rockstat в [telegram](https://t.me/rockstats)
-
 
 При первом подключении вы получите сообщение "Не удается проверить подлинность сервера / The authenticity of host ... can't be established...".
 Ответьте `yes` чтобы продолжить подключение.
@@ -48,7 +44,6 @@ Are you sure you want to continue connecting (yes/no)? yes
 
 root@dr.dg03.ru's password: 
 ```
-
 
 [[tip]]
 | В некоторых случаях может быть запрошено изменение пароля.
@@ -136,5 +131,3 @@ sudo apt -qqy update && sudo apt -qqy install curl
 ![dashboard](/static/images/docs/setup/rst_dashboard.jpg)
 
 <Footer/>
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

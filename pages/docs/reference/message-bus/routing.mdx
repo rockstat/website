@@ -1,8 +1,6 @@
-import { withDoc } from 'app/lib'
-
-export const meta = {
-  title: 'Маршрутизация сообщений',
-}
+---
+title: "Маршрутизация сообщений"
+---
 
 ## Тут что-то будет
 
@@ -10,5 +8,3 @@ export const meta = {
 Не изменяйте основной файл `group_vars/all`, создайте отдельный файл, совпадающий с названием группы хостов.
 Пример: делаете копию `inventory/all` под названием `inventory/private`, создаете файл конфигурации `group_vars/private`,
 все указанные настройки перезапишут аналоги из `all`.
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

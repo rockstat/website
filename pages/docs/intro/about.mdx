@@ -1,9 +1,6 @@
-import {withDoc} from 'app/lib'
-import {Expand, Alert, Tip} from 'app/components'
-
-export const meta = {
-  title: 'О платформе Rockstat',
-}
+---
+title: "О платформе Rockstat"
+---
 
 Rockstat - это платформа, позволяющая построить собственную CDP (Customer Data Platform) для управления жизненным циклом пользователей,
 не затратив на это много времени.
@@ -11,11 +8,9 @@ Rockstat - это платформа, позволяющая построить 
 frameworks для Python и TypeScript, сервисы геокодинга, разбора UserAgent, средства разработки, инструменты обработки и визуализации данных,
 СУБД ClickHouse, Redis, систему управления и множество других необходимых составляющих.
 
-
 [[alert | Стадия разработки ]]
 | Rockstat находится в стадии Alpha. Это означает, что он работает и выполняет свою задачу. 
 | Проект стремительно развивается и некоторые составляющие могут меняться, что возможно потребует подстройки.
-
 
 ## Следующие шаги
 
@@ -27,7 +22,6 @@ frameworks для Python и TypeScript, сервисы геокодинга, р�
 
 [[chapter]]
 | [Что нового](/docs/what-s-new)
-
 
 ## Лицензия
 
@@ -46,5 +40,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

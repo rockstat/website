@@ -1,9 +1,6 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-
-export const meta = {
-  title: 'Библиотека Simple ClickHouse',
-}
+---
+title: "Библиотека Simple ClickHouse"
+---
 
 Very simple library to interract with ClickHouse.
 
@@ -121,7 +118,6 @@ b'{"browser_if": [0, 2],"browser_sr_asp": 4000,"browser_sr_avail_h": 740,"browse
 >>> ch.flush_all()
 ```
 
-
 ## Синхронная версия
 
 ### Выполнение запроса и чтение всего результата сразу
@@ -181,6 +177,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

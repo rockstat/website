@@ -1,10 +1,9 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info, RenderTable, Expand } from 'app/components'
-import eventStruct from '../../structs/event-struct.csv'
+---
+title: "Базовая структура событий WebSDK"
+---
 
-export const meta = {
-  title: 'Базовая структура событий WebSDK',
-}
+import { RenderTable, Expand } from '@app/components'
+import eventStruct from '../../structs/event-struct.csv'
 
 События, генерируемые SDK, имеют следующий вид
 
@@ -95,6 +94,3 @@ export const meta = {
 <Expand>
   <RenderTable data={eventStruct} colFilter={v=>v!="ClickHouse"} rowFilter={v=>v["JavaScript"]}/>
 </Expand>
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

@@ -1,10 +1,8 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-import Footer from './footer.mdx'
+---
+title: "Запуск сервера в VScale"
+---
 
-export const meta = {
-  title: 'Запуск сервера в VScale',
-}
+import Footer from '@app/components/mdx/setup-footer.mdx'
 
 Создайте учетную запись на сайте провайдера [Vscale](https://vscale.io/?utm_source=rock.st).
 После регистрации переходим к созданию сервера.
@@ -29,5 +27,3 @@ export const meta = {
 ![vscale start server](/static/images/docs/setup/vscale_created.jpg)
 
 <Footer/>
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

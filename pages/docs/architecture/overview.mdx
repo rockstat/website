@@ -1,9 +1,8 @@
-import { withDoc } from 'app/lib'
-import { Tip, Expand } from 'app/components'
+---
+title: "Состав платформы Rockstat"
+---
 
-export const meta = {
-  title: 'Состав платформы Rockstat',
-}
+import { Tip, Expand } from '@app/components'
 
 Rockstat состоит из множества компонентов: хранилищ, инструментов для работы с данными, специально разработанных сервисов, выполняющих свою часть общего дела, средств администрирования.
 
@@ -12,7 +11,6 @@ Rockstat состоит из множества компонентов: хран
 <Expand>
   <img src="/static/images/docs/schemas/services-table.svg"/>
 </Expand>
-
 
 Основные компоненты
 
@@ -50,7 +48,6 @@ SDK
 
 Остальное ПО,
 
-
 2. **Docker** - инструмент контейнеризации, по сути сердце микросервисов.
 4. **ClickHouse** - открытая колоночная СУБД от Yandex. Хранит данные в сжатом виде, сохраняя высокую производительность.
 5. **Redis** - многофункциональное im-memory хранилище. Используется для быстрого обмена данными между микросервисами.
@@ -63,5 +60,3 @@ SDK
 <Tip>
   Все исходные коды доступны в репозитории <a href="https://github.com/rockstat" target="_blank">github.com/rockstat</a>, не забываем ставить ⭐!
 </Tip>
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

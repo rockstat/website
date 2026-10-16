@@ -1,11 +1,9 @@
-import { withDoc } from '@app/lib'
-import { RenderTable, Tip, Success, Alert, Info, Expand, Image } from '@app/components'
-import webSdkParams from '../../structs/web-sdk-params.csv';
+---
+title: "Установка и настройка Web-SDK"
+---
 
-export const meta = {
-  title: 'Установка и настройка Web-SDK',
-  'desction': 'Web-SDK осуществляет автоматический сбор информации о поведении пользователей на сайте: просмотры страниц, клики, взаимодействия с формами и полями, активность, перемещение видимой зоны и др. Чтолы установить, разместите сниппет на всех странцах сайта.'
-}
+import { RenderTable, Expand } from '@app/components'
+import webSdkParams from '../../structs/web-sdk-params.csv';
 
 Web-SDK осуществляет автоматический сбор информации о поведении пользователей на сайте:
 просмотры страниц, клики, взаимодействия с формами и полями, активность, перемещение видимой зоны и др.
@@ -51,7 +49,6 @@ Web-SDK осуществляет автоматический сбор инфо�
   <RenderTable data={webSdkParams} />
 </Expand>
 
-
 ### Установка через GTM
 
 Загрузчик можно устанавливать через GTM, но рекомендуется, устанавливать напрямую в код сайта,
@@ -61,7 +58,6 @@ Web-SDK осуществляет автоматический сбор инфо�
   сервисами и сохранить у себя себя соответствия для дальнейшего использования.
 2. Поймается больше "отказников"
 3. Не сработает adblock, ведь платформа расположена на вашем домене, и он не будет блокироваться, в отличии от GTM
-
 
 #### Получение событий из Data Layer
 
@@ -100,5 +96,3 @@ rstat('buildProjectId')
 <Expand>
   <img src={'/static/images/docs/references/web-sdk/gen-project-id.png'} />
 </Expand>
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

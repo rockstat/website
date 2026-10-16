@@ -16,8 +16,6 @@ export default function MyDocument() {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:description" content={defaultDescription} />
-        <script type="text/javascript" src="https://bolt.rstat.org/public/box-rst.js" async />
-        <link rel="stylesheet" type="text/css" href="/static/nprogress/nprogress.css" />
       </Head>
       <body>
         <Main />

@@ -1,9 +1,8 @@
-import { withDoc } from 'app/lib'
-import { Expand } from 'app/components'
+---
+title: "Жизненный цикл и адресация"
+---
 
-export const meta = {
-  title: 'Жизненный цикл и адресация',
-}
+import { Expand } from '@app/components'
 
 ## Входящие запросы
 
@@ -101,6 +100,3 @@ https://поддомен.вашдомен/appmetrika/install -> `in.gen.appmetri
 1. **TODO:** Слушатели `listeners`
 1. **TODO:** Коммуникация сервисов
 1. **TODO:** Сетевая инфраструктура
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

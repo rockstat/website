@@ -1,21 +1,14 @@
 #!/usr/bin/env node
 const { program } = require('commander');
-const { getTOCGenerator, buildSitemap } = require('./lib/table_of_contents');
+const { buildSitemap } = require('./lib/docs-menu');
 
 program
   .name('rockstat')
   .description('Rockstat website helper commands');
 
 program
-  .command('build-toc')
-  .description('build documentation table of contents (lib/constants/docs.js) from pages/docs/docs.yml')
-  .action(() => {
-    getTOCGenerator().convert();
-  });
-
-program
   .command('build-sitemap')
-  .description('write public/sitemap.xml and public/robots.txt (MAIN=1 selects production robots.txt)')
+  .description('write public/sitemap.xml and public/robots.txt (MAIN=1 or --main selects production robots.txt)')
   .option('--main', 'use production robots.txt')
   .action((options) => {
     buildSitemap({ main: options.main || process.env.MAIN === '1' });

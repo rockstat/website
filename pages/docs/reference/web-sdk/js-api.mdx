@@ -1,14 +1,10 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-
-export const meta = {
-  title: 'Web-SDK JavaScript API',
-}
+---
+title: "Web-SDK JavaScript API"
+---
 
  
 [[alert|Завершение статьи]]
 | Статья не завершена, будет здорово, если вы сможете [внести свой вклад в нее](https://github.com/rockstat/website/blob/master/pages/docs/reference/web-sdk/js-api.mdx). 
-
 
 ## Методы
 
@@ -20,12 +16,10 @@ export const meta = {
 rstat('event', eventName, {eventData})
 ```
 
-
 | Property          |Type       |Default    |Description
 |-------------------|-----------|-----------|------------------
 | eventName         | String*   |           | Произвольное название события, должно характеризовать что произошло
 | eventData         | Object    | { }       | Произвольные данные события. Может быть любое количество параметров.
-
 
 ##### Примеры
 
@@ -90,7 +84,6 @@ rstat('identify', userId?:string, traits?:{[key:string]: string})
 | userId            | String    |           | Идентификатор пользователя из вашей базы данных.
 | traits            | Object    | { }       | Набор характеристик пользователя, вроде email, возраста, сегмента и тд
 
-
 #### Примеры
 
 ```javascript
@@ -116,7 +109,6 @@ rstat('getUid')
 
 Но получить его можно только после загрузки трекера, поэтому следует оборачивать в коллбек успешной загрузки (см ниже)
 
-
 ### Call service method
 
 ```javascript
@@ -130,7 +122,6 @@ rstat('request', service, name, params = {}): Promise<any>
 | service           | String    |           | Название сервиса
 | name              | String    |           | Метод сервиса
 | params            | Object    | { }       | Параметры которые будут переданы сервису
-
 
 ### Notify service
 
@@ -146,8 +137,6 @@ rstat('notify', service, name, params = {}): void
 | name              | String    |           | Метод сервиса
 | params            | Object    | { }       | Параметры которые будут переданы сервису
 
-
-
 ### Library and snippet info
 
 ```javascript
@@ -162,7 +151,6 @@ type LibInfo = {
   v: number;
 }
 ```
-
 
 ### Generate project id based on domain
 
@@ -234,7 +222,6 @@ rstat('onEvent', function(name, data){
 При включении WebSocket в настройках связь становится двусторонней
 и сервисы, работающие на сервере, могут в любой момент передавать сообщения в браузер.
 
-
 ```typescript
 rstat('onServerMessage', (eventName:string, eventData:object) => void)
 ```
@@ -243,7 +230,6 @@ rstat('onServerMessage', (eventName:string, eventData:object) => void)
 |-------------------|-----------|-----------|------------------
 | eventName         | String    |           | Имя события, пришедшего с сервера
 | eventData         | Object    | { }       | Произвольные данные, указанные серверной частью при создании события
-
 
 ```javascript
 rstat('onServerMessage', function(name, data){
@@ -261,7 +247,6 @@ rstat('onServerMessage', function(name, data){
 });
 ```
 
-
 ### Listening system events
 
 Web-SDK internally use event system for 
@@ -269,6 +254,3 @@ Web-SDK internally use event system for
 ```typescript
 rstat('onInternalEvent', (eventName:string, eventData:object) => void)
 ```
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

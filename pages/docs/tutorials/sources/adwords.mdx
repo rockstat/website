@@ -1,11 +1,6 @@
-import { withDoc } from 'app/lib'
-import { Alert, Tip, Info } from 'app/components'
-
-export const meta = {
-  title: 'Данные AdWords через Google App Script',
-}
-
-
+---
+title: "Данные AdWords через Google App Script"
+---
 
 ```javascript
 var CONFIG = {
@@ -63,7 +58,6 @@ function send(chunk) {
   var response = UrlFetchApp.fetch(CONFIG.ENDPOINT, options);
   Logger.log("Responce %s", response.getContentText());
 }
-
 
 function retrieveAdwordsReport(reportConfig) {
   var fieldNames = Object.keys(reportConfig.FIELDS);
@@ -150,10 +144,7 @@ CREATE TABLE adwords IF NOT EXISTS (
 ) ENGINE= WRITE WHAT YOU NEED
 ```
 
-
-
 Rockstat receiver
-
 
 ```
 ch = AsyncClickHouse()
@@ -172,6 +163,3 @@ async def adwords(data, **params):
                 ch.push('adwords', row)
 
 ```
-
-
-export default withDoc({...meta})(({children}) => <>{children}</>)

@@ -89,23 +89,6 @@
       }
     }
   }
-  &.blog {
-    background-color: rgba(0, 0, 0, 1);
-    border-bottom: 1px solid rgba(224, 244, 224, 0.7);
-     .menu {
-      .menuItemLgItem, .menuItem {
-        /* a {
-          color: #000;
-          &:hover, &.active {
-            color: #00F0FF;
-          }
-          &:after {
-            display: none;
-          }
-        } */
-      }
-    }
-  }
   @media(max-width: 720px) {
     flex-direction: column;
     transition: background-color .3s ease;

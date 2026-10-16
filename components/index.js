@@ -9,5 +9,3 @@ export * from './blocks/expand';
 export * from './landing';
 export * from './youtube';
 export * from './text/link';
-export * from './postslist/postslist';
-export * from './blogsidebar/blogsitebar';

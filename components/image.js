@@ -13,6 +13,7 @@ export const Image = ({
   height,
   margin = 40,
   caption,
+  alt,
   video = false,
   muted = true,
   autoPlay = false
@@ -34,7 +35,7 @@ export const Image = ({
           {video ? (
             <video src={src} muted={muted} autoPlay={autoPlay} />
           ) : (
-            <img src={src} />
+            <img src={src} alt={alt !== undefined ? alt : (caption || '')} />
           )}
         </div>
         {caption && <p>{caption}</p>}
@@ -43,6 +44,6 @@ export const Image = ({
   )
 }
 
-export const Video = props => <Image {...props} video />
+export const Video = props => <Image alt="" {...props} video />
 
 // export default Image

@@ -3,7 +3,7 @@ import React from 'react';
 // export class EverythingRhimbusIcon extends React.Component {
 export const EverythingRhimbusIcon = (props) => 
   (
-      <svg id='EverythingRhimbusIcon' viewBox="0 0 719 709" stroke="none" xmlns="http://www.w3.org/2000/svg" strokeWidth="1" stroke="none">
+      <svg id='EverythingRhimbusIcon' viewBox="0 0 719 709" xmlns="http://www.w3.org/2000/svg" strokeWidth="1" stroke="none">
         <g filter="url(#filter0_d__rhombus_icon)">
           <path d="M20.8653 1.96461C27.2041 0.386543 34.0711 1.96461 38.9573 6.17277C43.1832 9.85492 48.5976 11.8275 54.1441 11.8275H61.0111H67.8782C73.4246 11.8275 78.839 9.85492 83.0649 6.17277C88.0831 1.8331 94.8181 0.255038 101.157 1.96461L121.758 7.09331L122.022 5.77826L101.421 0.649554C94.6861 -1.06001 87.4229 0.649554 82.1405 5.25224C78.1787 8.67137 73.0285 10.5124 67.7461 10.5124H60.8791H54.012C48.7296 10.5124 43.5794 8.67137 39.6176 5.25224C34.3353 0.649554 27.072 -1.06001 20.337 0.649554L0 5.90976L0.264133 7.22482L20.8653 1.96461Z" transform="translate(136.258 112.277) scale(-1 1) rotate(50.8478)" stroke="#C2FBFF" fill="#C2FBFF"/>
           <path d="M5.05135 23.9669C10.8619 28.5696 19.3137 27.6491 24.0678 21.8629C28.8219 16.0766 27.7655 7.66029 21.9549 2.9261C16.1443 -1.67658 7.69254 -0.756039 2.93843 5.03019C-1.68363 10.9479 -0.759229 19.3642 5.05135 23.9669Z" transform="translate(136.913 152.113)" stroke="#EAFEFF" fill="#EAFEFF"/>
