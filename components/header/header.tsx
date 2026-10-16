@@ -7,6 +7,7 @@ import { headerMenu, linksMenu } from '../../lib/constants';
 import { createLinker } from '../../lib/url-maker';
 import { itemTarget } from '../../lib/menu';
 import { Logo } from '../logo';
+import { NavIcon } from '../icons/nav-icon';
 
 export interface HeaderProps {
   headerBgActive?: boolean;
@@ -58,7 +59,7 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
                   target={itemTarget(item)}
                   rel={item.newTab ? 'noopener noreferrer' : undefined}
                   className={cl({ [style.active]: activeSection === item.name })}
-                > {item.name} </Link>
+                ><NavIcon icon={item.icon} className={style.icon} />{item.name}</Link>
               </div>
             ))
           }

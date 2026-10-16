@@ -32,9 +32,14 @@
       margin-left: rem(16px);
       a {
         position: relative;
-        display: block;
+        display: inline-flex;
+        align-items: center;
         text-transform: uppercase;
         overflow: hidden;
+        .icon {
+          margin-right: rem(6px);
+          flex-shrink: 0;
+        }
         color: #fff;
         text-decoration: none;
         letter-spacing: 0.04em;

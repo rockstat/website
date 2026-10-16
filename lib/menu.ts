@@ -20,6 +20,8 @@ export interface NavLink {
   newTab?: boolean;
   active?: boolean;
   disabled?: boolean;
+  /** optional icon shown before the label (see components/icons/nav-icon.tsx) */
+  icon?: 'github';
   /** footer: non-clickable group heading */
   event?: boolean;
   children?: NavLink[];

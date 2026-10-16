@@ -16,7 +16,7 @@ export const headerMenu: NavLink[] = [
 ];
 
 export const linksMenu: NavLink[] = [
-  { name: GH_TITLE, path: RST_GH, newTab: true }
+  { name: GH_TITLE, path: RST_GH, newTab: true, icon: 'github' }
 ];
 
 export const footerMenu: NavLink[] = [

@@ -146,7 +146,12 @@
           text-decoration: none;
           position: relative;
           overflow: hidden;
-          display: block;
+          display: inline-flex;
+          align-items: center;
+          .icon {
+            margin-right: rem(7px);
+            flex-shrink: 0;
+          }
 
           &:after {
             content: "";

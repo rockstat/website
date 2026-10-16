@@ -8,6 +8,7 @@ import type { LinkMenuPosition } from "@app/components/wrapper/wrapper";
 
 import { Circletransparent, CircleBlur, CircleGreenIcon, RockFig } from '@app/components/icons/intro';
 import { LogoIcon } from '@app/components/icons';
+import { NavIcon } from '@app/components/icons/nav-icon';
 import { linksMenu } from '@app/lib/constants';
 
 
@@ -64,7 +65,10 @@ export class Everything extends React.PureComponent<EverythingProps> {
               linksMenu.map((item, index) => {
                 return (
                   <div key={index} className={cl(style.item, { [style.lastItem]: index === linksMenu.length - 1 })}>
-                    <a href={item.path} target={'_blank'}> {item.name} </a>
+                    <a href={item.path} target={'_blank'} rel="noopener noreferrer">
+                      <NavIcon icon={item.icon} className={style.icon} />
+                      {item.name}
+                    </a>
                   </div>
                 )
               })
