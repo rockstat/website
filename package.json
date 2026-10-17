@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "start:dev": "pnpm dev",
-    "build:prepare": "rimraf out .next && node ./rockstat build-sitemap",
+    "build:prepare": "rimraf out && node ./rockstat build-sitemap",
     "build": "pnpm build:prepare && next build",
     "build:export": "cross-env EXPORT=1 pnpm build",
     "export": "pnpm build:export",

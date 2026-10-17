@@ -24,8 +24,7 @@ export const footerMenu: NavLink[] = [
     name: 'Документация',
     path: '/docs',
     children: [
-      { name: 'Быстрый старт', path: '/docs/intro/getting-started', active: true },
-      { name: 'Архитектура', path: '/docs/architecture/overview', active: true },
+      { name: 'О платформе', path: '/docs', active: true },
       { name: 'популярные вопросы', path: '#', active: false },
     ]
   },

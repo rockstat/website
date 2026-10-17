@@ -4,15 +4,9 @@
     - name: О платформе
       href: /docs
 
-    - name: Быстрый старт
-      href: /docs/intro/getting-started
-
 
 - name: Архитектура
   items:
-
-    - name: Основные компоненты
-      href: /docs/architecture/overview
 
     - name: Обработка входящих запросов
       items:
