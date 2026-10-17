@@ -5,21 +5,6 @@
       href: /docs
 
 
-- name: Архитектура
-  items:
-
-    - name: Обработка входящих запросов
-      items:
-
-        - name: Жизненный цикл и адресация
-          href: /docs/architecture/request-lifecycle
-
-        - name: Коммуникация сервисов
-          href: /docs/architecture/services-commnication
-
-
-
-
 - name: Руководство пользователя
   items:
 
@@ -102,6 +87,9 @@
 
 - name: Создание сервисов
   items:
+
+    - name: Жизненный цикл и адресация
+      href: /docs/build-service-rockme/request-lifecycle
 
     - name: TypeScript + Rockme Framework
       items:

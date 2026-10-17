@@ -54,7 +54,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/', destination: '/ru/', permanent: false },
-      { source: '/docs/intro/about/', destination: '/docs/', permanent: true }
+      { source: '/docs/intro/about/', destination: '/docs/', permanent: true },
+      { source: '/docs/architecture/request-lifecycle/', destination: '/docs/build-service-rockme/request-lifecycle/', permanent: true }
     ];
   },
   turbopack: {
