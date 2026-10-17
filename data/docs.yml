@@ -82,15 +82,6 @@
     - name: Подключение к VPN
       href: /docs/guides/connect-vpn
 
-    - name: Отладка
-      items: 
-
-        - name: Отладка HTTP запров
-          href: /docs/guides/debug/http-debug-service
-
-    - name: Хитрости конфигурации
-      href: /docs/guides/configuration-tricks
-
 
 
 - name: Справочная информация
