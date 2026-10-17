@@ -26,11 +26,11 @@ import webSdkParams from '../../structs/web-sdk-params.csv';
       rst._host = conf.server; rst._prefix = conf.pathPrefix || '';
       rst._host && rst._jsl(hs+rst._host+rst._prefix+lj); }
   }(window, document, 'script', 'configure', 'https://', '/lib.js');
-
+  // --- configuration ---
   rstat4('configure', {
-    server: 'stat.example.com'
+    server: 'YOUR_SUBDOMAIN.DOMAIN' // <<< replace
   });
-  rstat4('page');
+  rstat4('page'); // <<< remove if needed
 </script>
 ```
 
