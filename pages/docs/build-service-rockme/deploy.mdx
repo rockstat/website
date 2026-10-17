@@ -1,0 +1,150 @@
+---
+title: "Сборка и запуск"
+---
+
+import { Info, Tip, Alert } from '@app/components'
+
+Сервис запускается тремя способами: в dev-режиме с перезапуском по изменению файлов, собранным
+JavaScript из `dist/` и в Docker-контейнере на базовом образе платформы.
+
+## Локальный запуск
+
+Нужен доступ к Redis вашей инсталляции (напрямую или через туннель) и `.env` с его адресом:
+
+```bash
+npm install
+npm run start:dev
+```
+
+`start:dev` запускает `ts-node-dev` с `tsconfig-paths` и `source-map-support`, а вывод прогоняет
+через `pino-pretty`. При изменении файлов в `src/` процесс перезапускается. `LOG_LEVEL=debug`
+включает отладочные записи, в том числе о подписках на каналы:
+
+```
+INFO  RedisClient: Starting redis client. DSN: redis://127.0.0.1:6379/0
+INFO  RPCAdapterRedis: subscribed channel=kafkastream
+INFO  RPCAdapterRedis: subscribed channel=broadcast
+INFO  RPCAgnostic: started
+INFO  AppServer: Setup completed
+```
+
+Сборка и запуск собранного кода:
+
+```bash
+npm run build        # rimraf dist && tsc
+npm run start:prod   # node dist/index с tsconfig-paths и source maps
+```
+
+В `start:prod` переменная `TS_NODE_BASEURL=./dist` переключает алиас `@app/*` на собранные файлы.
+
+## Базовый образ
+
+Все TypeScript-сервисы собираются от образа `rockstat/band-base-ts`. Он строится из репозитория
+rockme-framework: `node:22-alpine` с инструментами для нативных модулей (`python3`, `make`,
+`gcc`), фреймворк собран в `/usr/src/rockme` и опубликован через `npm link`. Благодаря этому
+в Dockerfile сервиса достаточно `npm link @rockstat/rock-me-ts`, и фреймворк берётся из образа,
+а не из реестра.
+
+Теги образа: `ng` — текущая ветка разработки, `latest` — стабильный. Пересобирается он из
+`rockmets` командами `make build` (или `make build_macos_arm64` на Apple Silicon, собирает под
+`linux/amd64`), `make tag-ng`, `make push-ng`; всё вместе — `make all-ng`.
+
+## Dockerfile сервиса
+
+```dockerfile
+ARG BASE_CONTAINER=rockstat/band-base-ts:ng
+FROM $BASE_CONTAINER
+
+LABEL band.service.version="1.0.0"
+LABEL band.service.title="My service"
+LABEL band.service.def_position="3x1"
+
+WORKDIR /app
+
+COPY package.json .
+COPY package-lock.json .
+RUN npm link @rockstat/rock-me-ts
+RUN npm install && npm cache clean --force
+
+COPY . .
+RUN npm run build
+
+ENV REDIS_DSN=redis://redis:6379
+ENV NODE_ENV=production
+
+CMD [ "npm", "run", "start:prod" ]
+```
+
+Порядок слоёв важен: сначала копируются только манифесты и ставятся зависимости, потом исходники.
+Так правка кода не сбрасывает кэш `npm install`. `.dockerignore` должен исключать `node_modules`,
+`dist` и `.env*`.
+
+Метки `band.service.*` читает Панель управления: версия, человекочитаемое имя и позиция карточки
+сервиса на дашборде.
+
+<Alert>
+  Если фреймворк в `package.json` указан как `file:../rockmets`, в образе этого пути нет.
+  kafkastream решает это копированием: `RUN cp -r /usr/src/rockme /app/rockmets` после `npm i`.
+  Проще указать обычную версию пакета и полагаться на `npm link` из базового образа.
+</Alert>
+
+## Публикация образа
+
+В каждом сервисе одинаковый `makefile`:
+
+```makefile
+build:
+	docker build -t my-service .
+
+build_amd64:
+	docker buildx build --platform linux/amd64 -t my-service .
+
+tag-ng:
+	docker tag my-service rockstat/my-service:ng
+
+push-ng:
+	docker push rockstat/my-service:ng
+
+all-ng: build_amd64 tag-ng push-ng
+
+push-dev:
+	docker tag my-service rockstat/my-service:dev
+	docker push rockstat/my-service:dev
+```
+
+Рабочий цикл: `make all-ng` собирает образ под `linux/amd64` и публикует его с тегом `ng`,
+`make push-dev` выкладывает тестовую сборку под тегом `dev`, не трогая `ng`.
+
+## Версии
+
+Версия хранится в трёх местах: `package.json`, метка `band.service.version` в `Dockerfile`
+и `.bumpversion.cfg`. Поднимает все три сразу `bumpversion`:
+
+```bash
+make bump-patch   # 1.0.0 -> 1.0.1
+make bump-minor   # 1.0.1 -> 1.1.0
+```
+
+Конфигурация подхватывает версию автоматически через `<%= pkg.version %>`, поэтому её видно
+в логах и статусе сервиса.
+
+## Переменные окружения контейнера
+
+| Переменная | Обязательна | Значение |
+|---|---|---|
+| `REDIS_DSN` | да | `redis://redis:6379` внутри сети платформы |
+| `NODE_ENV` | да | `production` |
+| `LOG_LEVEL` | нет | `info` по умолчанию, `warn` для тихих сервисов |
+| `STATSD_HOST` | нет | хост Telegraf/StatsD, без него метрики не отправляются |
+| `TZ` | нет | `UTC`, уже задан в базовом образе |
+| `SERVICE_GROUP`, `WORKER_ID` | для обогатителей | группа и номер воркера |
+| свои | по необходимости | `KAFKA_BROKERS`, `CH_DSN` и другие, которые читает конфигурация |
+
+## Чеклист перед первым запуском
+
+- `rpc.name` уникален в инсталляции, а для нескольких экземпляров включает `WORKER_ID`.
+- Все внешние подключения выполняются в `setup()` до регистрации методов шины.
+- Обработчик `broadcast` или `enrich` не ждёт сеть и возвращает управление сразу.
+- Секреты приходят из окружения, в YAML — только `<%= env.NAME %>`.
+- `Dockerfile` наследует `rockstat/band-base-ts:ng`, метки `band.service.*` заполнены.
+- `make all-ng` проходит на чистой машине, образ стартует с одним `REDIS_DSN`.

@@ -1,0 +1,95 @@
+---
+title: "Создание сервисов на TypeScript"
+---
+
+import { Info, Tip } from '@app/components'
+
+Сервисы Rockstat — независимые процессы на Node.js, которые общаются между собой через Redis Pub/Sub
+сообщениями в формате JSON-RPC 2.0. Всё общее — конфигурация, логирование, метрики, клиент Redis,
+RPC — вынесено в библиотеку `@rockstat/rock-me-ts`
+(репозиторий [rockme-framework](https://github.com/rockstat/rockme-framework)).
+
+Это руководство написано по трём рабочим сервисам платформы, на них же построены примеры:
+
+- [chwriter](https://github.com/rockstat/chwriter) — пишет все события в ClickHouse.
+- [kafkastream](https://github.com/rockstat/kafkastream) — отправляет события в топики Kafka.
+- [mmgeo](https://github.com/rockstat/mmgeo-typescript) — определяет регион по IP и разбирает User-Agent.
+
+## Роли сервисов
+
+Входящие запросы принимает сервис **Front**. Он превращает запрос в событие с ключом маршрутизации
+вида `in.gen.<service>.<name>` и проводит его через три фазы
+(подробнее — [Жизненный цикл и адресация](/docs/architecture/request-lifecycle)):
+
+1. **Обогащение (enricher).** Front отправляет выбранные поля события в канал `enrich` и ждёт ответы
+   от зарегистрированных обогатителей. Результаты дописываются в `data` события. Так работает mmgeo.
+2. **Обработка (handler).** Если на ключ события зарегистрирован удалённый обработчик, Front вызывает
+   его и из ответа формирует HTTP-ответ клиенту.
+3. **Рассылка слушателям (listener).** Готовое событие уходит уведомлением в канал `broadcast`.
+   Ответа Front не ждёт. Так работают chwriter и kafkastream.
+
+| Роль | Канал | Вызов | Как Front узнаёт о сервисе |
+|---|---|---|---|
+| listener | `broadcast` | уведомление, без ответа | никак, достаточно подписки на канал |
+| enricher | `enrich` | запрос, ответ за 200 мс | регистрация через `__iamalive` и `__status` |
+| handler | имя сервиса | запрос, ответ за 200 мс | регистрация через `__iamalive` и `__status` |
+
+Слушатель — самая простая роль: подписался на `broadcast` и обрабатывай поток. С него и стоит
+начинать новый сервис.
+
+## Что даёт rock-me-ts
+
+- `AppConfig` — конфигурация из `config/*.yml` с EJS-шаблонами и переменными окружения.
+- `Logger` — pino с дочерними логгерами на каждый класс (`log.for(this)`).
+- `Meter` — метрики в StatsD: `tick`, `incr`, `gauge`, `time`, `timenote`.
+- `RedisFactory` и `RedisClient` — клиент Redis на `redis-fast-driver` для Pub/Sub и команд.
+- `RPCAdapterRedis` и `RPCAgnostic` — транспорт и JSON-RPC: `register`, `notify`, `request`.
+- `TheIds` — идентификаторы: snowflake для событий, короткий счётчик для RPC, `xxhash`.
+- `response` — конструкторы ответов для Front: `data`, `redirect`, `pixel`, `error`, `statical`.
+- Константы шины: `BROADCAST`, `SERVICE_DIRECTOR`, `METHOD_IAMALIVE`, `METHOD_STATUS`.
+
+## Как устроен сервис
+
+Во всех трёх сервисах один и тот же каркас. Точка входа `src/index.ts` импортирует `AppServer`,
+который при создании поднимает зависимости и подписывается на шину:
+
+```typescript
+import 'reflect-metadata';
+import {
+  AppConfig, Logger, Meter, RedisFactory,
+  RPCAdapterRedis, RPCAgnostic, AgnosticRPCOptions, BROADCAST
+} from '@rockstat/rock-me-ts';
+
+export class AppServer {
+  constructor() {
+    const config = new AppConfig<ModuleConfig>();   // config/*.yml + .env
+    const log = new Logger(config.log);
+    const meter = new Meter(config.meter);
+    this.log = log.for(this);
+
+    const redisFactory = new RedisFactory({ log, meter, ...config.redis });
+    const channels = [config.rpc.name, BROADCAST];  // что слушаем
+    const rpcOptions: AgnosticRPCOptions = { channels, redisFactory, log, meter, ...config.rpc };
+
+    this.rpc = new RPCAgnostic(rpcOptions);
+    this.rpc.setup(new RPCAdapterRedis(rpcOptions));
+
+    this.setup().catch(exc => { this.log.error(exc); process.exit(1); });
+  }
+
+  async setup() {
+    this.rpc.register(BROADCAST, async (msg) => { /* событие */ return {}; });
+  }
+}
+
+export const appServer = new AppServer();
+```
+
+Дальше по разделу:
+
+- [Организация сервиса](/docs/build-service-rockme/structure) — файлы, `package.json`, `tsconfig`.
+- [Конфигурация](/docs/build-service-rockme/configuration) — YAML, шаблоны, переменные окружения.
+- [Шина сообщений и RPC](/docs/build-service-rockme/rpc) — каналы, формат сообщений, регистрация.
+- [Слушатель событий](/docs/build-service-rockme/listener) — chwriter и kafkastream.
+- [Обогатитель событий](/docs/build-service-rockme/enricher) — mmgeo.
+- [Сборка и запуск](/docs/build-service-rockme/deploy) — dev-режим, Docker, публикация образа.

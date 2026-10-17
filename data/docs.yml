@@ -106,6 +106,34 @@
 
 
 
+- name: Создание сервисов
+  items:
+
+    - name: TypeScript + Rockme Framework
+      items:
+
+        - name: Обзор
+          href: /docs/build-service-rockme/overview
+
+        - name: Организация сервиса
+          href: /docs/build-service-rockme/structure
+
+        - name: Конфигурация
+          href: /docs/build-service-rockme/configuration
+
+        - name: Шина сообщений и RPC
+          href: /docs/build-service-rockme/rpc
+
+        - name: Слушатель событий
+          href: /docs/build-service-rockme/listener
+
+        - name: Обогатитель событий
+          href: /docs/build-service-rockme/enricher
+
+        - name: Сборка и запуск
+          href: /docs/build-service-rockme/deploy
+
+
 - name: Туториалы
   items:
 

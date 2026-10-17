@@ -1,0 +1,237 @@
+---
+title: "Организация сервиса"
+---
+
+import { Info, Tip } from '@app/components'
+
+Проще всего начать новый сервис копией [kafkastream](https://github.com/rockstat/kafkastream):
+в нём минимум кода и нет ничего, кроме каркаса и одного модуля. Ниже — что в этом каркасе и зачем.
+
+## Файлы
+
+```
+my-service/
+├── config/
+│   └── 02_config.yml      # конфигурация, все *.yml в папке читаются рекурсивно
+├── src/
+│   ├── index.ts           # точка входа: импортирует и экспортирует appServer
+│   ├── AppServer.ts       # сборка зависимостей, подписка на шину, setup()
+│   ├── constants.ts       # имена каналов и методов
+│   ├── types.ts           # ModuleConfig — типы своих секций конфигурации
+│   └── kafka/             # модуль с логикой сервиса
+├── @types/                # декларации для пакетов без типов (можно пустую папку с .keep)
+├── .env                   # переменные окружения для локального запуска
+├── .env.local             # локальные переопределения, не коммитятся
+├── Dockerfile
+├── makefile               # сборка и публикация образа
+├── package.json
+└── tsconfig.json
+```
+
+## package.json
+
+Из зависимостей обязательны сам фреймворк, `reflect-metadata` (импортируется первым в `AppServer.ts`)
+и `source-map-support` для читаемых стеков в production:
+
+```json
+{
+  "name": "@rockstat/my-service",
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "LOG_LEVEL=debug ts-node-dev -r 'tsconfig-paths/register' -r 'source-map-support/register' ./src/index.ts | pino-pretty -L debug",
+    "start:prod": "TS_NODE_BASEURL=./dist node -r 'tsconfig-paths/register' -r 'source-map-support/register' dist/index",
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "clean": "rimraf dist",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@rockstat/rock-me-ts": "file:../rockmets",
+    "js-yaml": "^4.1.0",
+    "reflect-metadata": "^0.2.1",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.26",
+    "pino-pretty": "^11.0.0",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.2"
+  }
+}
+```
+
+Фреймворк подключается одним из двух способов:
+
+- **Локально** — `"@rockstat/rock-me-ts": "file:../rockmets"`, если репозиторий
+  rockme-framework склонирован рядом (так сделано в kafkastream).
+- **В Docker** — `npm link @rockstat/rock-me-ts`. Базовый образ `rockstat/band-base-ts` уже содержит
+  собранный и слинкованный фреймворк, см. [Сборка и запуск](/docs/build-service-rockme/deploy).
+
+<Info>
+  `pino-pretty` нужен только в dev-режиме. В production логи пишутся в stdout как JSON,
+  по строке на запись, и их разбирает система сбора логов.
+</Info>
+
+## tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@rockstat/rock-me-ts/@types",
+      "@types"
+    ],
+    "baseUrl": "./src/",
+    "paths": {
+      "@app/*": ["*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+```
+
+Что здесь важно:
+
+- `baseUrl` и `paths` задают алиас `@app/*` на `src/*`. Во время разработки его разрешает
+  `tsconfig-paths/register`, в production — он же с `TS_NODE_BASEURL=./dist`.
+- `typeRoots` включает `@types` фреймворка: там лежат декларации для `redis-fast-driver`,
+  `flake-idgen`, `xxhash` и `merge-options`, у которых нет собственных типов.
+- `emitDecoratorMetadata` и `experimentalDecorators` нужны `reflect-metadata`.
+
+## Точка входа
+
+`src/index.ts` ничего не делает сам — экземпляр сервера создаётся при импорте модуля `AppServer`:
+
+```typescript
+import { appServer } from '@app/AppServer';
+export default appServer;
+```
+
+Если в `package.json` нет `module-alias`, строка `import 'module-alias/register'` не нужна:
+алиасы разрешает `tsconfig-paths`.
+
+## AppServer
+
+Каркас одинаков во всех сервисах. Контейнер `Deps` передаётся в модули, чтобы те брали из него
+логгер, метрики, конфигурацию и RPC, не зная ничего о порядке их создания:
+
+```typescript
+import 'reflect-metadata';
+import {
+  RPCAdapterRedis, RPCAgnostic, AgnosticRPCOptions, Meter, RedisFactory,
+  TheIds, Logger, AppConfig, RPCAdapter, BROADCAST
+} from '@rockstat/rock-me-ts';
+import { ModuleConfig } from '@app/types';
+import { KafkaManager } from '@app/kafka';
+
+export class Deps {
+  log: Logger;
+  id: TheIds;
+  config: AppConfig<ModuleConfig>;
+  meter: Meter;
+  rpc: RPCAgnostic;
+  rpcAdaptor: RPCAdapter;
+  redisFactory: RedisFactory;
+  constructor(obj: { [k: string]: any } = {}) {
+    Object.assign(this, obj);
+  }
+}
+
+export class AppServer {
+  log: Logger;
+  deps: Deps;
+  name: string;
+  rpc: RPCAgnostic;
+  kafkamanager: KafkaManager;
+
+  constructor() {
+    const config = new AppConfig<ModuleConfig>();
+    const log = new Logger(config.log);
+    const meter = new Meter(config.meter);
+    this.name = config.rpc.name;
+    this.deps = new Deps({ id: new TheIds(), log, config, meter });
+    this.log = log.for(this);
+    this.log.info('Starting service');
+    try {
+      const redisFactory = this.deps.redisFactory = new RedisFactory({ log, meter, ...config.redis });
+      const channels = [config.rpc.name, BROADCAST];
+      const rpcOptions: AgnosticRPCOptions = { channels, redisFactory, log, meter, ...config.rpc };
+      this.deps.rpcAdaptor = new RPCAdapterRedis(rpcOptions);
+      this.rpc = this.deps.rpc = new RPCAgnostic(rpcOptions);
+      this.rpc.setup(this.deps.rpcAdaptor);
+      this.kafkamanager = new KafkaManager(this.deps);
+    } catch (exc) {
+      this.log.error(exc);
+      this.stop();
+    }
+    this.setup()
+      .then(() => this.log.info('Setup completed'))
+      .catch(exc => { this.log.error(exc); this.stop(); });
+  }
+
+  /** Подключения к внешним системам и регистрация методов шины */
+  async setup() {
+    await this.kafkamanager.init();
+    this.rpc.register(BROADCAST, this.kafkamanager.write);
+  }
+
+  private stop() {
+    this.log.info('Stopping...');
+    process.exit(0);
+  }
+}
+
+export const appServer = new AppServer();
+```
+
+Порядок в конструкторе важен: сначала конфигурация, потом логгер и метрики (им нужна конфигурация),
+потом Redis и RPC. Всё асинхронное — подключение к Kafka или ClickHouse, проверка схемы — живёт
+в `setup()`, а регистрация методов шины идёт после того, как сервис готов принимать данные.
+
+## Модуль с логикой
+
+Логику сервиса держите в отдельном классе, который получает `Deps` в конструкторе и берёт
+из него нужное. Так модуль можно тестировать, подменив зависимости:
+
+```typescript
+import { Deps } from '@app/AppServer';
+import { Logger, Meter } from '@rockstat/rock-me-ts';
+import { KafkaConfig } from '@app/types';
+
+export class KafkaManager {
+  log: Logger;
+  meter: Meter;
+  options: KafkaConfig;
+
+  constructor(deps: Deps) {
+    const { log, meter, config } = deps;
+    this.log = log.for(this);
+    this.meter = meter;
+    this.options = config.get('kafkastream');
+  }
+
+  async init() { /* подключение */ }
+
+  write = async (msg: { [k: string]: any }) => { /* обработка события */ return {}; }
+}
+```
+
+<Tip>
+  Методы, которые регистрируются в шине (`write`), объявляйте стрелочными свойствами класса:
+  RPC вызывает их без привязки `this`.
+</Tip>

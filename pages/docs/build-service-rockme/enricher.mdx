@@ -1,0 +1,173 @@
+---
+title: "Обогатитель событий"
+---
+
+import { Info, Tip, Alert } from '@app/components'
+
+Обогатитель получает от Front несколько полей события, вычисляет по ним дополнительные данные и
+возвращает их. Front дописывает результат в `data` события до того, как оно попадёт обработчику
+и слушателям. Пример — mmgeo: по IP определяет страну, регион и город, по User-Agent — браузер,
+ОС и устройство.
+
+В отличие от слушателя, обогатитель стоит на критическом пути запроса: Front ждёт его ответ,
+по умолчанию не дольше 200 мс. Поэтому базы загружаются при старте, а результаты кэшируются.
+
+## Подписка и имя
+
+Обогатитель слушает общий канал `enrich` и свой прямой канал. Поскольку обогатителей одного типа
+обычно несколько, имя собирается из группы и номера воркера, а группа отдельно указывается
+в `rpc.service_group`:
+
+```yaml
+rpc:
+  service_group: <%= env.SERVICE_GROUP || 'unknown_enrich' %>
+  name: <%= env.SERVICE_GROUP || 'unknown_enrich' %>_<%= env.WORKER_ID || '1' %>
+  channels:
+    - enrich
+    - <%= env.SERVICE_GROUP || 'unknown_enrich' %>_<%= env.WORKER_ID || '1' %>
+```
+
+`service_group` — это и ключ, под которым результат ляжет в `data` события: обогатитель группы
+`mmgeo` даёт `data.mmgeo`, группы `rst` — `data.rst`. chwriter затем разворачивает вложенный
+объект в колонки с префиксом: `mmgeo_country_iso`, `rst_asn_org`.
+
+<Info>
+  mmgeo — один код для нескольких групп. По значению `SERVICE_GROUP` он решает, какую базу загрузить:
+  `mmgeo` — GeoLite2 City, `ip2lgeo` — IP2Location, `rst` — файл с репутацией IP,
+  `uap` и `uapc` — разбор User-Agent двумя разными парсерами. Одна и та же сборка запускается
+  несколько раз с разными переменными окружения.
+</Info>
+
+## Регистрация
+
+Front узнаёт об обогатителе через heartbeat и `__status`
+(см. [Шина сообщений и RPC](/docs/build-service-rockme/rpc#регистрация-в-front)).
+В ответе на `__status` обогатитель перечисляет, какие события ему интересны и какие поля прислать:
+
+```typescript
+async setup() {
+  this.rpc.register(ENRICH, this.handle.bind(this));
+  this.registerEnricher(ENRICH, ['in.gen.track'], { ip: 'td.ip', ua: 'td.ua' });
+  this.rpc.register(METHOD_STATUS, () => this.status());
+
+  const aliver = () => {
+    this.meter.tick(`band.${this.name}.alive`);
+    this.rpc.notify(SERVICE_DIRECTOR, METHOD_IAMALIVE, { name: this.name });
+  };
+  setTimeout(aliver, 500);
+  setInterval(aliver, 9 * 1000);
+}
+```
+
+```typescript
+async status(): Promise<RPCAppStatus> {
+  return {
+    name: this.name,
+    app_state: 'running',
+    app_started: Number(this.appStarted),
+    app_uptime: Date.now() - Number(this.appStarted),
+    register: this.enrichers.map(e => ({
+      method: e.method,
+      role: 'enricher',
+      options: { keys: e.keys, props: e.props }
+    }))
+  };
+}
+```
+
+- `keys` — префиксы ключей маршрутизации. `in.gen.track` покрывает все события Web-SDK:
+  `in.gen.track.page`, `in.gen.track.activity` и остальные.
+- `props` — что прислать. Ключ — имя параметра, значение — путь в событии через точку.
+  Front соберёт из события `{ ip: msg.td.ip, ua: msg.td.ua }` и отправит только это.
+
+## Обработка запроса
+
+Front вызывает метод `enrich` групповым запросом сразу всем зарегистрированным на ключ
+обогатителям. Метод получает ровно те поля, что были запрошены в `props`, и возвращает плоский
+объект с результатом или `{}`, если сказать нечего:
+
+```typescript
+async handle({ ip, ua }: { ip: string, ua: string }) {
+  if (this.service_group === 'mmgeo') {
+    if (!ip.includes(':')) {               // база только для IPv4
+      try {
+        return handleCity(this.mmReader.city(ip));
+      } catch (e) {
+        this.log.error(e, 'mmgeo ex');
+      }
+    }
+  }
+  if (this.service_group === 'uap') {
+    const cached = uapCache.get(ua);
+    if (cached) return cached;
+    const parsed = UAParser(ua);
+    const result = {
+      browser_name: parsed.browser.name,
+      browser_version: parsed.browser.version,
+      os_name: parsed.os.name,
+      os_version: parsed.os.version,
+      device_type: parsed.device.type,
+      device_vendor: parsed.device.vendor,
+      device_model: parsed.device.model
+    };
+    uapCache.set(ua, result);
+    return result;
+  }
+  return {};
+}
+```
+
+Что важно для производительности:
+
+- **Данные в памяти.** Базу GeoLite2 mmgeo читает в буфер один раз при старте, файл репутации
+  IP разбирает в `Map`. Никаких обращений к диску или сети в `handle`.
+- **Кэш результатов.** Разбор User-Agent дорогой, а одинаковых строк много. mmgeo кэширует
+  результаты в TTL-кэше на 10 000 записей и 30 минут.
+- **Молчать лучше, чем ошибаться.** На исключение отвечайте `{}` и пишите в лог. Ошибка в ответе
+  Front только залогирует, а значение для группы останется пустым.
+
+<Alert>
+  Все воркеры одной группы получают каждый запрос из канала `enrich` и все отвечают. Front
+  складывает ответы по `service_group`, так что дублирование безвредно, но нагрузку оно не делит.
+  Горизонтальное масштабирование обогатителя — это разные группы с разными `keys`, а не копии
+  одной группы.
+</Alert>
+
+## Результат в событии
+
+После обогащения событие `in.gen.track.page` придёт слушателям с добавленными блоками:
+
+```json
+{
+  "key": "in.gen.track.page",
+  "td": { "ip": "93.184.216.34", "ua": "Mozilla/5.0 ..." },
+  "data": {
+    "page": { "url": "https://example.com/" },
+    "mmgeo": { "country_en": "Russia", "country_iso": "RU", "region_en": "Moscow", "region_iso": "MOW", "city_en": "Moscow" },
+    "uapc": { "browser_family": "Chrome", "browser_version": "124.0.0", "os_family": "Android", "os_version": "14", "device_family": "K", "is_bot": false }
+  }
+}
+```
+
+Чтобы колонки появились в ClickHouse, добавьте их в конфигурацию chwriter — файл в `config/custom/`
+с полями таблицы `events` под префиксом группы:
+
+```yaml
+clickhouse:
+  tables:
+    events:
+      mmgeo_country_en: String
+      mmgeo_country_iso: String
+      mmgeo_region_en: String
+      mmgeo_city_en: String
+```
+
+## Новый обогатитель за пять шагов
+
+1. Скопируйте mmgeo, оставьте в `AppServer` одну ветку `service_group` и свою логику в `handle`.
+2. В `config/02_config.yml` задайте `rpc.service_group`, `rpc.name` и `rpc.channels`
+   через `SERVICE_GROUP` и `WORKER_ID`.
+3. В `setup()` зарегистрируйте `enrich`, `__status` с нужными `keys` и `props` и запустите heartbeat.
+4. Загрузите справочники в конструкторе, добавьте кэш на горячие значения.
+5. Запустите с `SERVICE_GROUP=mygroup` и проверьте, что в событиях у слушателей появился блок
+   `data.mygroup`. Затем опишите его колонки в chwriter.

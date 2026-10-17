@@ -1,0 +1,163 @@
+---
+title: "Конфигурация сервиса"
+---
+
+import { Info, Tip, Alert } from '@app/components'
+
+Конфигурация сервиса — это YAML-файлы в папке `config/`. Их читает класс `AppConfig` из rock-me-ts:
+собирает все файлы, прогоняет через шаблонизатор EJS, склеивает документы и отдаёт сервису
+один объект с типизированным доступом к секциям.
+
+## Как загружается
+
+1. `dotenv` читает `.env`, затем `.env.local` (значения из него перекрывают `.env`). Оба файла
+   нужны только для локального запуска, в Docker переменные задаются окружением контейнера.
+2. По маске `config/**/*.yml` собираются все файлы, включая вложенные папки вроде `config/custom/`.
+   Порядок не сортируется, поэтому файлы принято нумеровать: `02_config.yml`, `11_clickhouse_struct.yml`,
+   `custom/14_rst.yml`.
+3. Содержимое всех файлов склеивается в один текст и рендерится EJS. В шаблонах доступны:
+   `env` (переменные окружения), `pkg` (содержимое `package.json`), `envName` (`dev`, `stage`
+   или `production`) и `consts`.
+4. Результат читается как многодокументный YAML и глубоко сливается слева направо: что встретилось
+   позже, перекрывает более раннее. Массивы заменяются целиком.
+5. Из итогового объекта вынимаются секции `dev` и `prod`, и поверх общей части накладывается одна
+   из них в зависимости от `NODE_ENV` (`production` или `prod` — секция `prod`, иначе `dev`).
+
+Так в chwriter базовая схема таблиц лежит в `config/11_clickhouse_struct.yml`, а дополнительные
+колонки под конкретную инсталляцию — в `config/custom/*.yml`, которые просто добавляют ключи
+в ту же секцию `clickhouse.tables`.
+
+## Стандартные секции
+
+Их ждёт фреймворк, они есть в каждом сервисе:
+
+```yaml
+---
+title: Rockstat kafka streamer
+version: "<%= pkg.version %>"
+
+rpc:
+  name: kafkastream          # имя сервиса = имя прямого канала в Redis
+  listen_all: true
+  listen_direct: true
+
+log:
+  use: pino
+  pino:
+    safe: true
+    level: <%= env.LOG_LEVEL || 'info' %>
+    prettyPrint: false
+
+redis:
+  dsn: <%= env.REDIS_DSN %>
+
+metrics:
+  statsd:
+    host: <%= env.STATSD_HOST || '127.0.0.1' %>
+    port: 8125
+    debug: false
+    prefix: krn
+```
+
+| Секция | Доступ в коде | Назначение |
+|---|---|---|
+| `rpc` | `config.rpc` | `name` — имя сервиса; `service_group` — группа для обогатителей; `channels` — список каналов; `listen_all`, `listen_direct` — флаги для `AppRunner` |
+| `log` | `config.log` | настройки pino: `level`, `name`, `safe` |
+| `redis` | `config.redis` | `dsn` вида `redis://host:6379/0` |
+| `metrics` | `config.meter` | `statsd` — хост, порт, префикс метрик; без секции метрики просто не отправляются |
+
+<Alert>
+  Поле `rpc.channels` из конфигурации имеет приоритет над списком каналов, собранным в коде:
+  в `AppServer` опции RPC формируются как `{ channels, ...config.rpc }`, и значение из YAML
+  перекрывает `channels`. Так mmgeo задаёт каналы прямо в конфигурации.
+</Alert>
+
+## Своя секция
+
+Настройки сервиса кладите в отдельную секцию с его именем и опишите её тип в `src/types.ts`.
+`AppConfig` параметризуется этим типом, и `config.get('kafkastream')` возвращает типизированный объект:
+
+```yaml
+kafkastream:
+  clientId: "rst-kafkastream"
+  brokers: [<%= env.KAFKA_BROKERS || '' %>]
+  ssl: false
+  mappings:
+    - ['in.gen.track.ping', null]
+    - ['in.gen.track.', [rstat.web, uid]]
+```
+
+```typescript
+// src/types.ts
+export type KafkaConfig = {
+  clientId: string;
+  brokers: Array<string>;
+  ssl?: boolean;
+  mappings: Array<[string, [string, string] | null]>;
+};
+
+export type ModuleConfig = {
+  name: string;
+  kafkastream: KafkaConfig;
+};
+```
+
+```typescript
+const config = new AppConfig<ModuleConfig>();
+const options = config.get('kafkastream');   // KafkaConfig
+```
+
+Секции `dev:` и `prod:` позволяют держать разные значения для окружений в одном файле:
+
+```yaml
+clickhouse:
+  uploadInterval: 2
+
+dev:
+  clickhouse:
+    uploadInterval: 1
+```
+
+## Переменные окружения
+
+Фреймворк и сервисы читают переменные напрямую или через шаблоны конфигурации:
+
+| Переменная | Кто читает | Значение |
+|---|---|---|
+| `NODE_ENV` | `AppConfig` | `production` включает секцию `prod`, всё остальное — `dev` |
+| `REDIS_DSN` | конфигурация | адрес Redis, в Docker по умолчанию `redis://redis:6379` |
+| `LOG_LEVEL` | конфигурация | уровень pino: `debug`, `info`, `warn` |
+| `STATSD_HOST` | конфигурация | хост StatsD, по умолчанию `127.0.0.1` |
+| `TZ` | Node.js | всегда `UTC`: даты событий считаются в UTC |
+| `DATACENTER_ID`, `WORKER_ID` | `TheIds` | части snowflake-идентификатора, по умолчанию `1` и `1` |
+| `SERVICE_GROUP` | mmgeo | группа обогатителя, ключ его результата в событии |
+
+Локальный `.env` обычно выглядит так:
+
+```bash
+TZ=UTC
+LOG_LEVEL=debug
+REDIS_DSN=redis://127.0.0.1:6379/0
+STATSD_HOST=127.0.0.1
+```
+
+<Tip>
+  Секреты (DSN с паролем, SASL для Kafka) не пишите в YAML. Подставляйте их из окружения через
+  `<%= env.NAME %>`, а в репозитории держите только `.env` с локальными значениями без паролей.
+</Tip>
+
+## Несколько экземпляров одного сервиса
+
+Если сервис запускается в нескольких копиях, каждой нужно своё имя, иначе они будут отвечать
+на одни и те же прямые запросы. mmgeo собирает имя из группы и номера воркера:
+
+```yaml
+rpc:
+  service_group: <%= env.SERVICE_GROUP || 'unknown_enrich' %>
+  name: <%= env.SERVICE_GROUP || 'unknown_enrich' %>_<%= env.WORKER_ID || '1' %>
+  channels:
+    - enrich
+    - <%= env.SERVICE_GROUP || 'unknown_enrich' %>_<%= env.WORKER_ID || '1' %>
+```
+
+Так же устроен Front: его экземпляры называются `front_1`, `front_2` и так далее.

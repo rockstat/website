@@ -1,0 +1,201 @@
+---
+title: "Слушатель событий"
+---
+
+import { Info, Tip, Alert } from '@app/components'
+
+Слушатель получает каждое событие платформы после обогащения и обработки и делает с ним что-то
+своё: пишет в базу, отправляет во внешнюю систему, считает статистику. Front ничего от него не ждёт,
+поэтому слушатель не влияет на время ответа клиенту. Так устроены chwriter (ClickHouse) и
+kafkastream (Kafka).
+
+## Подписка
+
+Слушатель подписывается на канал `broadcast` и регистрирует метод с тем же именем — именно
+его вызывает Front уведомлением `notify('broadcast', 'broadcast', msg)`:
+
+```typescript
+const channels = [config.rpc.name, BROADCAST];
+// ...
+async setup() {
+  await this.writer.init();                     // сначала подключиться к приёмнику
+  this.rpc.register(BROADCAST, this.writer.write);  // потом принимать события
+}
+```
+
+Других действий не нужно: регистрироваться в Front слушателю не требуется.
+
+## Что приходит
+
+В `params` приходит событие целиком. Его поля:
+
+```json
+{
+  "id": "6410748886712844288",
+  "time": 1718000000123,
+  "key": "in.gen.track.page",
+  "service": "track",
+  "name": "page",
+  "channel": "track",
+  "projectId": 1617632140,
+  "uid": "6410748886712844300",
+  "td": {
+    "ip": "93.184.216.34",
+    "ua": "Mozilla/5.0 ...",
+    "fpid": "1234567890",
+    "host": "example.com",
+    "ref": "https://google.com/"
+  },
+  "data": {
+    "page": { "url": "https://example.com/", "title": "Example" },
+    "sess": { "type": "organic", "num": 3 },
+    "mmgeo": { "country_iso": "RU", "city_en": "Moscow" }
+  }
+}
+```
+
+| Поле | Описание |
+|---|---|
+| `id` | snowflake-идентификатор события, присваивает Front |
+| `time` | время приёма, unix-миллисекунды UTC |
+| `key` | ключ маршрутизации `in.gen.<service>.<name>` |
+| `service`, `name` | источник и имя события, из них собран ключ |
+| `channel` | через какой канал пришли данные |
+| `projectId` | идентификатор проекта |
+| `uid`, `uid_param` | идентификатор посетителя и его исходное значение |
+| `td` | транспортные данные: IP, User-Agent, отпечаток, хост, referer |
+| `data` | полезная нагрузка события; сюда же дописаны результаты обогатителей, каждый под своей `service_group` |
+| `pancake` | дополнительные данные от Front |
+
+Обработчик возвращает `{}`: ответ на уведомление никуда не уходит.
+
+## Маршрутизация внутри слушателя
+
+Решение, что делать с событием, принимается по `key` или по паре `service`/`name`.
+Оба подхода из рабочих сервисов:
+
+**chwriter** выбирает таблицу по карте `destinations` из конфигурации, с запасными вариантами
+`<service>/default` и `other`:
+
+```yaml
+clickhouse:
+  destinations:
+    track/default: events
+    track/activity: activity
+    track/scroll: activity
+    pixel/default: pixels
+    other: webhooks
+```
+
+```typescript
+const nameKey = msg.name.toLowerCase().replace(/\s/g, '_');
+const table = this.dest[`${msg.service}/${nameKey}`]
+  || this.dest[`${msg.service}/default`]
+  || this.dest['other'];
+if (!table) return {};
+```
+
+**kafkastream** идёт по списку префиксов ключа. Первое совпадение определяет топик и путь до поля,
+которое станет ключом сообщения Kafka; `null` означает «пропустить»:
+
+```yaml
+kafkastream:
+  mappings:
+    - ['in.gen.track.ping', null]
+    - ['in.gen.track.', [rstat.web, uid]]
+    - ['in.gen.events_mp_ios.', [rstat.mobile, data.properties_s_device_id]]
+```
+
+```typescript
+for (const [prefix, target] of this.map) {
+  if (target && key.startsWith(prefix)) {
+    [topic, keyPath] = target;
+    break;
+  }
+}
+```
+
+## Буферизация
+
+Событий много, а обработчик должен вернуть управление сразу. Оба сервиса не пишут в приёмник
+на каждое событие, а складывают его в буфер и сбрасывают по таймеру:
+
+- chwriter держит по буферу на таблицу и отправляет их в ClickHouse раз в `uploadInterval`
+  секунд. Неудавшиеся пачки сохраняются в `emergency_dir` как JSON, чтобы данные не пропали.
+- kafkastream держит по массиву сообщений на топик и раз в 500 мс отправляет всё одним
+  `producer.sendBatch`.
+
+Схема одинаковая:
+
+```typescript
+writers: { [topic: string]: Message[] } = {};
+
+async init() {
+  await this.producer.connect();
+  setInterval(() => this.flush(), 500);
+}
+
+write = async (msg: HandyRecord) => {
+  this.meter.tick('kafka.write.called');
+  // ... выбор топика
+  (this.writers[topic] ||= []).push({ key: kafkaKey, value: JSON.stringify(rest) });
+  return {};
+}
+
+flush() {
+  const topicMessages = Object.entries(this.writers)
+    .filter(([, items]) => items.length > 0)
+    .map(([topic, messages]) => { this.writers[topic] = []; return { topic, messages }; });
+  if (topicMessages.length) {
+    this.producer.sendBatch({ topicMessages }).catch(e => this.log.error(e));
+  }
+}
+```
+
+<Tip>
+  Даты для хранилища считайте из `time`, а не из текущего момента: событие могло задержаться в пути.
+  chwriter и kafkastream пишут в `data` три поля: `date` (`YYYY-MM-DD`), `dateTime`
+  (`YYYY-MM-DD HH:MM:SS`) и `timestamp` (исходные миллисекунды), все в UTC.
+</Tip>
+
+## Новый слушатель за пять шагов
+
+1. Скопируйте kafkastream, замените имя в `package.json`, `config/02_config.yml` (`rpc.name`)
+   и в `Dockerfile` (`LABEL band.service.title`).
+2. Опишите свою секцию конфигурации и её тип в `src/types.ts`.
+3. Напишите класс-приёмник с методами `init()` и `write` и буфером с таймером.
+4. В `AppServer.setup()` дождитесь `init()` и зарегистрируйте `write` на `BROADCAST`.
+5. Запустите локально с `REDIS_DSN` вашей инсталляции (`npm run start:dev`) и убедитесь в логах,
+   что подписка на `broadcast` состоялась и события приходят. Дальше — [сборка образа](/docs/build-service-rockme/deploy).
+
+Минимальный приёмник, который просто печатает ключи событий:
+
+```typescript
+import { Deps } from '@app/AppServer';
+import { Logger, Meter } from '@rockstat/rock-me-ts';
+
+export class Printer {
+  log: Logger;
+  meter: Meter;
+  counter = 0;
+
+  constructor(deps: Deps) {
+    this.log = deps.log.for(this);
+    this.meter = deps.meter;
+  }
+
+  async init() {
+    setInterval(() => {
+      this.log.info({ eps: this.counter }, 'events per second');
+      this.counter = 0;
+    }, 1000);
+  }
+
+  write = async (msg: { [k: string]: any }) => {
+    this.counter++;
+    this.meter.tick('printer.event');
+    this.log.debug({ key: msg.key, uid: msg.uid }, 'event');
+    return {};
+  }
+}
+```
