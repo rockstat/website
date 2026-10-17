@@ -23,13 +23,6 @@
     - name: Использование пикселя 1x1.gif
       href: /docs/guides/collecting/pixel
 
-    - name: Получение данных из сервисов
-      items: 
-
-        - name: Yandex AppMetrika
-          href: /docs/guides/collecting/appmetrika
-
-
     - name: Использование Панели управления
       href: /docs/guides/dashboard/using
 
