@@ -7,9 +7,6 @@
     - name: Быстрый старт
       href: /docs/intro/getting-started
 
-    - name: Что нового
-      href: /docs/what-s-new
-
 
 - name: Архитектура
   items:
@@ -57,31 +54,6 @@
     - name: Использование Панели управления
       href: /docs/guides/dashboard/using
 
-    - name: Использование инструментов из комплекта
-      items:
-
-        - name: Работа с Theia
-          href: /docs/guides/theia/using
-
-        - name: Мониторинг Netdata
-          href: /docs/guides/netdata/using
-        
-        - name: Работа с Jupyter
-          href: /docs/guides/jupyter/using
-
-    - name: Работа с ClickHouse
-      items:
-
-        - name: Основные принципы
-          href: /docs/guides/clickhouse/base
-
-        - name: Модификация схемы
-          href: /docs/guides/clickhouse/schema-modify
-
-
-    - name: Подключение к VPN
-      href: /docs/guides/connect-vpn
-
 
 
 - name: Справочная информация
@@ -95,9 +67,6 @@
 
     - name: Каналы получения данных
       items:
-
-        - name: WebSocket
-          href: /docs/reference/collecting/websocket
 
         - name: Загрузка больших файлов
           href: /docs/reference/collecting/large-files
@@ -135,30 +104,6 @@
     - name: JSON-RPC 2.0 RST
       href: /docs/reference/json-rpc-rst
 
-    - name: API сервисов
-      items:
-
-        - name: Director API
-          href: /docs/reference/director-service/api
-
-        - name: Front API
-          href: /docs/reference/font-service/api
-      
-    - name: RockMe Framework (TypeScript)
-      href: /docs/reference/rockme-framework/api
-
-    - name: Переменные окружения
-      href: /docs/reference/environment
-
-    - name: Маппинг путей
-      href: /docs/reference/directories
-
-    - name: Сетевая инфраструктура
-      href: /docs/reference/network
-
-    - name: Схема хранилища ClickHouse
-      href: /docs/reference/clickhouse/schema
-
 
 
 - name: Туториалы
@@ -173,12 +118,6 @@
         - name: Yandex AppMetrika
           href: /docs/tutorials/sources/appmetrika
 
-
-    - name: Сбор сырых данных Google Analytics
-      href: /docs/tutorials/google-analytics-raw-data
-
-    - name: Создание динамического Calltracking
-      href: /docs/tutorials/dynamic-calltracking
 
 
     - name: Собственный формат событий
@@ -200,9 +139,4 @@
     - name: Воронки
       href: /docs/tutorials/funnel
 
-    - name: Реализация Cookie-Sync
-      href: /docs/tutorials/cookie-sync
-
-    - name: Сегментация пользователей
-      href: /docs/tutorials/segmentation
 
