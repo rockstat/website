@@ -57,9 +57,6 @@
     - name: Использование Панели управления
       href: /docs/guides/dashboard/using
 
-    - name: Создание сервисов
-      href: /docs/guides/services/create-service-using-skeleton
-
     - name: Использование инструментов из комплекта
       items:
 
@@ -172,15 +169,6 @@
       href: /docs/reference/clickhouse/schema
 
 
-
-- name: Создание сервисов
-  items:
-
-    - name: TypeScript + Rockme Framework
-      items:
-
-        - name: Организация сервиса
-          href: /docs/build-service-rockme/stucture
 
 - name: Туториалы
   items:
